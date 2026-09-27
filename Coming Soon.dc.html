@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#05070D;overflow-x:hidden}
+  a{color:#2F7BFF;text-decoration:none}
+  a:hover{color:#1FD3E8}
+  ::selection{background:rgba(47,123,255,.28);color:#fff}
+  @keyframes cnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes cnFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+  @keyframes cnLiveDot{0%,100%{opacity:1}50%{opacity:.35}}
+  @keyframes cnUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes cnShine{0%{background-position:-160% 0}100%{background-position:260% 0}}
+  .cn-rise{opacity:0;animation:cnUp .7s cubic-bezier(.22,1,.36,1) forwards}
+  @media(max-width:640px){
+    [data-cs-count]{gap:10px!important}
+    [data-cs-tile]{min-width:66px!important;padding:14px 10px!important}
+    [data-cs-actions]{flex-direction:column!important;align-items:stretch!important}
+  }
+  @media(prefers-reduced-motion:reduce){.cn-rise{animation:none;opacity:1}}
+</style>
+</helmet>
+
+<div style="--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8;position:relative;min-height:100vh;background:#05070D;font-family:'Poppins',sans-serif;color:#fff;display:flex;flex-direction:column;overflow-x:clip">
+
+  <canvas id="cs-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <dc-import name="Navbar" active="{{ activeKey }}" hero-theme="dark" hint-size="100%,0"></dc-import>
+
+  <section style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:150px 24px 90px;background:radial-gradient(125% 100% at 50% 0%,#0E1A33,#05070D 66%);overflow:hidden">
+    <div style="position:absolute;top:-12%;left:-6%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.22),transparent 70%);filter:blur(72px);animation:cnFloat 9s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-16%;right:-6%;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.18),transparent 70%);filter:blur(64px);animation:cnFloat2 10s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;opacity:.5;mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000,transparent 76%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 35%,#000,transparent 76%)"></div>
+
+    <div style="position:relative;z-index:2;max-width:760px;width:100%">
+      <div class="cn-rise" style="animation-delay:.02s;display:flex;align-items:center;justify-content:center;width:78px;height:78px;border-radius:22px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;box-shadow:0 20px 44px rgba(47,123,255,.4);margin:0 auto 24px">{{ iconLg }}</div>
+
+      <div class="cn-rise" style="animation-delay:.08s;display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:100px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.4);margin-bottom:20px;font-size:11.5px;letter-spacing:1.6px;font-weight:700;color:#FBBF24">
+        <span style="width:7px;height:7px;border-radius:50%;background:#FBBF24;animation:cnLiveDot 1.2s infinite"></span>UNDER CONSTRUCTION
+      </div>
+
+      <div class="cn-rise" style="animation-delay:.14s;font-size:12.5px;letter-spacing:3px;font-weight:600;color:#1FD3E8;margin-bottom:14px">{{ kicker }}</div>
+
+      <h1 class="cn-rise" style="animation-delay:.2s;font-family:'Radio Canada Big',sans-serif;font-weight:700;font-size:clamp(40px,7vw,78px);line-height:.94;letter-spacing:-2px;margin-bottom:18px">{{ pageTitle }}<br><span style="background:linear-gradient(120deg,#fff,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">is coming soon</span></h1>
+
+      <p class="cn-rise" style="animation-delay:.26s;font-size:clamp(15px,2vw,17.5px);color:#9aa7bd;max-width:540px;margin:0 auto 36px;line-height:1.65">{{ preview }}</p>
+
+      <div class="cn-rise" data-cs-count style="animation-delay:.32s;display:flex;justify-content:center;gap:14px;margin-bottom:16px">
+        <sc-for list="{{ countUnits }}" as="u" hint-placeholder-count="4">
+          <div data-cs-tile style="min-width:88px;padding:18px 16px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)">
+            <div style="font-family:'Radio Canada Big',sans-serif;font-weight:700;font-size:clamp(28px,4.4vw,42px);line-height:1;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#fff,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">{{ u.v }}</div>
+            <div style="font-size:10.5px;letter-spacing:1.4px;font-weight:600;color:#7f8ca3;margin-top:8px;text-transform:uppercase">{{ u.l }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div class="cn-rise" style="animation-delay:.36s;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#8695ad;margin-bottom:34px"><span style="display:flex;color:#22C55E">{{ icRocket }}</span>Launching soon, we're putting the finishing touches on it.</div>
+
+      <div class="cn-rise" data-cs-actions style="animation-delay:.42s;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        <a href="Home.dc.html" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;font-weight:600;font-size:15px;box-shadow:0 14px 32px rgba(47,123,255,.4);transition:transform .25s" style-hover="transform:translateY(-3px)"><span style="display:flex">{{ icHome }}</span>Back to Home</a>
+        <a href="{{ ctaHref }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:600;font-size:15px;transition:all .25s" style-hover="background:rgba(255,255,255,.16)">{{ ctaLabel }}<span style="display:flex">{{ icArrow }}</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div style="position:relative;z-index:2">
+    <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:860},&quot;page&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Insights&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;kicker&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;RESOURCES&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;preview&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Deep-dive articles, tutorials and tech guides from the Cybernaut team.&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pen&quot;,&quot;bell&quot;,&quot;handshake&quot;,&quot;briefcase&quot;,&quot;users&quot;,&quot;message&quot;,&quot;flag&quot;],&quot;default&quot;:&quot;pen&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;target&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026-09-15T00:00:00&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Blogs.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Visit the blog&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Resources&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { d:'00', h:'00', m:'00', s:'00' };
+
+  componentDidMount() {
+    this.initBg();
+    this.tick();
+    this._timer = setInterval(() => this.tick(), 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this._timer);
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._resize);
+  }
+
+  tick() {
+    const raw = this.props.target || '';
+    let target = Date.parse(raw);
+    if (isNaN(target)) target = Date.now() + 32*24*3600*1000;
+    let diff = Math.max(0, target - Date.now());
+    const day = Math.floor(diff/86400000); diff -= day*86400000;
+    const hr = Math.floor(diff/3600000); diff -= hr*3600000;
+    const mn = Math.floor(diff/60000); diff -= mn*60000;
+    const sc = Math.floor(diff/1000);
+    const p = (n) => String(n).padStart(2,'0');
+    this.setState({ d:p(day), h:p(hr), m:p(mn), s:p(sc) });
+  }
+
+  ic(key, size, sw) {
+    var P = {
+      pen: '<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path>',
+      bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>',
+      handshake: '<path d="M11 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5l4-7h9l4 7v5a2 2 0 0 1-2 2h-2"></path><path d="M8 12h8"></path>',
+      briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>',
+      users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>',
+      message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+      flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line>',
+      home: '<path d="M3 9.5 12 3l9 6.5"></path><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path><path d="M9 21v-6h6v6"></path>',
+      arrow: '<line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>',
+      rocket: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>'
+    };
+    return React.createElement('svg', { width:size||16, height:size||16, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:sw||1.7, strokeLinecap:'round', strokeLinejoin:'round', dangerouslySetInnerHTML:{ __html:P[key]||'' } });
+  }
+
+  initBg() {
+    const cv = document.getElementById('cs-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const COUNT = window.innerWidth < 768 ? 24 : 48;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._resize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._resize);
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) { p.x += p.vx; p.y += p.vy; if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1; }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(47,123,255,${(1-d/138)*0.12})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(47,123,255,0.3)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.6,0,7); ctx.fill();
+      }
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  renderVals() {
+    const p = this.props;
+    return {
+      activeKey: p.active || 'Resources',
+      pageTitle: p.page || 'This page',
+      kicker: p.kicker || 'RESOURCES',
+      preview: p.preview || 'Something new is on the way. Check back shortly.',
+      ctaHref: p.ctaHref || 'Contact.dc.html',
+      ctaLabel: p.ctaLabel || 'Contact us',
+      iconLg: this.ic(p.icon || 'sparkles', 34, 1.7),
+      icHome: this.ic('home', 17, 1.9),
+      icArrow: this.ic('arrow', 16, 2),
+      icRocket: this.ic('rocket', 15, 1.8),
+      countUnits: [
+        { v:this.state.d, l:'Days' },
+        { v:this.state.h, l:'Hours' },
+        { v:this.state.m, l:'Minutes' },
+        { v:this.state.s, l:'Seconds' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#fff;overflow-x:hidden}
+  ::selection{background:rgba(47,123,255,.18);color:#0A1124}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#eef2f7}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#2F7BFF,#1FD3E8);border-radius:8px}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes cnFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  @keyframes cnGridMove{to{background-position:46px 46px}}
+  @keyframes cnSpinRing{to{transform:rotate(360deg)}}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+  image-slot{display:block;width:100%;height:100%}
+  @media(hover:hover) and (pointer:fine){[data-cursor]{display:block}a,button,[data-magnetic]{cursor:none}body{cursor:none}}
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    [data-track-grid]{grid-template-columns:1fr!important}
+    [data-prog-grid]{grid-template-columns:1fr!important}
+    [data-footer-grid]{grid-template-columns:1fr!important}
+    [data-hero-grid]{grid-template-columns:1fr!important}
+    [data-path-grid]{grid-template-columns:1fr!important}
+  }
+  @media(max-width:560px){[data-stat-grid]{grid-template-columns:repeat(2,1fr)!important}}
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+</style>
+</helmet>
+
+<div style="--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8;position:relative;min-height:100vh;background:#fff;font-family:'Poppins',sans-serif;color:#0A1124;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--g1);margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--g3);margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px var(--g3)"></div>
+  <canvas id="cn-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <dc-import name="Navbar" active="Programs" hero-theme="auto" hint-size="100%,0"></dc-import>
+
+  <div style="position:relative;z-index:2;background:#fff">
+
+  <!-- NAV -->
+
+
+  <!-- HERO -->
+  <section style="position:relative;padding:118px 28px 64px;background:radial-gradient(125% 100% at 50% 0%,#0E1A33,#05070D 64%);color:#fff;overflow:hidden">
+    <div style="position:absolute;top:-12%;left:-6%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.22),transparent 70%);filter:blur(72px);animation:cnFloat 9s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-16%;right:-6%;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.18),transparent 70%);filter:blur(64px);animation:cnFloat2 10s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:30px 30px;opacity:.5;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000,transparent 75%)"></div>
+    <div style="max-width:1220px;margin:0 auto;position:relative;z-index:2">
+      <div data-reveal style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#9aa7bd;margin-bottom:22px;flex-wrap:wrap">
+        <a href="Home.dc.html#hero" style="color:#9aa7bd;text-decoration:none" style-hover="color:#fff">Home</a><span style="opacity:.5">/</span>
+        <a href="Programs.dc.html" style="color:#9aa7bd;text-decoration:none" style-hover="color:#fff">Programs</a><span style="opacity:.5">/</span>
+        <a href="{{ c.hub }}" style="color:#9aa7bd;text-decoration:none" style-hover="color:#fff">{{ c.hubLabel }}</a><span style="opacity:.5">/</span>
+        <span style="color:var(--g3)">{{ c.title }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center" data-hero-grid>
+        <div data-reveal>
+          <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;background:rgba(47,123,255,.16);border:1px solid rgba(47,123,255,.34);margin-bottom:20px;font-size:11.5px;letter-spacing:1.5px;font-weight:600;color:var(--g3)">{{ c.kicker }}</div>
+          <h1 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(34px,4.6vw,56px);line-height:1.04;letter-spacing:-1.5px;margin-bottom:16px">{{ c.title }}</h1>
+          <p style="font-size:17px;color:#9aa7bd;max-width:520px;margin-bottom:24px">{{ c.tagline }}</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:480px;margin-bottom:26px" data-meta-grid>
+            <sc-for list="{{ c.meta }}" as="m" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)">
+                <span style="flex:none;display:flex;align-items:center;justify-content:center;color:#60a5fa">{{ m.ic }}</span>
+                <span style="line-height:1.25"><span style="display:block;font-size:10.5px;color:#7e8aa0">{{ m.label }}</span><span style="display:block;font-size:13px;font-weight:600;color:#fff">{{ m.value }}</span></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="#enquire" data-magnetic style="display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 14px 32px rgba(47,123,255,.4);transition:transform .25s" style-hover="transform:translateY(-3px)">Enquire Now →</a>
+            <a href="#enquire" data-magnetic style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.16)">Download Brochure</a>
+          </div>
+        </div>
+        <div data-reveal style="position:relative">
+          <div style="position:absolute;inset:-14px;border-radius:30px;background:linear-gradient(135deg,rgba(47,123,255,.3),rgba(31,211,232,.2));filter:blur(28px);z-index:0;animation:cnFloat 6s ease-in-out infinite"></div>
+          <div style="position:relative;z-index:1;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.14);aspect-ratio:4/3;background:#0B1220"><image-slot id="{{ c.heroImg }}" shape="rect" placeholder="{{ c.title }}, workshop / classroom photo"></image-slot></div>
+          <div style="position:absolute;z-index:3;bottom:-18px;left:-14px;display:flex;gap:10px">
+            <div style="padding:13px 18px;border-radius:16px;background:rgba(13,22,40,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);box-shadow:0 16px 40px rgba(0,0,0,.5)">
+              <div style="font-size:10.5px;color:#9aa7bd">Internship</div>
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:15px;color:var(--g3)">Included</div>
+            </div>
+            <div style="padding:13px 18px;border-radius:16px;background:rgba(13,22,40,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);box-shadow:0 16px 40px rgba(0,0,0,.5)">
+              <div style="font-size:10.5px;color:#9aa7bd">Certificate</div>
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:15px;color:var(--g3)">Included</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section style="position:relative;padding:84px 28px 60px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="max-width:680px;margin-bottom:40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">COURSE OVERVIEW</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(26px,3.4vw,42px);letter-spacing:-.5px;color:#0A1124;margin-bottom:16px">{{ c.overviewTitle }}</h2>
+        <p style="font-size:16px;color:#475569">{{ c.why }}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:22px" data-prog-grid>
+        <div data-reveal style="padding:28px;border-radius:20px;background:#F7F9FC;border:1px solid #E6ECF3">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;margin-bottom:14px">{{ c.demandIcon }}</div>
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:19px;color:#0A1124;margin-bottom:8px">Industry Demand</div>
+          <p style="font-size:14px;color:#475569">{{ c.industryDemand }}</p>
+        </div>
+        <div data-reveal style="padding:28px;border-radius:20px;background:#0B1220;color:#fff">
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:19px;margin-bottom:16px">Career Opportunities</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ c.careers }}" as="co" hint-placeholder-count="5">
+              <span style="padding:8px 14px;border-radius:100px;background:rgba(47,123,255,.16);border:1px solid rgba(47,123,255,.3);font-size:12.5px;font-weight:600;color:#cbd5e1">{{ co }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px" data-prog-grid>
+        <div data-reveal style="padding:28px;border-radius:20px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 22px rgba(10,17,36,.05)">
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px;color:#0A1124;margin-bottom:16px">Skills Covered</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ c.skillsCovered }}" as="sk" hint-placeholder-count="6">
+              <span style="padding:7px 14px;border-radius:10px;background:#F2F6FC;border:1px solid #E1E9F3;font-size:12.5px;font-weight:600;color:#475569">{{ sk }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div data-reveal style="padding:28px;border-radius:20px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 22px rgba(10,17,36,.05)">
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px;color:#0A1124;margin-bottom:16px">Learning Outcomes</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ c.outcomes }}" as="o" hint-placeholder-count="4">
+              <div style="display:flex;align-items:flex-start;gap:11px;font-size:13.5px;color:#334155"><span style="width:20px;height:20px;flex:none;border-radius:6px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;margin-top:1px">✓</span>{{ o }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING ROADMAP -->
+  <section style="position:relative;padding:80px 28px;background:#F7F9FC;border-top:1px solid #E6ECF3;border-bottom:1px solid #E6ECF3">
+    <div style="max-width:1080px;margin:0 auto">
+      <div data-reveal style="text-align:center;max-width:640px;margin:0 auto 38px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">LEARNING ROADMAP</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">A 3-Month Structured Journey</h2>
+      </div>
+      <div data-reveal style="display:flex;gap:10px;justify-content:center;margin-bottom:30px;flex-wrap:wrap">
+        <sc-for list="{{ learnTabs }}" as="t" hint-placeholder-count="3">
+          <button onClick="{{ t.onClick }}" data-magnetic style="padding:11px 26px;border-radius:100px;font-family:'Poppins';font-size:14px;font-weight:600;cursor:pointer;background:{{ t.bg }};color:{{ t.color }};border:1px solid {{ t.border }};box-shadow:{{ t.shadow }};transition:all .25s">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:1.3fr 1fr;gap:20px" data-prog-grid>
+        <div style="padding:32px;border-radius:22px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 8px 26px rgba(10,17,36,.06)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+            <span style="width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:17px">{{ learn.tag }}</span>
+            <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;color:#0A1124">{{ learn.month }}</div><div style="font-size:12.5px;color:#94a3b8">Topics Covered</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ learn.topics }}" as="tp" hint-placeholder-count="5">
+              <div style="display:flex;align-items:flex-start;gap:11px;font-size:14px;color:#334155"><span style="width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g3));flex:none;margin-top:7px"></span>{{ tp }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ learn.deliverables }}" as="d" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:13px;padding:16px 18px;border-radius:15px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 14px rgba(10,17,36,.04)">
+              <span style="width:38px;height:38px;flex:none;border-radius:11px;background:{{ d.tileBg }};display:flex;align-items:center;justify-content:center;font-size:16px">{{ d.ic }}</span>
+              <span style="font-size:13.5px;font-weight:600;color:#334155">{{ d.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERNSHIP ROADMAP -->
+  <section style="position:relative;padding:84px 28px;background:radial-gradient(125% 100% at 50% 0%,#0E1A33,#05070D 64%);color:#fff;overflow:hidden">
+    <div style="position:absolute;top:-10%;right:-6%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.16),transparent 70%);filter:blur(70px);pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+      <div data-reveal style="text-align:center;max-width:660px;margin:0 auto 44px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:var(--g3);font-weight:600;margin-bottom:14px">INTERNSHIP ROADMAP</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.8vw,46px);letter-spacing:-.5px">Real Software Engineering Experience</h2>
+        <p style="font-size:15.5px;color:#9aa7bd;margin-top:14px">A mentor-led, production-style internship, the same workflow across every program.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px" data-prog-grid>
+        <sc-for list="{{ internship }}" as="im" hint-placeholder-count="3">
+          <div data-reveal style="padding:28px 24px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transition:all .3s" style-hover="border-color:rgba(47,123,255,.4);transform:translateY(-5px)">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:18px">
+              <span style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:15px">{{ im.tag }}</span>
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px">{{ im.month }}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+              <sc-for list="{{ im.points }}" as="pt" hint-placeholder-count="5">
+                <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#cbd5e1"><span style="color:var(--g3);margin-top:1px">›</span>{{ pt }}</div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+              <span style="flex:1;text-align:center;padding:8px;border-radius:10px;background:rgba(47,123,255,.14);font-size:11.5px;font-weight:600;color:var(--g3)">2 Mini Projects</span>
+              <span style="flex:1;text-align:center;padding:8px;border-radius:10px;background:rgba(31,211,232,.14);font-size:11.5px;font-weight:600;color:var(--g3)">1 Major Project</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section style="position:relative;padding:84px 28px 64px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div data-reveal style="text-align:center;max-width:620px;margin:0 auto 40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">SKILLS YOU'LL MASTER</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Job-Ready Capabilities</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px" data-prog-grid>
+        <sc-for list="{{ skillCards }}" as="s" hint-placeholder-count="6">
+          <div data-reveal style="padding:24px;border-radius:18px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 20px rgba(10,17,36,.05);transition:transform .3s" style-hover="transform:translateY(-5px)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <span style="font-family:'Radio Canada Big';font-weight:600;font-size:15.5px;color:#0A1124">{{ s.name }}</span>
+              <span style="font-size:12px;font-weight:700;color:#2F7BFF">{{ s.pctLabel }}</span>
+            </div>
+            <div style="height:8px;border-radius:100px;background:#EEF2F7;overflow:hidden"><div data-bar data-pct="{{ s.pct }}" style="height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--g1),var(--g3));transition:width 1.1s cubic-bezier(.22,1,.36,1)"></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT OUTCOMES -->
+  <section style="position:relative;padding:60px 28px 80px">
+    <div style="max-width:1080px;margin:0 auto">
+      <div data-reveal style="border-radius:28px;overflow:hidden;border:1px solid #E6ECF3;box-shadow:0 20px 50px rgba(10,17,36,.08);display:grid;grid-template-columns:.85fr 1.15fr" data-prog-grid>
+        <div style="padding:40px;background:linear-gradient(150deg,#2F7BFF,#1FD3E8);color:#fff">
+          <div style="font-size:11.5px;letter-spacing:2px;font-weight:600;opacity:.9;margin-bottom:12px">{{ c.kicker }}</div>
+          <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(26px,3vw,36px);letter-spacing:-.5px;margin-bottom:14px">What You Walk Away With</h2>
+          <p style="font-size:14.5px;color:rgba(255,255,255,.9)">Tangible proof of skill, certificates, projects and a recruiter-ready profile.</p>
+        </div>
+        <div style="padding:40px;background:#fff">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <sc-for list="{{ studentOutcomes }}" as="so" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:#F7F9FC;border:1px solid #E6ECF3">
+                <span style="width:34px;height:34px;flex:none;border-radius:10px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px">{{ so.ic }}</span>
+                <span style="font-size:13px;font-weight:600;color:#334155">{{ so.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE SHOWCASE -->
+  <section style="position:relative;padding:80px 28px;background:#F7F9FC;border-top:1px solid #E6ECF3;border-bottom:1px solid #E6ECF3">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="text-align:center;max-width:620px;margin:0 auto 44px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">CERTIFICATE SHOWCASE</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Credentials That Get Noticed</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1400px" data-prog-grid>
+        <sc-for list="{{ certificates }}" as="ct" hint-placeholder-count="3">
+          <div data-reveal data-tilt style="border-radius:18px;overflow:hidden;background:#fff;border:1px solid #E6ECF3;box-shadow:0 10px 30px rgba(10,17,36,.08);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;transform-style:preserve-3d" style-hover="box-shadow:0 30px 60px rgba(47,123,255,.2)">
+            <div style="position:relative;aspect-ratio:4/3;background:#0B1220"><image-slot id="{{ ct.img }}" shape="rect" placeholder="{{ ct.title }}"></image-slot>
+              <div style="position:absolute;top:12px;left:12px;padding:6px 12px;border-radius:100px;background:rgba(13,22,40,.86);backdrop-filter:blur(6px);font-size:10.5px;font-weight:600;color:#fff;letter-spacing:.5px">{{ ct.badge }}</div>
+            </div>
+            <div style="padding:20px 22px"><div style="font-family:'Radio Canada Big';font-weight:700;font-size:16.5px;color:#0A1124;margin-bottom:4px">{{ ct.title }}</div><div style="font-size:12.5px;color:#64748b">{{ ct.note }}</div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT SHOWCASE -->
+  <section style="position:relative;padding:84px 28px 64px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div data-reveal style="text-align:center;max-width:620px;margin:0 auto 40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">STUDENT PROJECT SHOWCASE</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Built By Our Learners</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px" data-prog-grid>
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+          <div data-reveal style="border-radius:20px;overflow:hidden;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 24px rgba(10,17,36,.06);transition:transform .3s" style-hover="transform:translateY(-6px)">
+            <div style="position:relative;height:180px"><image-slot id="{{ p.img }}" shape="rect" placeholder="{{ p.title }}"></image-slot>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.05) 40%,rgba(5,7,13,.55))"></div>
+              <div style="position:absolute;left:18px;bottom:14px;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:17px">{{ p.title }}</div>
+            </div>
+            <div style="padding:20px 22px">
+              <p style="font-size:13.5px;color:#475569;margin-bottom:14px">{{ p.summary }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">
+                <sc-for list="{{ p.stack }}" as="st" hint-placeholder-count="3">
+                  <span style="padding:4px 10px;border-radius:8px;background:#F2F6FC;border:1px solid #E1E9F3;font-size:11px;font-weight:600;color:#64748b">{{ st }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#2F7BFF;font-weight:600;padding-top:12px;border-top:1px solid #EEF2F7"><span style="opacity:.7">Outcome:</span>{{ p.outcome }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="position:relative;padding:60px 28px 84px;background:#F7F9FC;border-top:1px solid #E6ECF3">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="text-align:center;max-width:620px;margin:0 auto 40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">STUDENT STORIES</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Hear From Our Learners</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px" data-prog-grid>
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+          <div data-reveal style="padding:26px;border-radius:20px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 22px rgba(10,17,36,.05);display:flex;flex-direction:column">
+            <sc-if value="{{ t.video }}" hint-placeholder-val="{{ false }}">
+              <div style="position:relative;height:150px;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#0B1220"><image-slot id="{{ t.img }}" shape="rect" placeholder="Video testimonial"></image-slot>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><span style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;color:#2F7BFF;font-size:18px;box-shadow:0 8px 22px rgba(0,0,0,.3)">▶</span></div>
+              </div>
+            </sc-if>
+            <div style="color:#f59e0b;font-size:14px;margin-bottom:10px">★★★★★</div>
+            <p style="font-size:14px;color:#334155;line-height:1.7;flex:1;margin-bottom:16px">{{ t.quote }}</p>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="width:42px;height:42px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:15px">{{ t.initial }}</span>
+              <div><div style="font-family:'Radio Canada Big';font-weight:600;font-size:14px;color:#0A1124">{{ t.name }}</div><div style="font-size:12px;color:#64748b">{{ t.role }}</div></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="position:relative;padding:84px 28px">
+    <div style="max-width:820px;margin:0 auto">
+      <div data-reveal style="text-align:center;margin-bottom:40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">QUESTIONS</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Frequently Asked</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ faqList }}" as="fq" hint-placeholder-count="5">
+          <div data-reveal style="border-radius:16px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 16px rgba(10,17,36,.04);overflow:hidden">
+            <button onClick="{{ fq.onClick }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Radio Canada Big';font-weight:600;font-size:16px;color:#0A1124">{{ fq.q }}<span style="width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;line-height:1">{{ fq.sign }}</span></button>
+            <sc-if value="{{ fq.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 24px 22px;font-size:14.5px;color:#475569;line-height:1.7">{{ fq.a }}</div></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA / ENQUIRE -->
+  <section id="enquire" style="position:relative;padding:20px 28px 96px">
+    <div data-reveal style="max-width:1080px;margin:0 auto;padding:60px 40px;border-radius:30px;background:radial-gradient(125% 130% at 50% 0%,#0E1A33,#05070D 70%);color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(10,17,36,.3)">
+      <div style="position:absolute;top:-60px;right:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.3),transparent 70%);filter:blur(40px)"></div>
+      <div style="position:absolute;bottom:-60px;left:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.22),transparent 70%);filter:blur(40px)"></div>
+      <div style="position:relative">
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,4vw,48px);letter-spacing:-1px;margin-bottom:14px">Start Your {{ c.title }} Journey</h2>
+        <p style="font-size:16.5px;color:#9aa7bd;max-width:580px;margin:0 auto 30px">Talk to an advisor, get the full brochure, and find the right batch for you. No payment required to enquire.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center">
+          <a href="Contact.dc.html" data-magnetic style="padding:14px 30px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 14px 32px rgba(47,123,255,.4);transition:transform .25s" style-hover="transform:translateY(-3px)">Enquire Now</a>
+          <a href="Contact.dc.html" data-magnetic style="padding:14px 28px;border-radius:100px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.2)">Talk to an Advisor</a>
+          <a href="#enquire" data-magnetic style="padding:14px 28px;border-radius:100px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.2)">Download Brochure</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section style="position:relative;padding:0 28px 90px;background:#fff">
+    <div style="max-width:1200px;margin:0 auto">
+      <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:30px;flex-wrap:wrap">
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,3vw,34px);letter-spacing:-.5px;color:#0A1124">Related Programs</h2>
+        <a href="Programs.dc.html" data-magnetic style="font-size:14px;font-weight:600;color:#2F7BFF;text-decoration:none">View all programs →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px" data-prog-grid>
+        <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+          <a href="{{ r.href }}" data-magnetic style="position:relative;display:flex;flex-direction:column;border-radius:18px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 6px 24px rgba(10,17,36,.05);text-decoration:none;overflow:hidden;transition:transform .3s,box-shadow .3s" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(47,123,255,.16)">
+            <div style="position:relative;height:124px;border-top:2px solid #3b82f6;background:linear-gradient(135deg,#0f1f3d,#1e3a5f);overflow:hidden">
+              <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(96,165,250,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.08) 1px,transparent 1px);background-size:24px 24px;opacity:.7"></div>
+              <div style="position:absolute;top:-26px;right:-26px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.28),transparent 70%);filter:blur(6px)"></div>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><span style="width:58px;height:58px;border-radius:15px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.22);display:flex;align-items:center;justify-content:center">{{ r.iconEl }}</span></div>
+            </div>
+            <div style="padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span style="min-width:0"><span style="display:block;font-family:'Radio Canada Big';font-weight:700;font-size:15.5px;color:#0A1124">{{ r.title }}</span><span style="display:block;font-size:12.5px;color:#64748b;margin-top:3px">{{ r.meta }}</span></span>
+              <span style="width:30px;height:30px;flex:none;border-radius:9px;background:#EEF4FF;display:inline-flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+    <!-- FOOTER -->
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null, filter: 'all', openFaq: 0, learnMonth: 0, internMonth: 0 };
+
+  componentDidMount() {
+    this.initBg(); this.initReveal(); this.initCounters();  this.initCursor(); this.initBars(); this.initTilt();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+  }
+
+  initBg() {
+    const cv = document.getElementById('cn-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._bgResize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(47,123,255,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(47,123,255,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const dec = parseInt(el.getAttribute('data-decimals')||'0');
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t0)/dur,1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      el.textContent = dec ? val.toFixed(dec) : Math.floor(val).toLocaleString('en-IN');
+      if (p<1) requestAnimationFrame(step); else el.textContent = dec ? target.toFixed(dec) : target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._done) return; el._done = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.3 });
+      setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 100);
+      setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 2600);
+    } else { document.querySelectorAll('[data-count]').forEach(fire); }
+  }
+
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, scrolled = null;
+    const apply = () => {
+      ticking = false;
+      const el = document.querySelector('nav'); if (!el) return;
+      const now = window.scrollY > 30;
+      if (now === scrolled) return; scrolled = now;
+      const lg = document.querySelector('[data-logo]');
+      if (now) { el.style.background='#ffffff'; el.style.backdropFilter='blur(16px)'; el.style.borderBottom='1px solid #E6ECF3'; el.style.padding='7px 0'; if(lg){lg.style.height='40px';lg.src='cybernaut-logo.webp';} }
+      else { el.style.background='transparent'; el.style.backdropFilter='none'; el.style.borderBottom='1px solid transparent'; el.style.padding='9px 0'; if(lg){if(window.__cnHeroDark===undefined){window.__cnHeroDark=(function(){var nv=document.querySelector('nav');if(!nv)return false;var r=nv.getBoundingClientRect();var st=document.elementsFromPoint(window.innerWidth/2,r.bottom+14)||[];function lumStr(s){var cols=[],idx=0;while((idx=s.indexOf('#',idx))!==-1){var hex=s.substr(idx+1,6);if(/^[0-9a-fA-F]{6}$/.test(hex)){cols.push([parseInt(hex.substr(0,2),16),parseInt(hex.substr(2,2),16),parseInt(hex.substr(4,2),16)]);}idx++;}idx=0;while((idx=s.indexOf('rgb',idx))!==-1){var op=s.indexOf('(',idx),cp=s.indexOf(')',op);if(op!==-1&&cp!==-1){var q=s.slice(op+1,cp).split(',').map(parseFloat);if(q.length>=3)cols.push([q[0],q[1],q[2]]);}idx=cp===-1?idx+3:cp+1;}if(!cols.length)return null;var L=0;for(var k=0;k<cols.length;k++){L+=(0.299*cols[k][0]+0.587*cols[k][1]+0.114*cols[k][2])/255;}return L/cols.length;}for(var i=0;i<st.length;i++){var nd=st[i];if(nv.contains(nd))continue;var c=nd;while(c&&c!==document.documentElement){var cs=getComputedStyle(c);var bg=cs.backgroundColor;if(bg&&bg.slice(0,3)==='rgb'){var p=bg.replace(/[^0-9.,]/g,'').split(',').map(parseFloat);var a=p.length>3?p[3]:1;if(a>0.5){return (0.299*p[0]+0.587*p[1]+0.114*p[2])/255<0.5;}}var bi=cs.backgroundImage;if(bi&&bi.indexOf('gradient')!==-1&&bi.indexOf('transparent')===-1){var GL=lumStr(bi);if(GL!==null)return GL<0.5;}c=c.parentElement;}}return false;})();}lg.style.height='48px';lg.src=(window.__cnHeroDark?'footer-logo.webp':'cybernaut-logo.webp');} }
+    };
+    this._onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    apply();
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('cn-dot'), ring = document.getElementById('cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(47,123,255,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#1FD3E8'; };
+    this._onUp = () => { ring.style.borderColor='#2F7BFF'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #2F7BFF;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  navData() {
+    const navDefs = [
+      { label:'Home', href:'Home.dc.html#hero' },
+      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs', active:true },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const navItems = navDefs.map(n => ({
+      label:n.label, href:n.href, title:'',
+      caret: !!n.mega, color: n.active ? '#2F7BFF' : '#475569',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Programs Students.dc.html#foundation' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Programs Students.dc.html#professional' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Student Login', href:'Login.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
+      { name:'YouTube', ic:'YT', href:'#' }, { name:'WhatsApp', ic:'WA', href:'#' }, { name:'X', ic:'X', href:'#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+
+  initBars() {
+    const run = (el) => { const p = el.getAttribute('data-pct'); requestAnimationFrame(()=>{ el.style.width = p + '%'; }); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ run(e.target); io.unobserve(e.target);} }),{threshold:0.4});
+      setTimeout(()=>document.querySelectorAll('[data-bar]').forEach(el=>io.observe(el)),120);
+    } else { document.querySelectorAll('[data-bar]').forEach(run); }
+  }
+  initTilt() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    setTimeout(()=>document.querySelectorAll('[data-tilt]').forEach(card=>{
+      card.addEventListener('mousemove',(e)=>{ const r=card.getBoundingClientRect(); const px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5; card.style.transform='perspective(900px) rotateX('+(-py*7)+'deg) rotateY('+(px*9)+'deg) translateY(-6px)'; });
+      card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
+    }),200);
+  }
+
+  lucide(key, color, size){
+    var P = {
+      clock:'<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>',
+      monitor:'<rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path>',
+      globe:'<circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.6 2.5 2.6 15.5 0 18M12 3c-2.6 2.5-2.6 15.5 0 18"></path>',
+      calendar:'<rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path>',
+      rupee:'<path d="M6 4h12M6 8h12M9 8c5 0 5 8 0 8M9 16l6 4M9 16H6"></path>',
+      package:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"></path><path d="M3 8l9 5 9-5M12 13v8"></path>',
+      code:'<path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"></path>',
+      pencil:'<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path>',
+      zap:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"></path>',
+      check:'<path d="m4 12 5 5L20 6"></path>',
+      award:'<circle cx="12" cy="9" r="6"></circle><path d="M9 14.5 7 22l5-3 5 3-2-7.5"></path>',
+      badge:'<path d="m12 2 2.3 1.8 2.9-.2.9 2.8 2.3 1.8-1 2.8 1 2.8-2.3 1.8-.9 2.8-2.9-.2L12 22l-2.3-1.8-2.9.2-.9-2.8L3.6 16l1-2.8-1-2.8L5.9 6.6l.9-2.8 2.9.2z"></path><path d="m9 12 2 2 4-4"></path>',
+      box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"></path><path d="M3 8l9 5 9-5"></path>',
+      star:'<path d="m12 3 2.9 5.9 6.1.9-4.5 4.4 1.1 6.1L12 17.8 6.4 20.3l1.1-6.1L3 9.8l6.1-.9z"></path>',
+      git:'<circle cx="6" cy="6" r="2.5"></circle><circle cx="6" cy="18" r="2.5"></circle><circle cx="18" cy="8" r="2.5"></circle><path d="M18 10.5V12a4 4 0 0 1-4 4H6M6 8.5v9"></path>',
+      file:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path>',
+      folder:'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>',
+      target:'<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle>',
+      trending:'<path d="m3 17 6-6 4 4 8-8"></path><path d="M17 7h4v4"></path>',
+      layers:'<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>',
+      barchart:'<line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line>',
+      pentool:'<path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"></path><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"></path><path d="m2.3 2.3 7.286 7.286"></path><circle cx="11" cy="11" r="2"></circle>',
+      brain:'<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>',
+      shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>',
+      sparkles:'<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"></path>',
+      terminal:'<path d="m4 17 6-6-6-6"></path><path d="M12 19h8"></path>',
+      bot:'<path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path>',
+      briefcase:'<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect>'
+    };
+    var s = size || 18;
+    return React.createElement('svg', { width:s, height:s, viewBox:'0 0 24 24', fill:'none', stroke:color||'currentColor', strokeWidth:1.5, strokeLinecap:'round', strokeLinejoin:'round', dangerouslySetInnerHTML:{ __html: P[key] || '' } });
+  }
+
+  relIcon(title){
+    var t=(title||'').toLowerCase(), k='code';
+    if(t.indexOf('full stack')>-1)k='layers';
+    else if(t.indexOf('data anal')>-1)k='barchart';
+    else if(t.indexOf('design')>-1||t.indexOf('ux')>-1)k='pentool';
+    else if(t.indexOf('machine')>-1)k='brain';
+    else if(t.indexOf('cyber')>-1||t.indexOf('security')>-1)k='shield';
+    else if(t.indexOf('generative')>-1)k='sparkles';
+    else if(t.indexOf('prompt')>-1)k='terminal';
+    else if(t.indexOf('agent')>-1)k='bot';
+    else if(t.indexOf('4-year')>-1||t.indexOf('4 year')>-1)k='briefcase';
+    else if(t.indexOf('placement')>-1||t.indexOf('year')>-1)k='target';
+    else if(t.indexOf('all ')>-1||t.indexOf('program')>-1||t.indexOf('catalogue')>-1)k='package';
+    return this.lucide(k,'#60a5fa',32);
+  }
+
+  pageData() {
+    /*::COURSE::*/
+    const C = {
+      title:'Prompt Engineering', kicker:'COLLEGE VAC PROGRAM', programType:'professional',
+      hub:'Programs College.dc.html', hubLabel:'College', heroImg:'pe-hero',
+      tagline:'Teach students to think with, and build on top of, large language models effectively.',
+      duration:'24 Hours', mode:'On-campus', language:'English & Tamil', batch:'College Schedule', fees:'Campus VAC',
+      overviewTitle:'Why Prompt Engineering?',
+      why:'Large language models are now everyday tools, but using them well is a skill. This value-added course teaches students to design effective prompts, build reliable LLM workflows, and apply them to real academic and project tasks.',
+      industryDemand:'The ability to work effectively with LLMs is fast becoming a baseline expectation across tech, content and research roles, making this VAC immediately practical for students.',
+      careers:['AI-Augmented Professional','LLM Power User','Campus Innovator','Project Builder','Future-Ready Graduate'],
+      skillsCovered:['LLM Basics','Prompt Design','Few-shot Prompting','Workflows','Evaluation','Responsible Use','Tools','Mini Builds'],
+      outcomes:['Understand how LLMs respond to prompts','Design clear, effective prompts','Build reliable LLM workflows','Apply prompting to real tasks'],
+      learning:[
+        { topics:['How large language models work','Anatomy of a good prompt','Zero-shot vs few-shot prompting','Roles, context & constraints','Common pitfalls & hallucinations'] },
+        { topics:['Structured & templated prompts','Chaining prompts into workflows','Tool & data-assisted prompting','Evaluating and improving outputs','Responsible & ethical use'] },
+        { topics:['Building a practical LLM workflow','Applying prompting to projects','Presenting your build','Where LLMs are heading','Capstone showcase'] }
+      ],
+      skillCards:[
+        {name:'LLM Basics',pct:88},{name:'Prompt Design',pct:92},{name:'Workflows',pct:84},
+        {name:'Evaluation',pct:82},{name:'Responsible Use',pct:86},{name:'Hands-on Building',pct:80}
+      ],
+      projects:[
+        {img:'pe-proj1',title:'Prompt Library',summary:'A reusable set of effective prompts for common student tasks.',stack:['LLM','Prompting'],outcome:'Mini build'},
+        {img:'pe-proj2',title:'LLM Workflow',summary:'A chained workflow that solves a real, multi-step problem.',stack:['Workflows'],outcome:'Mini build'},
+        {img:'pe-proj3',title:'Campus Capstone',summary:'A practical LLM-powered build showcased on campus.',stack:['LLM'],outcome:'Capstone'}
+      ],
+      testimonials:[
+        {name:'Student Lead',role:'Campus Participant',initial:'S',video:false,quote:'I now get far better, more reliable results from AI tools. Prompting turned out to be a real, learnable skill.'},
+        {name:'Faculty Coordinator',role:'Partner College',initial:'F',video:false,quote:'Immediately useful for students across every department, not just computer science.'},
+        {name:'Workshop Attendee',role:'Final Year',initial:'W',video:false,quote:'The workflow module changed how I approach assignments and projects.'}
+      ],
+      faqs:[
+        {q:'Who is this VAC for?',a:'College students of any discipline, delivered on campus as a value-added course. No coding required.'},
+        {q:'How is it delivered?',a:'On campus, hands-on, by industry mentors, designed to fit your institution’s schedule.'},
+        {q:'How does a college arrange this?',a:'Colleges partner with Cybernaut via an MOU. Reach out through the Contact page to plan delivery.'},
+        {q:'Is a certificate provided?',a:'Yes, students receive an industry-recognised certificate on completion.'},
+        {q:'Do students need technical backgrounds?',a:'No, the course is designed to be valuable to students from all streams.'}
+      ],
+      related:[
+        {ic:'G',title:'Generative AI',meta:'College VAC',href:'Generative AI.dc.html'},
+        {ic:'N',title:'AI Agents',meta:'College VAC',href:'AI Agents.dc.html'},
+        {ic:'A',title:'AI & Machine Learning',meta:'Professional · ₹3,500',href:'AI Machine Learning.dc.html'}
+      ]
+    };
+    /*::/COURSE::*/
+    // ---------- generic derivation (identical for every course) ----------
+    C.meta = [
+      { ic:this.lucide('clock','#60a5fa'), label:'Duration', value:C.duration },
+      { ic:this.lucide('monitor','#60a5fa'), label:'Mode', value:C.mode },
+      { ic:this.lucide('globe','#60a5fa'), label:'Language', value:C.language },
+      { ic:this.lucide('calendar','#60a5fa'), label:'Batch Timing', value:C.batch },
+      { ic:this.lucide('rupee','#60a5fa'), label:'Fees', value:C.fees },
+      { ic:this.lucide('package','#60a5fa'), label:'Includes', value:'Internship + Certificate' }
+    ];
+    C.demandIcon = this.lucide('trending','#fff',20);
+    C.heroImg = C.heroImg || 'course-hero';
+
+    const MONTH_TAGS = ['M1','M2','M3'];
+    const MONTH_NAMES = ['Month 1','Month 2','Month 3'];
+    const deliv = (last) => ([
+      { ic:this.lucide('code','#2F7BFF'), label:'Hands-on Practice', tileBg:'#EEF4FF' },
+      { ic:this.lucide('pencil','#E08A2B'), label:'Weekly Assignments', tileBg:'#FEF3E2' },
+      { ic:this.lucide('zap','#7C3AED'), label:'Coding Challenges', tileBg:'#EDE9FE' },
+      { ic:this.lucide('check','#1FA463'), label:last?'Final Assessment':'Mini Assessment', tileBg:'#E7F8EF' }
+    ]);
+    const lm = this.state.learnMonth;
+    const learnTabs = MONTH_NAMES.map((nm,i)=>({ label:nm, bg:lm===i?'linear-gradient(135deg,#2F7BFF,#1FD3E8)':'#fff', color:lm===i?'#fff':'#475569', border:lm===i?'transparent':'#DCE3EC', shadow:lm===i?'0 10px 24px rgba(47,123,255,.28)':'0 2px 8px rgba(10,17,36,.05)', onClick:()=>this.setState({learnMonth:i}) }));
+    const learn = { tag:MONTH_TAGS[lm], month:MONTH_NAMES[lm], topics:(C.learning[lm]||{}).topics||[], deliverables:deliv(lm===2) };
+
+    const INTERN = [
+      { points:['Dedicated Mentor Allocation','Requirement Analysis','Project Planning','Development Workflow','Weekly Code Reviews'] },
+      { points:['Sprint Planning','Documentation Guidance','Architecture Reviews','Weekly Mentor Reviews','Reference Resources'] },
+      { points:['Software Requirement Specification (SRS)','Client Simulation','Production Workflow','Performance Optimization','Final Project Review'] }
+    ];
+    const internship = INTERN.map((m,i)=>({ tag:MONTH_TAGS[i], month:MONTH_NAMES[i], points:m.points }));
+
+    const skillCards = (C.skillCards||[]).map(s=>({ name:s.name, pct:s.pct, pctLabel:s.pct+'%' }));
+
+    const OUT_FOUNDATION = [
+      {ic:this.lucide('award'),label:'3 Course Completion Certificates'},{ic:this.lucide('badge'),label:'1 Internship Certificate'},
+      {ic:this.lucide('box'),label:'6 Mini Projects'},{ic:this.lucide('star'),label:'3 Major Projects'},
+      {ic:this.lucide('git'),label:'GitHub Portfolio'},{ic:this.lucide('file'),label:'Resume Building'},{ic:'in',label:'LinkedIn Optimization'}
+    ];
+    const OUT_PRO = [
+      {ic:this.lucide('award'),label:'1 Course Completion Certificate'},{ic:this.lucide('badge'),label:'1 Internship Certificate'},
+      {ic:this.lucide('star'),label:'Industry Projects'},{ic:this.lucide('folder'),label:'Professional Portfolio'},
+      {ic:this.lucide('file'),label:'Resume Support'},{ic:this.lucide('target'),label:'Placement Preparation'}
+    ];
+    const studentOutcomes = C.programType==='foundation' ? OUT_FOUNDATION : OUT_PRO;
+
+    const certificates = [
+      { img:C.heroImg+'-cert1', title:'Course Certificate', badge:'COURSE', note:'On successful completion of the program' },
+      { img:C.heroImg+'-cert2', title:'Internship Certificate', badge:'INTERNSHIP', note:'For the mentor-led internship project' },
+      { img:C.heroImg+'-cert3', title:'Project Certificate', badge:'PROJECT', note:'For your major capstone project' }
+    ];
+
+    const faqList = (C.faqs||[]).map((fq,i)=>({ q:fq.q, a:fq.a, open:this.state.openFaq===i, sign:this.state.openFaq===i?'−':'+', onClick:()=>this.setState(s=>({openFaq:s.openFaq===i?-1:i})) }));
+
+    return { c:C, learnTabs, learn, internship, skillCards, studentOutcomes, certificates, projects:C.projects||[], testimonials:C.testimonials||[], faqList, related:(C.related||[]).map(r=>({...r, iconEl:this.relIcon(r.title)})) };
+  }
+
+    renderVals() {
+    return { ...this.navData(), ...this.pageData() };
+  }
+}
+</script>
+</body>
+</html>

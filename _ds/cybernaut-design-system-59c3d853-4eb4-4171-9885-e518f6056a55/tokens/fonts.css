@@ -1,0 +1,20 @@
+/* ============================================================
+   Cybernaut — Web fonts
+   Quicksand  → body / UI (from Google Fonts)
+   Inter      → professional headings (from Google Fonts)
+   Poppins    → display headings alt (from Google Fonts)
+   Loubag     → hero display, local TTF (shipped in /assets/fonts)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Loubag';
+  src: url('../assets/fonts/Loubag-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

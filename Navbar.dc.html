@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="navbar-theme.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  @keyframes cnDrawerIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+  [data-cn-mob-toggle]{display:none}
+  [data-dd]{position:relative}
+  [data-dd] [data-panel]{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease;white-space:normal}
+  [data-dd] [data-panel]::before{content:'';position:absolute;top:-14px;left:0;right:0;height:14px}
+  [data-dd]:hover [data-panel]{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+  [data-caret2]{transition:transform .28s ease}
+  [data-dd]:hover [data-caret2]{transform:rotate(180deg)}
+  @media(max-width:1240px){
+    [data-cn-desk] [data-nav-key]{font-size:13px!important;padding:8px 9px!important}
+    [data-cn-desk] [data-nav-underline]{left:9px!important;right:9px!important}
+    [data-cn-desk]{gap:2px!important}
+  }
+  @media(max-width:1080px){
+    [data-cn-desk] [data-nav-key]{font-size:12.5px!important;padding:8px 7px!important}
+    [data-cn-desk] [data-nav-key] svg[data-caret2]{width:12px;height:12px}
+    [data-cn-desk] [data-nav-underline]{left:7px!important;right:7px!important}
+  }
+  @media(max-width:900px){
+    [data-cn-desk]{display:none!important}
+    [data-cn-mob-toggle]{display:inline-flex!important}
+  }
+  @media(prefers-reduced-motion:reduce){
+    [data-cn-nav],[data-cn-nav] *{transition:none!important;animation:none!important}
+  }
+</style>
+</helmet>
+
+<nav ref="{{ navRef }}" data-cn-nav data-active="{{ activeKey }}" data-hero-theme="{{ heroThemeVal }}" style="--nav-fg:#334155;--nav-line:#DCE3EC;position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 0;background:transparent;border-bottom:1px solid transparent;transition:padding .35s ease,background .35s ease,border-color .35s ease;font-family:'Poppins',sans-serif">
+  <div style="max-width:1340px;margin:0 auto;padding:0 clamp(18px,4vw,34px);display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;white-space:nowrap">
+
+    <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none">
+      <img ref="{{ logoRef }}" src="cybernaut-logo.webp" alt="Cybernaut, Endeavour to Explore" style="height:38px;width:auto;display:block;transition:height .35s ease" />
+    </a>
+
+    <div data-cn-desk style="display:flex;align-items:center;gap:4px">
+
+      <!-- Programs -->
+      <div data-dd style="display:flex;position:relative">
+        <a href="Programs.dc.html" data-nav-key="Programs" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Programs<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
+        <span data-nav-underline="Programs" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
+        <div data-panel style="position:absolute;top:calc(100% + 12px);left:0;z-index:70;width:520px;background:#fff;border:1px solid #E6ECF3;border-radius:16px;box-shadow:0 26px 60px rgba(10,17,36,.18);padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:22px">
+          <div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;padding:0 10px 8px">For Students</div>
+            <sc-for list="{{ studentProgs }}" as="it" hint-placeholder-count="3">
+              <a href="{{ it.href }}" style="display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF">
+                <span style="flex:none;display:flex;color:#94a3b8;margin-top:2px">{{ it.icon }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:13.5px;font-weight:500;color:#0f172a">{{ it.label }}</span>
+                  <span style="font-size:12px;font-weight:400;color:#94a3b8">{{ it.desc }}</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;padding:0 10px 8px">For Colleges</div>
+            <sc-for list="{{ collegeProgs }}" as="it" hint-placeholder-count="4">
+              <a href="{{ it.href }}" style="display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF">
+                <span style="flex:none;display:flex;color:#94a3b8;margin-top:2px">{{ it.icon }}</span>
+                <span style="display:flex;flex-direction:column;gap:2px">
+                  <span style="font-size:13.5px;font-weight:500;color:#0f172a">{{ it.label }}</span>
+                  <span style="font-size:12px;font-weight:400;color:#94a3b8">{{ it.desc }}</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cybernaut SaaS -->
+      <div data-dd style="display:flex;position:relative">
+        <a href="Cybernaut SaaS.dc.html" data-nav-key="Cybernaut SaaS" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Cybernaut SaaS<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
+        <span data-nav-underline="Cybernaut SaaS" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
+        <div data-panel style="position:absolute;top:calc(100% + 12px);left:50%;margin-left:-330px;z-index:70;width:660px;background:#fff;border:1px solid #E6ECF3;border-radius:16px;box-shadow:0 26px 60px rgba(10,17,36,.18);padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:22px">
+          <div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;padding:0 10px 8px">Services</div>
+            <sc-for list="{{ saasServices }}" as="it" hint-placeholder-count="5">
+              <a href="{{ it.href }}" style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:#0f172a;padding:9px 10px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF"><span style="flex:none;display:flex;color:#94a3b8">{{ it.icon }}</span>{{ it.label }}</a>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;padding:0 10px 8px">Products</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px">
+              <sc-for list="{{ saasProducts }}" as="it" hint-placeholder-count="8">
+                <a href="{{ it.href }}" style="display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:500;color:#0f172a;padding:8px 9px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF"><span style="flex:none;display:flex;color:#94a3b8">{{ it.icon }}</span>{{ it.label }}</a>
+              </sc-for>
+            </div>
+          </div>
+          <div style="grid-column:1 / -1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid #EEF2F7;padding-top:14px;margin-top:2px">
+            <sc-for list="{{ saasExtras }}" as="it" hint-placeholder-count="3">
+              <a href="{{ it.href }}" style="font-size:12.5px;font-weight:500;color:#475569;padding:7px 13px;border-radius:100px;background:#F5F8FC;border:1px solid #E6ECF3;text-decoration:none" style-hover="color:#2F7BFF;border-color:#BBD3FF">{{ it.label }}</a>
+            </sc-for>
+            <a href="Cybernaut SaaS.dc.html#cta" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#2F7BFF;text-decoration:none">Start a project<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div style="display:flex;position:relative">
+        <a href="About Company.dc.html" data-nav-key="About Company" style="font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">About</a>
+        <span data-nav-underline="About Company" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
+      </div>
+
+      <!-- Events -->
+      <div data-dd style="display:flex;position:relative">
+        <a href="Events.dc.html" data-nav-key="Events" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Events</a>
+        <span data-nav-underline="Events" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
+      </div>
+
+      <!-- Resources -->
+      <div data-dd style="display:flex;position:relative">
+        <a href="Resources.dc.html" data-nav-key="Resources" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Resources</a>
+        <span data-nav-underline="Resources" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
+      </div>
+    </div>
+
+    <div data-cn-desk style="display:flex;align-items:center;gap:10px;flex:none">
+      <a href="Login.dc.html" style="display:none;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 8px;transition:color .2s" style-hover="color:#2F7BFF">Login</a>
+      <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:11px 20px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28);transition:transform .2s" style-hover="transform:translateY(-2px)">Get Started<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+
+    <button onClick="{{ toggleDrawer }}" data-cn-mob-toggle aria-label="Open menu" style="background:none;border:none;cursor:pointer;color:var(--nav-fg);padding:6px;align-items:center;justify-content:center">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeDrawer }}" style="position:fixed;inset:0;z-index:210;background:rgba(5,7,13,.5);backdrop-filter:blur(3px)"></div>
+  <div style="position:fixed;top:0;right:0;bottom:0;z-index:211;width:min(360px,88vw);background:#fff;box-shadow:-20px 0 60px rgba(10,17,36,.24);display:flex;flex-direction:column;animation:cnDrawerIn .32s cubic-bezier(.22,1,.36,1) both;font-family:'Poppins',sans-serif">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #EEF2F8">
+      <img src="cybernaut-logo.webp" alt="Cybernaut" style="height:32px;width:auto" />
+      <button onClick="{{ closeDrawer }}" aria-label="Close menu" style="background:none;border:none;cursor:pointer;color:#0A1124;padding:4px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:2px">
+
+      <div style="display:flex;align-items:center;gap:4px;border-radius:11px" style-hover="background:#F5F8FC">
+        <a href="Programs.dc.html" onClick="{{ closeDrawer }}" style="flex:1;font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px">Programs</a>
+        <button onClick="{{ toggleProgs }}" aria-label="Show programs" style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:#0A1124;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;transform:{{ progsCaret }};transition:transform .25s ease"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div>
+      <sc-if value="{{ progsOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:2px 0 8px 8px;margin-left:8px;border-left:2px solid #EEF2F7">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:8px 12px 4px">For Students</div>
+          <sc-for list="{{ studentProgs }}" as="it" hint-placeholder-count="3">
+            <a href="{{ it.href }}" onClick="{{ closeDrawer }}" style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none" style-hover="background:#F1F6FF">
+              <span style="flex:none;display:flex;color:#94a3b8;margin-top:3px">{{ it.icon }}</span>
+              <span style="display:flex;flex-direction:column;gap:1px">
+                <span style="font-size:14px;font-weight:500;color:#0f172a">{{ it.label }}</span>
+                <span style="font-size:12px;font-weight:400;color:#94a3b8">{{ it.desc }}</span>
+              </span>
+            </a>
+          </sc-for>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:12px 12px 4px">For Colleges</div>
+          <sc-for list="{{ collegeProgs }}" as="it" hint-placeholder-count="4">
+            <a href="{{ it.href }}" onClick="{{ closeDrawer }}" style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:10px;text-decoration:none" style-hover="background:#F1F6FF">
+              <span style="flex:none;display:flex;color:#94a3b8;margin-top:3px">{{ it.icon }}</span>
+              <span style="display:flex;flex-direction:column;gap:1px">
+                <span style="font-size:14px;font-weight:500;color:#0f172a">{{ it.label }}</span>
+                <span style="font-size:12px;font-weight:400;color:#94a3b8">{{ it.desc }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <button onClick="{{ toggleSaas }}" style="display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600;color:#0A1124;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Cybernaut SaaS<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;transform:{{ saasCaret }};transition:transform .25s ease"><path d="m6 9 6 6 6-6"/></svg></button>
+      <sc-if value="{{ saasOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:2px 0 8px 8px;margin-left:8px;border-left:2px solid #EEF2F7">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:8px 12px 4px">Services</div>
+          <sc-for list="{{ saasServices }}" as="it" hint-placeholder-count="5">
+            <a href="{{ it.href }}" onClick="{{ closeDrawer }}" style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:#334155;padding:9px 12px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF"><span style="flex:none;display:flex;color:#94a3b8">{{ it.icon }}</span>{{ it.label }}</a>
+          </sc-for>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;padding:12px 12px 4px">Products</div>
+          <sc-for list="{{ saasProducts }}" as="it" hint-placeholder-count="8">
+            <a href="{{ it.href }}" onClick="{{ closeDrawer }}" style="display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:500;color:#334155;padding:9px 12px;border-radius:9px;text-decoration:none" style-hover="background:#F1F6FF"><span style="flex:none;display:flex;color:#94a3b8">{{ it.icon }}</span>{{ it.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <a href="About Company.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">About</a>
+      <a href="Events.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Events</a>
+
+      <a href="Resources.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Resources</a>
+    </div>
+    <div style="padding:16px 20px;border-top:1px solid #EEF2F8;display:flex;flex-direction:column;gap:10px">
+      <a href="Login.dc.html" style="display:none;text-align:center;font-size:14px;font-weight:500;color:#0A1124;text-decoration:none;padding:11px;border:1px solid #DCE3EC;border-radius:100px" style-hover="border-color:#BBD3FF;color:#2F7BFF">Login</a>
+      <a href="Contact.dc.html" style="display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:12px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28)">Get Started<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1340,&quot;height&quot;:90},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;Home&quot;,&quot;Programs&quot;,&quot;Cybernaut SaaS&quot;,&quot;Events&quot;,&quot;About Company&quot;,&quot;Resources&quot;,&quot;Blogs&quot;,&quot;Careers&quot;,&quot;Contact Us&quot;],&quot;default&quot;:&quot;Home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;heroTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;auto&quot;,&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;auto&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { drawerOpen: false, progsOpen: false, saasOpen: false, resOpen: false, evtOpen: false };
+
+
+  ic(key) {
+    var P = {
+      book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>',
+      briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>',
+      grid: '<rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect>',
+      award: '<circle cx="12" cy="9" r="6"></circle><path d="M9 14.5 7 22l5-3 5 3-2-7.5"></path>',
+      sparkles: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"></path><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"></path>',
+      target: '<circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4"></circle>',
+      users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"></path>',
+      code: '<path d="m8 8-4 4 4 4M16 8l4 4-4 4"></path>',
+      cpu: '<rect x="5" y="5" width="14" height="14" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"></path>',
+      cloud: '<path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.5 2A4 4 0 0 0 7 19z"></path>',
+      sliders: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"></path><path d="M2 14h4M10 8h4M18 16h4"></path>',
+      layers: '<path d="m12 2 9 5-9 5-9-5z"></path><path d="m3 12 9 5 9-5"></path>',
+      bookOpen: '<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"></path><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"></path>',
+      kanban: '<path d="M6 5v11M12 5v6M18 5v14"></path>',
+      building: '<rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"></path>',
+      fileCheck: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 14l2 2 4-4"></path>',
+      zap: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"></path>',
+      pen: '<path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path>',
+      bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>',
+      handshake: '<path d="M11 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5l4-7h9l4 7v5a2 2 0 0 1-2 2h-2"></path><path d="M8 12h8"></path>',
+      message: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+      flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><path d="M4 22v-7"></path>'
+    };
+    return React.createElement('svg', { width:15, height:15, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:1.6, strokeLinecap:'round', strokeLinejoin:'round', dangerouslySetInnerHTML:{ __html: P[key] || '' } });
+  }
+
+  renderVals() {
+    return {
+      activeKey: this.props.active || '',
+      heroThemeVal: this.props.heroTheme || 'auto',
+      studentProgs: [
+        { icon: this.ic('book'), label: 'Foundation Programs', desc: 'Tech Trio · programming basics', href: 'Programs Students.dc.html#foundation' },
+        { icon: this.ic('briefcase'), label: 'Professional Programs', desc: 'Job-ready career tracks', href: 'Programs Students.dc.html#professional' },
+        { icon: this.ic('grid'), label: 'All Student Programs', desc: 'Browse the full catalogue', href: 'Programs Students.dc.html' }
+      ],
+      collegeProgs: [
+        { icon: this.ic('award'), label: 'VAC Programs', desc: 'Value-added campus courses', href: 'Programs College.dc.html#vac' },
+        { icon: this.ic('sparkles'), label: 'Generative AI', desc: 'Campus VAC track', href: 'Generative AI.dc.html' },
+        { icon: this.ic('target'), label: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'Programs College.dc.html#placement' },
+        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & outreach', href: 'Contact.dc.html' }
+      ],
+      saasServices: [
+        { icon: this.ic('code'), label: 'Product Engineering', href: 'Cybernaut SaaS.dc.html#capabilities' },
+        { icon: this.ic('cpu'), label: 'AI & Automation', href: 'Cybernaut SaaS.dc.html#capabilities' },
+        { icon: this.ic('cloud'), label: 'Cloud & DevOps', href: 'Cybernaut SaaS.dc.html#capabilities' },
+        { icon: this.ic('sliders'), label: 'Enterprise Solutions', href: 'Cybernaut SaaS.dc.html#capabilities' },
+        { icon: this.ic('layers'), label: 'Technology Consulting', href: 'Cybernaut SaaS.dc.html#capabilities' }
+      ],
+      saasProducts: [
+        { icon: this.ic('bookOpen'), label: 'Cybernaut LMS', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('kanban'), label: 'Cybernaut ERP', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('building'), label: 'Cybernaut Campus', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('fileCheck'), label: 'Cybernaut Examily', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('code'), label: 'Cybernaut Practice', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('users'), label: 'Cybernaut CRM', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('briefcase'), label: 'Cybernaut HRM', href: 'Cybernaut SaaS.dc.html#products' },
+        { icon: this.ic('zap'), label: 'Cybernaut Minitos', href: 'Cybernaut SaaS.dc.html#products' }
+      ],
+      saasExtras: [
+        { label: 'Case Studies', href: 'Cybernaut SaaS.dc.html#clients' },
+        { label: 'Client Feedback', href: 'Cybernaut SaaS.dc.html#feedbacks' },
+        { label: 'How We Build', href: 'Cybernaut SaaS.dc.html#how' }
+      ],
+      eventsMenu: [
+        { icon: this.ic('sparkles'), label: 'Sunday Series', desc: 'Weekly learning sessions', href: 'Events.dc.html#sunday-series' },
+        { icon: this.ic('award'), label: 'Contest', desc: 'Compete & win', href: 'Events.dc.html#contest' },
+        { icon: this.ic('zap'), label: 'Hackathons', desc: 'Build under pressure', href: 'Events.dc.html#hackathons' }
+      ],
+      resourcesLeft: [
+        { icon: this.ic('pen'), label: 'Insights', desc: 'Blog · articles & guides · soon', href: 'Insights.dc.html' },
+        { icon: this.ic('bell'), label: 'Product Updates', desc: 'What is new across Cybernaut · soon', href: 'Product Updates.dc.html' },
+        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & collaborations · soon', href: 'Partner With Us.dc.html' },
+        { icon: this.ic('briefcase'), label: 'Careers', desc: 'Join the Cybernaut team · soon', href: 'Careers.dc.html' }
+      ],
+      resourcesRight: [
+        { icon: this.ic('users'), label: 'Aarvam, Student Community', desc: 'The hidden order of tech clans · soon', href: 'Aarvam Community.dc.html' },
+        { icon: this.ic('message'), label: 'Student Stories', desc: 'Placements & alumni journeys · soon', href: 'Student Stories.dc.html' },
+        { icon: this.ic('flag'), label: 'Campus Leads', desc: 'Represent Cybernaut on your campus · soon', href: 'Campus Leads.dc.html' }
+      ],
+      drawerOpen: this.state.drawerOpen,
+      progsOpen: this.state.progsOpen,
+      saasOpen: this.state.saasOpen,
+      resOpen: this.state.resOpen,
+      evtOpen: this.state.evtOpen,
+      evtCaret: this.state.evtOpen ? 'rotate(180deg)' : 'none',
+      progsCaret: this.state.progsOpen ? 'rotate(180deg)' : 'none',
+      saasCaret: this.state.saasOpen ? 'rotate(180deg)' : 'none',
+      resCaret: this.state.resOpen ? 'rotate(180deg)' : 'none',
+      toggleDrawer: () => this.setState(s => ({ drawerOpen: !s.drawerOpen })),
+      closeDrawer: () => this.setState({ drawerOpen: false }),
+      toggleProgs: () => this.setState(s => ({ progsOpen: !s.progsOpen })),
+      toggleSaas: () => this.setState(s => ({ saasOpen: !s.saasOpen })),
+      toggleRes: () => this.setState(s => ({ resOpen: !s.resOpen })),
+      toggleEvt: () => this.setState(s => ({ evtOpen: !s.evtOpen }))
+    };
+  }
+}
+</script>
+</body>
+</html>

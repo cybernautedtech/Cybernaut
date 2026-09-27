@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#ffffff;overflow-x:hidden}
+  ::selection{background:rgba(59,130,246,.2);color:#0f172a}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#f1f5f9}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#3b82f6,#06b6d4);border-radius:8px}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnOrbGlow{0%,100%{opacity:.45}50%{opacity:.9}}
+  @keyframes cnRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  /* The ring is 1323px wide intrinsically and the hero clips overflow, so it has
+     to shrink on BOTH axes, height so its lowest chip clears the fold, width so
+     the left/right chips are not amputated. All of these write transform on the
+     same element, so they are ordered narrow-last and the combined cases follow
+     their plain counterparts. */
+  @media(max-height:950px){
+    [data-orbit-stage]{transform:scale(.78)}
+  }
+  @media(max-height:800px){
+    [data-orbit-stage]{transform:scale(.66)}
+  }
+  @media(max-width:1380px){
+    [data-orbit-stage]{transform:scale(.8)}
+  }
+  @media(max-width:1380px) and (max-height:950px){
+    [data-orbit-stage]{transform:scale(.68)}
+  }
+  @media(max-width:1160px){
+    [data-orbit-stage]{transform:scale(.68)}
+  }
+  @media(max-width:1160px) and (max-height:950px){
+    [data-orbit-stage]{transform:scale(.58)}
+  }
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+  @media(hover:hover) and (pointer:fine){[data-cursor]{display:block}a,button,[data-magnetic]{cursor:none}body{cursor:none}}
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    /* the orbit ring is 860px across, on a narrow screen it drops back to
+       atmosphere so the centred copy stays the whole story */
+    /* the ring is 860px across, below 980px it can only be atmosphere, and the
+       milestone chips would sit under the CTA row, so they step aside (the same
+       six stages are spelled out in the Foundation / Professional sections) */
+    [data-orbit-stage]{transform:scale(.58);opacity:1}
+    [data-orbit-shift]{transform:translateY(40px)!important}
+    [data-orbit-copy]{padding-left:24px!important;padding-right:24px!important}
+    [data-foot-grid]{grid-template-columns:1fr!important}
+  }
+  @media(max-width:760px){[data-course-grid]{grid-template-columns:1fr 1fr!important}[data-found-grid]{grid-template-columns:1fr!important}}
+  @media(max-width:520px){[data-course-grid]{grid-template-columns:1fr!important}}
+  @media(max-width:760px){[data-orbit-stage]{overflow:hidden}}
+  @media(max-width:900px){[data-hero-gallery]{height:440px!important}}
+  @media(max-width:760px){
+    [data-orbit-hero]{min-height:auto!important}
+    [data-orbit-copy]{min-height:auto!important;justify-content:flex-start!important;padding:118px 18px 150px!important}
+    [data-orbit-copy] h1{font-size:40px!important;letter-spacing:-1.6px!important;line-height:1.08!important}
+    [data-orbit-copy] p{font-size:16px!important;line-height:1.65!important;color:#a9b8d0!important;margin-bottom:30px!important;max-width:360px!important}
+    [data-orbit-copy] > div:last-child{flex-direction:row!important;flex-wrap:nowrap!important;width:100%;max-width:380px;gap:10px!important}
+    [data-orbit-copy] > div:last-child a{flex:1 1 0;min-width:0;height:46px!important;padding:0 12px!important;font-size:13.5px!important;gap:6px!important;border-radius:12px!important;white-space:nowrap}
+    [data-orbit-copy] > div:last-child a svg{width:14px;height:14px}
+    [data-orbit-stage]{perspective-origin:50% calc(100% - 115px)!important;transform:none!important}
+    [data-orbit-shift]{inset:auto 0 0 0!important;height:230px!important;transform:none!important}
+    [data-orbit-ring]{transform:scale(.5) rotateX(83deg)!important}
+    [data-orbitchip]{width:330px!important;left:-165px!important;top:-44px!important;padding:16px 22px!important;gap:14px!important}
+    [data-orbitchip] > span:last-child{font-size:20px!important}
+    [data-orbitchip] [data-orbitnum]{width:34px!important;height:34px!important;font-size:15px!important}
+    [data-orbit-spin] > div[aria-hidden]{box-shadow:none!important}
+    [data-orbit-hero] > div[aria-hidden="true"]:last-child{box-shadow:inset 0 0 90px 30px rgba(2,4,10,.8)!important}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="--g1:#3b82f6;--g2:#06b6d4;--g3:#1FD3E8;position:relative;min-height:100vh;background:#ffffff;font-family:'Poppins',sans-serif;color:#0f172a;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid #3b82f6;margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:#06b6d4;margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px #06b6d4"></div>
+  <canvas id="cn-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <div style="position:relative;z-index:2;background:#ffffff">
+
+  <!-- NAV -->
+  <dc-import name="Navbar" active="Programs" hero-theme="auto" hint-size="100%,0"></dc-import>
+
+
+  <!-- ════════ SECTION 1, HERO ════════ -->
+  <section data-screen-label="Students Hero" data-orbit-hero style="position:relative;z-index:1;isolation:isolate;min-height:100vh;overflow:hidden;background:radial-gradient(64% 58% at 50% 44%,#17325c 0%,#0a1730 38%,#03050c 82%)">
+    <div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:900px;height:900px;margin:calc(11vh - 450px) 0 0 -450px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.2),transparent 62%);filter:blur(46px);pointer-events:none"></div>
+    <div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:420px;height:420px;margin:calc(11vh - 210px) 0 0 -210px;border-radius:50%;background:radial-gradient(circle,rgba(120,205,255,.42),rgba(47,123,255,.12) 44%,transparent 70%);filter:blur(38px);pointer-events:none;animation:cnOrbGlow 7s ease-in-out infinite"></div>
+
+    <!-- The ring sits in the lower third. At radius 430 the front arc projects
+         below the ring centre, so a CENTRED ring is guaranteed to cross the
+         copy and the CTA row. data-orbit-shift drops it by a fixed 240px, and
+         rotateX(80deg) flattens the ellipse so the back arc stays low too.
+         (Offsetting the stage itself moved its perspective-origin and threw
+         the projection off, the shift has to be its own layer.) -->
+    <div data-orbit-stage style="position:absolute;inset:0;perspective:1500px;perspective-origin:50% 42%;z-index:2">
+      <div data-orbit-shift style="position:absolute;inset:0;transform:translateY(11vh);transform-style:preserve-3d">
+      <div data-orbit-ring style="position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(83deg)">
+        <div data-orbit-spin style="position:absolute;inset:0;transform-style:preserve-3d">
+          <div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:1040px;height:1040px;margin:-520px 0 0 -520px;border-radius:50%;border:1px solid rgba(120,200,255,.34);box-shadow:0 0 60px rgba(47,123,255,.26),inset 0 0 80px rgba(47,123,255,.12)"></div>
+          <div aria-hidden="true" style="position:absolute;left:50%;top:50%;width:1040px;height:1040px;margin:-520px 0 0 -520px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,rgba(31,211,232,.32) 40deg,transparent 88deg,transparent 360deg);mask-image:radial-gradient(circle,transparent 47%,#000 48%,#000 50.5%,transparent 51.5%);-webkit-mask-image:radial-gradient(circle,transparent 47%,#000 48%,#000 50.5%,transparent 51.5%)"></div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(0deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(0deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">01</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Core foundations</span>
+          </div>
+        </div>
+      </div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(60deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(-60deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">02</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Frameworks & tools</span>
+          </div>
+        </div>
+      </div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(120deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(-120deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">03</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Capstone build</span>
+          </div>
+        </div>
+      </div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(180deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(-180deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">04</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Team onboarding</span>
+          </div>
+        </div>
+      </div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(240deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(-240deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">05</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Shipping features</span>
+          </div>
+        </div>
+      </div>
+      <div data-orbit style="position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateZ(300deg) translateX(520px)">
+        <div data-orbitbill style="transform:rotateZ(-300deg) rotateX(-83deg);transform-style:preserve-3d">
+          <div data-orbitchip style="position:absolute;left:-110px;top:-30px;width:220px;display:flex;align-items:center;gap:11px;padding:11px 16px;border-radius:100px;background:rgba(11,22,42,.9);border:1px solid rgba(140,205,255,.3);box-shadow:0 16px 34px rgba(0,0,0,.5);white-space:nowrap;transition:background .5s,border-color .5s,box-shadow .5s">
+            <span data-orbitnum style="flex:none;width:24px;height:24px;border-radius:50%;background:rgba(47,123,255,.24);color:#fff;font-family:'Radio Canada Big';font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;transition:background .5s">06</span>
+            <span style="font-size:13.5px;font-weight:600;color:#e6eefb">Offer & placement</span>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div data-orbit-copy style="position:relative;z-index:4;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:128px clamp(24px,4.5vw,72px) 380px">
+      <div data-h-anim style="animation:cnRise .7s cubic-bezier(.22,1,.36,1) 0.15s both;display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.26em;color:#1FD3E8;font-weight:600;margin-bottom:26px;text-transform:uppercase">For Students</div>
+      <h1 style="font-family:'Radio Canada Big';font-weight:800;font-size:clamp(44px,6.2vw,84px);line-height:1.03;letter-spacing:-3.4px;color:#fff;margin-bottom:20px;perspective:800px;display:flex;flex-wrap:wrap;justify-content:center;gap:0 .26em"><span data-gw style="display:inline-block;transform-origin:50% 100%">6</span> <span data-gw style="display:inline-block;transform-origin:50% 100%">Months.</span> <span data-gw style="display:inline-block;transform-origin:50% 100%">Learn.</span> <span data-gw style="display:inline-block;transform-origin:50% 100%">Build.</span><span aria-hidden="true" style="flex:0 0 100%;height:0"></span><span data-gw style="display:inline-block;transform-origin:50% 100%">Get</span> <span data-gw style="display:inline-block;transform-origin:50% 100%;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent">Hired.</span></h1>
+      <p data-h-anim style="animation:cnRise .7s cubic-bezier(.22,1,.36,1) 0.4s both;font-size:20.5px;color:#8fa3c2;max-width:720px;line-height:1.62;margin-bottom:42px">A complete 6 month sprint. 3 months of intensive learning, then 3 months of real internship. Foundation or Professional, your call.</p>
+      <div data-h-anim style="animation:cnRise .7s cubic-bezier(.22,1,.36,1) 0.55s both;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+        <a href="Foundation Programs.dc.html" data-magnetic style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:60px;padding:0 36px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:15px;text-decoration:none;backdrop-filter:blur(8px);transition:transform .25s,background .25s" style-hover="transform:translateY(-3px);background:rgba(255,255,255,.14)">Start Foundation <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        <a href="Professional Programs.dc.html" data-magnetic style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:60px;padding:0 36px;border-radius:14px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 18px 40px rgba(47,123,255,.32);transition:transform .25s" style-hover="transform:translateY(-3px)">Start Professional <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+      </div>
+    </div>
+
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:5;pointer-events:none;box-shadow:inset 0 0 230px 85px rgba(2,4,10,.88)"></div>
+  </section>
+
+  <!-- marquee ticker -->
+  <div style="position:relative;z-index:1;background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;overflow:hidden;padding:15px 0">
+    <div style="display:flex;width:max-content;animation:cnTick 28s linear infinite;white-space:nowrap">
+      <sc-for list="{{ tickerLoop }}" as="t" hint-placeholder-count="10">
+        <span style="display:inline-flex;align-items:center;gap:22px;padding-right:22px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.16em;color:#94a3b8;text-transform:uppercase">{{ t.label }}</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:#cbd5e1"></span>
+        </span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2, FOUNDATION ════════ -->
+  <section style="position:relative;z-index:1;padding:96px clamp(28px,5vw,64px);background:#f8fafc">
+    <div style="max-width:1240px;margin:0 auto">
+      <div data-reveal style="margin-bottom:44px">
+        <div data-num-label style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+          <span style="font-family:'Radio Canada Big';font-size:clamp(54px,8vw,92px);font-weight:900;color:rgba(59,130,246,.14);line-height:.8;letter-spacing:-3px">01</span>
+          <span style="font-size:12px;letter-spacing:.22em;color:#3b82f6;font-weight:700;text-transform:uppercase">Foundation</span>
+        </div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,3.8vw,42px);letter-spacing:-.6px;color:#0f172a;margin-bottom:14px">Start From Zero. Build Real Skill.</h2>
+        <p style="font-size:16px;color:#475569;max-width:560px">No experience needed. 3-month foundation + 3-month internship sprint.</p>
+      </div>
+      <div data-found-grid style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;max-width:1020px;margin-bottom:26px">
+        <sc-for list="{{ foundationCards }}" as="c" hint-placeholder-count="2">
+          <dc-import name="Course Card" course="{{ c }}" theme="white" hint-size="100%,430px"></dc-import>
+        </sc-for>
+      </div>
+      <a href="Foundation Programs.dc.html" data-magnetic style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#3b82f6;text-decoration:none">Explore Foundation Programs <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 3, PROFESSIONAL ════════ -->
+  <section style="position:relative;z-index:1;padding:96px clamp(28px,5vw,64px);background:#ffffff">
+    <div style="max-width:1240px;margin:0 auto">
+      <div data-reveal style="margin-bottom:44px">
+        <div data-num-label style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+          <span style="font-family:'Radio Canada Big';font-size:clamp(54px,8vw,92px);font-weight:900;color:rgba(6,182,212,.14);line-height:.8;letter-spacing:-3px">02</span>
+          <span style="font-size:12px;letter-spacing:.22em;color:#06b6d4;font-weight:700;text-transform:uppercase">Professional</span>
+        </div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,3.8vw,42px);letter-spacing:-.6px;color:#0f172a;margin-bottom:14px">Go Deep. Go Job-Ready.</h2>
+        <p style="font-size:16px;color:#475569;max-width:560px">Intermediate to hireable in 6 months, learning + internship combined.</p>
+      </div>
+      <div data-course-grid style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-bottom:26px">
+        <sc-for list="{{ professionalCards }}" as="c" hint-placeholder-count="5">
+          <dc-import name="Course Card" course="{{ c }}" theme="white" hint-size="100%,430px"></dc-import>
+        </sc-for>
+      </div>
+      <a href="Professional Programs.dc.html" data-magnetic style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#06b6d4;text-decoration:none">Explore Professional Programs <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null };
+
+  componentDidMount() {
+    this.initBg(); this.initReveal();  this.initCursor(); this.initGsap(); this.initOrbit();
+  }
+  componentWillUnmount() {
+    clearInterval(this._orbBoot);
+    if (this._orbTween) this._orbTween.kill();
+    if (this._orbIntro) this._orbIntro.kill();
+    const st = document.querySelector('[data-orbit-stage]');
+    if (st && this._orbMove) { st.removeEventListener('mousemove', this._orbMove); st.removeEventListener('mouseleave', this._orbLeave); }
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+    if (this._floatTweens) this._floatTweens.forEach(t => t && t.kill());
+  }
+
+  initBg() {
+    const cv = document.getElementById('cn-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._bgResize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(59,130,246,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(59,130,246,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, scrolled = null;
+    const apply = () => {
+      ticking = false;
+      const el = document.querySelector('nav'); if (!el) return;
+      const now = window.scrollY > 30;
+      if (now === scrolled) return; scrolled = now;
+      const lg = document.querySelector('[data-logo]');
+      if (now) { el.style.background='#ffffff'; el.style.backdropFilter='blur(16px)'; el.style.borderBottom='1px solid #E6ECF3'; el.style.padding='7px 0'; if(lg){lg.style.height='40px';lg.src='cybernaut-logo.webp';} }
+      else { el.style.background='transparent'; el.style.backdropFilter='none'; el.style.borderBottom='1px solid transparent'; el.style.padding='11px 0'; if(lg){lg.style.height='48px';lg.src='cybernaut-logo.webp';} }
+    };
+    this._onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    apply();
+  }
+
+  buildIcon(name, size, color, sw) {
+    const I = {
+      code2: [['path',{d:'m18 16 4-4-4-4'}],['path',{d:'m6 8-4 4 4 4'}],['path',{d:'m14.5 4-5 16'}]],
+      terminal: [['path',{d:'m4 17 6-6-6-6'}],['path',{d:'M12 19h8'}]],
+      layers: [['path',{d:'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z'}],['path',{d:'m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65'}],['path',{d:'m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'}]],
+      barchart: [['line',{x1:18,x2:18,y1:20,y2:10}],['line',{x1:12,x2:12,y1:20,y2:4}],['line',{x1:6,x2:6,y1:20,y2:14}]],
+      pentool: [['path',{d:'M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z'}],['path',{d:'m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18'}],['path',{d:'m2.3 2.3 7.286 7.286'}],['circle',{cx:11,cy:11,r:2}]],
+      brain: [['path',{d:'M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z'}],['path',{d:'M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z'}],['path',{d:'M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4'}],['path',{d:'M6 18a4 4 0 0 1-1.967-.516'}],['path',{d:'M19.967 17.484A4 4 0 0 1 18 18'}]],
+      shield: [['path',{d:'M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z'}]],
+      video: [['path',{d:'m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5'}],['rect',{x:2,y:6,width:14,height:12,rx:2}]],
+      award: [['path',{d:'m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526'}],['circle',{cx:12,cy:8,r:6}]]
+    };
+    const defs = I[name] || I.code2;
+    return React.createElement('svg', { width:size, height:size, viewBox:'0 0 24 24', fill:'none', stroke:color, strokeWidth: sw||1.7, strokeLinecap:'round', strokeLinejoin:'round' },
+      defs.map((d, i) => React.createElement(d[0], { key:i, ...d[1] })));
+  }
+
+  /* Hero orbit: a ring laid flat (rotateX 74°) spinning on Z, with the six
+     milestones riding it. The chips must be BILLBOARDED, a static counter-
+     rotation only cancels a chip's parked angle, so once the ring turns every
+     label rolls over and goes unreadable. Cancelling the live spin each frame
+     keeps all six upright and facing the camera. */
+  initOrbit() {
+    const boot = setInterval(() => {
+      if (!window.gsap) return;
+      if (document.querySelectorAll('[data-orbit]').length < 6) return;
+      clearInterval(boot);
+      this.buildOrbit(window.gsap);
+    }, 120);
+    this._orbBoot = boot;
+  }
+
+  buildOrbit(g) {
+    const spin = document.querySelector('[data-orbit-spin]');
+    const stage = document.querySelector('[data-orbit-stage]');
+    const ring = document.querySelector('[data-orbit-ring]');
+    const nodes = [].slice.call(document.querySelectorAll('[data-orbit]'));
+    if (!spin || !nodes.length) return;
+
+    const bills = nodes.map((n) => n.querySelector('[data-orbitbill]'));
+    const chips = nodes.map((n) => n.querySelector('[data-orbitchip]'));
+    const dim = 'rgba(11,22,42,.9)', hot = 'linear-gradient(135deg,#2F7BFF,#1FD3E8)';
+    let lit = -1;
+    /* start with 01 at the front, then turn NEGATIVE, a positive spin walks
+       the ring backwards (01 → 06 → 05…); this reads 01 → 02 → 03… */
+    const st = { r: 90 };
+    const boost = { v: 0 };          /* page-load spin-in, eases to 0 */
+
+    const tick = () => {
+      const R = st.r + boost.v;
+      g.set(spin, { rotateZ: R });
+      let pick = 0, best = -2;
+      for (let i = 0; i < nodes.length; i++) {
+        if (bills[i]) bills[i].style.transform = 'rotateZ(' + (-(i * 60 + R)).toFixed(2) + 'deg) rotateX(-83deg)';
+        const a = ((i * 60 + R) % 360 + 360) % 360;
+        const v = Math.cos((a - 90) * Math.PI / 180);
+        /* the far side recedes, so those chips never ride up over the headline */
+        if (chips[i]) chips[i].style.opacity = (0.1 + 0.9 * Math.pow((v + 1) / 2, 2.2)).toFixed(3);
+        if (v > best) { best = v; pick = i; }
+      }
+      if (pick !== lit) {
+        if (lit >= 0 && chips[lit]) {
+          const c = chips[lit];
+          c.style.background = dim; c.style.borderColor = 'rgba(140,205,255,.3)'; c.style.boxShadow = '0 16px 34px rgba(0,0,0,.5)';
+          c.querySelector('[data-orbitnum]').style.background = 'rgba(47,123,255,.24)';
+          g.to(c, { scale: 1, duration: .45, ease: 'power2.out' });
+        }
+        lit = pick;
+        const c = chips[lit];
+        if (c) {
+          c.style.background = hot; c.style.borderColor = 'rgba(255,255,255,.45)'; c.style.boxShadow = '0 0 44px rgba(47,123,255,.66)';
+          c.querySelector('[data-orbitnum]').style.background = 'rgba(255,255,255,.28)';
+          g.fromTo(c, { scale: 1 }, { scale: 1.14, duration: .5, ease: 'back.out(2.4)' });
+        }
+      }
+    };
+
+    this._orbTween = g.to(st, { r: -270, duration: 34, ease: 'none', repeat: -1, onUpdate: tick });
+    tick();
+
+    /* Page-load entrance: the ring drops in from above the viewport while
+       spinning fast, then eases into place and hands straight over to the
+       continuous rotation already running. The drop lives on the shift layer
+       (its own element) so it never disturbs the stage's perspective-origin. */
+    const shift = document.querySelector('[data-orbit-shift]');
+    if (shift) {
+      const tl = g.timeline();
+      this._orbIntro = tl;
+      tl.from(shift, {
+        y: -(window.innerHeight + 700),
+        duration: 2.2,
+        ease: 'power2.out'
+      }, 0)
+        .from(shift, { opacity: 0, duration: .7, ease: 'power1.out' }, 0)
+        .fromTo(boost, { v: 760 }, {
+          v: 0, duration: 2.3, ease: 'power2.out', onUpdate: tick
+        }, 0);
+    }
+
+    if (stage && ring) {
+      const rx = g.quickTo(ring, 'rotationX', { duration: .7, ease: 'power2.out' });
+      this._orbMove = (e) => {
+        const b = stage.getBoundingClientRect();
+        rx(83 - ((e.clientY - b.top) / b.height - .5) * 7);
+      };
+      this._orbLeave = () => rx(83);
+      stage.addEventListener('mousemove', this._orbMove);
+      stage.addEventListener('mouseleave', this._orbLeave);
+    }
+  }
+
+  initGsap() {
+    const t0 = Date.now();
+    const tryInit = () => {
+      if (window.gsap) {
+        const g = window.gsap; this._gsap = g;
+        if (window.ScrollTrigger) g.registerPlugin(window.ScrollTrigger);
+        /* the hero copy entrance is CSS (see cnRise), a JS tween that gets
+           killed mid-flight leaves the CTAs invisible with no symptom */
+        // hero media grid, tile 1 fade+scale first, tiles 2 & 3 slide up with stagger
+        g.fromTo('[data-gw]', { opacity:0, y:54, rotateX:-45 }, { opacity:1, y:0, rotateX:0, duration:.85, ease:'power4.out', stagger:.07, delay:.1 });
+        document.querySelectorAll('[data-gblob]').forEach(function(el, i){ g.to(el, { x: i%2 ? -46 : 46, y: i%2 ? 36 : -36, scale:1.1, duration: 8 + i*2, repeat:-1, yoyo:true, ease:'sine.inOut' }); });
+        setTimeout(function(){ g.set('[data-gw]', { clearProps:'transform,opacity' }); }, 3200);
+        // number labels scale in
+        document.querySelectorAll('[data-num-label]').forEach(el => {
+          const r = el.getBoundingClientRect();
+          const run = () => g.from(el.children[0], { scale:.4, opacity:0, duration:.7, ease:'back.out(1.6)', transformOrigin:'left center' });
+          if (r.top < innerHeight*0.92 && r.bottom > 0) run();
+          else if (window.ScrollTrigger) window.ScrollTrigger.create({ trigger: el, start:'top 86%', once:true, onEnter: run });
+        });
+        // course cards stagger
+        this.staggerCards('[data-found-grid]');
+        this.staggerCards('[data-course-grid]');
+      } else if (Date.now() - t0 < 5000) { setTimeout(tryInit, 100); }
+      else { document.querySelectorAll('[data-h-anim],[data-course-card]').forEach(c => { c.style.opacity = 1; }); }
+    };
+    tryInit();
+  }
+
+  staggerCards(gridSel) {
+    const g = this._gsap || window.gsap; if (!g) return;
+    const grid = document.querySelector(gridSel); if (!grid) return;
+    const cards = grid.querySelectorAll('[data-course-card]'); if (!cards.length) return;
+    const r = grid.getBoundingClientRect();
+    const reveal = () => { g.fromTo(cards, { opacity:0, y:30 }, { opacity:1, y:0, duration:.6, stagger:.09, ease:'power3.out' }); setTimeout(() => g.set(cards, { opacity:1, y:0 }), 900); };
+    if (r.top < innerHeight*0.92 && r.bottom > 0) reveal();
+    else if (window.ScrollTrigger) { g.set(cards, { opacity:0, y:30 }); window.ScrollTrigger.create({ trigger: grid, start:'top 86%', once:true, onEnter: reveal }); setTimeout(() => g.set(cards, { opacity:1, y:0 }), 4500); }
+    else reveal();
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('cn-dot'), ring = document.getElementById('cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(59,130,246,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#06b6d4'; };
+    this._onUp = () => { ring.style.borderColor='#3b82f6'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #3b82f6;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  navData() {
+    const navDefs = [
+      { label:'Home', href:'Home.dc.html#hero' },
+      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs', active:true },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const navItems = navDefs.map(n => ({
+      label:n.label, href:n.href, title:'',
+      caret: !!n.mega, color: n.active ? '#3b82f6' : '#0A1124',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Foundation Programs.dc.html' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Professional Programs.dc.html' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Student Login', href:'Login.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
+      { name:'YouTube', ic:'YT', href:'#' }, { name:'WhatsApp', ic:'WA', href:'#' }, { name:'X', ic:'X', href:'#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+
+  pageData() {
+    const ticker = ['6-MONTH SPRINT','FOUNDATION + PROFESSIONAL','LIVE MENTORED CLASSES','REAL INTERNSHIP','PLACEMENT SUPPORT'];
+    const tickerLoop = ticker.concat(ticker).map((label, i) => ({ label, _k:i }));
+
+    const heroPhotos = [
+      { tilt:'-3', top:'0', left:'auto', right:'0', caption:'Students in live mentored session', ic:'video' },
+      { tilt:'2', top:'180px', left:'0', right:'auto', caption:'Coding workshop in progress', ic:'code2' },
+      { tilt:'-1', top:'360px', left:'auto', right:'34px', caption:'Certificate ceremony moment', ic:'award' }
+    ].map(p => ({ ...p, iconEl: this.buildIcon(p.ic, 46, 'rgba(96,165,250,.7)', 1.4) }));
+
+    const foundationCards = [
+      { title:'Tech Trio', ic:'code2', category:'FOUNDATION', duration:'6 Months', skills:['C / C++','DSA','Problem Solving'], outcome:'Strong Programming Foundation', href:'Tech Trio.dc.html', src:'assets/programs/prog-techtrio.svg' },
+      { title:'System Design', ic:'gitbranch', category:'FOUNDATION', duration:'6 Months', skills:['Architecture','Databases','API Design'], outcome:'Think Like an Engineer', href:'System Design.dc.html', src:'assets/programs/prog-sysdesign.svg' }
+    ];
+
+    const professionalCards = [
+      { title:'Full Stack Development', ic:'layers', category:'PROFESSIONAL', duration:'6 Months', skills:['React','Node.js','Databases'], outcome:'Job-Ready Full Stack Engineer', href:'Full Stack Development.dc.html', src:'assets/programs/prog-fullstack.svg' },
+      { title:'Data Analytics', ic:'barchart', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','SQL','Power BI'], outcome:'Data-Driven Decision Maker', href:'Data Analytics.dc.html', src:'assets/programs/prog-data.svg' },
+      { title:'UI / UX Design', ic:'pentool', category:'PROFESSIONAL', duration:'6 Months', skills:['Figma','Design Systems','Prototyping'], outcome:'Industry-Ready Product Designer', href:'UI UX Design.dc.html', src:'assets/programs/prog-uiux.svg' },
+      { title:'AI & Machine Learning', ic:'brain', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','Machine Learning','Deep Learning'], outcome:'AI-Augmented Developer', href:'AI Machine Learning.dc.html', src:'assets/programs/prog-ai.svg' },
+      { title:'Cybersecurity', ic:'shield', category:'PROFESSIONAL', duration:'6 Months', skills:['Networking','Ethical Hacking','SecOps'], outcome:'Security-First Engineer', href:'Cybersecurity.dc.html', src:'assets/programs/prog-cyber.svg' }
+    ];
+
+    return { tickerLoop, heroPhotos, foundationCards, professionalCards };
+  }
+
+  renderVals() {
+    return { ...this.navData(), ...this.pageData() };
+  }
+}
+</script>
+</body>
+</html>

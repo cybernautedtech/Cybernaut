@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F7BFF"></stop><stop offset="1" stop-color="#1FD3E8"></stop></linearGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2F7BFF" stop-opacity=".55"></stop><stop offset="1" stop-color="#2F7BFF" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="glow2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#1FD3E8" stop-opacity=".4"></stop><stop offset="1" stop-color="#1FD3E8" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="46" height="46" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#ffffff" opacity=".07"></circle></pattern>
+</defs>
+<rect width="1600" height="1000" fill="#0B1220"></rect>
+<circle cx="880" cy="200" r="520" fill="url(#glow)"></circle>
+<circle cx="720" cy="800" r="460" fill="url(#glow2)"></circle>
+<rect width="1600" height="1000" fill="url(#dots)"></rect>
+
+<g>
+<path d="M800 210 L1030 300 V560 C1030 700 930 780 800 830 C670 780 570 700 570 560 V300 Z" fill="url(#g)"></path>
+<path d="M800 270 L970 336 V556 C970 662 892 728 800 770 C708 728 630 662 630 556 V336 Z" fill="#0B1220" opacity=".55"></path>
+<rect x="720" y="500" width="160" height="120" rx="18" fill="#ffffff" opacity=".92"></rect>
+<path d="M752 500 V466 C752 440 774 420 800 420 C826 420 848 440 848 466 V500" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" opacity=".92"></path>
+<circle cx="800" cy="548" r="16" fill="#0B1220"></circle>
+<rect x="792" y="556" width="16" height="34" rx="8" fill="#0B1220"></rect>
+</g>
+
+</svg>

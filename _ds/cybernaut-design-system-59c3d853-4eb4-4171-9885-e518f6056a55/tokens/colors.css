@@ -1,0 +1,96 @@
+/* ============================================================
+   Cybernaut — Color tokens
+   Source of truth: cn-website globals.css + LMS tailwind theme.
+   The brand runs on a sky→cyan blue gradient with near-black ink
+   on white, plus a full dark theme used across the LMS portal.
+   ============================================================ */
+
+:root {
+  /* ---- Brand blues (base ramp) ---- */
+  --cn-blue-50:  #e6f6ff;
+  --cn-blue-100: #cceeff;
+  --cn-blue-200: #99dcff;
+  --cn-blue-300: #66cbff;
+  --cn-blue-400: #38a7f4;   /* primary button fill on website */
+  --cn-blue-500: #00a2ff;   /* PRIMARY brand sky blue */
+  --cn-blue-600: #0370af;   /* scrollbar hover / pressed */
+  --cn-blue-700: #025986;
+
+  /* ---- Cyan accent (gradient partner) ---- */
+  --cn-cyan-400: #13d8fb;   /* website gradient end */
+  --cn-cyan-500: #06b6d4;   /* LMS gradient start (cyan-500) */
+  --cn-indigo-500: #3b82f6; /* LMS gradient end (blue-500) */
+
+  /* ---- Signature gradients ---- */
+  --cn-gradient-brand: linear-gradient(135deg, #00a3ff 0%, #13d8fb 100%); /* @kind color */
+  --cn-gradient-portal: linear-gradient(90deg, #06b6d4 0%, #3b82f6 100%); /* @kind color */
+  --cn-gradient-portal-br: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); /* @kind color */
+  --cn-gradient-hero: linear-gradient(120deg, #00a2ff 0%, #06b6d4 50%, #3b82f6 100%); /* @kind color */
+
+  /* ---- Neutrals (light) ---- */
+  --cn-ink:        #121212;  /* foreground / near-black */
+  --cn-ink-soft:   #2a2a2a;  /* dark pill / secondary buttons */
+  --cn-gray-500:   #878787;  /* muted-foreground */
+  --cn-gray-400:   #a1a1aa;
+  --cn-gray-100:   #f4f4f5;  /* secondary / muted surface */
+  --cn-white:      #ffffff;
+  --cn-border:     #e4e4e7;  /* hairline border + input */
+
+  /* ---- Semantic accents ---- */
+  --cn-success:    #16a34a;  /* green-600 */
+  --cn-success-soft: #22c55e;
+  --cn-emerald:    #10b981;  /* quiz CTA */
+  --cn-warning:    #eab308;  /* yellow-500 quizzes */
+  --cn-amber:      #f59e0b;
+  --cn-danger:     #ff4444;  /* destructive */
+  --cn-danger-600: #dc2626;  /* sign-out border */
+  --cn-violet:     #8b5cf6;  /* coding-task accent */
+
+  /* ---- Dark theme (LMS portal) ---- */
+  --cn-dark-bg:        #121212;
+  --cn-dark-surface:   #1e1e1e;  /* card */
+  --cn-dark-surface-2: #2d2d2d;  /* secondary / muted */
+  --cn-dark-gray-900:  #111827;  /* sidebar bg (gray-900) */
+  --cn-dark-fg:        #ffffff;
+  --cn-dark-fg-muted:  #d4d4d4;
+  --cn-dark-border:    #3a3a3a;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reach for these in product UI
+     ============================================================ */
+  --color-primary:            var(--cn-blue-500);
+  --color-primary-hover:      var(--cn-blue-400);
+  --color-primary-pressed:    var(--cn-blue-600);
+  --color-primary-foreground: var(--cn-white);
+  --color-accent:             var(--cn-cyan-500);
+
+  --text-strong:   var(--cn-ink);
+  --text-body:     #3f3f46;
+  --text-muted:    var(--cn-gray-500);
+  --text-on-brand: var(--cn-white);
+  --text-link:     var(--cn-blue-500);
+
+  --surface-page:   var(--cn-white);
+  --surface-card:   var(--cn-white);
+  --surface-subtle: var(--cn-gray-100);
+  --surface-brand:  var(--cn-gradient-portal);
+
+  --border-subtle: var(--cn-border);
+  --border-input:  var(--cn-border);
+  --ring:          var(--cn-blue-500);
+}
+
+/* Dark scope — applied via .dark on <html> (LMS class-based dark mode) */
+.dark {
+  --text-strong:   var(--cn-dark-fg);
+  --text-body:     var(--cn-dark-fg-muted);
+  --text-muted:    #9ca3af;
+  --text-link:     var(--cn-cyan-400);
+
+  --surface-page:   var(--cn-dark-bg);
+  --surface-card:   var(--cn-dark-surface);
+  --surface-subtle: var(--cn-dark-surface-2);
+
+  --border-subtle: var(--cn-dark-border);
+  --border-input:  var(--cn-dark-border);
+}

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#EEF3FB}
+  ::-webkit-scrollbar{width:9px;height:9px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#cdd8ea;border-radius:8px}
+  @keyframes pSlideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @keyframes pFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  [data-rv].pre{opacity:0;transform:translateY(18px)}
+  [data-rv].in{opacity:1;transform:none;transition:opacity .55s ease,transform .6s cubic-bezier(.22,1,.36,1)}
+  @media(max-width:1040px){
+    [data-sidebar]{transform:translateX(-100%);transition:transform .3s ease}
+    [data-sidebar].open{transform:none}
+    [data-main]{margin-left:0!important}
+    [data-burger]{display:inline-flex!important}
+    [data-scrim].show{display:block!important}
+  }
+  @media(max-width:900px){[data-grid2]{grid-template-columns:1fr!important}[data-stat4]{grid-template-columns:repeat(2,1fr)!important}}
+  @media(max-width:560px){[data-stat4]{grid-template-columns:1fr!important}[data-banner]{flex-direction:column!important;align-items:flex-start!important}}
+</style>
+</helmet>
+
+<div style="--p1:#06B6D4;--p2:#3B82F6;--ink:#0F1B33;font-family:'Poppins',sans-serif;color:#0F1B33;min-height:100vh;background:radial-gradient(120% 90% at 100% 0%,#EAF1FF,#EEF3FB 55%)">
+
+  <!-- SCRIM -->
+  <div data-scrim onClick="{{ closeSidebar }}" style="display:none;position:fixed;inset:0;z-index:39;background:rgba(15,27,51,.4);backdrop-filter:blur(2px)" class="{{ scrimClass }}"></div>
+
+  <!-- SIDEBAR -->
+  <aside data-sidebar class="{{ sidebarClass }}" style="position:fixed;top:0;left:0;bottom:0;width:262px;z-index:40;background:#0B1426;color:#fff;display:flex;flex-direction:column;padding:22px 16px;overflow-y:auto">
+    <a href="Home.dc.html#hero" style="display:flex;align-items:center;gap:11px;padding:6px 8px 22px;text-decoration:none">
+      <span style="width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--p1),var(--p2));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:18px;box-shadow:0 0 24px rgba(6,182,212,.5)">C</span>
+      <span style="font-family:'Radio Canada Big';font-weight:700;font-size:17px;color:#fff;letter-spacing:.3px">Cybernaut<span style="color:var(--p1)">LMS</span></span>
+    </a>
+
+    <div style="font-size:10.5px;letter-spacing:1.5px;font-weight:600;color:#5b6b86;padding:8px 10px 8px">MENU</div>
+    <nav style="display:flex;flex-direction:column;gap:3px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+        <a href="{{ n.href }}" style="display:flex;align-items:center;gap:13px;padding:11px 13px;border-radius:12px;text-decoration:none;font-size:13.5px;font-weight:500;color:{{ n.color }};background:{{ n.bg }};box-shadow:{{ n.shadow }};transition:all .2s" style-hover="background:rgba(255,255,255,.06)">
+          <span style="width:30px;height:30px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;background:{{ n.iconBg }};color:{{ n.iconColor }}">{{ n.ic }}</span>
+          {{ n.label }}
+          <sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}"><span style="margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(6,182,212,.18);color:var(--p1)">{{ n.badge }}</span></sc-if>
+        </a>
+      </sc-for>
+    </nav>
+
+    <div style="margin-top:auto;padding-top:18px">
+      <div style="padding:16px;border-radius:16px;background:linear-gradient(140deg,rgba(6,182,212,.16),rgba(59,130,246,.16));border:1px solid rgba(255,255,255,.1)">
+        <div style="font-family:'Radio Canada Big';font-weight:700;font-size:14px;margin-bottom:4px">Go Premium</div>
+        <p style="font-size:11.5px;color:#9fb0cc;margin-bottom:12px;line-height:1.5">Unlock mock interviews & mentor connect.</p>
+        <a href="Programs.dc.html" style="display:block;text-align:center;padding:9px;border-radius:10px;background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;font-size:12px;font-weight:600;text-decoration:none">Upgrade →</a>
+      </div>
+      <a href="Home.dc.html#hero" style="display:flex;align-items:center;gap:13px;padding:11px 13px;margin-top:8px;border-radius:12px;text-decoration:none;font-size:13.5px;font-weight:500;color:#9fb0cc;transition:all .2s" style-hover="background:rgba(255,255,255,.06);color:#fff"><span style="width:30px;height:30px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(255,255,255,.06)">⏻</span>Sign out</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div data-main style="margin-left:262px;min-height:100vh;display:flex;flex-direction:column">
+
+    <!-- TOPBAR -->
+    <header style="position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;padding:13px 26px;background:rgba(238,243,251,.82);backdrop-filter:blur(14px);border-bottom:1px solid #E1E8F4">
+      <button data-burger onClick="{{ toggleSidebar }}" aria-label="Menu" style="display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:11px;border:1px solid #E1E8F4;background:#fff;cursor:pointer;font-size:18px;color:#0F1B33">☰</button>
+      <div style="flex:1;max-width:420px;display:flex;align-items:center;gap:10px;padding:10px 15px;border-radius:12px;background:#fff;border:1px solid #E1E8F4">
+        <span style="color:#9aa7bd;font-size:14px">⌕</span>
+        <input placeholder="Search courses, problems, people…" style="flex:1;border:none;outline:none;background:none;font-family:inherit;font-size:13.5px;color:#0F1B33" />
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-left:auto">
+        <span style="display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:100px;background:#fff;border:1px solid #E1E8F4;font-size:12.5px;font-weight:600;color:#0F1B33"><span style="color:#F59E0B;font-size:14px">▲</span>{{ streak }}-day streak</span>
+        <button style="position:relative;width:42px;height:42px;border-radius:12px;border:1px solid #E1E8F4;background:#fff;cursor:pointer;font-size:16px;color:#475569">◔<span style="position:absolute;top:9px;right:10px;width:7px;height:7px;border-radius:50%;background:#EF4444;border:1.5px solid #fff"></span></button>
+        <a href="Student Profile.dc.html" style="display:flex;align-items:center;gap:10px;padding:5px 6px 5px 5px;border-radius:100px;background:#fff;border:1px solid #E1E8F4;text-decoration:none">
+          <span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--p1),var(--p2));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:13px">AV</span>
+          <span style="font-size:12.5px;font-weight:600;color:#0F1B33;padding-right:6px">Aarav</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main style="flex:1;padding:26px clamp(18px,2.6vw,34px) 50px;max-width:1380px;width:100%">
+
+      <!-- WELCOME BANNER -->
+      <div data-rv style="position:relative;border-radius:24px;overflow:hidden;padding:clamp(26px,3.2vw,40px);background:linear-gradient(125deg,#0EA5C4,#3B82F6);color:#fff;box-shadow:0 22px 50px rgba(59,130,246,.3);margin-bottom:22px">
+        <div style="position:absolute;top:-40px;right:-30px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.14);filter:blur(8px);animation:pFloat 7s ease-in-out infinite"></div>
+        <div style="position:absolute;bottom:-60px;right:120px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)"></div>
+        <div data-banner style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:26px">
+          <div style="max-width:560px">
+            <div style="font-size:13px;font-weight:500;opacity:.9;margin-bottom:8px">{{ greeting }}, Aarav! 👋</div>
+            <h1 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,3vw,34px);letter-spacing:-.6px;line-height:1.15;margin-bottom:12px">Your learning journey is progressing beautifully</h1>
+            <p style="font-size:14.5px;opacity:.92;margin-bottom:20px">You're on day {{ dayNo }}, {{ nextNote }}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:11px">
+              <a href="Student Courses.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;background:#fff;color:#0F1B33;font-weight:600;font-size:13.5px;text-decoration:none;transition:transform .25s" style-hover="transform:translateY(-3px)">Continue Learning →</a>
+              <a href="Student Practice.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:100px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;font-size:13.5px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.26)">Practice Problems</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;flex:none">
+            <sc-for list="{{ bannerStats }}" as="b" hint-placeholder-count="2">
+              <div style="text-align:center;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);min-width:104px">
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:26px">{{ b.value }}</div>
+                <div style="font-size:11px;opacity:.9;margin-top:2px">{{ b.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div data-rv data-stat4 style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="position:relative;padding:20px;border-radius:18px;background:#fff;border:1px solid #E6ECF6;box-shadow:0 6px 20px rgba(15,27,51,.05);overflow:hidden;transition:transform .3s" style-hover="transform:translateY(-4px)">
+            <div style="position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--p1),var(--p2))"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <span style="width:42px;height:42px;border-radius:12px;background:{{ s.tileBg }};display:flex;align-items:center;justify-content:center;color:{{ s.tileColor }};font-size:18px">{{ s.ic }}</span>
+              <span style="font-size:11.5px;font-weight:600;color:{{ s.deltaColor }}">{{ s.delta }}</span>
+            </div>
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:26px;color:#0F1B33"><span data-count data-target="{{ s.target }}">0</span>{{ s.suffix }}</div>
+            <div style="font-size:12.5px;color:#64748b;margin-top:2px">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- 2-COL -->
+      <div data-grid2 style="display:grid;grid-template-columns:1.62fr 1fr;gap:18px">
+
+        <!-- LEFT -->
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div data-rv style="padding:24px;border-radius:20px;background:#fff;border:1px solid #E6ECF6;box-shadow:0 6px 20px rgba(15,27,51,.05)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px;color:#0F1B33">Continue Learning</div>
+              <a href="Student Courses.dc.html" style="font-size:12.5px;font-weight:600;color:var(--p2);text-decoration:none">View all →</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ courses }}" as="c" hint-placeholder-count="3">
+                <a href="Student Courses.dc.html" style="display:flex;align-items:center;gap:16px;padding:14px;border-radius:16px;border:1px solid #EDF1F8;text-decoration:none;transition:all .25s" style-hover="border-color:#BFD4FF;background:#F8FBFF">
+                  <span style="width:52px;height:52px;flex:none;border-radius:14px;background:{{ c.tile }};display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:19px">{{ c.ic }}</span>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px">
+                      <span style="font-family:'Radio Canada Big';font-weight:600;font-size:14.5px;color:#0F1B33">{{ c.title }}</span>
+                      <span style="font-size:12px;font-weight:700;color:var(--p2)">{{ c.pct }}%</span>
+                    </div>
+                    <div style="height:7px;border-radius:6px;background:#EDF1F8;overflow:hidden;margin-bottom:6px"><div style="height:100%;width:{{ c.pctW }};border-radius:6px;background:linear-gradient(90deg,var(--p1),var(--p2))"></div></div>
+                    <span style="font-size:11.5px;color:#64748b">Next: {{ c.next }}</span>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+
+          <div data-rv style="padding:24px;border-radius:20px;background:#fff;border:1px solid #E6ECF6;box-shadow:0 6px 20px rgba(15,27,51,.05)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px;color:#0F1B33">Recommended Practice</div>
+              <a href="Student Practice.dc.html" style="font-size:12.5px;font-weight:600;color:var(--p2);text-decoration:none">All problems →</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ practice }}" as="p" hint-placeholder-count="3">
+                <a href="Student Practice.dc.html" style="display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:14px;border:1px solid #EDF1F8;text-decoration:none;transition:all .25s" style-hover="border-color:#BFD4FF;background:#F8FBFF">
+                  <span style="width:34px;height:34px;flex:none;border-radius:10px;background:#F1F5FC;display:flex;align-items:center;justify-content:center;color:var(--p2);font-size:14px">{{ '{' }}/{{ '}' }}</span>
+                  <span style="flex:1;font-size:13.5px;font-weight:600;color:#0F1B33">{{ p.title }}</span>
+                  <span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:{{ p.tagBg }};color:{{ p.tagColor }}">{{ p.level }}</span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div data-rv style="padding:24px;border-radius:20px;background:#0B1426;color:#fff;box-shadow:0 12px 30px rgba(11,20,38,.2);text-align:center">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:16px;margin-bottom:18px;text-align:left">Overall Progress</div>
+            <div style="width:160px;height:160px;margin:0 auto 16px;border-radius:50%;background:conic-gradient(var(--p1) 0deg,var(--p2) {{ ringDeg }},rgba(255,255,255,.08) {{ ringDeg }});display:flex;align-items:center;justify-content:center">
+              <div style="width:122px;height:122px;border-radius:50%;background:#0B1426;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                <span style="font-family:'Radio Canada Big';font-weight:700;font-size:34px"><span data-count data-target="{{ overall }}">0</span>%</span>
+                <span style="font-size:11px;color:#9fb0cc">completed</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-around;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+              <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px">{{ doneCount }}</div><div style="font-size:10.5px;color:#9fb0cc">Done</div></div>
+              <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px">{{ activeCount }}</div><div style="font-size:10.5px;color:#9fb0cc">Active</div></div>
+              <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:18px">{{ certCount }}</div><div style="font-size:10.5px;color:#9fb0cc">Certs</div></div>
+            </div>
+          </div>
+
+          <div data-rv style="padding:24px;border-radius:20px;background:#fff;border:1px solid #E6ECF6;box-shadow:0 6px 20px rgba(15,27,51,.05)">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:16px;color:#0F1B33;margin-bottom:16px">Upcoming</div>
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <sc-for list="{{ schedule }}" as="e" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:13px">
+                  <div style="width:46px;flex:none;text-align:center;padding:7px 0;border-radius:11px;background:{{ e.dateBg }}"><span style="display:block;font-family:'Radio Canada Big';font-weight:700;font-size:16px;color:{{ e.dateColor }};line-height:1">{{ e.day }}</span><span style="display:block;font-size:9.5px;font-weight:600;color:{{ e.dateColor }};letter-spacing:.5px">{{ e.mon }}</span></div>
+                  <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:#0F1B33">{{ e.title }}</div><div style="font-size:11.5px;color:#64748b">{{ e.time }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div data-rv style="padding:24px;border-radius:20px;background:#fff;border:1px solid #E6ECF6;box-shadow:0 6px 20px rgba(15,27,51,.05)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:16px;color:#0F1B33">Leaderboard</div>
+              <a href="Student Contest.dc.html" style="font-size:12px;font-weight:600;color:var(--p2);text-decoration:none">Full →</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ leaders }}" as="l" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:12px;padding:9px 11px;border-radius:12px;background:{{ l.bg }};border:1px solid {{ l.border }}">
+                  <span style="width:24px;font-family:'Radio Canada Big';font-weight:700;font-size:13px;color:{{ l.rankColor }}">{{ l.rank }}</span>
+                  <span style="width:32px;height:32px;flex:none;border-radius:50%;background:{{ l.av }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;font-family:'Radio Canada Big'">{{ l.ini }}</span>
+                  <span style="flex:1;font-size:12.5px;font-weight:600;color:#0F1B33">{{ l.name }}</span>
+                  <span style="font-size:12px;font-weight:700;color:#64748b">{{ l.pts }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sidebarOpen: false };
+
+  componentDidMount() { this.initReveal(); this.initCounters(); }
+  componentWillUnmount() { clearTimeout(this._rvFail); }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-rv]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); el.classList.add(r.top < vh*0.92 ? 'in' : 'pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('pre'); e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:0.1, rootMargin:'0px 0px -6% 0px' });
+    els.forEach(el => { if (el.classList.contains('pre')) io.observe(el); });
+    this._rvFail = setTimeout(() => els.forEach(el => { el.classList.remove('pre'); el.classList.add('in'); }), 3500);
+  }
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target')), dur = 1300, t0 = performance.now();
+    const step = (now) => { const p = Math.min((now-t0)/dur,1), e = 1-Math.pow(1-p,3); el.textContent = Math.round(target*e).toLocaleString('en-IN'); if (p<1) requestAnimationFrame(step); else el.textContent = target.toLocaleString('en-IN'); };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._d) return; el._d = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) { const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.4 }); setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 80); setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 2400); }
+    else document.querySelectorAll('[data-count]').forEach(fire);
+  }
+
+  navData() {
+    const defs = [
+      { label:'Dashboard', href:'Student Dashboard.dc.html', ic:'▦', active:true },
+      { label:'My Courses', href:'Student Courses.dc.html', ic:'▤' },
+      { label:'Events', href:'Events.dc.html', ic:'◷' },
+      { label:'Practice', href:'Student Practice.dc.html', ic:'✎', badge:'New' },
+      { label:'Study Room', href:'Student Study Room.dc.html', ic:'◳' },
+      { label:'Contest', href:'Student Contest.dc.html', ic:'◆' },
+      { label:'Community', href:'Student Community.dc.html', ic:'◍' },
+      { label:'ResumeCraft', href:'Student ResumeCraft.dc.html', ic:'▥' },
+      { label:'Profile', href:'Student Profile.dc.html', ic:'◑' }
+    ];
+    const nav = defs.map(n => ({
+      label:n.label, href:n.href, ic:n.ic, badge:n.badge || null,
+      color: n.active ? '#fff' : '#9fb0cc',
+      bg: n.active ? 'linear-gradient(135deg,var(--p1),var(--p2))' : 'transparent',
+      shadow: n.active ? '0 10px 22px rgba(59,130,246,.35)' : 'none',
+      iconBg: n.active ? 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.05)',
+      iconColor: n.active ? '#fff' : '#9fb0cc'
+    }));
+    return {
+      nav, streak:'12',
+      sidebarClass: this.state.sidebarOpen ? 'open' : '',
+      scrimClass: this.state.sidebarOpen ? 'show' : '',
+      toggleSidebar: () => this.setState(s => ({ sidebarOpen: !s.sidebarOpen })),
+      closeSidebar: () => this.setState({ sidebarOpen: false })
+    };
+  }
+
+  pageData() {
+    const h = new Date().getHours();
+    const greeting = h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
+    const bannerStats = [ { value:'12', label:'Day streak' }, { value:'#8', label:'Cohort rank' } ];
+    const stats = [
+      { ic:'▤', tileBg:'rgba(59,130,246,.12)', tileColor:'#3B82F6', target:3, suffix:'', label:'Courses in progress', delta:'+1 this week', deltaColor:'#16A34A' },
+      { ic:'◷', tileBg:'rgba(124,58,237,.12)', tileColor:'#7C3AED', target:148, suffix:'h', label:'Hours learned', delta:'+6h', deltaColor:'#16A34A' },
+      { ic:'✎', tileBg:'rgba(6,182,212,.12)', tileColor:'#06B6D4', target:212, suffix:'', label:'Problems solved', delta:'+14', deltaColor:'#16A34A' },
+      { ic:'❖', tileBg:'rgba(245,158,11,.14)', tileColor:'#F59E0B', target:2, suffix:'', label:'Certificates', delta:'1 in progress', deltaColor:'#94a3b8' }
+    ];
+    const courses = [
+      { ic:'F', tile:'linear-gradient(135deg,#3B82F6,#06B6D4)', title:'Full Stack Development', pct:68, pctW:'68%', next:'Module 9 · REST APIs with Node' },
+      { ic:'A', tile:'linear-gradient(135deg,#7C3AED,#3B82F6)', title:'AI & Machine Learning', pct:42, pctW:'42%', next:'Module 4 · NLP & Embeddings' },
+      { ic:'D', tile:'linear-gradient(135deg,#06B6D4,#0EA5A5)', title:'Data Analytics', pct:90, pctW:'90%', next:'Module 8 · Capstone Dashboard' }
+    ];
+    const practice = [
+      { title:'Two Sum, Hashing', level:'Easy', tagBg:'rgba(22,163,74,.12)', tagColor:'#16A34A' },
+      { title:'Longest Substring', level:'Medium', tagBg:'rgba(245,158,11,.14)', tagColor:'#D97706' },
+      { title:'LRU Cache Design', level:'Hard', tagBg:'rgba(239,68,68,.12)', tagColor:'#DC2626' }
+    ];
+    const schedule = [
+      { day:'27', mon:'JUN', dateBg:'rgba(59,130,246,.12)', dateColor:'#3B82F6', title:'Live: REST APIs Deep Dive', time:'Today · 6:00 PM' },
+      { day:'28', mon:'JUN', dateBg:'rgba(124,58,237,.12)', dateColor:'#7C3AED', title:'NLP Assignment Due', time:'Tomorrow · 11:59 PM' },
+      { day:'02', mon:'JUL', dateBg:'rgba(6,182,212,.12)', dateColor:'#06B6D4', title:'Weekly Coding Contest', time:'Sat · 4:00 PM' }
+    ];
+    const leaders = [
+      { rank:'1', ini:'RP', name:'Riya P.', pts:'4,820', av:'linear-gradient(135deg,#F59E0B,#EF4444)', bg:'rgba(245,158,11,.08)', border:'rgba(245,158,11,.2)', rankColor:'#D97706' },
+      { rank:'2', ini:'KS', name:'Karthik S.', pts:'4,610', av:'linear-gradient(135deg,#7C3AED,#3B82F6)', bg:'#F8FBFF', border:'#EDF1F8', rankColor:'#64748b' },
+      { rank:'8', ini:'AV', name:'You, Aarav', pts:'3,940', av:'linear-gradient(135deg,#06B6D4,#3B82F6)', bg:'rgba(59,130,246,.08)', border:'rgba(59,130,246,.25)', rankColor:'#3B82F6' }
+    ];
+    return {
+      greeting, dayNo:'12', nextNote:'keep going, you\u2019re building real momentum!',
+      streak:'12', bannerStats, stats, courses, practice, schedule, leaders,
+      overall:64, ringDeg:'230deg', doneCount:'5', activeCount:'3', certCount:'2'
+    };
+  }
+
+  renderVals() { return { ...this.navData(), ...this.pageData() }; }
+}
+</script>
+</body>
+</html>

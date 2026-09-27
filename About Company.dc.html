@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  :root{--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#fff;overflow-x:hidden}
+  ::selection{background:rgba(47,123,255,.18);color:#0A1124}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#eef2f7}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#2F7BFF,#1FD3E8);border-radius:8px}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMarqueeRev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnDotPulse{0%,100%{box-shadow:0 0 0 0 rgba(47,123,255,.5)}70%{box-shadow:0 0 0 12px rgba(47,123,255,0)}}
+  @keyframes cnDrawLine{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  @keyframes cnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes cnFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  @keyframes cnSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes cnSpinRing{to{transform:rotate(360deg)}}
+  @keyframes cnSpinRingRev{to{transform:rotate(-360deg)}}
+  @keyframes cnPulseGlow{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
+  @keyframes cnGridMove{to{background-position:46px 46px}}
+  @keyframes cnReveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  @keyframes cnPlayPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}70%{box-shadow:0 0 0 22px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+  @keyframes cnRise{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  @keyframes cnLbIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+  @keyframes cnRise2{0%,100%{transform:translateY(0)}50%{transform:translateY(13px)}}
+  [data-gtile]{transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+  [data-gtile]:hover{transform:translateY(-7px);box-shadow:0 26px 56px rgba(10,17,36,.2)!important;z-index:3}
+  [data-gtile] [data-gimg]{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+  [data-gtile]:hover [data-gimg]{transform:scale(1.09)}
+  [data-gtile]:hover [data-gcap]{transform:translateY(0);opacity:1}
+  [data-gtile] [data-gcap]{transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .45s}
+  [data-fmile]{transition:transform .35s,box-shadow .35s,border-color .35s}
+  [data-span="2x2"]{grid-column:span 2;grid-row:span 2}
+  [data-span="2x1"]{grid-column:span 2;grid-row:span 1}
+  [data-span="1x2"]{grid-column:span 1;grid-row:span 2}
+  [data-span="1x1"]{grid-column:span 1;grid-row:span 1}
+  [data-gtile]{cursor:pointer}
+  [data-gtile]:hover{box-shadow:0 22px 50px rgba(47,123,255,.22)!important;border-color:#cfe0ff!important}
+  [data-fmile]:hover{transform:translateX(6px);border-color:rgba(47,123,255,.5)!important;box-shadow:0 14px 34px rgba(0,0,0,.34)}
+  [data-award-card]{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s}
+  [data-award-card]:hover{transform:translateY(-6px);border-color:#cfe0ff!important;box-shadow:0 20px 44px rgba(47,123,255,.15)!important}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+  image-slot{display:block;width:100%;height:100%}
+  @keyframes cnUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes cnClip{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes cnBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-16px) scale(1.14)}}
+  [data-anim]{animation:cnUp .7s both}
+  [data-stag]>*{animation:cnUp .6s both}
+  [data-stag]>*:nth-child(2){animation-delay:.09s}
+  [data-stag]>*:nth-child(3){animation-delay:.18s}
+  [data-stag]>*:nth-child(4){animation-delay:.27s}
+  [data-blob]{animation:cnBlob 9s ease-in-out infinite}
+  [data-clip]{animation:cnClip 1s .1s cubic-bezier(.76,0,.24,1) both}
+  [data-tilt]{will-change:transform}
+  [data-ptile]{cursor:pointer}
+  [data-photo] [data-photo-img]{transition:transform .65s cubic-bezier(.22,1,.36,1),filter .55s cubic-bezier(.22,1,.36,1)}
+  [data-photo]:hover [data-photo-img]{transform:scale(1.09);filter:none!important}
+  [data-photo] [data-photo-cap]{transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .45s;transform:translateY(16px);opacity:0}
+  [data-photo]:hover [data-photo-cap]{transform:none;opacity:1}
+  [data-photo] [data-photo-shine]{position:absolute;top:0;left:-70%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.3),transparent);transform:skewX(-18deg);transition:left .7s ease;pointer-events:none;z-index:3}
+  [data-photo]:hover [data-photo-shine]{left:135%}
+  [data-photo] [data-photo-badge]{transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s}
+  [data-photo]:hover [data-photo-badge]{transform:scale(1.14) rotate(-7deg);box-shadow:0 10px 24px rgba(47,123,255,.6)}
+  [data-photo] [data-photo-ring]{transition:opacity .4s,transform .5s cubic-bezier(.22,1,.36,1);opacity:0;transform:scale(.85)}
+  [data-photo]:hover [data-photo-ring]{opacity:1;transform:scale(1)}
+  [data-hscroll]:hover{animation-play-state:paused}
+  @media(hover:hover) and (pointer:fine){
+    [data-cursor]{display:block}
+    a,button,[data-magnetic]{cursor:none}
+    body{cursor:none}
+  }
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    [data-hero-stats]{grid-template-columns:repeat(2,1fr)!important}
+    [data-offer-3]{grid-template-columns:1fr!important}
+    [data-mv]{grid-template-columns:1fr!important}
+    [data-comm-split]{grid-template-columns:1fr!important}
+    [data-comm-mascot]{min-height:400px!important}
+    [data-founder]{grid-template-columns:1fr!important}
+    [data-footer-grid]{grid-template-columns:1fr!important}
+    [data-hero-grid]{grid-template-columns:1fr!important}
+    [data-tl-row]{justify-content:flex-start!important}
+    [data-tl-card]{width:100%!important;margin-left:38px!important}
+    [data-tl-spine]{left:9px!important}
+    [data-tl-dot]{left:9px!important;transform:none!important}
+    [data-gallery]{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:128px!important}
+    [data-gtile]{grid-column:span 1!important;grid-row:span 1!important}
+    [data-gtile-big]{grid-column:span 2!important;grid-row:span 2!important}
+    [data-gallery] [data-span]{grid-column:span 1!important;grid-row:span 1!important}
+    [data-gallery] [data-span="2x2"]{grid-column:span 2!important;grid-row:span 2!important}
+    [data-founder]{grid-template-columns:1fr!important}
+    [data-fstick]{position:static!important}
+    [data-gtile-tall]{grid-row:span 2!important}
+    [data-founder-sticky]{position:static!important;top:auto!important}
+    [data-founder2]{grid-template-columns:1fr!important}
+    [data-out-row] > div{width:280px!important}
+  }
+  @keyframes cnBlobRot{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes cnPanelIn{from{transform:translateX(48px);opacity:0}to{transform:none;opacity:1}}
+  [data-fcard]{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .4s}
+  [data-fcard]:hover{transform:translateY(-5px);border-color:rgba(31,211,232,.35);box-shadow:0 26px 60px rgba(0,0,0,.5)}
+  [data-flink]{transition:opacity .25s,letter-spacing .25s}
+  [data-flink]:hover{opacity:.65;letter-spacing:.3px}
+  [data-fclose]:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
+  [data-fx-pwrap]:hover [data-fx-portrait]{transform:rotateY(0deg) rotateX(0deg) translateZ(60px) scale(1.02)}
+  [data-fx-pwrap]:hover [data-fx-plane]{transform:rotateY(-4deg) rotateX(2deg) translateZ(-90px)}
+  [data-fx-plane]{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+  [data-fx-portrait]{transition:transform .7s cubic-bezier(.22,1,.36,1),filter .7s}
+  /* about-cybernaut scene */
+  @keyframes acOrbit{to{transform:rotate(360deg)}}
+  @keyframes acOrbitR{to{transform:rotate(-360deg)}}
+  @keyframes acHalo{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.09);opacity:.95}}
+  @keyframes acDrift{0%{transform:translate3d(0,0,0) rotate(-2.4deg)}20%{transform:translate3d(7px,-13px,0) rotate(.8deg)}42%{transform:translate3d(2px,-22px,0) rotate(3deg)}63%{transform:translate3d(-7px,-13px,0) rotate(1.4deg)}82%{transform:translate3d(-4px,3px,0) rotate(-1.4deg)}100%{transform:translate3d(0,0,0) rotate(-2.4deg)}}
+  @keyframes acSway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+  @keyframes acSpark{0%{transform:translate3d(0,0,0) scale(.7);opacity:0}18%{opacity:.95}70%{opacity:.5}100%{transform:translate3d(var(--dx,10px),var(--dy,-64px),0) scale(1.05);opacity:0}}
+  @keyframes acGround{0%,100%{transform:translateX(-50%) scaleX(1);opacity:.5}50%{transform:translateX(-50%) scaleX(.86);opacity:.28}}
+  @keyframes acFlyX{0%{transform:translateX(-62vw)}6%{transform:translateX(-34vw)}12%{transform:translateX(-2vw)}17%{transform:translateX(16vw)}22%{transform:translateX(26vw)}27%{transform:translateX(31vw)}34%{transform:translateX(33.4vw)}50%{transform:translateX(35vw)}60%{transform:translateX(37vw)}66%{transform:translateX(41vw)}72%{transform:translateX(49vw)}80%{transform:translateX(66vw)}88%{transform:translateX(95vw)}100%{transform:translateX(152vw)}}
+  @keyframes acFlyY{0%{transform:translateY(120px) rotate(-24deg) scale(.6)}10%{transform:translateY(34px) rotate(-16deg) scale(.86)}17%{transform:translateY(-16px) rotate(-9deg) scale(1)}24%{transform:translateY(6px) rotate(-3deg) scale(1.03)}34%{transform:translateY(-6px) rotate(0deg) scale(1)}46%{transform:translateY(8px) rotate(2deg) scale(1)}58%{transform:translateY(-8px) rotate(-1deg) scale(1)}68%{transform:translateY(-2px) rotate(-8deg) scale(1.02)}80%{transform:translateY(-40px) rotate(-16deg) scale(.94)}100%{transform:translateY(-150px) rotate(-26deg) scale(.62)}}
+  @keyframes acBlur{0%{filter:blur(9px) drop-shadow(0 18px 34px rgba(47,123,255,.5))}12%{filter:blur(5px)}26%,58%{filter:blur(0) drop-shadow(0 18px 34px rgba(47,123,255,.42))}76%{filter:blur(5px)}100%{filter:blur(12px)}}
+  @keyframes acTrail{0%{opacity:0;transform:scaleX(.4)}8%{opacity:.9;transform:scaleX(1.35)}24%{opacity:.35;transform:scaleX(.7)}56%{opacity:.12;transform:scaleX(.45)}76%{opacity:.85;transform:scaleX(1.25)}94%{opacity:.7;transform:scaleX(1.5)}100%{opacity:0;transform:scaleX(1.6)}}
+  @keyframes acBoom{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}30%{opacity:.7;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.9)}}
+  @keyframes acIntroOut{0%,93%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+  @keyframes acReveal{0%{opacity:0;transform:translateY(28px) scale(.982)}100%{opacity:1;transform:none}}
+  [data-ac-scene]{perspective:1100px}
+  [data-ac-plane]{transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.22,1,.36,1)}
+  [data-ac-scene]:hover [data-ac-plane]{transform:rotateX(4deg) rotateY(-5deg)}
+  [data-ac-ringa],[data-ac-ringb]{transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+  [data-ac-scene]:hover [data-ac-ringa]{transform:translate(-50%,-50%) scale(1.05)}
+  [data-ac-scene]:hover [data-ac-ringb]{transform:translate(-50%,-50%) scale(.94)}
+  [data-ac-float]{animation:acSway 9s ease-in-out infinite}
+  [data-ac-mascot]{animation:acDrift 13s cubic-bezier(.45,0,.55,1) infinite;will-change:transform;transition:filter .8s}
+  [data-ac-scene]:hover [data-ac-mascot]{animation-duration:9s;filter:drop-shadow(0 18px 34px rgba(47,123,255,.42))}
+  [data-ac-halo]{animation:acHalo 11s ease-in-out infinite}
+  [data-ac-ground]{animation:acGround 13s cubic-bezier(.45,0,.55,1) infinite}
+  [data-ac-spark]{position:absolute;border-radius:50%;animation:acSpark 7s ease-in-out infinite}
+  [data-ac-intro]{animation:acIntroOut 6s linear both}
+  [data-ac-flyx]{animation:acFlyX 5.6s linear both}
+  [data-ac-flyy]{animation:acFlyY 5.6s linear both}
+  [data-ac-blur]{animation:acBlur 5.6s linear both}
+  [data-ac-trail]{transform-origin:right center;animation:acTrail 5.6s linear both}
+  [data-ac-boom]{animation:acBoom 1.1s ease-out both;animation-delay:.55s}
+  [data-ac-rv]{animation:acReveal 1s cubic-bezier(.22,1,.36,1) both;animation-delay:5.85s}
+  [data-ac-rv="2"]{animation-delay:6.05s}
+  [data-ac-rv="3"]{animation-delay:6.25s}
+  [data-ac-rv="4"]{animation-delay:6.5s}
+  [data-ac-rv="5"]{animation-delay:6.7s}
+  [data-ac-mv]{position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s}
+  [data-ac-mv]:hover{transform:translateY(-4px);box-shadow:0 20px 46px rgba(3,8,18,.6)}
+  [data-fn-rays]{animation:cnRays 110s linear infinite}
+  @keyframes cnRays{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+  [data-fn-draw]{stroke-dasharray:1600;animation:cnDraw 11s ease-in-out infinite}
+  @keyframes cnDraw{0%{stroke-dashoffset:1600}46%,100%{stroke-dashoffset:0}}
+  [data-fn-flow]{stroke-dasharray:7 11;animation:cnFlow 6s linear infinite}
+  @keyframes cnFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-72}}
+  [data-fn-cap]{transform-box:fill-box;transform-origin:center;animation:cnCapBob 9s ease-in-out infinite}
+  @keyframes cnCapBob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+  [data-fn-pcol]:hover [data-fn-photo]{transform:translateY(-8px) scale(1.015)}
+  [data-fn-photo]{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+  @media(max-width:900px){
+    [data-ac-head]{grid-template-columns:1fr!important;gap:22px!important;align-items:start!important}
+    [data-ac-stats]{gap:26px!important}
+    [data-ac-intro-copy]{grid-template-columns:1fr!important;gap:14px!important}
+    [data-ac-mvgrid]{grid-template-columns:1fr!important;gap:22px!important}
+    [data-ac-scene]{order:-1;height:320px!important}
+    [data-ac-statement]{flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
+    [data-ac-jgrid]{grid-template-columns:1fr 1fr!important;gap:20px!important}
+    [data-fn-grid]{grid-template-columns:1fr!important;gap:24px!important;padding:0 20px 96px!important}
+    [data-fn-pcol]{height:clamp(380px,112vw,540px)!important;order:1}
+    [data-fn-ccol]{order:2;padding-bottom:0!important}
+    [data-fn-rays]{left:50%!important;width:1100px!important;height:1100px!important;opacity:.4!important}
+    [data-fn-sky]{height:210px!important;opacity:.7!important}
+    [data-fn-h2]{font-size:clamp(28px,7.6vw,40px)!important}
+    [data-fn-kicker-line]{width:34px!important}
+    [data-fn-close]{font-size:clamp(22px,6vw,30px)!important}
+    [data-fn-stats]{gap:16px!important}
+    [data-fn-namerow]{flex-direction:column!important;align-items:flex-start!important;gap:12px!important}
+    [data-fx-panelwrap]{padding:4vh 14px!important}
+    [data-fx-panel]{width:100%!important;padding:58px 20px 44px!important;border-radius:22px!important}
+  }
+  @media(max-width:640px){
+    [data-comm-gal]{grid-template-columns:repeat(2,1fr)!important}
+    [data-mv6]{grid-template-columns:1fr!important}
+  }
+  @media(max-width:560px){
+    [data-hero-stats]{grid-template-columns:repeat(2,1fr)!important}
+    [data-mile-card]{width:240px!important}
+  }
+  /* ===== founder JS-monogram cinematic hero ===== */
+  @keyframes hjAtmos{0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes hjAtmosBreathe{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}}
+  @keyframes hjMono{0%{transform:scale(.2);opacity:0}18%{opacity:.95}56%{transform:scale(1.1)}70%{transform:scale(1)}84%{transform:scale(1.06)}100%{transform:scale(1);opacity:.92}}
+  @keyframes hjGlowRamp{0%{opacity:0}22%{opacity:.12}100%{opacity:var(--gto)}}
+  @keyframes hjMicro{0%{filter:drop-shadow(0 0 6px rgba(47,123,255,.2))}40%{filter:drop-shadow(0 0 40px rgba(31,211,232,.55))}100%{filter:drop-shadow(0 0 14px rgba(47,123,255,.24))}}
+  @keyframes hjDepth{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.006)}}
+  @keyframes hjGhost{0%{opacity:.34}70%{opacity:.12}100%{opacity:0}}
+  @keyframes hjMonoAmbient{0%,100%{filter:drop-shadow(0 0 10px rgba(47,123,255,.18))}50%{filter:drop-shadow(0 0 34px rgba(31,211,232,.42))}}
+  @keyframes hjJ{0%{transform:translateX(88px)}100%{transform:translateX(0)}}
+  @keyframes hjS{0%{transform:translateX(-88px)}100%{transform:translateX(0)}}
+  @keyframes hjTrail{0%{filter:blur(0)}18%{filter:blur(2px)}42%{filter:blur(4px)}72%{filter:blur(1.4px)}100%{filter:blur(0)}}
+  @keyframes hjSweep{0%{transform:translateX(-300px);opacity:0}12%{opacity:.9}88%{opacity:.9}100%{transform:translateX(430px);opacity:0}}
+  @keyframes hjRing{0%{opacity:.55;transform:translate(-50%,-50%) scale(.28)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.6)}}
+  @keyframes hjBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}40%{opacity:.85}100%{opacity:0;transform:translate(-50%,-50%) scale(1.7)}}
+  @keyframes hjPortrait{0%{opacity:0;transform:translate(-50%,22px) scale(.97)}100%{opacity:1;transform:translateX(-50%) scale(1)}}
+  @keyframes hjBlob{0%{opacity:0}100%{opacity:.75}}
+  @keyframes hjRim{0%{opacity:0}100%{opacity:.55}}
+  @keyframes hjRimBreathe{0%,100%{opacity:.4}50%{opacity:.68}}
+  @keyframes hjIn{0%{opacity:0;transform:translateY(18px);filter:blur(5px)}55%{opacity:1}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+  @keyframes hjInLabel{0%{opacity:0;transform:translateY(14px);text-shadow:0 0 18px rgba(31,211,232,.9)}60%{opacity:1}100%{opacity:1;transform:translateY(0);text-shadow:0 0 0 rgba(31,211,232,0)}}
+  @keyframes hjInSub{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes hjRingSpin{to{transform:rotate(360deg)}}
+  @keyframes hjSheen{0%{transform:translateX(-160%) skewX(-12deg)}55%,100%{transform:translateX(320%) skewX(-12deg)}}
+  @keyframes hjBoxIn{0%{opacity:0;transform:translate(-50%,22px) scale(.97);box-shadow:0 0 50px rgba(31,211,232,.38)}100%{opacity:1;transform:translate(-50%,0) scale(1);box-shadow:0 0 0 1px rgba(31,211,232,.14),0 0 30px rgba(31,211,232,.24),inset 0 0 26px rgba(31,211,232,.07)}}
+  @keyframes hjBoxGlow{0%,100%{box-shadow:0 0 0 1px rgba(31,211,232,.12),0 0 22px rgba(31,211,232,.18),inset 0 0 22px rgba(31,211,232,.05)}50%{box-shadow:0 0 0 1px rgba(31,211,232,.2),0 0 40px rgba(31,211,232,.34),inset 0 0 30px rgba(31,211,232,.1)}}
+  @keyframes hjGlowText{0%{opacity:0;transform:translateY(12px);filter:blur(7px) drop-shadow(0 0 0 rgba(31,211,232,0))}60%{opacity:1}100%{opacity:1;transform:translateY(0);filter:blur(0) drop-shadow(0 0 16px rgba(31,211,232,.42))}}
+  @keyframes hjGlowPop{0%,100%{filter:drop-shadow(0 0 14px rgba(31,211,232,.35))}45%{filter:drop-shadow(0 0 30px rgba(31,211,232,.6))}}
+  @keyframes hjDust{0%{opacity:0;transform:translate(0,0)}12%{opacity:.55}88%{opacity:.45}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+  @keyframes ceoVeil{to{opacity:0}}
+  @keyframes ceoWipe{0%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 100% 0)}}
+  @keyframes ceoPush{0%{transform:scale(1.07)}100%{transform:scale(1)}}
+  @keyframes ceoPullIn{0%{opacity:0;transform:perspective(900px) translateZ(0) scale(2.4) rotateX(6deg);filter:blur(16px)}38%{opacity:1}100%{opacity:1;transform:perspective(900px) scale(1) rotateX(0);filter:blur(0)}}
+  @keyframes ceoSettleOut{0%{opacity:1;transform:scale(1);filter:blur(0)}100%{opacity:0;transform:scale(.92);filter:blur(6px)}}
+  @keyframes ceoHeroPullIn{0%{opacity:0;transform:perspective(900px) scale(3) rotateX(8deg);filter:blur(22px)}34%{opacity:1}72%{transform:perspective(900px) scale(1.02) rotateX(0)}100%{opacity:1;transform:perspective(900px) scale(1) rotateX(0);filter:blur(0)}}
+  @keyframes ceoHeroOut{0%{opacity:1;transform:scale(1);filter:blur(0)}100%{opacity:0;transform:scale(.9);filter:blur(9px)}}
+  @keyframes ceoHeroGlow{0%{text-shadow:0 0 0 rgba(31,211,232,0)}45%{text-shadow:0 0 14px rgba(255,255,255,.8),0 0 48px rgba(31,211,232,.66),0 0 104px rgba(47,123,255,.4)}100%{text-shadow:0 0 24px rgba(31,211,232,.32)}}
+  @keyframes ceoSweep{0%{transform:translateX(-120%) skewX(-14deg);opacity:0}25%{opacity:.8}75%{opacity:.8}100%{transform:translateX(120%) skewX(-14deg);opacity:0}}
+  @keyframes ceoRule{0%{transform:scaleX(0);opacity:0}100%{transform:scaleX(1);opacity:1}}
+  @keyframes ceoRuleOut{0%{transform:scaleX(1);opacity:1}100%{transform:scaleX(.2);opacity:0}}
+  @keyframes ceoHalo{0%{opacity:0;transform:translate(-50%,-50%) scale(.82)}100%{opacity:.42;transform:translate(-50%,-50%) scale(1)}}
+  @keyframes ceoKick{0%{opacity:0;transform:translateY(8px)}100%{opacity:.9;transform:none}}
+
+  .js-hero .hj-ceo-layer{opacity:0;pointer-events:none;visibility:hidden}
+  .js-hero.hj-ceo .hj-ceo-layer{visibility:visible}
+  .js-hero.hj-ceo .hj-ceo-layer{opacity:1;animation:ceoVeil .22s linear 4.05s forwards}
+  .js-hero.hj-ceo .hj-ceo-veil{animation:ceoWipe .75s cubic-bezier(.76,0,.24,1) 3.4s forwards,ceoPush 4s cubic-bezier(.22,1,.36,1) both}
+  .js-hero.hj-ceo .hj-ceo-halo{animation:ceoHalo 1.1s cubic-bezier(.22,1,.36,1) .05s both,ceoVeil .4s linear 3.35s forwards}
+  .js-hero.hj-ceo .hj-ceo-halo2{opacity:0}
+  .js-hero.hj-ceo .hj-ceo-kick{animation:ceoKick .6s cubic-bezier(.16,.84,.28,1) .05s both,ceoVeil .35s linear 3.35s forwards}
+  .js-hero .hj-ceo-w1,.js-hero .hj-ceo-w2,.js-hero .hj-ceo-w3{opacity:0;will-change:transform,filter,opacity}
+  /* Meet, .12-0.67s, hold 0.30s, releases 0.97s */
+  .js-hero.hj-ceo .hj-ceo-w1{animation:ceoPullIn .55s cubic-bezier(.17,.98,.24,1) .12s both,ceoSettleOut .28s cubic-bezier(.4,0,.9,.2) .97s forwards}
+  /* Our, 1.10-1.65s, hold 0.30s, releases 1.95s */
+  .js-hero.hj-ceo .hj-ceo-w2{animation:ceoPullIn .55s cubic-bezier(.17,.98,.24,1) 1.1s both,ceoSettleOut .28s cubic-bezier(.4,0,.9,.2) 1.95s forwards}
+  /* CEO, 2.05-2.75s, hold 0.55s, releases 3.30s */
+  .js-hero.hj-ceo .hj-ceo-w3{animation:ceoHeroPullIn .7s cubic-bezier(.17,.98,.24,1) 2.05s both,ceoHeroGlow .8s ease-out 2.4s both,ceoHeroOut .45s cubic-bezier(.4,0,.9,.2) 3.3s forwards}
+  .js-hero.hj-ceo .hj-ceo-sweep{opacity:0;animation:ceoSweep .8s cubic-bezier(.4,0,.2,1) 2.6s 1 both}
+  .js-hero.hj-ceo .hj-ceo-rule{transform:scaleX(0);animation:ceoRule .5s cubic-bezier(.22,1,.36,1) 2.65s both,ceoRuleOut .3s cubic-bezier(.4,0,.9,.2) 3.3s forwards}
+  .js-hero.hj-ceo .hj-ceo-bracket{animation:ceoKick .45s cubic-bezier(.22,1,.36,1) 2.8s both,ceoVeil .3s linear 3.3s forwards}
+  @keyframes ceoEcho{0%{opacity:0;transform:scale(1)}18%{opacity:.85}100%{opacity:0;transform:scale(1.5)}}
+  @keyframes ceoImpact{0%{opacity:0;transform:translate(-50%,-50%) scale(.35)}22%{opacity:.85}100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}}
+  @keyframes ceoScan{0%{transform:translateY(0)}100%{transform:translateY(60px)}}
+  @keyframes ceoShutter{0%{width:0;opacity:0}25%{opacity:1}100%{width:min(440px,38vw);opacity:.9}}
+  @keyframes ceoShutterOut{0%{width:min(440px,38vw);opacity:.9}100%{width:0;opacity:0}}
+  .js-hero.hj-ceo .hj-ceo-scan{animation:ceoScan 6s linear infinite,ceoVeil .35s linear 3.35s forwards}
+  .js-hero.hj-ceo .hj-ceo-echo{animation:ceoEcho .7s cubic-bezier(.22,1,.36,1) 1 both}
+  .js-hero.hj-ceo .hj-ceo-e1{animation-delay:.42s}
+  .js-hero.hj-ceo .hj-ceo-e2{animation-delay:1.4s}
+  .js-hero.hj-ceo .hj-ceo-e3{animation-delay:2.5s}
+  .js-hero.hj-ceo .hj-ceo-halo2{animation:ceoImpact .85s cubic-bezier(.22,1,.36,1) 2.62s 1 both}
+  .js-hero.hj-ceo .hj-ceo-shut-t{animation:ceoShutter .6s cubic-bezier(.22,1,.36,1) 2.5s both,ceoShutterOut .35s cubic-bezier(.4,0,.9,.2) 3.3s forwards}
+  .js-hero.hj-ceo .hj-ceo-shut-b{animation:ceoShutter .6s cubic-bezier(.22,1,.36,1) 2.56s both,ceoShutterOut .35s cubic-bezier(.4,0,.9,.2) 3.3s forwards}
+  .js-hero .hj-ceo-rule,.js-hero .hj-ceo-bracket,.js-hero .hj-ceo-halo,.js-hero .hj-ceo-kick{opacity:0}
+  @media (prefers-reduced-motion:reduce){.js-hero .hj-ceo-layer{display:none}}
+  .js-hero .hj-mono{transform:scale(.2);opacity:0;transform-origin:500px 380px}
+  .js-hero .hj-j{transform:translateX(88px)}
+  .js-hero .hj-s{transform:translateX(-88px)}
+  .js-hero .hj-fade,.js-hero .hj-scale,.js-hero .hj-glowtext,.js-hero .hj-portrait,.js-hero .hj-atmos,.js-hero .hj-rim,.js-hero .hj-dust,.js-hero .hj-blob,.js-hero .hj-sweep,.js-hero .hj-ring,.js-hero .hj-burst,.js-hero .hj-glowlayer,.js-hero .hj-ghost,.js-hero .hj-label,.js-hero .hj-sub,.js-hero .hj-box{opacity:0}
+  .js-hero.hj-run .hj-atmos{animation:hjAtmos 1.5s cubic-bezier(.22,1,.36,1) .1s forwards,hjAtmosBreathe 7s ease-in-out 2.6s infinite}
+  .js-hero.hj-run .hj-dust{opacity:1}
+  .js-hero.hj-run .hj-dust span{animation:hjDust var(--dur) linear var(--del) infinite}
+  .js-hero.hj-run .hj-mono{animation:hjMono 3.5s cubic-bezier(.22,1,.36,1) .55s forwards,hjMicro .9s ease-in-out 3.75s both,hjMonoAmbient 6s ease-in-out 4.65s infinite}
+  .js-hero.hj-run .hj-glowlayer{animation:hjGlowRamp 2.6s cubic-bezier(.4,0,.3,1) .55s forwards}
+  .js-hero.hj-run .hj-sweep{animation:hjSweep 1.5s cubic-bezier(.4,0,.2,1) 1.45s 1 both}
+  .js-hero .hj-ring,.js-hero.hj-run .hj-ring{display:none}
+  .js-hero.hj-run .hj-j{animation:hjJ 2.2s cubic-bezier(.4,0,.2,1) 2.4s forwards,hjTrail 2.2s ease-in-out 2.4s forwards}
+  .js-hero.hj-run .hj-s{animation:hjS 2.2s cubic-bezier(.4,0,.2,1) 2.4s forwards,hjTrail 2.2s ease-in-out 2.4s forwards}
+  .js-hero.hj-run .hj-ghost-j{animation:hjJ 2.2s cubic-bezier(.4,0,.2,1) 2.5s forwards,hjGhost 1.7s ease-out 2.5s forwards}
+  .js-hero.hj-run .hj-ghost-s{animation:hjS 2.2s cubic-bezier(.4,0,.2,1) 2.5s forwards,hjGhost 1.7s ease-out 2.5s forwards}
+  .js-hero.hj-run .hj-depth{animation:hjDepth 9s ease-in-out 5.6s infinite}
+  .js-hero.hj-run .hj-portrait{animation:hjPortrait 1.9s cubic-bezier(.22,1,.36,1) 3.05s forwards}
+  .js-hero.hj-run .hj-blob{animation:hjBlob 2s ease-out 3.05s forwards}
+  .js-hero.hj-run .hj-rim{animation:hjRim 1.4s ease-out 3.3s forwards,hjRimBreathe 7s ease-in-out 5.4s infinite}
+  .js-hero .hj-burst,.js-hero.hj-run .hj-burst{display:none}
+  .js-hero.hj-run .hj-fade{animation:hjIn 1.05s cubic-bezier(.16,.84,.28,1) forwards}
+  .js-hero.hj-run .hj-label{animation:hjInLabel 1.1s cubic-bezier(.16,.84,.28,1) forwards}
+  .js-hero.hj-run .hj-sub{animation:hjInSub .85s cubic-bezier(.16,.84,.28,1) forwards}
+  .js-hero.hj-run .hj-glowtext{animation:hjGlowText 1.4s cubic-bezier(.16,.84,.28,1) forwards,hjGlowPop 1.6s ease-in-out 6.35s 1}
+  .js-hero.hj-run .hj-box{animation:hjBoxIn 1.15s cubic-bezier(.16,.84,.28,1) forwards,hjBoxGlow 7s ease-in-out 6.4s infinite}
+  .js-hero.hj-run .hj-boxring{animation:hjRingSpin 7s linear 5.4s infinite}
+  .js-hero.hj-run .hj-boxsheen{animation:hjSheen 6s cubic-bezier(.4,0,.2,1) 6s infinite}
+  .js-hero.hj-run .hj-d1{animation-delay:3.9s}
+  .js-hero.hj-run .hj-d2{animation-delay:4.03s}
+  .js-hero.hj-run .hj-d3{animation-delay:4.16s}
+  .js-hero.hj-run .hj-d4{animation-delay:4.3s}
+  .js-hero.hj-run .hj-d5{animation-delay:4.44s}
+  .js-hero.hj-run .hj-d6{animation-delay:4.58s}
+  .js-hero.hj-run .hj-d7{animation-delay:4.72s}
+  .js-hero.hj-run .hj-d8{animation-delay:4.9s}
+  .js-hero.hj-run .hj-c1{animation-delay:4.52s}
+  .js-hero.hj-run .hj-c2{animation-delay:4.64s}
+  .js-hero.hj-run .hj-c3{animation-delay:4.76s}
+  .js-hero.hj-done .hj-fade,.js-hero.hj-done .hj-glowtext,.js-hero.hj-done .hj-label,.js-hero.hj-done .hj-sub,.js-hero.hj-done .hj-box,.js-hero.hj-done .hj-portrait,.js-hero.hj-done .hj-atmos,.js-hero.hj-done .hj-glowlayer,.js-hero.hj-done .hj-mono{opacity:1!important;transform:none!important;filter:none!important}
+  .js-hero.hj-done .hj-mono{transform:none!important}
+  .js-hero.hj-done .hj-j,.js-hero.hj-done .hj-s{transform:translateX(0)!important;filter:none!important}
+  .js-hero.hj-done .hj-ghost{opacity:0!important}
+  .js-hero.hj-done .hj-sweep{opacity:0!important}
+  .js-hero.hj-done .hj-box{transform:translateX(-50%)!important}
+  .js-hero.hj-done .hj-portrait{transform:translateX(-50%)!important}
+  .js-hero.hj-done .hj-blob{opacity:.75!important}
+  .js-hero.hj-done .hj-rim{opacity:.45!important}
+  @media (max-width:900px){
+    [data-fn-visual]{height:650px!important}
+    [data-fn-visual] .hj-box{width:calc(100% - 24px)!important}
+    [data-fn-visual] .hj-portrait{-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 100%),radial-gradient(ellipse 62% 90% at 50% 46%,#000 66%,transparent 84%)!important;mask-image:linear-gradient(180deg,transparent,#000 8%,#000 100%),radial-gradient(ellipse 62% 90% at 50% 46%,#000 66%,transparent 84%)!important}
+    [data-fn-visual] .hj-blob{height:290px!important;bottom:130px!important}
+  }
+  @media (max-width:560px){
+    [data-fn-visual]{height:600px!important}
+    [data-fn-visual] .hj-blob{height:240px!important;bottom:120px!important}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .js-hero .hj-mono{transform:none;opacity:.92}
+    .js-hero .hj-j,.js-hero .hj-s{transform:none}
+    .js-hero .hj-fade,.js-hero .hj-glowtext,.js-hero .hj-label,.js-hero .hj-sub,.js-hero .hj-box,.js-hero .hj-portrait,.js-hero .hj-atmos,.js-hero .hj-glowlayer{opacity:1}
+    .js-hero .hj-blob{opacity:.75}.js-hero .hj-rim{opacity:.45}
+    .js-hero.hj-run *{animation:none!important}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+/* ===== 8c trio cards (What We Offer) ===== */
+  .c8ab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .c8ab-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid #E6ECF3;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(10,17,36,.06);transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s,border-color .5s}
+  .c8ab-card:hover{transform:translateY(-8px);box-shadow:0 26px 54px rgba(10,17,36,.14);border-color:rgba(47,123,255,.4)}
+  .c8ab-media{position:relative;height:190px;overflow:hidden;background:#EEF3F9;perspective:900px}
+  .c8scene{position:absolute;inset:0;overflow:hidden;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+  .c8ab-card:hover .c8scene{transform:rotateX(7deg) rotateY(-8deg) scale(1.05)}
+  .c8glow{position:absolute;left:50%;top:50%;width:250px;height:250px;margin:-125px 0 0 -125px;border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.5),transparent 55%);filter:blur(10px);opacity:.55;animation:c8Spin 16s linear infinite;pointer-events:none}
+  .c8ring{position:absolute;left:50%;top:50%;border-radius:50%;border:1.5px dashed rgba(255,255,255,.4)}
+  .c8glass{position:absolute;display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:13px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(7px);box-shadow:0 16px 32px rgba(10,17,36,.26);font-family:'Poppins',sans-serif;white-space:nowrap}
+  .c8glass .n{font-family:'Radio Canada Big';font-weight:700;font-size:15px;color:#fff;line-height:1}
+  .c8glass .l{font-size:9.5px;color:rgba(255,255,255,.85);letter-spacing:.04em;line-height:1.1}
+  .c8gi{width:26px;height:26px;flex:none;border-radius:8px;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center}
+  .c8gi svg{width:15px;height:15px;stroke:#2F7BFF;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .c8svg{position:absolute;inset:0;width:100%;height:100%}
+  .c8blob{position:absolute;border-radius:50%;filter:blur(26px);opacity:.55;mix-blend-mode:screen}
+  .c8chip{position:absolute;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:100px;background:rgba(255,255,255,.92);box-shadow:0 10px 24px rgba(10,17,36,.22);font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:#0A1124;white-space:nowrap}
+  .c8chip svg{width:13px;height:13px;stroke:#2F7BFF;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  @keyframes c8Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  @keyframes c8FloatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes c8Rise{0%{transform:translateY(26px);opacity:0}18%{opacity:1}82%{opacity:1}100%{transform:translateY(-30px);opacity:0}}
+  @keyframes c8Dash{to{stroke-dashoffset:-60}}
+  @keyframes c8Spin{to{transform:rotate(360deg)}}
+  @keyframes c8Bar{0%{transform:scaleY(.25)}100%{transform:scaleY(1)}}
+  @keyframes c8Draw{0%{stroke-dashoffset:260}100%{stroke-dashoffset:0}}
+  @keyframes c8Orbit{from{transform:rotate(0deg) translateX(78px) rotate(0deg)}to{transform:rotate(360deg) translateX(78px) rotate(-360deg)}}
+  .c8ab-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,17,36,.28),transparent 46%);pointer-events:none}
+  .c8ab-tint{position:absolute;inset:0;pointer-events:none;opacity:.16}
+  .c8ab-ictile{position:absolute;left:20px;top:20px;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(47,123,255,.32);border:2px solid rgba(255,255,255,.75);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+  .c8ab-card:hover .c8ab-ictile{transform:scale(1.08) rotate(-4deg)}
+  .c8ab-ictile svg{width:27px;height:27px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .c8ab-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .c8ab-kick{font-size:9px;letter-spacing:.16em;font-weight:700;color:#8A95A6;margin-bottom:9px}
+  .c8ab-ttl{font-family:'Radio Canada Big';font-weight:700;font-size:24px;letter-spacing:-.7px;line-height:1;color:#0A1124}
+  .c8ab-lead{margin-top:11px;font-size:14px;line-height:1.66;color:#5b667a}
+  .c8ab-div{height:1px;background:#E6ECF3;margin:18px 0}
+  .c8ab-items{display:flex;flex-direction:column;gap:12px}
+  .c8ab-itrow{display:flex;align-items:flex-start;gap:11px;font-size:13.5px;font-weight:600;color:#0A1124;line-height:1.3}
+  .c8ab-itrow span:last-child{flex:1;min-width:0}
+  .c8ab-chk{flex:none;width:19px;height:19px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);margin-top:0}
+  .c8ab-chk svg{width:11px;height:11px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .c8ab-cta{margin-top:auto;padding-top:22px}
+  @media(max-width:900px){.c8ab-grid{grid-template-columns:1fr}}
+  /* ===== OFFER orbit dial ===== */
+  @keyframes ofTrace{to{transform:rotate(360deg)}}
+  @keyframes ofHub{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.95;transform:scale(1.05)}}
+  @keyframes ofPing{0%{opacity:.6;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.9)}}
+  @keyframes ofSlide{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+  @keyframes ofItem{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .of-node{position:absolute;left:50%;top:50%;width:0;height:0;transition:transform .95s cubic-bezier(.22,1,.36,1)}
+  /* the spoke wires the live audience into the hub, drawn, not just coloured */
+  .of-spoke{position:absolute;left:0;top:0;width:2px;height:172px;margin-left:-1px;transform-origin:50% 0;background:linear-gradient(180deg,rgba(47,123,255,.9),rgba(31,211,232,.15));border-radius:2px;opacity:0;transform:scaleY(.2);transition:opacity .5s,transform .7s cubic-bezier(.22,1,.36,1)}
+  .of-node[data-on="1"] .of-spoke{opacity:1;transform:scaleY(1)}
+  .of-chip{position:absolute;left:-84px;top:-31px;width:168px;display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:18px;background:#fff;border:1px solid #E4E9F0;box-shadow:0 12px 28px rgba(10,17,36,.1);cursor:pointer;transition:all .55s cubic-bezier(.34,1.56,.64,1)}
+  .of-chip:hover{transform:translateY(-3px);box-shadow:0 20px 40px rgba(10,17,36,.16);border-color:rgba(47,123,255,.45)}
+  .of-node[data-on="1"] .of-chip{background:linear-gradient(135deg,#2F7BFF,#1FD3E8);border-color:transparent;box-shadow:0 0 0 7px rgba(47,123,255,.12),0 20px 44px rgba(47,123,255,.34);transform:scale(1.07)}
+  .of-node[data-on="1"] .of-chip:hover{transform:scale(1.07) translateY(-3px)}
+  .of-node[data-on="1"] .of-t{color:#fff}
+  .of-node[data-on="1"] .of-k{color:rgba(255,255,255,.88)}
+  .of-mini{flex:none;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Radio Canada Big';font-weight:700;font-size:11px;color:#fff;transition:background .5s}
+  .of-node[data-on="1"] .of-mini{background:rgba(255,255,255,.24)!important}
+  .of-ping{position:absolute;inset:-6px;border-radius:22px;border:1px solid rgba(47,123,255,.6);opacity:0;pointer-events:none}
+  .of-node[data-on="1"] .of-ping{animation:ofPing 2.6s ease-out infinite}
+  .of-hubtxt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Radio Canada Big';font-weight:700;font-size:23px;letter-spacing:-.6px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .of-panel{animation:ofSlide .6s cubic-bezier(.22,1,.36,1) both}
+  /* items carry their own entrance so the stagger replays on every change */
+  .of-it{display:flex;align-items:center;gap:11px;font-size:14.5px;color:#3d4a61;animation:ofItem .5s cubic-bezier(.22,1,.36,1) both}
+  /* the scale lives on its own wrapper: the arc carries a JS inline rotate and
+     the hub a running keyframe, either of which would beat a media-query
+     transform on the same element and desync the geometry */
+  @media (max-width:1080px){
+    .of-grid{grid-template-columns:1fr!important;gap:28px!important}
+    .of-dial{height:360px!important}
+    .of-scale{transform:scale(.8)}
+  }
+  @media (max-width:720px){
+    .of-dial{height:300px!important}
+    .of-scale{transform:scale(.64)}
+  }
+
+  .o3-it{display:flex;align-items:center;gap:11px;font-size:14.5px;color:#3d4a61;transition:color .3s,transform .35s cubic-bezier(.22,1,.36,1)}
+  .o3-it:hover{color:#0A1124;transform:translateX(5px)}
+  .o3-it:hover .o3-dot{transform:scale(1.8)}
+  .o3-dot{width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);flex:none;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+  .o3-ken{animation:ofKen 20s ease-in-out infinite}
+  .o3-cta{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:#2F7BFF;text-decoration:none;transition:gap .35s cubic-bezier(.22,1,.36,1)}
+  .o3-cta:hover{gap:15px;color:#1FD3E8}
+  .o3-arr{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .o3-cta:hover .o3-arr{transform:translateX(4px)}
+
+  @keyframes ofKen{0%,100%{transform:scale(1.04) translate(0,0)}50%{transform:scale(1.1) translate(-1.5%,-1%)}}
+  #offer image-slot::part(loading){display:none}
+  image-slot#ab-j21b{transform:scale(1.18);transform-origin:center center}
+  [data-jtm-card] > div:has(> image-slot#ab-j21b){aspect-ratio:1/1!important;border-radius:50%!important;flex-basis:58%!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j21a){aspect-ratio:1/1!important;border-radius:18px!important;flex-basis:56%!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j22){aspect-ratio:1/1!important;border-radius:18px!important;flex-basis:56%!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j23){aspect-ratio:1/1!important;border-radius:50%!important;flex-basis:58%!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j24){aspect-ratio:1/1!important;border-radius:18px!important;flex-basis:58%!important;background:#fff!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j25a){aspect-ratio:1/1!important;border-radius:18px!important;flex-basis:58%!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j25b){aspect-ratio:1/1!important;border-radius:50%!important;flex-basis:58%!important;background:#1e1f22!important}
+  [data-jtm-card] > div:has(> image-slot#ab-j25b) > div{display:none!important}
+  #offer .o3-ken{will-change:transform;backface-visibility:hidden}
+  [data-jtm-strip]{align-items:center!important;gap:56px!important;padding-top:40px!important;padding-bottom:40px!important;position:relative}
+  [data-jtm-strip] [data-jtm-card]{position:relative;z-index:2}
+  [data-jtm-strip] [data-jtm-card]:nth-child(odd){margin-bottom:64px!important}
+  [data-jtm-strip] [data-jtm-card]:nth-child(even){margin-top:64px!important}
+  [data-jtm-card] > div:has(> image-slot):is(#__jtm,div):is(#__jtm2,div){flex:none!important;flex-basis:auto!important;height:min(34svh,260px)!important;width:auto!important;max-width:100%;align-self:center!important}
+  [data-jtm-strip] > [data-jtm-card]:nth-child(even){flex-direction:column-reverse!important}
+  @media(max-width:760px){.js-hero.hj-ceo .hj-ceo-veil{position:absolute!important;top:0!important;bottom:0!important;height:auto!important}}
+</style>
+
+</helmet>
+
+<div style="--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8;position:relative;min-height:100vh;background:#fff;font-family:'Poppins',sans-serif;color:#0A1124;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="ab-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--g1);margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="ab-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--g3);margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px var(--g3)"></div>
+
+  <canvas id="ab-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <!-- LIGHTBOX -->
+  <div id="ab-lightbox" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(4,6,12,.93);backdrop-filter:blur(10px);padding:clamp(20px,5vw,64px)">
+    <button id="ab-lb-close" aria-label="Close" style="position:absolute;top:22px;right:26px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:19px;cursor:pointer;transition:background .25s" style-hover="background:rgba(255,255,255,.22)">✕</button>
+    <button id="ab-lb-prev" aria-label="Previous" style="position:absolute;left:clamp(10px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:3px">‹</button>
+    <button id="ab-lb-next" aria-label="Next" style="position:absolute;right:clamp(10px,3vw,40px);top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding-bottom:3px">›</button>
+    <div id="ab-lb-stage" style="max-width:1040px;width:100%;display:flex;flex-direction:column;align-items:center;gap:16px">
+      <div id="ab-lb-frame" style="position:relative;width:100%;max-height:74vh;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:linear-gradient(140deg,#0E1A33,#05070D);box-shadow:0 40px 90px rgba(0,0,0,.6);animation:cnLbIn .4s cubic-bezier(.22,1,.36,1) both;display:flex;align-items:center;justify-content:center">
+        <img id="ab-lb-img" alt="" style="width:100%;height:100%;object-fit:contain;display:none" />
+        <div id="ab-lb-ph" style="display:none;text-align:center;color:#7e8aa0;padding:30px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <div style="font-size:13px">Drop a photo into this frame on the page to preview it here</div>
+        </div>
+      </div>
+      <div style="text-align:center;color:#fff">
+        <div id="ab-lb-cat" style="font-size:11px;letter-spacing:2px;font-weight:600;color:#1FD3E8;margin-bottom:5px"></div>
+        <div id="ab-lb-cap" style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(18px,2.4vw,24px)"></div>
+        <div id="ab-lb-counter" style="font-size:12px;color:#7e8aa0;margin-top:6px"></div>
+      </div>
+    </div>
+  </div>
+
+  <dc-import name="Navbar" active="About Company" hero-theme="auto" hint-size="100%,0"></dc-import>
+
+  <div style="position:relative;z-index:2;background:#fff">
+
+  <!-- ================= NAV ================= -->
+
+
+  <!-- ================= HERO ================= -->
+  <section style="position:relative;padding:122px 28px 72px;overflow:hidden">
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(47,123,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(47,123,255,.05) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(ellipse 85% 75% at 50% 28%,#000,transparent 76%);-webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 28%,#000,transparent 76%);animation:cnGridMove 9s linear infinite"></div>
+    <div style="position:absolute;top:4%;left:-4%;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.16),transparent 68%);filter:blur(50px);animation:cnFloat 8s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-8%;right:-3%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.15),transparent 68%);filter:blur(54px);animation:cnFloat2 9s ease-in-out infinite;pointer-events:none"></div>
+
+    <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
+      <div style="display:grid;grid-template-columns:1.02fr 1.18fr;gap:50px;align-items:center" data-hero-grid>
+        <div data-reveal>
+          <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 16px;border-radius:100px;background:#fff;border:1px solid #DCE3EC;box-shadow:0 2px 10px rgba(10,17,36,.04);margin-bottom:22px;font-size:12.5px;font-weight:500;color:#475569">
+            <span style="width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px rgba(34,197,94,.6)"></span>
+            About Cybernaut EdTech
+          </div>
+          <h1 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(38px,4.6vw,62px);line-height:1.04;letter-spacing:-2px;margin-bottom:20px;color:#0A1124">Step Inside The<br>World Of <span style="background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">Cybernaut</span></h1>
+          <p style="font-size:17px;color:#475569;max-width:480px;margin-bottom:26px">A technology &amp; education ecosystem empowering learners, institutions, and innovators. Meet the people behind it all.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px">
+            <a href="Home.dc.html#programs" data-magnetic style="display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;font-weight:600;font-size:14.5px;text-decoration:none;box-shadow:0 12px 28px rgba(47,123,255,.32);transition:transform .25s" style-hover="transform:translateY(-3px)">Explore Programs →</a>
+          </div>
+        </div>
+
+        <div data-reveal style="position:relative">
+          <div style="position:absolute;inset:-14px;border-radius:30px;background:linear-gradient(135deg,rgba(47,123,255,.28),rgba(31,211,232,.2));filter:blur(28px);z-index:0;animation:cnPulseGlow 5s ease-in-out infinite"></div>
+          <div style="position:relative;z-index:1;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px rgba(10,17,36,.22);border:1px solid rgba(255,255,255,.6);aspect-ratio:16/9;background:#05070D">
+            <video data-abv-video src="assets/about-cybernaut.mp4" title="Inside the World of Cybernaut" loop="{{ true }}" muted="{{ true }}" autoplay="{{ true }}" playsInline="{{ true }}" preload="auto" disablePictureInPicture="{{ true }}" onContextMenu="{{ noCtx }}" style="width:100%;height:100%;display:block;object-fit:cover;background:#05070D;filter:brightness(.82) saturate(1.02)"></video>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px" data-hero-stats>
+        <sc-for list="{{ heroStats }}" as="st" hint-placeholder-count="4">
+          <div data-reveal style="padding:24px 22px;border-radius:18px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 16px rgba(10,17,36,.05);transition:transform .3s" style-hover="transform:translateY(-5px)">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.2vw,42px);background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent"><span data-count data-target="{{ st.target }}" data-decimals="0">0</span>{{ st.suffix }}</div>
+            <div style="font-size:13px;color:#64748b;margin-top:4px">{{ st.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT CYBERNAUT, orbit ledger ================= -->
+  <section id="about-cybernaut" data-screen-label="About Cybernaut" style="position:relative;padding:clamp(64px,8vw,96px) 28px;background:radial-gradient(110% 82% at 50% 6%,#0D1B33,#05070D 62%);overflow:hidden;border-top:1px solid #0d1526;border-bottom:1px solid #0d1526">
+    <div data-blob style="position:absolute;bottom:-18%;left:26%;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.12),transparent 66%);filter:blur(80px);pointer-events:none"></div>
+
+    <div data-ac-intro style="position:absolute;inset:0;z-index:60;pointer-events:none;overflow:hidden">
+      <span data-ac-boom style="position:absolute;left:2%;top:52%;width:220px;height:220px;border-radius:50%;border:2px solid rgba(31,211,232,.5);background:radial-gradient(circle,rgba(31,211,232,.18),transparent 66%)"></span>
+      <div data-ac-flyx style="position:absolute;left:0;top:32%;width:220px;height:276px">
+        <div data-ac-flyy style="position:relative;width:100%;height:100%">
+          <span data-ac-trail style="position:absolute;right:88%;top:44%;width:420px;height:3px;background:linear-gradient(90deg,transparent,rgba(31,211,232,.9));filter:blur(1.5px)"></span>
+          <span data-ac-trail style="position:absolute;right:88%;top:56%;width:300px;height:2px;background:linear-gradient(90deg,transparent,rgba(47,123,255,.8));filter:blur(1.5px);animation-delay:.08s"></span>
+          <span data-ac-trail style="position:absolute;right:88%;top:66%;width:200px;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6));filter:blur(2px);animation-delay:.16s"></span>
+          <div data-ac-blur style="width:100%;height:100%"><dc-import name="CyberMascot" hint-size="220px,276px"></dc-import></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1180px;margin:0 auto;position:relative;z-index:2">
+
+      <div data-ac-rv="1" data-ac-head style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:end;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.14)">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px">
+            
+            <span style="font-size:11px;letter-spacing:4px;font-weight:700;color:var(--g3)">ABOUT CYBERNAUT</span>
+          </div>
+          <h2 style="margin-top:20px;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,3.8vw,48px);line-height:1.06;letter-spacing:-1.8px;color:#EAF0F8;max-width:720px">Building a <span style="background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">Community</span> for Lifelong Learning &amp; Growth</h2>
+        </div>
+        <div data-ac-stats style="display:flex;gap:44px;align-items:flex-end">
+          <div style="text-align:right">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:32px;line-height:1;letter-spacing:-1px;color:#EAF0F8">1L+</div>
+            <div style="margin-top:8px;font-size:9.5px;letter-spacing:2.4px;font-weight:600;color:#7d8ea1">LEARNERS TRUSTED</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:32px;line-height:1;letter-spacing:-1px;color:#EAF0F8">75K+</div>
+            <div style="margin-top:8px;font-size:9.5px;letter-spacing:2.4px;font-weight:600;color:#7d8ea1">STUDENTS TRAINED</div>
+          </div>
+        </div>
+      </div>
+
+      <div data-ac-rv="2" data-ac-intro-copy style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:840px">
+        <p style="font-size:16px;line-height:1.76;color:#a8b6c8;text-wrap:pretty">Cybernaut EdTech is a technology and education ecosystem dedicated to empowering students, institutions and organizations through learning, innovation and software engineering.</p>
+        <p style="font-size:16px;line-height:1.76;color:#8395a9;text-wrap:pretty">We bridge the gap between education and industry, helping learners build skills, institutions strengthen outcomes and businesses embrace technology.</p>
+      </div>
+
+      <div data-ac-rv="3" data-ac-mvgrid style="margin-top:40px;display:grid;grid-template-columns:minmax(260px,1fr) clamp(300px,30vw,400px) minmax(260px,1fr);gap:clamp(24px,3vw,36px);align-items:start">
+        <div data-ac-mv style="position:relative;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 38px rgba(3,8,18,.5);padding:26px 26px 28px">
+          <span style="position:absolute;left:0;top:0;width:56%;height:2px;background:linear-gradient(90deg,var(--g1),var(--g3))"></span>
+          <span style="position:absolute;right:22px;top:20px;font-family:'Radio Canada Big';font-weight:700;font-size:34px;line-height:1;letter-spacing:-1.4px;color:transparent;-webkit-text-stroke:1px rgba(31,211,232,.28)">01</span>
+          <div style="display:flex;align-items:center;gap:12px;height:36px">
+            <span style="width:36px;height:36px;flex:none;border-radius:10px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(47,123,255,.34)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7.5"></circle><circle cx="12" cy="12" r="2.6"></circle><path d="M12 2.2v2.6M12 19.2v2.6M2.2 12h2.6M19.2 12h2.6"></path></svg></span>
+            <span style="font-size:10.5px;letter-spacing:3.2px;font-weight:700;color:var(--g3)">MISSION</span>
+          </div>
+          <p style="margin-top:18px;font-size:15.5px;line-height:1.68;font-weight:600;color:#eef4fb;text-wrap:pretty">To empower every learner, campus and business with the skills, technology and opportunities they need to thrive in a digital-first world.</p>
+          <span style="display:block;margin-top:20px;width:100%;height:1px;background:linear-gradient(90deg,rgba(31,211,232,.34),rgba(255,255,255,.04))"></span>
+        </div>
+
+        <div data-ac-scene style="position:relative;height:392px;min-width:0">
+          <div data-ac-plane style="position:absolute;inset:0">
+            <div data-ac-ringa style="position:absolute;left:50%;top:186px;width:372px;height:372px;transform:translate(-50%,-50%);animation:acOrbit 54s linear infinite">
+              <svg viewBox="0 0 380 380" style="width:100%;height:100%" fill="none">
+                <circle cx="190" cy="190" r="186" stroke="rgba(31,211,232,.2)" stroke-width="1" stroke-dasharray="5 9"></circle>
+                <circle cx="190" cy="4" r="5" fill="#1FD3E8"></circle><circle cx="376" cy="190" r="5" fill="#2F7BFF"></circle>
+                <circle cx="190" cy="376" r="5" fill="#fff" opacity=".7"></circle><circle cx="4" cy="190" r="5" fill="#2F7BFF"></circle>
+              </svg>
+            </div>
+            <div data-ac-ringb style="position:absolute;left:50%;top:186px;width:286px;height:286px;transform:translate(-50%,-50%);animation:acOrbitR 40s linear infinite">
+              <svg viewBox="0 0 290 290" style="width:100%;height:100%" fill="none">
+                <circle cx="145" cy="145" r="142" stroke="rgba(47,123,255,.22)" stroke-width="1"></circle>
+                <circle cx="145" cy="3" r="4" fill="rgba(255,255,255,.65)"></circle><circle cx="287" cy="145" r="4" fill="#1FD3E8"></circle>
+              </svg>
+            </div>
+            <div style="position:absolute;left:50%;top:186px;width:330px;height:330px;transform:translate(-50%,-50%);pointer-events:none">
+              <div data-ac-halo style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.3),transparent 66%);filter:blur(38px)"></div>
+            </div>
+            <div style="position:absolute;inset:0;pointer-events:none">
+          <span data-ac-spark style="left:26%;top:62%;width:4px;height:4px;background:rgba(31,211,232,.95);--dx:14px;--dy:-78px;animation-duration:7.5s;animation-delay:0s"></span>
+          <span data-ac-spark style="left:72%;top:58%;width:3px;height:3px;background:rgba(255,255,255,.85);--dx:-12px;--dy:-66px;animation-duration:8.6s;animation-delay:1.1s"></span>
+          <span data-ac-spark style="left:44%;top:74%;width:5px;height:5px;background:rgba(47,123,255,.9);--dx:8px;--dy:-92px;animation-duration:9.4s;animation-delay:2.3s"></span>
+          <span data-ac-spark style="left:62%;top:70%;width:3px;height:3px;background:rgba(31,211,232,.8);--dx:-18px;--dy:-70px;animation-duration:8s;animation-delay:3.4s"></span>
+          <span data-ac-spark style="left:34%;top:52%;width:3px;height:3px;background:rgba(255,255,255,.7);--dx:20px;--dy:-58px;animation-duration:7s;animation-delay:4.2s"></span>
+          <span data-ac-spark style="left:80%;top:44%;width:4px;height:4px;background:rgba(47,123,255,.75);--dx:-10px;--dy:-84px;animation-duration:10.2s;animation-delay:5s"></span>
+            </div>
+            <span data-ac-ground style="position:absolute;left:50%;top:318px;width:190px;height:16px;border-radius:50%;background:radial-gradient(ellipse,rgba(47,123,255,.34),transparent 70%);filter:blur(7px);pointer-events:none"></span>
+            <div style="position:absolute;left:50%;top:150px;width:206px;height:258px;margin-left:-103px;margin-top:-129px">
+              <div data-ac-float style="width:100%;height:100%;transform-origin:50% 88%">
+                <div data-ac-mascot style="width:100%;height:100%"><dc-import name="CyberMascot" hint-size="206px,258px"></dc-import></div>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;text-align:center">
+            <div style="font-size:10px;letter-spacing:3px;font-weight:700;color:var(--g3)">MEET YOUR GUIDE</div>
+            <p style="margin-top:9px;font-size:12.5px;line-height:1.6;color:#8aa0b8">Cybernaut walks with every learner, campus and team.</p>
+          </div>
+        </div>
+
+        <div data-ac-mv style="position:relative;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.1);box-shadow:0 14px 38px rgba(3,8,18,.5);padding:26px 26px 28px">
+          <span style="position:absolute;left:0;top:0;width:56%;height:2px;background:linear-gradient(90deg,var(--g3),var(--g1))"></span>
+          <span style="position:absolute;right:22px;top:20px;font-family:'Radio Canada Big';font-weight:700;font-size:34px;line-height:1;letter-spacing:-1.4px;color:transparent;-webkit-text-stroke:1px rgba(31,211,232,.28)">02</span>
+          <div style="display:flex;align-items:center;gap:12px;height:36px">
+            <span style="width:36px;height:36px;flex:none;border-radius:10px;background:linear-gradient(135deg,var(--g3),var(--g1));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(47,123,255,.34)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M2 12s4-6.6 10-6.6S22 12 22 12s-4 6.6-10 6.6S2 12 2 12z"></path><circle cx="12" cy="12" r="2.8"></circle></svg></span>
+            <span style="font-size:10.5px;letter-spacing:3.2px;font-weight:700;color:var(--g3)">VISION</span>
+          </div>
+          <p style="margin-top:18px;font-size:15.5px;line-height:1.68;font-weight:600;color:#eef4fb;text-wrap:pretty">To become India's most trusted technology &amp; education ecosystem, creating future-ready innovators, entrepreneurs and leaders.</p>
+          <span style="display:block;margin-top:20px;width:100%;height:1px;background:linear-gradient(90deg,rgba(31,211,232,.34),rgba(255,255,255,.04))"></span>
+        </div>
+      </div>
+
+      <div data-ac-rv="4" data-ac-statement style="margin-top:40px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);display:flex;align-items:baseline;justify-content:space-between;gap:36px">
+        <div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.2;letter-spacing:-.9px;color:#EAF0F8">We create leaders, not employees.</div>
+        <div style="font-size:10px;letter-spacing:3px;font-weight:700;color:#7d8ea1;white-space:nowrap">ENDEAVOUR TO EXPLORE</div>
+      </div>
+
+      <div data-ac-rv="5" style="margin-top:44px">
+        <div style="display:flex;align-items:center;gap:16px">
+          <span style="font-size:11px;letter-spacing:3.4px;font-weight:700;color:var(--g3);white-space:nowrap">MOMENTS FROM THE JOURNEY</span>
+          <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(31,211,232,.5),rgba(255,255,255,.06))"></span>
+        </div>
+        <div data-ac-jgrid style="margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px">
+          <sc-for list="{{ commMoments }}" as="m" hint-placeholder-count="4">
+            <div style="padding-top:20px;border-top:1px solid rgba(255,255,255,.14)">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px">
+                <span style="font-family:'Radio Canada Big';font-weight:700;font-size:24px;line-height:1;letter-spacing:-1.1px;color:transparent;-webkit-text-stroke:1.1px rgba(31,211,232,.6)">{{ m.num }}</span>
+                <span style="font-size:9.5px;letter-spacing:2.4px;font-weight:700;color:#7d8ea1">{{ m.cat }}</span>
+              </div>
+              <div data-photo data-ptile data-cat="{{ m.cat }}" data-cap="{{ m.cap }}" style="position:relative;margin-top:16px;aspect-ratio:3/2;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:#0B1220;cursor:pointer">
+                <div data-photo-img style="position:absolute;inset:0"><image-slot id="{{ m.id }}" src="{{ m.src }}" shape="rect" placeholder="{{ m.cap }}"></image-slot></div>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,0) 55%,rgba(5,7,13,.55));pointer-events:none;z-index:2"></div>
+                <div data-photo-shine></div>
+                <div data-photo-ring style="position:absolute;top:calc(50% - 22px);left:calc(50% - 22px);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;z-index:4;pointer-events:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></div>
+              </div>
+              <div style="margin-top:14px;font-size:13.5px;line-height:1.45;font-weight:600;color:#e8f1fa">{{ m.cap }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT WE OFFER, rail + side panel ================= -->
+  <section id="offer" style="position:relative;padding:88px 28px;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;width:600px;height:460px;left:4%;top:-150px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.14),transparent 68%);filter:blur(26px);pointer-events:none"></div>
+    <div aria-hidden="true" style="position:absolute;width:540px;height:440px;right:-130px;bottom:-170px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.14),transparent 68%);filter:blur(30px);pointer-events:none"></div>
+    <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
+      <div data-reveal style="max-width:620px;margin-bottom:40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">WHAT WE OFFER</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-1.2px;line-height:1.06;color:#0A1124">Built For Every <span style="background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">Stage Of Growth</span></h2>
+        <p style="font-size:15.5px;color:#475569;margin-top:14px">Three audiences, one engineering-and-education engine.</p>
+      </div>
+
+      <div class="c8ab-grid" data-reveal>
+        <sc-for list="{{ offerCards }}" as="c" hint-placeholder-count="3">
+          <div class="c8ab-card">
+            <div class="c8ab-media" style="background:{{ c.tile }}">
+              <div class="c8scene">
+                <div class="c8glow"></div>
+                <div class="c8blob" style="width:150px;height:150px;left:-30px;top:-50px;background:#fff;opacity:.28"></div>
+                <div class="c8blob" style="width:130px;height:130px;right:-30px;bottom:-50px;background:#bfe6ff;opacity:.4"></div>
+                <sc-if value="{{ c.sCollege }}" hint-placeholder-val="{{ true }}">
+                  <svg class="c8svg" viewBox="0 0 300 176" preserveAspectRatio="xMidYMid slice">
+                    <g style="transform-origin:150px 100px;animation:c8Float 5.5s ease-in-out infinite" fill="none" stroke="#fff" stroke-opacity=".95" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M150 52 84 84h132z" fill="rgba(255,255,255,.25)"></path>
+                      <path d="M96 84v40M120 84v40M150 84v40M180 84v40M204 84v40"></path>
+                      <path d="M80 124h140M74 134h152"></path>
+                      <circle cx="150" cy="68" r="3.4" fill="#fff" stroke="none"></circle>
+                    </g>
+                    <g fill="#fff" stroke="none">
+                      <g style="animation:c8Rise 3.6s ease-in-out infinite"><g transform="translate(64,150)"><path d="M-10 0 0 -4.5 10 0 0 4.5z"></path><path d="M0 4.5v6M0 10.5h4.5" stroke="#fff" stroke-width="1.6" fill="none"></path></g></g>
+                      <g style="animation:c8Rise 3.6s ease-in-out infinite 1.2s"><g transform="translate(150,150)"><path d="M-10 0 0 -4.5 10 0 0 4.5z"></path><path d="M0 4.5v6M0 10.5h4.5" stroke="#fff" stroke-width="1.6" fill="none"></path></g></g>
+                      <g style="animation:c8Rise 3.6s ease-in-out infinite 2.4s"><g transform="translate(236,150)"><path d="M-10 0 0 -4.5 10 0 0 4.5z"></path><path d="M0 4.5v6M0 10.5h4.5" stroke="#fff" stroke-width="1.6" fill="none"></path></g></g>
+                    </g>
+                  </svg>
+                  <div class="c8glass" style="right:14px;top:14px;transform:translateZ(50px);animation:c8FloatB 5s ease-in-out infinite"><span class="c8gi"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path></svg></span><span><span class="n">92%</span><br><span class="l">Placement</span></span></div>
+                  <div class="c8glass" style="left:14px;bottom:14px;transform:translateZ(30px);animation:c8Float 6s ease-in-out infinite"><span class="c8gi"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span><span><span class="n">20+</span><br><span class="l">Colleges</span></span></div>
+                </sc-if>
+                <sc-if value="{{ c.sBusiness }}" hint-placeholder-val="{{ true }}">
+                  <svg class="c8svg" viewBox="0 0 300 176" preserveAspectRatio="xMidYMid slice">
+                    <g stroke="#fff" stroke-opacity=".45" stroke-width="1.6" fill="none">
+                      <path d="M60 60 150 40 240 66 150 96 60 60M150 40 150 96M60 60 96 130M240 66 208 132M150 96 96 130M150 96 208 132M96 130 208 132"></path>
+                    </g>
+                    <g stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" stroke-dasharray="4 12" style="animation:c8Dash 1.1s linear infinite">
+                      <path d="M60 60 150 96 240 66M96 130 150 40"></path>
+                    </g>
+                    <g fill="#fff">
+                      <circle cx="150" cy="40" r="6"></circle><circle cx="60" cy="60" r="5"></circle><circle cx="240" cy="66" r="5"></circle><circle cx="96" cy="130" r="5"></circle><circle cx="208" cy="132" r="5"></circle>
+                      <circle cx="150" cy="96" r="8" fill="#eafcff"></circle>
+                    </g>
+                    <circle r="3.6" fill="#bff0ff"><animateMotion dur="2.4s" repeatCount="indefinite" path="M60 60 150 96 240 66"></animateMotion></circle>
+                    <circle r="3.6" fill="#bff0ff"><animateMotion dur="3s" begin=".8s" repeatCount="indefinite" path="M96 130 150 40"></animateMotion></circle>
+                  </svg>
+                  <div class="c8chip" style="right:16px;top:16px;animation:c8FloatB 5s ease-in-out infinite"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"></path></svg>AI Delivery</div>
+                  <div class="c8chip" style="left:16px;bottom:16px;transform:translateZ(40px);animation:c8Float 6s ease-in-out infinite"><svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>Cloud &amp; DevOps</div>
+                </sc-if>
+                <sc-if value="{{ c.sStudent }}" hint-placeholder-val="{{ true }}">
+                  <svg class="c8svg" viewBox="0 0 300 176" preserveAspectRatio="xMidYMid slice">
+                    <g fill="rgba(255,255,255,.9)">
+                      <rect x="70" y="96" width="20" height="40" rx="4" style="transform-origin:80px 136px;animation:c8Bar 1.3s ease-out"></rect>
+                      <rect x="104" y="78" width="20" height="58" rx="4" style="transform-origin:114px 136px;animation:c8Bar 1.3s ease-out .12s backwards"></rect>
+                      <rect x="138" y="58" width="20" height="78" rx="4" style="transform-origin:148px 136px;animation:c8Bar 1.3s ease-out .24s backwards"></rect>
+                      <rect x="172" y="40" width="20" height="96" rx="4" fill="#eafcff" style="transform-origin:182px 136px;animation:c8Bar 1.3s ease-out .36s backwards"></rect>
+                    </g>
+                    <path d="M70 118 116 96 150 78 208 44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="260" style="animation:c8Draw 1.6s ease-out forwards"></path>
+                    <path d="M196 40h16v16" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <g fill="#fff" style="animation:c8FloatB 4.6s ease-in-out infinite"><g transform="translate(236,58)"><path d="M-13 0 0 -6 13 0 0 6z"></path><path d="M0 6v8M0 14h6" stroke="#fff" stroke-width="2" fill="none"></path></g></g>
+                  </svg>
+                  <div class="c8glass" style="left:14px;top:14px;transform:translateZ(50px);animation:c8Float 5.4s ease-in-out infinite"><span class="c8gi"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg></span><span><span class="n">Projects</span><br><span class="l">Real portfolio</span></span></div>
+                  <div class="c8glass" style="right:14px;bottom:14px;transform:translateZ(34px);animation:c8FloatB 6s ease-in-out infinite"><span class="c8gi"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"></path></svg></span><span><span class="n">Internships</span><br><span class="l">Hiring pipeline</span></span></div>
+                </sc-if>
+              </div>
+              <div class="c8ab-scrim"></div>
+              <span class="c8ab-ictile" style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.6);backdrop-filter:blur(4px)"><svg viewBox="0 0 24 24"><path d="{{ c.icon }}"></path></svg></span>
+            </div>
+            <div class="c8ab-body">
+              <div class="c8ab-kick">{{ c.kicker }}</div>
+              <div class="c8ab-ttl">{{ c.title }}</div>
+              <p class="c8ab-lead">{{ c.lead }}</p>
+              <div class="c8ab-div"></div>
+              <div class="c8ab-items">
+                <sc-for list="{{ c.items4 }}" as="it" hint-placeholder-count="4">
+                  <div class="c8ab-itrow"><span class="c8ab-chk"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span><span>{{ it }}</span></div>
+                </sc-for>
+              </div>
+              <a class="o3-cta c8ab-cta" href="{{ c.href }}">{{ c.cta }}<span class="o3-arr">→</span></a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOUNDER, vision spotlight (arch + skyline + rays) ================= -->
+  <section id="founder" data-screen-label="Founder" class="js-hero" style="position:relative;background:radial-gradient(120% 96% at 34% 92%,#0B1226,#05060A 64%);color:#fff;overflow:hidden;padding:clamp(72px,8vw,104px) 0 0">
+    <div class="hj-ceo-layer" style="position:absolute;inset:0;z-index:60;pointer-events:none;overflow:hidden">
+        <div class="hj-ceo-veil" style="position:absolute;left:0;right:0;top:0;height:100vh;height:100svh;background:radial-gradient(ellipse at 50% 46%,#070D19,#03040A 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px">
+          <div class="hj-ceo-halo" style="position:absolute;left:50%;top:50%;width:560px;height:300px;border-radius:50%;background:radial-gradient(ellipse,rgba(47,123,255,.2),rgba(31,211,232,.07) 52%,transparent 72%);filter:blur(30px)"></div>
+          <div class="hj-ceo-halo2" style="position:absolute;left:50%;top:50%;width:360px;height:360px;border-radius:50%;border:1px solid rgba(31,211,232,.45);pointer-events:none;opacity:0"></div>
+          <div class="hj-ceo-scan" style="position:absolute;inset:-40% 0;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px 5px);pointer-events:none;opacity:.5"></div>
+          <div class="hj-ceo-kick" style="position:relative;font-size:10px;letter-spacing:5px;font-weight:600;color:#1FD3E8">CYBERNAUT EDTECH</div>
+          <div class="hj-ceo-stage" style="position:relative;height:1.3em;width:100%;display:flex;align-items:center;justify-content:center;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.6vw,40px);line-height:1.3;color:#fff;text-transform:uppercase">
+            <span class="hj-ceo-shut hj-ceo-shut-t" style="position:absolute;left:50%;bottom:100%;margin-bottom:.18em;width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(31,211,232,.85),transparent);transform:translateX(-50%);pointer-events:none"></span><span class="hj-ceo-shut hj-ceo-shut-b" style="position:absolute;left:50%;top:100%;margin-top:.18em;width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(47,123,255,.85),transparent);transform:translateX(-50%);pointer-events:none"></span><span class="hj-ceo-echo hj-ceo-e1" style="position:absolute;white-space:nowrap;letter-spacing:.14em;color:transparent;-webkit-text-stroke:1px rgba(31,211,232,.55);opacity:0">Meet</span><span class="hj-ceo-w1" style="position:absolute;white-space:nowrap;letter-spacing:.14em;text-shadow:0 0 30px rgba(47,123,255,.28)">Meet</span>
+            <span class="hj-ceo-echo hj-ceo-e2" style="position:absolute;white-space:nowrap;letter-spacing:.14em;color:transparent;-webkit-text-stroke:1px rgba(31,211,232,.55);opacity:0">Our</span><span class="hj-ceo-w2" style="position:absolute;white-space:nowrap;letter-spacing:.14em;text-shadow:0 0 30px rgba(47,123,255,.28)">Our</span>
+            <span class="hj-ceo-echo hj-ceo-e3" style="position:absolute;white-space:nowrap;letter-spacing:.14em;color:transparent;-webkit-text-stroke:1px rgba(31,211,232,.6);opacity:0">CEO</span><span class="hj-ceo-w3" style="position:absolute;white-space:nowrap;letter-spacing:.14em">CEO<span class="hj-ceo-sweep" style="position:absolute;inset:-8px -24px;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);mix-blend-mode:screen;pointer-events:none"></span></span>
+          </div>
+          <div style="position:relative;display:flex;align-items:center;gap:16px">
+            
+            <span class="hj-ceo-rule" style="width:clamp(140px,18vw,240px);height:1px;transform-origin:center;background:linear-gradient(90deg,transparent,#2F7BFF,#1FD3E8,#2F7BFF,transparent)"></span>
+            
+          </div>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(3,4,10,.78) 90%);pointer-events:none"></div>
+        </div>
+      </div>
+
+    <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 62% at 40% 34%,#000,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 70% 62% at 40% 34%,#000,transparent 78%)"></div>
+    <div data-fn-rays style="position:absolute;left:30%;top:50%;width:1400px;height:1400px;transform:translate(-50%,-50%);z-index:0;pointer-events:none;opacity:.55">
+      <svg viewBox="0 0 600 600" style="width:100%;height:100%" fill="none" stroke-linecap="round">
+        <g stroke="rgba(31,211,232,.2)" stroke-width="1.1"><path d="M300 300 L300 20 M300 300 L420 40 M300 300 L520 100 M300 300 L580 240 M300 300 L560 400 M300 300 L460 540 M300 300 L300 580 M300 300 L140 540 M300 300 L40 400 M300 300 L20 240 M300 300 L80 100 M300 300 L180 40"></path></g>
+        <g stroke="rgba(47,123,255,.14)" stroke-width="1"><path d="M300 300 L360 24 M300 300 L480 64 M300 300 L556 168 M300 300 L576 320 M300 300 L500 480 M300 300 L376 566 M300 300 L224 566 M300 300 L100 480 M300 300 L24 320 M300 300 L44 168 M300 300 L120 64 M300 300 L240 24"></path></g>
+      </svg>
+    </div>
+    <div data-fn-sky style="position:absolute;left:0;right:0;bottom:0;height:300px;z-index:1;pointer-events:none">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" style="width:100%;height:100%" fill="none" stroke-linecap="round">
+        <g data-fn-draw stroke="rgba(31,211,232,.3)" stroke-width="1.5">
+          <path d="M0 196 H120 V120 H188 V196 H250 L250 74 L310 40 L370 74 V196 H430 V136 H500 V196 H560 V90 H620 V196 H700 V132 H770 V196 H840 V60 H900 V196 H980 V120 H1050 V196 H1140 V104 H1200 V196 H1290 V140 H1360 V196 H1440"></path>
+        </g>
+        <g stroke="rgba(47,123,255,.22)" stroke-width="1" stroke-dasharray="3 8">
+          <path d="M262 96 H298 M262 120 H298 M570 116 H610 M570 144 H610 M850 88 H890 M850 120 H890 M850 152 H890 M1152 130 H1188 M1152 156 H1188"></path>
+        </g>
+        <g stroke="rgba(255,255,255,.16)" stroke-width="1"><path d="M0 196 H1440"></path></g>
+        <g stroke="rgba(255,255,255,.2)" stroke-width="1.2">
+          <path d="M0 252 H1440"></path>
+          <path d="M120 252 V232 M420 252 V238 M720 252 V232 M1020 252 V238 M1320 252 V232"></path>
+        </g>
+        <g fill="rgba(255,255,255,.32)" stroke="none" font-family="Poppins" font-size="10" letter-spacing="2">
+          <text x="120" y="276" text-anchor="middle">2021</text><text x="420" y="276" text-anchor="middle">2023</text>
+          <text x="720" y="276" text-anchor="middle">2025</text><text x="1020" y="276" text-anchor="middle">2026</text>
+          <text x="1320" y="276" text-anchor="middle">NEXT</text>
+        </g>
+      </svg>
+    </div>
+
+    <div data-founder data-fn-grid style="position:relative;z-index:3;max-width:1260px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 110px;display:grid;grid-template-columns:minmax(0,1fr) clamp(400px,44vw,660px);align-items:center;gap:clamp(24px,4vw,56px)">
+
+      <div data-fn-ccol style="position:relative;padding-bottom:24px">
+        <div class="hj-label hj-d1" style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          
+          <span style="font-size:11.5px;letter-spacing:6px;font-weight:600;color:var(--g3)">THE MAN BEHIND CYBERNAUT</span>
+        </div>
+        <h2 class="hj-fade hj-d2" style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(32px,4.4vw,54px);line-height:1.03;letter-spacing:-2px">Building the Systems That Shape Tomorrow.</h2>
+
+        <p class="hj-fade hj-d3" style="margin-top:26px;font-size:clamp(14.5px,1.5vw,16px);line-height:1.75;color:#93a0b5;max-width:600px;text-wrap:pretty">Every generation inherits a world. The next generation has the responsibility to redefine it.</p>
+        <p class="hj-fade hj-d4" style="margin-top:16px;font-size:clamp(14.5px,1.5vw,16px);line-height:1.75;color:#93a0b5;max-width:600px;text-wrap:pretty">Cybernaut was founded by <span style="color:#fff;font-weight:600">Jaya Surya</span>, with a simple belief: <span style="color:#fff;font-weight:600">technology should not only solve problems, but create possibilities.</span></p>
+        <p class="hj-fade hj-d5" style="margin-top:16px;font-size:clamp(14.5px,1.5vw,16px);line-height:1.75;color:#93a0b5;max-width:600px;text-wrap:pretty">What started as a vision has grown into a mission to build intelligent systems, learning ecosystems, and opportunities that transform <span style="color:#fff;font-weight:600">curiosity into capability, capability into confidence, and confidence into leadership.</span></p>
+        <p class="hj-fade hj-d6" style="margin-top:16px;font-size:clamp(14.5px,1.5vw,16px);line-height:1.75;color:#93a0b5;max-width:600px">For him, Cybernaut is not just a company.</p>
+        <p class="hj-fade hj-d6" style="margin-top:10px;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#fff;font-weight:600;max-width:600px;text-wrap:pretty">It is a platform to build people, technology, and possibilities for tomorrow.</p>
+        <p class="hj-fade hj-d7" style="margin-top:16px;font-size:clamp(14.5px,1.5vw,16px);line-height:1.75;color:#93a0b5;max-width:600px">Because the future is not something to wait for.</p>
+
+        <div class="hj-glowtext hj-d8" data-fn-close style="margin-top:22px;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.8vw,36px);line-height:1.12;letter-spacing:-1px;background:linear-gradient(110deg,var(--g3),var(--g1) 62%);-webkit-background-clip:text;background-clip:text;color:transparent">It is something to build.</div>
+
+        <div class="hj-fade hj-d8" data-fn-stats style="margin-top:30px;display:flex;gap:clamp(20px,4vw,46px);flex-wrap:wrap">
+          <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.6vw,32px)">75,000+</div><div style="margin-top:4px;font-size:10.5px;letter-spacing:2.4px;color:#7d8798">LEARNERS TRAINED</div></div>
+          <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.6vw,32px)">20+</div><div style="margin-top:4px;font-size:10.5px;letter-spacing:2.4px;color:#7d8798">CAMPUS PARTNERS</div></div>
+          <div><div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.6vw,32px)">2021</div><div style="margin-top:4px;font-size:10.5px;letter-spacing:2.4px;color:#7d8798">FOUNDED</div></div>
+        </div>
+      </div>
+
+      <div data-fn-visual style="position:relative;height:700px;container-type:inline-size">
+        <div class="hj-atmos" style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:820px;height:740px;z-index:0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(47,123,255,.3),rgba(31,211,232,.12) 42%,transparent 72%);filter:blur(46px);pointer-events:none"></div>
+        <div class="hj-dust" style="position:absolute;inset:-40px;z-index:1;pointer-events:none;overflow:hidden">
+            <span style="position:absolute;left:10%;top:68%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:17.0s;--del:0.00s;--dx:16px;--dy:-38px"></span>
+            <span style="position:absolute;left:22%;top:28%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:18.6s;--del:0.60s;--dx:-19px;--dy:-44px"></span>
+            <span style="position:absolute;left:34%;top:52%;width:2.5px;height:2.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:20.2s;--del:1.20s;--dx:22px;--dy:-50px"></span>
+            <span style="position:absolute;left:46%;top:16%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:21.8s;--del:1.80s;--dx:-25px;--dy:-56px"></span>
+            <span style="position:absolute;left:58%;top:62%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:23.4s;--del:2.40s;--dx:28px;--dy:-62px"></span>
+            <span style="position:absolute;left:70%;top:26%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:25.0s;--del:3.00s;--dx:-31px;--dy:-68px"></span>
+            <span style="position:absolute;left:82%;top:44%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:26.6s;--del:3.60s;--dx:34px;--dy:-74px"></span>
+            <span style="position:absolute;left:94%;top:74%;width:2.5px;height:2.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:28.2s;--del:4.20s;--dx:-37px;--dy:-80px"></span>
+            <span style="position:absolute;left:16%;top:36%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:29.8s;--del:4.80s;--dx:40px;--dy:-86px"></span>
+            <span style="position:absolute;left:40%;top:58%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:31.4s;--del:5.40s;--dx:-43px;--dy:-92px"></span>
+            <span style="position:absolute;left:64%;top:20%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:33.0s;--del:6.00s;--dx:46px;--dy:-98px"></span>
+            <span style="position:absolute;left:88%;top:46%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:34.6s;--del:6.60s;--dx:-49px;--dy:-104px"></span>
+            <span style="position:absolute;left:28%;top:82%;width:1.5px;height:1.5px;border-radius:50%;background:rgba(160,215,255,.75);--dur:36.2s;--del:7.20s;--dx:52px;--dy:-110px"></span>
+            <span style="position:absolute;left:76%;top:12%;width:2px;height:2px;border-radius:50%;background:rgba(160,215,255,.75);--dur:37.8s;--del:7.80s;--dx:-55px;--dy:-116px"></span>
+        </div>
+        <div class="hj-ring" style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:460px;height:460px;z-index:1;border-radius:50%;border:1px solid rgba(120,200,255,.55);box-shadow:0 0 40px rgba(47,123,255,.35),inset 0 0 60px rgba(31,211,232,.18);pointer-events:none"></div>
+        <div class="hj-ring hj-ring2" style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:460px;height:460px;z-index:1;border-radius:50%;border:1px solid rgba(31,211,232,.4);pointer-events:none"></div>
+        <div class="hj-rim" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:600px;height:540px;z-index:1;border-radius:50% 50% 44% 56%/54% 48% 52% 46%;background:radial-gradient(ellipse at 50% 46%,rgba(31,211,232,.34),rgba(47,123,255,.2) 46%,transparent 74%);filter:blur(34px);pointer-events:none"></div>
+        <div class="hj-burst" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:760px;height:760px;z-index:1;border-radius:50%;background:radial-gradient(circle,rgba(214,240,255,.5),rgba(31,211,232,.24) 30%,transparent 62%);filter:blur(28px);pointer-events:none"></div>
+
+        <svg class="hj-depth" viewBox="0 0 1000 680" preserveAspectRatio="xMidYMid meet" style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:1000px;max-width:150%;height:680px;z-index:1;overflow:visible">
+          <defs>
+            <filter id="fnNeonWide" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="26"></feGaussianBlur></filter>
+            <filter id="fnNeonTight" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7"></feGaussianBlur></filter>
+            <linearGradient id="fnSweepGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#fff" stop-opacity="0"></stop>
+              <stop offset=".5" stop-color="#eaf6ff" stop-opacity=".95"></stop>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+            </linearGradient>
+            <mask id="fnMaskJ"><g font-family="'Radio Canada Big',Poppins,sans-serif" font-weight="700" font-size="620" letter-spacing="-20" text-anchor="middle" fill="none" stroke="#fff" stroke-width="10"><text x="185" y="540">J</text></g></mask>
+            <mask id="fnMaskS"><g font-family="'Radio Canada Big',Poppins,sans-serif" font-weight="700" font-size="620" letter-spacing="-20" text-anchor="middle" fill="none" stroke="#fff" stroke-width="10"><text x="700" y="540">S</text></g></mask>
+          </defs>
+          <g class="hj-mono" font-family="'Radio Canada Big',Poppins,sans-serif" font-weight="700" font-size="620" letter-spacing="-20" text-anchor="middle" fill="none">
+            <g class="hj-ghost hj-ghost-j" style="filter:blur(9px)"><text x="185" y="540" stroke="#4aa3ff" stroke-width="10">J</text></g>
+            <g class="hj-ghost hj-ghost-s" style="filter:blur(9px)"><text x="700" y="540" stroke="#4aa3ff" stroke-width="10">S</text></g>
+            <g class="hj-j">
+              <text class="hj-glowlayer" style="--gto:.7" x="185" y="540" stroke="#1a7cff" stroke-width="16" filter="url(#fnNeonWide)">J</text>
+              <text class="hj-glowlayer" style="--gto:1" x="185" y="540" stroke="#4aa3ff" stroke-width="8" filter="url(#fnNeonTight)">J</text>
+              <text class="hj-glowlayer" style="--gto:1" x="185" y="540" stroke="#f2f9ff" stroke-width="3.2">J</text>
+              <g mask="url(#fnMaskJ)" style="pointer-events:none"><rect class="hj-sweep" x="45" y="0" width="180" height="680" fill="url(#fnSweepGrad)"></rect></g>
+            </g>
+            <g class="hj-s">
+              <text class="hj-glowlayer" style="--gto:.7" x="700" y="540" stroke="#1a7cff" stroke-width="16" filter="url(#fnNeonWide)">S</text>
+              <text class="hj-glowlayer" style="--gto:1" x="700" y="540" stroke="#4aa3ff" stroke-width="8" filter="url(#fnNeonTight)">S</text>
+              <text class="hj-glowlayer" style="--gto:1" x="700" y="540" stroke="#f2f9ff" stroke-width="3.2">S</text>
+              <g mask="url(#fnMaskS)" style="pointer-events:none"><rect class="hj-sweep" x="560" y="0" width="180" height="680" fill="url(#fnSweepGrad)"></rect></g>
+            </g>
+          </g>
+        </svg>
+
+        <div class="hj-blob" style="position:absolute;left:50%;bottom:150px;transform:translateX(-50%);width:320px;height:340px;background:linear-gradient(160deg,#7C3AED,var(--g1) 55%,var(--g3));border-radius:50% 50% 40% 60%/56% 46% 54% 44%;filter:blur(38px);opacity:.75"></div>
+        <div class="hj-portrait" style="position:absolute;left:50%;top:calc(340px - min(300px,45cqw));bottom:auto;transform:translateX(-50%);width:min(506px,76cqw);height:min(500px,75cqw);z-index:2;mask-image:linear-gradient(180deg,transparent,#000 8%,#000 100%),radial-gradient(ellipse 62% 90% at 50% 46%,#000 66%,transparent 84%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 8%,#000 100%),radial-gradient(ellipse 62% 90% at 50% 46%,#000 66%,transparent 84%);-webkit-mask-composite:source-in;mask-composite:intersect">
+          <image-slot id="ab-founder" shape="rect" placeholder="Founder portrait, Jayasurya Gnanavel"></image-slot>
+        </div>
+
+        <div class="hj-box hj-d8" data-fn-namerow style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:4;width:min(600px,100%);border-radius:20px;border:1px solid rgba(31,211,232,.5);overflow:hidden;isolation:isolate">
+          <div class="hj-boxring" style="position:absolute;left:50%;top:50%;width:900px;height:900px;margin:-450px 0 0 -450px;z-index:0;background:conic-gradient(from 0deg,transparent 0 62%,rgba(31,211,232,.85) 78%,rgba(47,123,255,.6) 86%,transparent 96%);pointer-events:none"></div>
+          <div style="position:absolute;inset:1px;z-index:1;border-radius:19px;background:rgba(4,10,22,.9);backdrop-filter:blur(16px);pointer-events:none"></div>
+          <div class="hj-boxsheen" style="position:absolute;top:0;bottom:0;left:0;width:34%;z-index:2;background:linear-gradient(100deg,transparent,rgba(190,230,255,.14) 45%,transparent);pointer-events:none"></div>
+          <div style="position:relative;z-index:3;padding:22px 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap">
+            <div>
+              <div class="hj-sub hj-c1" style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.6px;color:#fff">Jayasurya Gnanavel</div>
+              <div class="hj-sub hj-c2" style="margin-top:6px;font-size:10.5px;letter-spacing:3px;color:#7d8798">CYBERNAUT EDTECH</div>
+            </div>
+            <button class="hj-sub hj-c3" data-flink onClick="{{ openFounder }}" style="display:inline-flex;align-items:center;gap:12px;font-family:Poppins;font-size:14px;color:#dceaf6;background:none;border:none;padding:0 0 4px;cursor:pointer">View detailed
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid rgba(31,211,232,.7);color:var(--g3);box-shadow:0 0 14px rgba(31,211,232,.35)">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ founderOpen }}" hint-placeholder-val="{{ false }}">
+      <div data-fx-panelwrap style="position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:flex-end;padding:6vh clamp(16px,3vw,32px)">
+        <div onClick="{{ closeFounder }}" style="position:absolute;inset:0;background:rgba(3,5,10,.72);backdrop-filter:blur(6px);animation:cnLbIn .3s ease-out"></div>
+        <div data-fx-panel style="position:relative;width:min(540px,100%);height:100%;max-height:100%;overflow-y:auto;border-radius:26px;background:#0B0C11;border:1px solid rgba(255,255,255,.1);box-shadow:-30px 0 90px rgba(0,0,0,.6);padding:64px clamp(24px,4vw,52px) 56px;animation:cnLbIn .34s ease-out both">
+          <button onClick="{{ closeFounder }}" data-fclose style="position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:18px;line-height:1;cursor:pointer;transition:background .3s,transform .3s">&times;</button>
+          <h3 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,4vw,38px);letter-spacing:-1px">Jayasurya Gnanavel</h3>
+          <div style="font-size:15px;font-weight:600;color:var(--g3);margin-top:6px">Founder &amp; CEO</div>
+          <div style="margin-top:26px;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(21px,2.6vw,25px);line-height:1.2;letter-spacing:-.6px;color:#fff">The Mind Behind Cybernaut</div>
+          <p style="margin-top:16px;font-size:15px;line-height:1.75;color:#9aa7bd;text-wrap:pretty">Jayasurya Gnanavel is a <span style="color:#fff;font-weight:600">philomath, technologist, and entrepreneur</span> driven by curiosity and the belief that technology can shape people, businesses, and the future.</p>
+          <p style="margin-top:14px;font-size:15px;line-height:1.75;color:#9aa7bd;text-wrap:pretty">What began as a student club at SRM in 2021 has grown into Cybernaut, an ecosystem working with colleges, industry partners, and <span style="color:#fff;font-weight:600">75,000+ learners across India</span>.</p>
+          <p style="margin-top:14px;font-size:15px;line-height:1.75;color:#9aa7bd;text-wrap:pretty">His journey is centred around one idea: <span style="color:#fff;font-weight:600">build people who are capable of building the future.</span></p>
+          <p style="margin-top:14px;font-size:15px;line-height:1.75;color:#9aa7bd;text-wrap:pretty">He explores emerging and deep technologies, builds entrepreneurial ecosystems, mentors young minds, and creates platforms where students are encouraged to <span style="color:#fff;font-weight:600">think independently, experiment boldly, lead with purpose, and build something of their own.</span></p>
+          <p style="margin-top:14px;font-size:15px;line-height:1.75;color:#9aa7bd;text-wrap:pretty">As a philomath, he constantly learns across disciplines, connects ideas, and turns curiosity into action.</p>
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:19px;margin:32px 0 14px">Focus Areas</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ founderFocus }}" as="ff" hint-placeholder-count="7">
+              <div style="display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.5;font-weight:600;color:#e6ecf5">
+                <span style="width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g3));margin-top:7px;flex:none"></span>
+                <span>{{ ff }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:34px;padding:24px 26px;border-radius:18px;background:linear-gradient(135deg,rgba(47,123,255,.14),rgba(31,211,232,.07));border:1px solid rgba(255,255,255,.12)">
+            <div style="font-size:11px;letter-spacing:5px;color:#8b96a8;font-weight:600">PHILOSOPHY</div>
+            <div style="margin-top:12px;font-family:'Radio Canada Big';font-style:italic;font-size:clamp(17px,2.2vw,21px);line-height:1.45;color:#fff">&ldquo;Don't just prepare students for the future. Inspire them to build it.&rdquo;</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;margin-top:30px">
+            <div style="font-family:Caveat;font-size:34px;color:var(--g3)">Jayasurya</div>
+            <div style="height:1px;flex:1;background:linear-gradient(90deg,rgba(255,255,255,.22),transparent)"></div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    </div>
+
+  </section>
+
+  <!-- ================= MILESTONES, Golden Ribbon (blue accent) ================= -->
+  <section style="position:relative;padding:90px 0;overflow:hidden;background:#fff">
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 82% 18%,rgba(47,123,255,.06),transparent 46%),radial-gradient(circle at 14% 82%,rgba(31,211,232,.06),transparent 46%)"></div>
+    <div style="position:absolute;top:-160px;left:-160px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.09),transparent 70%);filter:blur(30px);pointer-events:none;z-index:0;animation:cnFloat 9s ease-in-out infinite"></div>
+    <div style="position:absolute;bottom:-160px;right:-160px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.08),transparent 70%);filter:blur(30px);pointer-events:none;z-index:0;animation:cnFloat2 10s ease-in-out infinite"></div>
+    <div data-reveal style="max-width:1200px;margin:0 auto 44px;padding:0 28px;position:relative;z-index:2;text-align:center">
+      <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">OUR MILESTONES</div>
+      <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124;margin:0 0 14px">The numbers never stop</h2>
+      <p style="font-size:15.5px;color:#475569;max-width:620px;margin:0 auto">Every number here is a promise delivered, to the students, institutions, and communities we grow with.</p>
+    </div>
+      <div style="position:relative;z-index:2;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);margin-bottom:22px">
+        <div style="display:flex;width:max-content;animation:cnMarquee 34s linear infinite">
+          <sc-for list="{{ mileRow1 }}" as="m" hint-placeholder-count="12">
+            <div style="display:flex;align-items:baseline;gap:14px;padding:0 34px;white-space:nowrap">
+              <span style="font-family:'Radio Canada Big';font-weight:800;font-size:clamp(38px,5vw,52px);letter-spacing:-1px;background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent">{{ m.display }}</span>
+              <span style="font-size:15px;font-weight:500;color:#475569">{{ m.label }}</span>
+              <span style="font-size:22px;color:rgba(47,123,255,.45)">✦</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative;z-index:2;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);margin-bottom:0">
+        <div style="display:flex;width:max-content;animation:cnMarqueeRev 40s linear infinite">
+          <sc-for list="{{ mileRow2 }}" as="m" hint-placeholder-count="12">
+            <div style="display:flex;align-items:baseline;gap:14px;padding:0 34px;white-space:nowrap">
+              <span style="font-family:'Radio Canada Big';font-weight:800;font-size:clamp(30px,3.6vw,40px);letter-spacing:-1px;background:linear-gradient(120deg,rgba(47,123,255,.55),rgba(31,211,232,.5));-webkit-background-clip:text;background-clip:text;color:transparent">{{ m.display }}</span>
+              <span style="font-size:14px;font-weight:500;color:#94a3b8">{{ m.label }}</span>
+              <span style="font-size:18px;color:rgba(47,123,255,.35)">✦</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+  </section>
+
+  <!-- ================= OUTREACH GALLERY (horizontal scroll) ================= -->
+  <section style="position:relative;padding:92px 0;background:linear-gradient(160deg,#050a14,#0a1628);overflow:hidden">
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(#ffffff 1px,transparent 1px);background-size:26px 26px;opacity:.04"></div>
+    <div style="position:absolute;top:-180px;left:-180px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.12),transparent 70%);filter:blur(30px);pointer-events:none;z-index:0"></div>
+    <div style="position:absolute;bottom:-160px;right:-160px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 70%);filter:blur(30px);pointer-events:none;z-index:0"></div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 28px;position:relative;z-index:2">
+      <div data-reveal style="max-width:640px;margin-bottom:36px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#3b82f6;font-weight:600;margin-bottom:14px">OUR OUTREACH</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#fff;margin-bottom:14px">Impact Beyond Classrooms</h2>
+        <p style="font-size:15.5px;color:#94a3b8">Through workshops, outreach initiatives, VAC programs, internships, and technology events, Cybernaut continues to inspire the next generation of innovators.</p>
+      </div>
+    </div>
+    <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);margin-bottom:16px">
+      <div style="display:flex;gap:16px;width:max-content;animation:cnMarqueeRev 52s linear infinite">
+        <sc-for list="{{ outRow1 }}" as="o" hint-placeholder-count="10">
+          <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
+            <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
+              <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px;padding:0 3px 3px">
+              <span style="align-self:flex-start;padding:4px 11px;border-radius:100px;background:rgba(59,130,246,.14);border:1px solid rgba(59,130,246,.28);font-size:10px;font-weight:600;letter-spacing:.4px;color:#60a5fa">{{ o.cat }}</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;font-family:'Radio Canada Big';line-height:1.3">{{ o.title }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);margin-bottom:16px">
+      <div style="display:flex;gap:16px;width:max-content;animation:cnMarquee 46s linear infinite">
+        <sc-for list="{{ outRow2 }}" as="o" hint-placeholder-count="10">
+          <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
+            <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
+              <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,0) 40%,rgba(5,7,13,.5));pointer-events:none;z-index:2"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px;padding:0 3px 3px">
+              <span style="align-self:flex-start;padding:4px 11px;border-radius:100px;background:rgba(59,130,246,.14);border:1px solid rgba(59,130,246,.28);font-size:10px;font-weight:600;letter-spacing:.4px;color:#60a5fa">{{ o.cat }}</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;font-family:'Radio Canada Big';line-height:1.3">{{ o.title }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)">
+      <div style="display:flex;gap:16px;width:max-content;animation:cnMarqueeRev 58s linear infinite">
+        <sc-for list="{{ outRow3 }}" as="o" hint-placeholder-count="10">
+          <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
+            <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
+              <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px;padding:0 3px 3px">
+              <span style="align-self:flex-start;padding:4px 11px;border-radius:100px;background:rgba(59,130,246,.14);border:1px solid rgba(59,130,246,.28);font-size:10px;font-weight:600;letter-spacing:.4px;color:#60a5fa">{{ o.cat }}</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;font-family:'Radio Canada Big';line-height:1.3">{{ o.title }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+    <!-- ================= JOURNEY, pinned horizontal mural (see Our Journey.dc.html) ================= -->
+  <section style="position:relative;padding:90px 28px 54px;background:#F2F7FE;border-top:1px solid #E6ECF3;overflow:hidden">
+    <div style="position:absolute;top:-8%;right:-4%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.1),transparent 68%);filter:blur(50px);animation:cnFloat 9s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-10%;left:-5%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.1),transparent 68%);filter:blur(50px);animation:cnFloat2 10s ease-in-out infinite;pointer-events:none"></div>
+    <div style="max-width:1080px;margin:0 auto;position:relative;z-index:2">
+      <div data-reveal style="text-align:center;max-width:660px;margin:0 auto">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">OUR JOURNEY</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.8vw,46px);letter-spacing:-.5px;color:#0A1124;margin-bottom:14px">From A Campus Club To An Ecosystem</h2>
+        <p style="font-size:15.5px;color:#475569">Six years of building, learning and growing, one continuous story, milestone by milestone.</p>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <section data-jt-track style="position:relative;background:linear-gradient(180deg,#fff,#F3F7FE 8%,#EDF3FD 92%,#fff);border-top:1px solid #E9EFF7;border-bottom:1px solid #E9EFF7">
+      <div data-jt-sticky style="position:sticky;top:72px;height:calc(100vh - 72px);overflow:hidden">
+        <div data-jt-grid aria-hidden="true" style="position:absolute;inset:-40px;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(47,123,255,.1) 1px,transparent 1px);background-size:34px 34px;opacity:.5;will-change:background-position"></div>
+        <div data-jt-glow aria-hidden="true" style="position:absolute;left:50%;top:50%;width:1000px;height:1000px;margin:-500px 0 0 -500px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.13),transparent 66%);filter:blur(40px);pointer-events:none;z-index:0"></div>
+        <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:190px;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(47,123,255,0),rgba(47,123,255,.07))"></div>
+
+        <div data-jt-strip style="position:absolute;left:0;top:50%;width:10px;height:640px;margin-top:-320px;transform-origin:0 50%;will-change:transform;z-index:2">
+
+          <svg data-jt-path aria-hidden="true" style="position:absolute;left:0;top:0;overflow:visible;pointer-events:none;z-index:0">
+            <defs>
+              <linearGradient id="jrLine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#2F7BFF" stop-opacity=".85"></stop>
+                <stop offset="1" stop-color="#1FD3E8" stop-opacity=".85"></stop>
+              </linearGradient>
+            </defs>
+            <path data-jt-line d="" fill="none" stroke="url(#jrLine)" stroke-width="2.5" stroke-linecap="round" opacity=".42"></path>
+            <circle data-jt-halo r="13" fill="#2F7BFF" opacity="0"></circle>
+            <circle data-jt-mark r="4.5" fill="#1FD3E8" opacity="0"></circle>
+          </svg>
+
+          <sc-for list="{{ mural }}" as="m" hint-placeholder-count="7">
+            <div data-mi="1" style="position:absolute;left:0;top:0;width:max-content;display:flex;align-items:center;gap:22px;transform-origin:0 0;will-change:transform,opacity">
+              <div data-mi-img="1" style="position:relative;flex:none;width:{{ m.dmw }}px;height:{{ m.dih }}px;overflow:hidden;background:#0B1220;border:1px solid #E2EAF4;box-shadow:0 24px 54px rgba(10,17,36,.17);will-change:transform">
+                <sc-if value="{{ m.light }}"><div style="position:absolute;inset:0;background:#fff"></div></sc-if>
+                <sc-if value="{{ m.showBlur }}"><div style="position:absolute;inset:0;background-image:url('{{ m.src }}');background-size:cover;background-position:center;filter:blur(22px) brightness(.55);transform:scale(1.25)"></div></sc-if>
+                <image-slot id="{{ m.dimg }}" src="{{ m.dsrc }}" fit="{{ m.fit }}" shape="rect" placeholder="{{ m.ph }}"></image-slot>
+              </div>
+              <div data-mi-copy="1" style="flex:none;width:238px;will-change:transform,opacity">
+                <div style="display:inline-block;padding:3px 11px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));font-family:'Radio Canada Big';font-weight:700;font-size:12.5px;color:#fff;margin-bottom:9px">{{ m.badge }}</div>
+                <div style="font-size:11px;letter-spacing:2.2px;font-weight:700;color:#2F7BFF;margin-bottom:6px">{{ m.tag }}</div>
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:21px;line-height:1.2;letter-spacing:-.3px;color:#0A1124;margin-bottom:7px">{{ m.title }}</div>
+                <p style="font-size:13.5px;line-height:1.55;color:#516176;text-wrap:pretty">{{ m.text }}</p>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-for list="{{ highlights }}" as="c" hint-placeholder-count="4">
+            <div data-ms="1" style="position:absolute;left:0;top:0;width:238px;padding:17px 19px 19px;border-radius:18px;background:#fff;border:1px solid #E4ECF6;box-shadow:0 16px 38px rgba(10,17,36,.09);transform-origin:0 0;will-change:transform,opacity">
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:32px;line-height:1;letter-spacing:-1.2px;background:linear-gradient(135deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">{{ c.v }}</div>
+              <div style="font-size:12px;line-height:1.42;color:#64748B;margin-top:7px">{{ c.l }}</div>
+            </div>
+          </sc-for>
+
+          <div data-jh style="position:absolute;left:0;top:0;height:640px;display:flex;align-items:center;justify-content:center">
+            <div data-jh-body style="position:relative;display:flex;flex-direction:column;align-items:center;gap:30px;padding:0 60px;will-change:opacity">
+              <div style="display:flex;align-items:center;gap:56px">
+                <div data-jh-num style="font-family:'Radio Canada Big';font-weight:700;font-size:296px;line-height:.78;letter-spacing:-17px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transform-origin:50% 55%;will-change:transform">06</div>
+                <div style="max-width:460px;text-align:left">
+                  <div data-jh-lead style="font-size:11.5px;letter-spacing:3.6px;font-weight:700;color:#2F7BFF;margin-bottom:10px;will-change:transform,opacity">2021 &nbsp;→&nbsp; TODAY</div>
+                  <div data-jh-lead2 style="font-family:'Radio Canada Big';font-weight:700;font-size:46px;line-height:1.1;letter-spacing:-1.1px;color:#0A1124;will-change:transform,opacity">Years, one<br>continuous story</div>
+                  <p data-jh-lead3 style="font-size:15.5px;line-height:1.6;color:#475569;margin-top:14px;text-wrap:pretty;will-change:transform,opacity">From a campus club at SRM to a certified ed-tech ecosystem, built with the students who grew alongside us.</p>
+                </div>
+              </div>
+              <div data-fan-wrap="desk" style="position:relative;width:100%;height:236px;overflow:visible"><div data-fan-box style="position:absolute;left:50%;top:0;width:568px;height:270px;margin-left:-284px;transform-origin:top center"><div data-fcard="0" style="position:absolute;left:54px;top:40px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.2);border:4px solid #fff;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f1-opt.webp" style="position:absolute;max-width:none;width:218.1%;height:280.0%;left:-99.6%;top:-46.0%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="1" style="position:absolute;left:152px;top:20px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.22);border:4px solid #fff;z-index:2;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f6-opt.webp" style="position:absolute;max-width:none;width:230%;height:295.8%;left:-100%;top:-40%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="2" style="position:absolute;left:238px;top:0px;width:146px;height:204px;border-radius:16px;overflow:hidden;box-shadow:0 26px 50px rgba(10,17,36,.28);border:4px solid #fff;z-index:3;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f2-opt.webp" style="position:absolute;max-width:none;width:210.3%;height:270.0%;left:-98.8%;top:-42.3%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="3" style="position:absolute;left:340px;top:20px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.22);border:4px solid #fff;z-index:2;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f7-opt.webp" style="position:absolute;max-width:none;width:170%;height:218.4%;left:-2.7%;top:-63.5%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="4" style="position:absolute;left:438px;top:40px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.2);border:4px solid #fff;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f5-opt.webp" style="position:absolute;max-width:none;width:233.7%;height:300.0%;left:-66.2%;top:-68.0%;display:block" alt="" decoding="async" loading="eager" /></div></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+    <section data-jtm-track style="position:relative;background:linear-gradient(180deg,#fff,#F3F7FE 8%,#EDF3FD 92%,#fff);border-top:1px solid #E9EFF7;border-bottom:1px solid #E9EFF7">
+      <div data-jtm-sticky style="position:sticky;top:60px;height:calc(100svh - 60px);overflow:hidden;display:flex;flex-direction:column">
+        <div aria-hidden="true" style="position:absolute;inset:-40px;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(47,123,255,.1) 1px,transparent 1px);background-size:30px 30px;opacity:.5"></div>
+        <div aria-hidden="true" style="position:absolute;left:50%;top:44%;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.12),transparent 66%);filter:blur(34px);pointer-events:none;z-index:0"></div>
+        <div data-jtm-strip style="position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:18px;padding:0 7vw;width:max-content;will-change:transform">
+          <sc-for list="{{ mural }}" as="c" hint-placeholder-count="7">
+            <div data-jtm-card style="flex:none;width:min(340px,76vw);will-change:transform,opacity;display:flex;flex-direction:column;align-items:stretch;gap:14px">
+              <div style="flex:none;min-width:0;padding:18px 20px;border-radius:18px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 18px 40px rgba(10,17,36,.12)">
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:14px;letter-spacing:1px;color:#2F7BFF;margin-bottom:6px">{{ c.badge }}</div>
+                <div style="font-size:10px;letter-spacing:2px;font-weight:700;color:#8A95A6;margin-bottom:8px">{{ c.tag }}</div>
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;line-height:1.1;letter-spacing:-.4px;margin-bottom:8px;color:#0A1124">{{ c.title }}</div>
+                <p style="font-size:12.5px;line-height:1.55;color:#475569;text-wrap:pretty">{{ c.text }}</p>
+              </div>
+              <div style="position:relative;flex:none;height:min(34svh,260px);align-self:center;border-radius:18px;aspect-ratio:{{ c.ar }};background:#0B1220;overflow:hidden;border:1px solid #E6ECF3;box-shadow:0 24px 54px rgba(10,17,36,.18)">
+                <sc-if value="{{ c.light }}"><div style="position:absolute;inset:0;background:#fff"></div></sc-if>
+                <sc-if value="{{ c.showBlur }}"><div style="position:absolute;inset:0;background-image:url('{{ c.src }}');background-size:cover;background-position:center;filter:blur(22px) brightness(.55);transform:scale(1.25)"></div></sc-if>
+                <image-slot id="{{ c.img }}" src="{{ c.src }}" fit="{{ c.fit }}" shape="rect" placeholder="{{ c.ph }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+              </div>
+            </div>
+          </sc-for>
+          <div data-jtm-card style="flex:none;width:min(480px,92vw);padding:10px 4px;background:transparent;color:#0A1124;text-align:left;will-change:transform,opacity">
+            <div style="display:flex;align-items:center;gap:30px">
+              <div style="flex:none;font-family:'Radio Canada Big';font-weight:800;font-size:clamp(120px,40vw,176px);line-height:.8;letter-spacing:-7px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent">06</div>
+              <div style="min-width:0">
+                <div style="font-size:12px;letter-spacing:.3em;font-weight:700;color:#2F7BFF;margin-bottom:10px;white-space:nowrap">2021 → TODAY</div>
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,8.6vw,38px);line-height:1.02;letter-spacing:-1px;color:#0A1124">Years, one continuous story</div>
+              </div>
+            </div>
+            <p style="font-size:16px;line-height:1.6;color:#475569;margin-top:18px;text-wrap:pretty">From a campus club at SRM to a certified ed-tech ecosystem, built with the students who grew alongside us.</p>
+            <div style="margin:18px -6px 0"><div data-fan-wrap="mob" style="position:relative;width:100%;height:236px;overflow:visible"><div data-fan-box style="position:absolute;left:50%;top:0;width:568px;height:270px;margin-left:-284px;transform-origin:top center"><div data-fcard="0" style="position:absolute;left:54px;top:40px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.2);border:4px solid #fff;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f1-opt.webp" style="position:absolute;max-width:none;width:218.1%;height:280.0%;left:-99.6%;top:-46.0%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="1" style="position:absolute;left:152px;top:20px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.22);border:4px solid #fff;z-index:2;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f6-opt.webp" style="position:absolute;max-width:none;width:230%;height:295.8%;left:-100%;top:-40%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="2" style="position:absolute;left:238px;top:0px;width:146px;height:204px;border-radius:16px;overflow:hidden;box-shadow:0 26px 50px rgba(10,17,36,.28);border:4px solid #fff;z-index:3;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f2-opt.webp" style="position:absolute;max-width:none;width:210.3%;height:270.0%;left:-98.8%;top:-42.3%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="3" style="position:absolute;left:340px;top:20px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.22);border:4px solid #fff;z-index:2;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f7-opt.webp" style="position:absolute;max-width:none;width:170%;height:218.4%;left:-2.7%;top:-63.5%;display:block" alt="" decoding="async" loading="eager" /></div>
+        <div data-fcard="4" style="position:absolute;left:438px;top:40px;width:130px;height:180px;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(10,17,36,.2);border:4px solid #fff;opacity:0;will-change:transform,opacity;backface-visibility:hidden"><img src="assets/founder-fan/f5-opt.webp" style="position:absolute;max-width:none;width:233.7%;height:300.0%;left:-66.2%;top:-68.0%;display:block" alt="" decoding="async" loading="eager" /></div></div></div></div>
+            
+          </div>
+        </div>
+        <div data-jtm-dots style="position:relative;z-index:3;display:flex;justify-content:center;gap:7px;padding:0 0 22px;flex:none"></div>
+      </div>
+    </section>
+  </sc-if>
+
+
+  <!-- ================= FINAL CTA ================= -->
+  <section id="contact" style="position:relative;padding:40px 28px 96px">
+    <div data-reveal style="max-width:1080px;margin:0 auto;padding:60px 40px;border-radius:30px;background:linear-gradient(140deg,#2F7BFF,#1FD3E8);color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(47,123,255,.3)">
+      <div style="position:absolute;top:-60px;right:-40px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.16);filter:blur(20px)"></div>
+      <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,4.4vw,52px);letter-spacing:-1px;margin-bottom:16px;position:relative">Let's Build The Future Together</h2>
+      <p style="font-size:16.5px;color:rgba(255,255,255,.9);max-width:620px;margin:0 auto 30px;position:relative">Whether you're a learner, institution, startup, or enterprise, Cybernaut is ready to help you grow through education, innovation, and technology.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center;position:relative">
+        <a href="Home.dc.html#programs" data-magnetic style="padding:14px 28px;border-radius:100px;background:#fff;color:#0A1124;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s" style-hover="transform:translateY(-3px)">Explore Programs</a>
+        <a href="Home.dc.html#college" data-magnetic style="padding:14px 28px;border-radius:100px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.26)">Partner With Us</a>
+        <a href="#contact" data-magnetic style="padding:14px 28px;border-radius:100px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.26)">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  </div>
+
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, videoPlaying: false, mega: null, founderOpen: false, narrow: false, offer: 0 };
+
+  /* ===== OUR JOURNEY, pinned horizontal mural (ported from Our Journey.dc.html)
+     authored layout in design px on a 640-tall band; x/y = top-left,
+     sc = scale of the 452x224 item, r = image radius ===== */
+  M = [
+    { x: 40,   y: 196, sc: 1.10, r: 26 },
+    { x: 650,  y: 34,  sc: 0.76, r: 999 },
+    { x: 706,  y: 350, sc: 0.98, r: 26 },
+    { x: 1340, y: 108, sc: 0.72, r: 999 },
+    { x: 1330, y: 376, sc: 1.02, r: 26 },
+    { x: 1960, y: 66,  sc: 0.92, r: 26 },
+    { x: 2030, y: 400, sc: 0.74, r: 999 }
+  ];
+  C = [
+    { x: 70,   y: 492 },
+    { x: 1096, y: 118 },
+    { x: 1830, y: 292 },
+    { x: 2430, y: 236 }
+  ];
+  V = [540, 1090, 1660, 2200];
+  VY = [0, 20, -18, 16, -14, 0];
+  MURAL_W = 2690;
+  JT = { step: 104, dwell: 0.5, fall: 1.15 };
+
+  initAboutIntro() {
+    const go = () => {
+      const sec = document.getElementById('about-cybernaut');
+      if (!sec) return setTimeout(go, 300);
+      const play = () => sec.querySelectorAll('[data-ac-intro], [data-ac-intro] *, [data-ac-rv]').forEach(el => {
+        el.getAnimations().forEach(a => { a.cancel(); a.play(); });
+      });
+      /* one-shot: the mascot fly-in plays the first time the section is
+         reached and stays settled, scrolling away and back does not replay */
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        play();
+        io.disconnect();
+      }), { threshold: 0.22 });
+      io.observe(sec);
+      this._acIo = io;
+    };
+    go();
+  }
+
+  /* Offer photos: all three live in the DOM from first paint. Decode them
+     before any reveal runs so switching rows never shows a load or flicker. */
+  primeOfferImages() {
+    const warm = () => {
+      const slots = document.querySelectorAll('#offer image-slot');
+      if (!slots.length) return false;
+      slots.forEach((slot) => {
+        const img = slot.shadowRoot && slot.shadowRoot.querySelector('img');
+        if (!img || img.dataset.primed) return;
+        img.dataset.primed = '1';
+        img.loading = 'eager';
+        img.decoding = 'sync';
+        try { img.fetchPriority = 'high'; } catch (e) {}
+        const go = () => { if (img.decode) img.decode().catch(() => {}); };
+        if (img.getAttribute('src')) go();
+        img.addEventListener('load', go);
+      });
+      return true;
+    };
+    if (!warm()) this._ofrImgT = setInterval(() => { if (warm()) clearInterval(this._ofrImgT); }, 150);
+    // a slot filled later (photo dropped in) re-primes on the next tick
+    this._ofrImgPoll = setInterval(() => {
+      document.querySelectorAll('#offer image-slot').forEach((slot) => {
+        const img = slot.shadowRoot && slot.shadowRoot.querySelector('img');
+        if (img && img.getAttribute('src') && !img.dataset.decoded) {
+          img.dataset.decoded = '1';
+          if (img.decode) img.decode().catch(() => {});
+        }
+      });
+    }, 600);
+  }
+
+  /* ===== OFFER rail + side panel (GSAP) ===== */
+
+  /* hero journey, plays the hj-run timeline whenever the hero enters view
+     and rewinds it on exit, so it always starts from frame 0. No force-settle:
+     the old 3.5s hj-done timer froze the hero before it was ever seen. */
+  initHeroJourney() {
+    /* The "Meet / Our / CEO" title card plays ONCE per page load; after that the
+       hero timeline replays on its own without re-running the intro. */
+    const play = (el) => {
+      if (el.classList.contains('hj-run') || el.classList.contains('hj-ceo')) return;
+      el.classList.remove('hj-done');
+      void el.offsetWidth;
+      el.classList.add('hj-ceo');
+      /* keep the intro card centred in the viewport while the page scrolls freely */
+      const veil = el.querySelector('.hj-ceo-veil');
+      const follow = () => {
+        if (!veil || window.innerWidth <= 760) return;
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const y = Math.max(0, Math.min(-r.top, r.height - vh));
+        veil.style.top = y + 'px';
+      };
+      follow();
+      window.addEventListener('scroll', follow, { passive: true });
+      window.addEventListener('resize', follow, { passive: true });
+      el.__ceoFollow = follow;
+      el.__ceoT = [
+        setTimeout(() => el.classList.add('hj-run'), 4050),
+        setTimeout(() => { el.classList.remove('hj-ceo'); window.removeEventListener('scroll', follow); window.removeEventListener('resize', follow); }, 5400)
+      ];
+    };
+    const rewind = (el) => {
+      if (el.__ceoT) el.__ceoT.forEach(clearTimeout);
+      el.__ceoT = null;
+      if (el.__ceoFollow) { window.removeEventListener('scroll', el.__ceoFollow); window.removeEventListener('resize', el.__ceoFollow); el.__ceoFollow = null; }
+      el.classList.remove('hj-run', 'hj-done', 'hj-ceo');
+    };
+    const wire = () => {
+      const els = document.querySelectorAll('.js-hero:not([data-hj])');
+      els.forEach((el) => {
+        el.setAttribute('data-hj', '1');
+        if ('IntersectionObserver' in window) {
+          /* observe a target that actually paints, .hj-ceo-stage lives inside
+             .hj-ceo-layer, which starts visibility:hidden and clipped, so the
+             observer never fired and the whole section stayed at opacity 0 */
+          const target = el.querySelector('[data-fn-grid]') || el;
+          /* replays every time the hero re-enters view; the "Meet / Our / CEO"
+             title card itself still only runs once per page load */
+          const io = new IntersectionObserver((es) => {
+            es.forEach((e) => { e.isIntersecting ? play(el) : rewind(el); });
+          }, { threshold: 0.02, rootMargin: '0px 0px -10% 0px' });
+          io.observe(target);
+          (this._hjIo = this._hjIo || []).push(io);
+        } else {
+          const check = () => {
+            const r = el.getBoundingClientRect();
+            if (r.top < (window.innerHeight || 800) * 0.92 && r.bottom > 0) play(el); else rewind(el);
+          };
+          check();
+          (this._hjChecks = this._hjChecks || []).push(check);
+          window.addEventListener('scroll', check, { passive: true });
+          window.addEventListener('resize', check);
+        }
+      });
+      return els.length > 0;
+    };
+    if (!wire()) this._hjT = setInterval(() => { if (wire()) clearInterval(this._hjT); }, 200);
+  }
+
+  /* React does not reliably set the muted PROPERTY from the attribute, so the
+     browser blocks autoplay; set it in JS and call play() directly */
+  playAbv() {
+    const v = document.querySelector('[data-abv-video]');
+    if (!v) return false;
+    if (v.__ap) return true; v.__ap = 1;
+    v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    const go = () => { if (!v.paused) return; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    ['loadedmetadata', 'canplay', 'canplaythrough', 'stalled', 'suspend'].forEach((e) => v.addEventListener(e, go));
+    v.addEventListener('pause', () => { if (!document.hidden && !v.__userPaused) setTimeout(go, 300); });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) go(); });
+    ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach((e) => window.addEventListener(e, go, { passive: true }));
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) go(); }), { threshold: 0.15 }).observe(v);
+    if (v.readyState === 0) v.load();
+    go(); setInterval(go, 1500);
+    return true;
+  }
+
+  componentDidMount() {
+    this._fanKick = () => document.querySelectorAll('[data-fan-wrap]').forEach((w) => this.fanPaint(w, w._fanD == null ? 0 : w._fanD));
+    window.addEventListener('resize', this._fanKick, { passive: true });
+    [300, 1200, 3000].forEach((t) => setTimeout(this._fanKick, t));
+    this.playAbv();
+    this._abvT = setInterval(() => { if (this.playAbv()) clearInterval(this._abvT); }, 250);
+    this.initOfferDial();
+    this.initBg();
+    this.initReveal();
+    this.initCounters();
+    this.primeOfferImages();
+    this.initHeroJourney();
+    
+    this.initCursor();
+    this.initGallery();
+    this.initJourney();
+    this.initJourneyMobile();
+    this.initStageFan();
+    this.initTilt();
+    this.initAboutIntro();
+    this._esc = (e) => { if (e.key === 'Escape' && this.state.founderOpen) this.setState({ founderOpen: false }); };
+    document.addEventListener('keydown', this._esc);
+  }
+  /* the progress arc is a conic gradient on a fixed element, so it is rotated
+     to the live audience rather than re-authored each render */
+  syncOfferArc() {
+    const arc = document.querySelector('[data-of-arc]');
+    if (arc) arc.style.transform = 'rotate(' + ((this.state.offer || 0) * 120) + 'deg)';
+  }
+
+  initOfferDial() {
+    this.syncOfferArc();
+    /* auto-advance demonstrates the mechanism; the first pick stops it for
+       good so it never fights the user */
+    clearInterval(this._ofAuto);
+    this._ofAuto = setInterval(() => {
+      if (this._ofTouched) return clearInterval(this._ofAuto);
+      this.setState((st) => ({ offer: ((st.offer || 0) + 1) % 3 }));
+    }, 5200);
+  }
+
+  componentDidUpdate() { this.syncOfferArc(); if (this.state.narrow) this.jtmAcquire(); }
+
+  componentWillUnmount() {
+    clearInterval(this._abvT);
+    clearInterval(this._hjT);
+    clearInterval(this._ofAuto);
+    clearInterval(this._jtBoot); clearInterval(this._jtInt);
+    clearInterval(this._jtmBoot); cancelAnimationFrame(this._jtmRaf); window.removeEventListener('resize', this._jtmResize); window.removeEventListener('scroll', this._jtmScroll);
+    window.removeEventListener('scroll', this._jtScroll);
+    window.removeEventListener('resize', this._jtResize);
+    if (this._jtMq && this._jtMq.removeEventListener) this._jtMq.removeEventListener('change', this._jtResize);
+    else if (this._jtMq && this._jtMq.removeListener) this._jtMq.removeListener(this._jtResize);
+    clearInterval(this._ofrImgT); clearInterval(this._ofrImgPoll);
+    (this._hjIo || []).forEach(io => io.disconnect());
+    (this._hjChecks || []).forEach(f => { window.removeEventListener('scroll', f); window.removeEventListener('resize', f); });
+
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+  }
+
+  initBg() {
+    const cv = document.getElementById('ab-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._bgResize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(47,123,255,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(47,123,255,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initTilt() {
+    setTimeout(() => {
+      document.querySelectorAll('[data-tilt]').forEach((card) => {
+        if (card.__tilt) return;
+        card.__tilt = true;
+        const max = 11;
+        const glow = card.querySelector('[data-tilt-glow]');
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transition = 'transform .06s linear';
+          card.style.transform = `perspective(760px) rotateX(${(-py * max).toFixed(2)}deg) rotateY(${(px * max).toFixed(2)}deg) translateY(-5px)`;
+          if (glow) glow.style.background = `radial-gradient(220px circle at ${((px + 0.5) * 100).toFixed(1)}% ${((py + 0.5) * 100).toFixed(1)}%, rgba(31,211,232,.22), transparent 62%)`;
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
+          card.style.transform = 'perspective(760px) rotateX(0deg) rotateY(0deg)';
+          if (glow) glow.style.background = 'none';
+        });
+      });
+    }, 300);
+  }
+  initGallery() {
+    const $ = (id) => document.getElementById(id);
+    const lb = $('ab-lightbox'); if (!lb) return;
+    const tiles = [...document.querySelectorAll('[data-gtile],[data-ptile]')]; if (!tiles.length) return;
+    const imgEl=$('ab-lb-img'), phEl=$('ab-lb-ph'), catEl=$('ab-lb-cat'), capEl=$('ab-lb-cap'), cntEl=$('ab-lb-counter');
+    let idx = 0;
+    const findSrc = (t) => { let im = t.querySelector('img'); if (im && im.src) return im.src; const sl = t.querySelector('image-slot'); if (sl && sl.shadowRoot) { im = sl.shadowRoot.querySelector('img'); if (im && im.src) return im.src; } return ''; };
+    const frameEl=$('ab-lb-frame');
+    const show = (i) => { idx=(i+tiles.length)%tiles.length; const t=tiles[idx]; const src=findSrc(t);
+      if (src){ imgEl.src=src; imgEl.style.display='block'; if(phEl)phEl.style.display='none';
+        if(frameEl){ const setR=()=>{ if(imgEl.naturalWidth&&imgEl.naturalHeight) frameEl.style.aspectRatio=imgEl.naturalWidth+' / '+imgEl.naturalHeight; }; if(imgEl.complete)setR(); else imgEl.onload=setR; }
+      } else { imgEl.style.display='none'; if(phEl)phEl.style.display='block'; if(frameEl)frameEl.style.aspectRatio='16 / 10'; }
+      if(catEl)catEl.textContent=t.getAttribute('data-cat')||''; if(capEl)capEl.textContent=t.getAttribute('data-cap')||''; if(cntEl)cntEl.textContent=(idx+1)+' / '+tiles.length; };
+    const open = (i) => { show(i); lb.style.display='flex'; document.body.style.overflow='hidden'; };
+    const close = () => { lb.style.display='none'; document.body.style.overflow=''; };
+    tiles.forEach((t,i)=>t.addEventListener('click',()=>open(i)));
+    const cb=$('ab-lb-close'), pb=$('ab-lb-prev'), nb=$('ab-lb-next');
+    if(cb)cb.addEventListener('click',close); if(pb)pb.addEventListener('click',()=>show(idx-1)); if(nb)nb.addEventListener('click',()=>show(idx+1));
+    lb.addEventListener('click',(e)=>{ if(e.target===lb) close(); });
+    this._lbKey=(e)=>{ if(lb.style.display==='none'||!lb.style.display)return; if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(idx-1); if(e.key==='ArrowRight')show(idx+1); };
+    document.addEventListener('keydown',this._lbKey);
+  }
+  /* ---- On-stage figure fan, closing the Our Journey section ----
+     Scroll-driven (not a one-shot reveal): all five cutouts start stacked
+     behind the centre figure and fan out, two left, two right, as the row
+     travels up the viewport, and reverse on the way back down. */
+  OF_FR = [
+    { w: 94,  h: 183 },
+    { w: 86,  h: 212 },
+    { w: 147, h: 236 },
+    { w: 106, h: 212 },
+    { w: 142, h: 159 }
+  ];
+  OF_SHOTS = [
+    { src: 'assets/cut-01-opt.webp', alt: 'Setting up before a campus session' },
+    { src: 'assets/cut-02-opt.webp', alt: 'Greeting the room, mic in hand' },
+    { src: 'assets/cut-03-opt.webp', alt: 'Keynote at an engineering college auditorium' },
+    { src: 'assets/cut-04-opt.webp', alt: 'Addressing students on stage' },
+    { src: 'assets/cut-05-opt.webp', alt: 'Facing the room between sessions' }
+  ];
+  OF_ANCHOR = 2;
+  OF_ORD = [1, 0, 0, 0, 1];
+  OF_Z = [1, 2, 4, 2, 1];
+
+  OF_GAP = 10;                           /* must match the row's gap */
+
+  /* the figure row lives inside the pinned finale, so it is driven by the
+     mural's own progress rather than its own viewport scrub */
+  initStageFan() {
+    let x = 0;
+    const cx = this.OF_FR.map((f) => { const c = x + f.w / 2; x += f.w + this.OF_GAP; return c; });
+    this.ofDx = cx.map((c) => cx[this.OF_ANCHOR] - c);
+  }
+
+  fanPaint(wrap, d) {
+    if (!wrap || !document.contains(wrap)) return;
+    const box = wrap.querySelector('[data-fan-box]');
+    const cards = [].slice.call(wrap.querySelectorAll('[data-fcard]'));
+    if (!box || cards.length !== 5) return;
+    wrap._fanD = d;
+    const isMob = wrap.getAttribute('data-fan-wrap') === 'mob';
+    const avail = isMob ? Math.max(wrap.clientWidth, window.innerWidth - 12) : wrap.clientWidth * 1.25;
+    const sc = Math.max(isMob ? 0.72 : 0.9, Math.min(1.4, avail / 568));
+    box.style.transform = 'scale(' + sc.toFixed(4) + ')';
+    wrap.style.height = Math.round(262 * sc) + 'px';
+    const ROT = [-10, -5, 0, 5, 10], ORD = [2, 1, 0, 1, 2], LIFT = [16, 6, 0, 6, 16];
+    const clamp = (v) => v < 0 ? 0 : v > 1 ? 1 : v, ease = (t) => 1 - Math.pow(1 - t, 3);
+    const mid = 238 + 73, cx = [54 + 65, 152 + 65, mid, 340 + 65, 438 + 65];
+    cards.forEach((el, i) => {
+      const anchor = i === 2;
+      const q = ease(clamp((d - ORD[i] * 0.22) / (anchor ? 0.42 : 0.56)));
+      const y = anchor ? (1 - q) * 70 : LIFT[i] * (1 - q);
+      el.style.opacity = (anchor ? q : ease(clamp(q / 0.16))).toFixed(3);
+      el.style.transform = 'translate3d(' + ((1 - q) * (mid - cx[i])).toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (ROT[i] * q).toFixed(2) + 'deg) scale(' + (0.9 + 0.1 * q).toFixed(4) + ')';
+    });
+  }
+
+  ofFan(p) {
+    const clamp = (v) => v < 0 ? 0 : v > 1 ? 1 : v;
+    this.fanPaint(document.querySelector('[data-fan-wrap="desk"]'), clamp((p - 0.3) / 0.62));
+  }
+
+  /* ===== pinned mural: bind → measure → frame → render, all scroll-driven ===== */
+  jtBind() {
+    const track = document.querySelector('[data-jt-track]');
+    const strip = document.querySelector('[data-jt-strip]');
+    if (!track || !strip || !document.contains(strip)) return;
+    const items = [].slice.call(document.querySelectorAll('[data-mi]')).filter((el) => document.contains(el));
+    const hl = document.querySelector('[data-jh]');
+    if (items.length < 7 || !hl) return;
+    if (this.strip === strip && this.items && this.items[0] === items[0] && track.style.height) return;
+    this.track = track; this.strip = strip; this.items = items; this.hl = hl;
+    this.imgs = items.map((el) => el.querySelector('[data-mi-img]'));
+    this.copies = items.map((el) => el.querySelector('[data-mi-copy]'));
+    this.chips = [].slice.call(document.querySelectorAll('[data-ms]'));
+    this.hlBody = hl.querySelector('[data-jh-body]');
+    this.hlNum = hl.querySelector('[data-jh-num]');
+    this.hlLeads = [hl.querySelector('[data-jh-lead]'), hl.querySelector('[data-jh-lead2]'), hl.querySelector('[data-jh-lead3]')];
+    this.jtGlow = document.querySelector('[data-jt-glow]');
+    this.jtGrid = document.querySelector('[data-jt-grid]');
+    this.line = document.querySelector('[data-jt-line]');
+    this.mark = document.querySelector('[data-jt-mark]');
+    this.halo = document.querySelector('[data-jt-halo]');
+    /* size variety lives in the PHOTOS only, captions keep their authored
+       type size so the small items stay readable */
+    this.imgs.forEach((el, i) => {
+      if (!el) return;
+      const m = this.M[i];
+      el.style.borderRadius = m.r >= 999 ? '50%' : m.r + 'px';
+      el.style.width = Math.round(224 * m.sc) + 'px';
+      el.style.height = Math.round(224 * m.sc) + 'px';
+    });
+    this.jtMeasure();
+    this.jtRender(true);
+    setTimeout(() => { if (this.strip && document.contains(this.strip)) { this.jtMeasure(); this.jtRender(true); } }, 160);
+  }
+
+  /* scroll budget: a lead-in with an empty stage, one stretch per camera view,
+     then the finale, then a hold before the section releases */
+  jtMeasure() {
+    if (!this.track) return;
+    const step = this.JT.step;
+    this.introVh = step * 0.26;
+    this.hlVh = 130; this.holdVh = 58;
+    const total = this.introVh + this.V.length * step + this.hlVh + this.holdVh;
+    this.track.style.height = total + 'vh';
+    this.panFrac = (this.introVh + this.V.length * step) / total;
+    this.hlFrac = this.hlVh / total;
+
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const avail = vh - 72 - 40;
+    const b = avail / 640;
+    /* floor keeps body copy at/above 12px (13.5 x 0.89); the mural uses less of
+       the band rather than shrinking its type */
+    this.s = Math.max(0.89, Math.min(1.3, isFinite(b) ? b : 1));
+    this.win = vw / this.s;
+    this.bandH = Math.max(560, avail / this.s);
+    this.strip.style.height = this.bandH + 'px';
+    this.strip.style.marginTop = (-this.bandH / 2) + 'px';
+    this.hl.style.height = this.bandH + 'px';
+    const spreadH = 640 + (this.bandH - 640) * 0.62;
+    const remap = (y, h) => (this.bandH - spreadH) / 2 + y * (spreadH - h) / Math.max(1, 640 - h);
+    this.iy = this.items.map((el, i) => remap(this.M[i].y, el.offsetHeight));
+    this.cy = this.chips.map((el, i) => remap(this.C[i].y, el.offsetHeight));
+
+    this.hl.style.width = Math.max(1180, this.win) + 'px';
+    const hlW = this.hl.offsetWidth;
+    this.hlLeft = this.MURAL_W + 60;
+    this.hl.style.left = this.hlLeft + 'px';
+    this.strip.style.width = (this.hlLeft + hlW) + 'px';
+    this.jtBuildLine();
+
+    /* station 0 parks the mural just past the right edge of the clipped window,
+       so the section pins EMPTY and builds itself as you scroll */
+    this.stations = [this.win + 40]
+      .concat(this.V.map((v) => this.win / 2 - v))
+      .concat([this.win / 2 - (this.hlLeft + hlW / 2)]);
+  }
+
+  /* a soft thread through the photo centres, in story order, drawn on as the
+     camera travels, so the mural reads as one journey */
+  jtBuildLine() {
+    if (!this.line || !this.iy) return;
+    const pts = this.items.map((el, i) => {
+      const m = this.M[i];
+      return [m.x + 224 * m.sc / 2, this.iy[i] + el.offsetHeight / 2];
+    });
+    let d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], c = pts[i], h = (c[0] - a[0]) * 0.45;
+      d += ' C' + (a[0] + h).toFixed(1) + ' ' + a[1].toFixed(1) + ',' + (c[0] - h).toFixed(1) + ' ' + c[1].toFixed(1) + ',' + c[0].toFixed(1) + ' ' + c[1].toFixed(1);
+    }
+    this.line.setAttribute('d', d);
+    this.lineLen = this.line.getTotalLength ? this.line.getTotalLength() : 0;
+    this.line.style.strokeDasharray = this.lineLen;
+  }
+
+  jtFrame() {
+    if (!this.track || !document.contains(this.track)) {
+      this.track = document.querySelector('[data-jt-track]');
+      if (!this.track) return;
+    }
+    const sticky = this.track.querySelector('[data-jt-sticky]');
+    const stickyH = (sticky && sticky.offsetHeight) || window.innerHeight;
+    const total = Math.max(1, this.track.offsetHeight - stickyH);
+    const p = (72 - this.track.getBoundingClientRect().top) / total;
+    this.pTarget = p < 0 ? 0 : p > 1 ? 1 : p;
+    /* smooth interpolation towards the scroll-derived progress, reversible,
+       never restarts, always lands exactly where the scroll says */
+    const now = performance.now();
+    const dt = Math.min(220, now - (this._jtT || now - 16));
+    this._jtT = now;
+    const d = this.pTarget - (this.pShown || 0);
+    if (Math.abs(d) < 0.0002) {
+      if (this._jtSettled) return;
+      this.pShown = this.pTarget; this._jtSettled = true;
+    } else { this.pShown = (this.pShown || 0) + d * (1 - Math.exp(-dt / 85)); this._jtSettled = false; }
+    this.jtRender();
+  }
+
+  jtRender(force) {
+    if (!this.strip || !this.items || !document.contains(this.strip)) return;
+    if (force) this.pShown = this.pTarget || this.pShown || 0;
+    const clamp = (v) => v < 0 ? 0 : v > 1 ? 1 : v;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const p = this.pShown || 0, s = this.s, vw = window.innerWidth;
+    const st = this.stations;
+    if (!st) return;
+
+    /* ── one continuous camera move across the whole mural, right → left ── */
+    const pA = clamp(p / this.panFrac);
+    const dwell = this.JT.dwell;
+    const segs = st.length - 1;
+    const u = pA * segs;
+    const j = Math.min(segs - 1, Math.floor(u));
+    const t = u - j;
+    const tm = t + (t * t * (3 - 2 * t) - t) * dwell;
+    const camX = st[j] + (st[j + 1] - st[j]) * tm;
+    const vy = this.VY || [];
+    const camY = (vy[j] || 0) + ((vy[j + 1] || 0) - (vy[j] || 0)) * tm;
+    /* camera speed, 0 at a station and 1 mid-move, derived from the easing
+       itself so it never depends on frame rate */
+    const spd = clamp((1 + dwell * (6 * t * (1 - t) - 1) - (1 - dwell)) / (1.5 * dwell + 0.001));
+    const zoom = 1 - 0.03 * spd;
+    this.strip.style.transform = 'scale(' + (s * zoom).toFixed(4) + ') translate3d(' + camX.toFixed(1) + 'px,' + camY.toFixed(1) + 'px,0)';
+
+    const entered = clamp(pA * segs);
+    if (this.jtGrid) this.jtGrid.style.backgroundPosition = (camX * s * 0.25).toFixed(1) + 'px 0px';
+
+    const fall = this.JT.fall;
+    let best = -1;
+
+    for (let i = 0; i < this.items.length; i++) {
+      const m = this.M[i], el = this.items[i];
+      if (!m || !el) continue;
+      const lx = (m.x + camX) * s;
+      const cx = lx + (el.offsetWidth || 452) * s / 2;
+      /* each piece runs its OWN build as it is drawn in from the right, so the
+         next is visibly assembling while the current is still on stage */
+      const en = ease(clamp((vw + 30 - lx) / (vw * 0.5)));
+      const e = ease(clamp(1 - Math.abs(cx - vw / 2) / (vw * fall)));
+      el.style.opacity = (en * (0.52 + 0.48 * e)).toFixed(3);
+      el.style.transform = 'translate3d(' + m.x + 'px,' + ((this.iy ? this.iy[i] : m.y) + (1 - en) * 58).toFixed(1) + 'px,0) scale(' + (0.93 + 0.07 * en).toFixed(4) + ')';
+      const blur = (1 - e) * 2.2 + spd * 1.3;
+      el.style.filter = blur > 0.15 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+      if (this.imgs[i]) {
+        this.imgs[i].style.transform = 'scale(' + (1.02 + 0.11 * (1 - en) - 0.02 * e).toFixed(4) + ')';
+        const slot = this.imgs[i].firstElementChild;
+        if (slot) slot.style.transform = 'scale(1.12) translate3d(' + (-(cx - vw / 2) / vw * 16).toFixed(1) + 'px,0,0)';
+      }
+      const cEn = ease(clamp((en - 0.3) / 0.6));
+      if (this.copies[i]) {
+        this.copies[i].style.opacity = cEn.toFixed(3);
+        this.copies[i].style.transform = 'translate3d(' + ((1 - cEn) * 24).toFixed(1) + 'px,0,0)';
+      }
+      if (e > best) best = e;
+    }
+
+    this.chips.forEach((el, i) => {
+      const c = this.C[i];
+      if (!c) return;
+      /* chips sit a plane behind the photos and lag the camera slightly */
+      const px = c.x - camX * 0.055;
+      const lx = (px + camX) * s;
+      const en = ease(clamp((vw + 30 - lx) / (vw * 0.45)));
+      el.style.opacity = (en * 0.96).toFixed(3);
+      el.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + ((this.cy ? this.cy[i] : c.y) + (1 - en) * 46).toFixed(1) + 'px,0) scale(' + (0.9 + 0.1 * en).toFixed(4) + ')';
+    });
+
+    if (this.line && this.lineLen) {
+      const drawn = clamp(pA * 1.14);
+      this.line.style.strokeDashoffset = (this.lineLen * (1 - drawn)).toFixed(1);
+      this.line.style.opacity = (entered * 0.42).toFixed(3);
+      if (this.mark && this.line.getPointAtLength && drawn > 0 && drawn < 1) {
+        const pt = this.line.getPointAtLength(this.lineLen * drawn);
+        [this.mark, this.halo].forEach((c, k) => {
+          if (!c) return;
+          c.setAttribute('cx', pt.x.toFixed(1));
+          c.setAttribute('cy', pt.y.toFixed(1));
+          c.style.opacity = (entered * (k ? 0.14 : 0.9)).toFixed(3);
+        });
+      } else {
+        if (this.mark) this.mark.style.opacity = '0';
+        if (this.halo) this.halo.style.opacity = '0';
+      }
+    }
+
+    /* ── finale: the numeral scales up, the lockup rises, figures fan out ── */
+    const pB = clamp((p - this.panFrac) / this.hlFrac);
+    const eB = ease(pB);
+    const appear = ease(clamp((p - this.panFrac * 0.93) / (this.panFrac * 0.07 + this.hlFrac * 0.3)));
+    if (this.hlBody) this.hlBody.style.opacity = appear.toFixed(3);
+    if (this.hlNum) this.hlNum.style.transform = 'scale(' + (0.58 + 0.42 * eB).toFixed(4) + ')';
+    this.hlLeads.forEach((el, k) => {
+      if (!el) return;
+      const q = ease(clamp((pB - 0.12 - k * 0.08) / 0.42));
+      el.style.opacity = q.toFixed(3);
+      el.style.transform = 'translate3d(' + ((1 - q) * 26).toFixed(1) + 'px,0,0)';
+    });
+    this.ofFan(pB);
+
+    if (this.jtGlow) this.jtGlow.style.opacity = (entered * (0.4 + 0.6 * Math.max(best, eB))).toFixed(3);
+  }
+
+
+
+  initJourneyMobile() {
+    const loop = () => {
+      this._jtmRaf = requestAnimationFrame(loop);
+      this.jtmAcquire();
+      this.paintFrame();
+    };
+    this.jtmAcquire();
+    this._jtmResize = () => { this._jtmMeasured = false; this.jtmAcquire(); };
+    window.addEventListener('resize', this._jtmResize, { passive: true });
+    this._jtmBoot = setInterval(() => { this.jtmAcquire(); this.paintFrame(); }, 400);
+    cancelAnimationFrame(this._jtmRaf);
+    this._jtmRaf = requestAnimationFrame(loop);
+  }
+
+  jtmAcquire() {
+    const track = document.querySelector('[data-jtm-track]');
+    if (!track) { this._jtmTrack = null; return false; }
+    const sticky = track.querySelector('[data-jtm-sticky]');
+    const strip = track.querySelector('[data-jtm-strip]');
+    const cards = Array.from(track.querySelectorAll('[data-jtm-card]'));
+    if (!sticky || !strip || !cards.length) { this._jtmTrack = null; return false; }
+    this._jtmTrack = track; this._jtmSticky = sticky; this._jtmStrip = strip; this._jtmCards = cards;
+    const sw = strip.scrollWidth, sh = sticky.offsetHeight;
+    if (sw !== this._jtmSW || sh !== this._jtmSH || cards.length !== this._jtmN) {
+      this._jtmSW = sw; this._jtmSH = sh; this._jtmN = cards.length;
+      this.jtmMeasure();
+    }
+    return true;
+  }
+
+  paintFrame() {
+    if (!this._jtmTrack || !document.contains(this._jtmTrack)) return;
+    try {
+      /* React wipes imperative inline styles on re-render but keeps node
+         identity, so re-assert height + transform EVERY frame, never gated */
+      if (this._jtmH) this._jtmTrack.style.height = this._jtmH + 'px';
+      const rect = this._jtmTrack.getBoundingClientRect();
+      const total = Math.max(1, this._jtmH - this._jtmStickyH);
+      let p = (60 - rect.top) / total; p = p < 0 ? 0 : p > 1 ? 1 : p;
+      this._jtmP = (this._jtmP == null) ? p : this._jtmP + (p - this._jtmP) * 0.16;
+      const tx = -this._jtmP * this._jtmMaxX;
+      this._jtmStrip.style.transform = 'translate3d(' + tx.toFixed(1) + 'px,0,0)';
+      this._jtmStrip.style.setProperty('--jtm-rev', (this._jtmP * this._jtmMaxX + this._jtmVpW) + 'px');
+      const cx = this._jtmVpW / 2; let best = 0, bd = 1e9;
+      { const fin = this._jtmCards[this._jtmCards.length - 1];
+        if (fin) { const fc = fin.offsetLeft + fin.offsetWidth / 2 + tx; const d = Math.max(0, Math.min(1, (this._jtmVpW * 1.05 - fc) / (this._jtmVpW * 0.6))); this.fanPaint(fin.querySelector('[data-fan-wrap="mob"]'), d); } }
+      this._jtmCards.forEach((c, i) => {
+        const center = c.offsetLeft + c.offsetWidth / 2 + tx;
+        const dist = Math.abs(center - cx);
+        const t = Math.max(0, Math.min(1, 1 - dist / (this._jtmVpW * 0.72)));
+        c.style.transform = 'scale(' + (0.9 + 0.1 * t).toFixed(3) + ')';
+        c.style.opacity = (0.4 + 0.6 * t).toFixed(3);
+        if (dist < bd) { bd = dist; best = i; }
+      });
+      this._jtmDots.forEach((d, i) => { const on = i === best; d.style.background = on ? '#2F7BFF' : '#c3d3ea'; d.style.transform = on ? 'scale(1.5)' : 'scale(1)'; });
+    } catch (e) { /* keep the loop alive */ }
+  }
+
+  jtmMeasure() {
+    const track = this._jtmTrack, sticky = this._jtmSticky, strip = this._jtmStrip, cards = this._jtmCards;
+    if (!track || !sticky || !strip || !cards) return;
+    const vpH = window.innerHeight;
+    this._jtmStickyH = sticky.offsetHeight || (vpH - 60);
+    this._jtmVpW = sticky.clientWidth || window.innerWidth;
+    this._jtmMaxX = Math.max(0, strip.scrollWidth - this._jtmVpW);
+    this._jtmH = this._jtmStickyH + this._jtmMaxX * 1.2 + vpH * 0.5;
+    track.style.height = this._jtmH + 'px';
+    const dots = track.querySelector('[data-jtm-dots]');
+    if (dots && dots.childElementCount !== cards.length) {
+      dots.innerHTML = '';
+      cards.forEach(() => { const d = document.createElement('span'); d.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#c3d3ea;transition:background .3s,transform .3s'; dots.appendChild(d); });
+    }
+    this._jtmDots = dots ? Array.from(dots.children) : [];
+    this._jtmMeasured = true;
+    this.paintFrame();
+  }
+
+  initJourney() {
+    this._jtMq = window.matchMedia('(min-width:900px) and (min-height:700px)');
+    this.setState({ narrow: !this._jtMq.matches });
+    this._jtResize = () => {
+      const narrow = !this._jtMq.matches;
+      if (narrow !== this.state.narrow) this.setState({ narrow });
+      this.jtMeasure(); this._jtSettled = false; this.jtFrame(); this.jtRender(true);
+    };
+    window.addEventListener('resize', this._jtResize, { passive: true });
+    if (this._jtMq.addEventListener) this._jtMq.addEventListener('change', this._jtResize);
+    else if (this._jtMq.addListener) this._jtMq.addListener(this._jtResize);
+    this._jtBoot = setInterval(() => {
+      if (!this._jtMq.matches !== this.state.narrow) this.setState({ narrow: !this._jtMq.matches });
+      this.jtBind();
+    }, 400);
+    setTimeout(() => this.jtBind(), 0);
+    /* interval-driven: rAF pauses when the document is hidden, and the scroll
+       listener alone cannot run the easing between scroll events */
+    this._jtScroll = () => this.jtFrame();
+    window.addEventListener('scroll', this._jtScroll, { passive: true });
+    this._jtInt = setInterval(() => this.jtFrame(), 16);
+  }
+
+  initJourneyOld() {
+    const fill=document.querySelector('[data-tl-fill]'), wrap=document.querySelector('[data-tl-wrap]'), badge=document.querySelector('[data-tl-badge]');
+    if(!fill||!wrap) return;
+    const upd=()=>{ const r=wrap.getBoundingClientRect(); const total=r.height||1; const passed=Math.min(Math.max(innerHeight*0.5 - r.top,0),total); const p=passed/total; fill.style.transform='scaleY('+p.toFixed(3)+')'; if(badge)badge.textContent=Math.round(p*100)+'%'; };
+    let tick=false;
+    this._tlScroll=()=>{ if(!tick){ tick=true; requestAnimationFrame(()=>{ upd(); tick=false; }); } };
+    window.addEventListener('scroll',this._tlScroll,{passive:true});
+    window.addEventListener('resize',this._tlScroll,{passive:true});
+    upd();
+  }
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const dec = parseInt(el.getAttribute('data-decimals')||'0');
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t0)/dur,1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      el.textContent = dec ? val.toFixed(dec) : Math.floor(val).toLocaleString('en-IN');
+      if (p<1) requestAnimationFrame(step); else el.textContent = dec ? target.toFixed(dec) : target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._done) return; el._done = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.3 });
+      setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 100);
+      setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 2600);
+    } else {
+      document.querySelectorAll('[data-count]').forEach(fire);
+    }
+  }
+
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, scrolled = null;
+    const apply = () => {
+      ticking = false;
+      const el = document.querySelector('nav'); if (!el) return;
+      const now = window.scrollY > 30;
+      if (now === scrolled) return; scrolled = now;
+      const lg = document.querySelector('[data-logo]');
+      if (now) { el.style.background='#ffffff'; el.style.backdropFilter='blur(16px)'; el.style.borderBottom='1px solid #E6ECF3'; el.style.padding='7px 0'; if(lg){lg.style.height='40px';lg.src='cybernaut-logo.webp';} }
+      else { el.style.background='transparent'; el.style.backdropFilter='none'; el.style.borderBottom='1px solid transparent'; el.style.padding='9px 0'; if(lg){if(window.__cnHeroDark===undefined){window.__cnHeroDark=(function(){var nv=document.querySelector('nav');if(!nv)return false;var r=nv.getBoundingClientRect();var st=document.elementsFromPoint(window.innerWidth/2,r.bottom+14)||[];function lumStr(s){var cols=[],idx=0;while((idx=s.indexOf('#',idx))!==-1){var hex=s.substr(idx+1,6);if(/^[0-9a-fA-F]{6}$/.test(hex)){cols.push([parseInt(hex.substr(0,2),16),parseInt(hex.substr(2,2),16),parseInt(hex.substr(4,2),16)]);}idx++;}idx=0;while((idx=s.indexOf('rgb',idx))!==-1){var op=s.indexOf('(',idx),cp=s.indexOf(')',op);if(op!==-1&&cp!==-1){var q=s.slice(op+1,cp).split(',').map(parseFloat);if(q.length>=3)cols.push([q[0],q[1],q[2]]);}idx=cp===-1?idx+3:cp+1;}if(!cols.length)return null;var L=0;for(var k=0;k<cols.length;k++){L+=(0.299*cols[k][0]+0.587*cols[k][1]+0.114*cols[k][2])/255;}return L/cols.length;}for(var i=0;i<st.length;i++){var nd=st[i];if(nv.contains(nd))continue;var c=nd;while(c&&c!==document.documentElement){var cs=getComputedStyle(c);var bg=cs.backgroundColor;if(bg&&bg.slice(0,3)==='rgb'){var p=bg.replace(/[^0-9.,]/g,'').split(',').map(parseFloat);var a=p.length>3?p[3]:1;if(a>0.5){return (0.299*p[0]+0.587*p[1]+0.114*p[2])/255<0.5;}}var bi=cs.backgroundImage;if(bi&&bi.indexOf('gradient')!==-1&&bi.indexOf('transparent')===-1){var GL=lumStr(bi);if(GL!==null)return GL<0.5;}c=c.parentElement;}}return false;})();}lg.style.height='48px';lg.src=(window.__cnHeroDark?'footer-logo.webp':'cybernaut-logo.webp');} }
+    };
+    this._onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    apply();
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('ab-dot'), ring = document.getElementById('ab-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(47,123,255,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#1FD3E8'; ring.style.transform += ' scale(.7)'; };
+    this._onUp = () => { ring.style.borderColor='#2F7BFF'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #2F7BFF;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  renderVals() {
+    const home = 'Home.dc.html';
+    const navDefs = [
+      { label:'Home', href:home+'#hero', live:true },
+      { label:'Programs We Offer', href:'Programs.dc.html', live:true },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html', live:true },
+      { label:'Events', href:home+'#events', live:true },
+      { label:'About Company', href:'#', live:true, active:true },
+      { label:'Blogs', href:home+'#blogs', live:true },
+      { label:'Careers', href:'Careers.dc.html', live:false },
+      { label:'Contact Us', href:'#contact', live:true }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const megaMap = { 'Programs We Offer':'programs', 'Cybernaut SaaS':'saas', 'Events':'events' };
+    const navItems = navDefs.map(n => {
+      const mk = megaMap[n.label] || null;
+      return {
+        label:n.label, href:n.href, title:n.live?'':'Page coming soon',
+        caret: !!mk, color: n.active ? '#2F7BFF' : '#475569',
+        underline: (this.state.mega && this.state.mega === mk) || n.active ? 1 : 0,
+        onEnter: () => this.setState({ mega: mk })
+      };
+    });
+    const leftLabels = ['Programs We Offer','Cybernaut SaaS','Events'];
+    const leftNav = navItems.filter(n => leftLabels.includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaFoundation = [
+      { ic:'T', name:'Tech Trio', desc:'C++ · Java · Python foundations', href:'Tech Trio.dc.html' },
+      { ic:'S', name:'System Design', desc:'Architecture & API thinking', href:'System Design.dc.html' }
+    ];
+    const megaProfessional = [
+      { ic:'D', name:'Data Analytics', desc:'SQL · Power BI · insights', href:'Data Analytics.dc.html' },
+      { ic:'F', name:'Full Stack', desc:'React · Node · MongoDB', href:'Full Stack Development.dc.html' },
+      { ic:'A', name:'AI & ML', desc:'ML · GenAI · LLMs', href:'AI Machine Learning.dc.html' }
+    ];
+    const megaSaasCards = [
+      { ic:'⚙', title:'Software Engineering', desc:'Custom product builds' },
+      { ic:'✦', title:'AI Solutions', desc:'Intelligent systems' },
+      { ic:'⟳', title:'Enterprise Automation', desc:'Streamline operations' },
+      { ic:'☁', title:'Cloud & DevOps', desc:'Resilient delivery' },
+      { ic:'◈', title:'Technology Consulting', desc:'Strategy & advisory' }
+    ];
+    const megaEventCards = [
+      { ic:'★', name:'VAC Programs', desc:'On-campus value courses' },
+      { ic:'◆', name:'Outreach Events', desc:'Campus engagement' },
+      { ic:'⚡', name:'Hackathons', desc:'Build under pressure' },
+      { ic:'➜', name:'Internships', desc:'Real industry projects' }
+    ];
+
+    const heroStats = [
+      { target:65000, suffix:'+', label:'Impact Created' },
+      { target:200, suffix:'+', label:'Outreach Events' },
+      { target:20, suffix:'+', label:'Academic Partners' },
+      { target:1000, suffix:'+', label:'Reviews' }
+    ];
+
+    const offerGroups = [
+      { kicker:'FOR COLLEGES', title:'Institutions', init:'IN', icon:'M3 21h18M4 10h16M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3', img:'ab-offer-college', shot:'FOR COLLEGES photo',
+        tile:'linear-gradient(135deg,#2F7BFF,#1FD3E8)', href:'Programs College.dc.html', cta:'Explore college programs',
+        lead:'Programs that plug straight into the academic calendar, outreach, credit courses, placement readiness and faculty upskilling.',
+        items:['Outreach Programs','VAC Programs','Placement Training','Faculty Development','Hackathons','Technology Support'] },
+      { kicker:'FOR COMPANIES', title:'Businesses', init:'BU', icon:'M4 7h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM16 20V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v15', img:'ab-offer-company', shot:'FOR COMPANIES photo',
+        tile:'linear-gradient(135deg,#3b82f6,#06b6d4)', href:'Cybernaut SaaS.dc.html', cta:'Explore business services',
+        lead:'Engineering and AI delivery teams, plus the consulting that makes the transformation actually land.',
+        items:['Software Engineering','AI Solutions','Enterprise Automation','Technology Consulting','Cloud & DevOps','Digital Transformation'] },
+      { kicker:'FOR LEARNERS', title:'Students', init:'ST', icon:'M22 10 12 5 2 10l10 5 10-5zM6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5', img:'ab-offer-learner', shot:'FOR LEARNERS photo',
+        tile:'linear-gradient(135deg,#06b6d4,#2F7BFF)', href:'Programs Students.dc.html', cta:'Explore student programs',
+        lead:'Industry-shaped learning with real projects, mentorship and a route into the hiring pipeline.',
+        items:['Industry Programs','Projects','Internships','Mentorship','Career Support','Community Access'] }
+    ];
+
+    const outreach = [
+      { id:'ab-out-1', cat:'OUTREACH', college:'KPR Institute', program:'Tech Awareness Outreach', location:'Coimbatore, TN', date:'Nov 2025' },
+      { id:'ab-out-2', cat:'MOU', college:'Anna University', program:'Strategic MOU Signing', location:'Chennai, TN', date:'Mar 2026' },
+      { id:'ab-out-3', cat:'VAC', college:'Kongu Engineering', program:'AI & ML VAC', location:'Erode, TN', date:'Feb 2026' },
+      { id:'ab-out-4', cat:'INTERNSHIP', college:'PSG Tech', program:'Summer Internship Cohort', location:'Coimbatore, TN', date:'Jun 2025' },
+      { id:'ab-out-5', cat:'OUTREACH', college:'SASTRA University', program:'Innovation Roadshow', location:'Thanjavur, TN', date:'Jan 2026' },
+      { id:'ab-out-6', cat:'VAC', college:'Bannari Amman', program:'Full Stack VAC', location:'Sathyamangalam, TN', date:'Dec 2025' }
+    ];
+
+    const outreachLoop = [...outreach, ...outreach];
+
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Aarvam Community', href:'Aarvam Community.dc.html' },
+      { label:'Events', href:home+'#events' },
+      { label:'Blogs', href:home+'#blogs' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'#' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'#contact' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+
+    const heroTrust = ['Startup India Recognised', 'MSME Registered', 'ISO 9001:2015', 'MCA Certified'];
+
+    const milestoneStats = [
+      { target:75000, suffix:'+', label:'Students Trained' },
+      { target:100000, suffix:'+', label:'Learners Impacted' },
+      { target:200, suffix:'+', label:'Outreach Programs Delivered' },
+      { target:20, suffix:'+', label:'College Partnerships' },
+      { target:50, suffix:'+', label:'Hackathons & Tech Events' },
+      { target:15, suffix:'+', label:'Industry Programs Launched' }
+    ];
+    const mileDisplay = milestoneStats.map(m => ({ display: m.target.toLocaleString('en-IN') + m.suffix, label: m.label }));
+    const mileRow1 = [...mileDisplay, ...mileDisplay];
+    const mileRow2Base = [...mileDisplay].reverse();
+    const mileRow2 = [...mileRow2Base, ...mileRow2Base];
+
+    const founderAccolades = ['Young Entrepreneurship Award, SRM', 'Speaker & Mentor', 'EdTech Innovator'];
+    const founderTimeline = [
+      { year:'THE SPARK', title:'A student club is born', text:'What started as a small campus community to help peers learn tech and grow together.' },
+      { year:'BUILDING', title:'From club to company', text:'Cybernaut EdTech is founded, formalising the mission to bridge education and industry.' },
+      { year:'SCALING', title:'75K+ learners reached', text:'Programs, VAC courses and placements expand across colleges and campuses.' },
+      { year:'TODAY', title:'A growing ecosystem', text:'Students, institutions and businesses united through innovation, AI and software engineering.' }
+    ];
+    const galleryItems = [
+      { id:'ab-gal-1', span:'2x2', cat:'EVENTS', cap:'AARVAM flagship tech summit' },
+      { id:'ab-gal-2', span:'2x1', cat:'WORKSHOPS', cap:'Hands-on coding workshop' },
+      { id:'ab-gal-3', span:'1x1', cat:'CAMPUS', cap:'College outreach visit' },
+      { id:'ab-gal-4', span:'1x1', cat:'COMMUNITY', cap:'Student community meet' },
+      { id:'ab-gal-5', span:'2x1', cat:'MENTORSHIP', cap:'Industry mentor session' },
+      { id:'ab-gal-6', span:'1x1', cat:'TEAM', cap:'The Cybernaut team' },
+      { id:'ab-gal-7', span:'1x1', cat:'HACKATHON', cap:'Designathon finale' }
+    ];
+    const outBase = (cat, items) => items.map((t,i)=>({ id:'ab-out-'+cat.toLowerCase().replace(/[^a-z]/g,'').slice(0,4)+'-'+i, cat, title:t }));
+    const oVisits = outBase('College Visits', ['SSN College Outreach','SRM Campus Drive','PSG Tech Session','Kongu Engineering Visit','VIT Innovation Talk']);
+    const _visitSrc = { 'SSN College Outreach':'assets/outreach/ssn-opt.webp', 'SRM Campus Drive':'assets/campus/campus-srm-opt.webp', 'PSG Tech Session':'assets/campus/campus-psg-opt.webp', 'Kongu Engineering Visit':'assets/campus/campus-kongu-opt.webp', 'VIT Innovation Talk':'assets/campus/campus-vit-opt.webp' };
+    oVisits.forEach(v => { if (_visitSrc[v.title]) v.src = _visitSrc[v.title]; });
+    const oWork = outBase('Workshops', ['Full Stack Bootcamp','AI Hands-on Lab','UI/UX Design Sprint','Data Analytics Clinic','GenAI Workshop']);
+    const _workSrc = { 'Full Stack Bootcamp':'assets/outreach-work/fullstack-opt.webp', 'AI Hands-on Lab':'assets/outreach-work/ai-lab-opt.webp', 'UI/UX Design Sprint':'assets/outreach-work/uiux-sprint-opt.webp', 'Data Analytics Clinic':'assets/outreach-work/data-clinic-opt.webp', 'GenAI Workshop':'assets/outreach-work/genai-opt.webp' };
+    oWork.forEach(w => { if (_workSrc[w.title]) w.src = _workSrc[w.title]; });
+    const oEvents = outBase('Events', ['Innovation Day','Startup Showcase','Code Carnival','AARVAM Tech Summit','Designathon']);
+    const _evSrc = { 'Innovation Day':'assets/outreach-event/innovday-opt.webp', 'Startup Showcase':'assets/outreach-event/startup-opt.webp', 'Code Carnival':'assets/outreach-event/carnival-opt.webp', 'AARVAM Tech Summit':'assets/outreach-event/aarvam-opt.webp', 'Designathon':'assets/outreach-event/designathon-opt.webp' };
+    oEvents.forEach(e => { if (_evSrc[e.title]) e.src = _evSrc[e.title]; });
+    const outRow1 = [...oVisits, ...oVisits], outRow2 = [...oWork, ...oWork], outRow3 = [...oEvents, ...oEvents];
+    const founderStats = [
+      { target:5, suffix:'+ Yrs', label:'Building Cybernaut' },
+      { target:75000, suffix:'+', label:'Learners Reached' },
+      { target:20, suffix:'+', label:'Campus Partners' }
+    ];
+
+    const journeySteps = [
+      { img:'ab-j21a', src:'assets/journey/club-opt.webp', fit:'cover', ph:'Cybernaut club, early days', badge:'2021', tag:'THE BEGINNING', title:'Beginning as a Club', text:'Started as a college club by a visionary and two tech enthusiasts, mentoring SRM students.' },
+      { img:'ab-j21b', src:'assets/journey/community-opt.webp', fit:'cover', ph:'Cybernaut Developers Students Club photo', badge:'2021', tag:'COMMUNITY', title:'A Growing Tech Community', text:"Grew into a developer community, enriching students' learning beyond the syllabus." },
+      { img:'ab-j22', src:'assets/journey/company-opt.webp', fit:'cover', ph:'Cybernaut office / company photo', badge:'2022', tag:'MILESTONE', title:'Became a Company', text:'An Ed-tech company combining theory and practical skills through advanced programs.' },
+      { img:'ab-j23', src:'assets/journey/entrepreneurship-award-opt.webp', dsrc:'assets/journey/entrepreneurship-award-opt.webp', dmw:224, dih:224, mw:1200, ih:777, fit:'cover', ph:'Young Entrepreneurship award banner', badge:'2023', tag:'RECOGNITION', title:'Young Entrepreneurship Award', text:'Recognised by SRM for our commitment to transforming how students learn.' },
+      { img:'ab-j24', src:'assets/journey/national-recognition-desk-opt.webp', dsrc:'assets/journey/national-recognition-desk-opt.webp', dmw:260, dih:260, fit:'contain', mw:430, ih:160, light:true, ph:'MSME · Startup India · ISO certificates', badge:'2024', tag:'CERTIFIED', title:'National Recognition', text:'MSME, MCA, Startup India and ISO 9001:2015 certifications earned.' },
+      { img:'ab-j25a', src:'assets/journey/partner-opt.webp', fit:'cover', ph:'SSN College partnership / team photo', badge:'2025', tag:'OUR REACH', title:'Official Academic Partner', text:'SSN College of Engineering, UI & UX elective and industrial training partner.' },
+      { img:'ab-j25b', src:'assets/journey/aarvam-opt.webp', fit:'cover', ph:"Aarvam '25 Designathon event photo", badge:'2025', tag:"AARVAM '25", title:"Aarvam '25 Designathon", text:"A grand celebration of design and creativity with 100+ participants." }
+    ];
+
+    const commMoments = [
+      { id:'ab-comm-0', src:'assets/aarvam/awards-night-w-opt.webp', num:'01', cat:'EVENTS', cap:'AARVAM flagship tech summit' },
+      { id:'ab-comm-1', src:'assets/outreach-work/fullstack-opt.webp', num:'02', cat:'WORKSHOPS', cap:'Hands-on coding workshop' },
+      { id:'ab-comm-2', src:'assets/outreach/thumbs/kumarasamy-opt.webp', num:'03', cat:'CAMPUS', cap:'College outreach visit' },
+      { id:'ab-comm-3', src:'assets/aarvam/builders-meetup-w-opt.webp', num:'04', cat:'COMMUNITY', cap:'Student community meet' }
+    ];
+
+    const founderFocus = [
+      'Deep Tech & Emerging Technologies',
+      'Future Builders & Student Leadership',
+      'Entrepreneurship & Innovation',
+      'Technology & Product Building',
+      'Industry & Startup Ecosystems',
+      'Mentorship & Leadership Development',
+      'Communities, Events & Experiences'
+    ];
+
+    return {
+      founderFocus,
+      founderOpen: this.state.founderOpen,
+      openFounder: () => this.setState({ founderOpen: true }),
+      closeFounder: () => this.setState({ founderOpen: false }),
+      commMoments,
+      megaFoundation, megaProfessional, megaSaasCards, megaEventCards,
+      megaPrograms: this.state.mega === 'programs',
+      megaSaas: this.state.mega === 'saas',
+      megaEvents: this.state.mega === 'events',
+      closeMega: () => this.setState({ mega: null }),
+      leftNav, rightNav, navLinks, heroStats, heroTrust, offerGroups,
+      offerDial: offerGroups.map((o, i) => Object.assign({}, o, {
+        on: i === (this.state.offer || 0) ? '1' : '0',
+        pe: i === (this.state.offer || 0) ? 'auto' : 'none',
+        d: i === (this.state.offer || 0) ? '.08s' : '0s',
+        /* the dial turns so the picked node lands at the top; the inner
+           counter-rotation keeps every chip upright */
+        ang: ((i - (this.state.offer || 0)) * 120 + 360) % 360 + 'deg',
+        angr: -(((i - (this.state.offer || 0)) * 120 + 360) % 360) + 'deg',
+        /* re-keyed per selection so the item stagger replays */
+        items: o.items.map((t, n) => ({ t, d: (0.08 + n * 0.06).toFixed(2) + 's', k: (this.state.offer || 0) + '-' + i + '-' + n })),
+        pick: () => { this._ofTouched = true; this.setState({ offer: i }); }
+      })),
+      ofHub: offerGroups[this.state.offer || 0].icon,
+      offerCards: offerGroups.map(o => Object.assign({}, o, { items4: o.items.slice(0, 4), sCollege: o.title === 'Institutions', sBusiness: o.title === 'Businesses', sStudent: o.title === 'Students' })),
+      mileRow1, mileRow2, outreachLoop, footExplore, footCompany,
+      founderAccolades, founderStats, founderTimeline, galleryItems, outRow1, outRow2, outRow3,
+      figures: this.OF_SHOTS,
+      mural: journeySteps.map((s) => ({ img: s.img, src: s.src, dimg: s.dsrc ? s.img + '-d' : s.img, dsrc: s.dsrc || s.src, dmw: s.dmw || s.mw || 224, dih: s.dih || s.ih || 224, fit: s.fit, ih: s.ih || 224, mw: s.mw || 224, ar: (s.mw && s.ih) ? (s.mw / s.ih) : (16 / 9), light: !!s.light, showBlur: !!s.src && !s.light, ph: s.ph, badge: s.badge, tag: s.tag, title: s.title, text: s.text })),
+      highlights: [
+        { v: '75K+', l: 'Students trained' },
+        { v: '07',   l: 'Milestones on the way' },
+        { v: '04',   l: 'National certifications' },
+        { v: '100+', l: "Aarvam '25 participants" }
+      ],
+      wide: !this.state.narrow,
+      narrow: this.state.narrow,
+      videoPlaying: this.state.videoPlaying,
+      videoNotPlaying: !this.state.videoPlaying,
+      playVideo: () => this.setState({ videoPlaying: true }),
+      noCtx: (e) => e.preventDefault(),
+      toggleAbvMute: () => {
+        const v = document.querySelector('[data-abv-video]');
+        const ic = document.querySelector('[data-abv-icon]');
+        if (!v) return;
+        v.muted = !v.muted;
+        if (!v.muted) v.play().catch(() => {});
+        if (ic) ic.textContent = v.muted ? '🔇' : '🔊';
+      },
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

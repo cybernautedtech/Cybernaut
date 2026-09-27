@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#ffffff;overflow-x:hidden}
+  ::selection{background:rgba(59,130,246,.18);color:#0f172a}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#f1f5f9}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#3b82f6,#06b6d4);border-radius:8px}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  @keyframes cnUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  @keyframes cnDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+  @keyframes cnPulseRing{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.35);opacity:0}}
+  @keyframes cnRowLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnRowRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  [data-gal-row]:hover [data-gal-track]{animation-play-state:paused}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    [data-hero-grid]{grid-template-columns:1fr!important;gap:48px}
+    [data-cluster]{height:auto!important;position:static!important;display:flex;flex-direction:column;gap:18px;max-width:360px;margin:0 auto}
+    [data-float-card]{position:relative!important;left:auto!important;right:auto!important;top:auto!important;width:100%!important}
+    [data-journey-card]{grid-template-columns:1fr!important}
+    [data-eco-scroll]{height:auto!important}
+    [data-eco-sticky]{position:relative!important;height:auto!important;flex-direction:column!important;gap:32px}
+    [data-eco-left]{width:100%!important;padding:0!important}
+    [data-eco-right]{width:100%!important;padding:0!important}
+    [data-foot-grid]{grid-template-columns:1fr!important}
+    [data-related]{grid-template-columns:1fr!important}
+  }
+  @media(max-width:760px){
+    [data-course-grid]{grid-template-columns:1fr 1fr!important}
+    [data-mile-row]{grid-template-columns:1fr 1fr!important}
+  }
+  @media(max-width:520px){[data-course-grid]{grid-template-columns:1fr!important}}
+  @media(max-width:820px){[data-serve-bento]{grid-template-columns:1fr!important}[data-serve-box3]{flex-direction:column;align-items:flex-start!important}}
+  /* choose-your-path split (1d light) */
+  [data-ov1d-light] [data-r]{opacity:0;transform:translateY(22px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+  [data-ov1d-light] [data-half]:hover [data-r]{opacity:1;transform:translateY(0)}
+  [data-ov1d-light] [data-r2]{opacity:0;transform:translateY(22px);transition:opacity .5s cubic-bezier(.22,1,.36,1) .08s,transform .5s cubic-bezier(.22,1,.36,1) .08s}
+  [data-ov1d-light] [data-half]:hover [data-r2]{opacity:1;transform:translateY(0)}
+  [data-ov1d-light] [data-r3]{opacity:0;transform:translateY(22px);transition:opacity .5s cubic-bezier(.22,1,.36,1) .16s,transform .5s cubic-bezier(.22,1,.36,1) .16s}
+  [data-ov1d-light] [data-half]:hover [data-r3]{opacity:1;transform:translateY(0)}
+  [data-ov1d-light] [data-ghost]{color:rgba(15,23,42,.13);transition:color .5s,transform .65s cubic-bezier(.22,1,.36,1)}
+  [data-ov1d-light] [data-half]:hover [data-ghost]{color:#0f172a;transform:translateY(var(--ghost-lift,-250px))}
+  [data-ov1d-light] [data-wash]{opacity:0;transition:opacity .6s}
+  [data-ov1d-light] [data-half]:hover [data-wash]{opacity:1}
+  @media(max-width:1200px){[data-ov1d-light]{--ghost-lift:-300px}}
+  @media(max-width:1000px){[data-ov1d-light]{--ghost-lift:-340px}}
+  @media(hover:none){
+    [data-ov1d-light] [data-r],[data-ov1d-light] [data-r2],[data-ov1d-light] [data-r3]{opacity:1;transform:none}
+    [data-ov1d-light] [data-ghost]{color:#0f172a;transform:none!important;margin-bottom:28px}
+    [data-ov1d-light] [data-wash]{opacity:1}
+    [data-ov1d-light] [data-content]{position:static!important;padding:0!important}
+  }
+  @media(max-width:860px){
+    [data-ov1d-light]{grid-template-columns:1fr!important}
+    [data-ov1d-light] [data-half]{height:auto!important;min-height:480px;border-right:none!important;padding:32px 24px!important;gap:28px}
+    [data-ov1d-light] [data-half]:first-child{border-bottom:1px solid #e6ecf3}
+    [data-ov1d-light] [data-ghost]{transform:none!important;margin-bottom:28px}
+    [data-ov1d-light] [data-content]{position:static!important;padding:0!important}
+  }
+  @media(max-width:900px){[data-hero-gallery]{height:440px!important}}
+  /* programs hero mobile */
+  @media(max-width:900px){[data-hero-grid]{grid-template-columns:1fr!important}[data-hero-grid] > div:last-child{min-height:auto!important;margin-top:20px}}
+  @media(max-width:380px){[data-tw-cta] a{font-size:13px!important}}
+  @media(max-width:900px){
+    [data-tw-hero]{flex-direction:column!important;align-items:stretch!important;min-height:0!important;background:radial-gradient(120% 60% at 50% 70%,#142c55,#050811 75%)!important}
+    [data-tw-scrim]{display:none!important}
+    [data-tw-content]{order:1!important;padding:112px 24px 8px!important}
+    [data-tw-cta]{flex-wrap:nowrap!important;gap:8px!important}
+    [data-tw-cta] a{flex:0 1 auto!important;height:46px!important;padding:0 16px!important;font-size:14px!important;border-radius:10px!important;box-shadow:none!important}
+    [data-tw-stage]{order:2!important;position:relative!important;top:auto!important;transform:none!important;max-height:none!important;width:100%!important;height:min(118vw,520px)!important;margin-top:4px}
+    [data-tw-canvas]{touch-action:pan-y}
+    [data-tw-h1]{font-size:clamp(34px,9.6vw,44px)!important;letter-spacing:-1.2px!important;margin-bottom:14px!important}
+    [data-tw-copy]{max-width:none!important}
+    [data-tw-copy] p{font-size:15px!important;margin-bottom:24px!important}
+  }
+  @keyframes cnBannerSweep{0%,60%{left:-40%}100%{left:120%}}
+  /* Hero corridor responsive. Every declaration shadows an inline style, so
+     each needs !important, an attribute selector cannot otherwise beat a
+     React-rendered style attribute. */
+  @media(max-width:1040px){
+    /* copy goes full-width over a vertical scrim and the 3D scene drops to
+       atmosphere, so a corridor card can never overlap the headline */
+    [data-ph-content]{padding:96px clamp(20px,4vw,40px) 54px clamp(28px,6vw,64px)!important;align-items:flex-start!important}
+    [data-ph-copy]{max-width:none!important}
+    [data-ph-scrim]{background:linear-gradient(180deg,rgba(5,7,15,.92) 0%,rgba(5,7,15,.62) 44%,rgba(5,7,15,.32) 100%)!important}
+    [data-ph-stage]{opacity:1!important}
+    [data-ph-scrim]{background:linear-gradient(180deg,rgba(5,7,15,.94) 0%,rgba(5,7,15,.6) 40%,rgba(5,7,15,.28) 68%,rgba(5,7,15,.55) 100%)!important}
+    [data-ph-meta]{display:none!important}
+    [data-ph-chip]{top:88px!important;padding:7px 12px!important}
+    [data-ph-hero]{height:auto!important;min-height:0!important}
+    [data-ph-content]{height:auto!important;position:relative!important;padding-bottom:64px!important;justify-content:flex-start!important}
+    [data-ph-stage]{position:absolute!important}
+  }
+  @media(max-width:640px){
+    [data-ph-hero]{height:auto!important;min-height:0!important}
+    [data-ph-content]{height:auto!important;position:relative!important;padding:84px 20px 40px!important;align-items:flex-start!important;justify-content:flex-start!important}
+    [data-ph-stage]{position:absolute!important}
+    [data-ph-sub]{font-size:15.5px!important;line-height:1.6!important;margin-bottom:28px!important}
+    [data-ph-cta]{flex-direction:column!important;align-items:stretch!important;gap:10px!important}
+    [data-ph-cta] > a{width:100%!important}
+    /* the four stats become a 2x2 grid so nothing truncates */
+    [data-ph-stats]{display:grid!important;grid-template-columns:1fr 1fr;gap:18px 14px!important}
+    [data-ph-statnum]{font-size:27px!important}
+    [data-ph-chip]{right:20px!important;top:82px!important}
+    [data-ph-chip] span:last-child{font-size:11px!important}
+  }
+
+  /* learning ecosystem responsive */
+  @media(max-width:980px){
+    [data-eco-row]{flex-direction:column!important}
+    [data-eco-left],[data-eco-right]{width:100%!important;padding:0!important}
+    [data-eco-right]{margin-top:40px}
+    [data-eco-stage]{height:auto!important;display:grid!important}
+    [data-eco-dash]{position:static!important;grid-area:1/1}
+  }
+  @media(max-width:640px){
+    [data-eco-lab]{grid-template-columns:1fr!important}
+    [data-eco-lab] > div:first-child{border-right:none!important;border-bottom:1px solid #1e293b}
+    [data-eco-stats]{grid-template-columns:1fr 1fr!important}
+    [data-eco-kanban]{grid-template-columns:1fr 1fr!important}
+    [data-eco-kanban] > div{min-height:200px!important;border-bottom:1px solid #f1f5f9}
+    [data-eco-table] > div{grid-template-columns:1.6fr 1fr 1.1fr!important}
+    [data-eco-table] > div > span:nth-child(2){display:none}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+
+  @media(max-width:980px){
+    [data-ph-card]{filter:none!important;backface-visibility:visible!important;will-change:auto!important}
+    [data-ph-streaks],[data-ph-scan]{display:none!important}
+    [data-ph-spot]{display:none!important}
+    [data-ph-stage]{opacity:.55!important;z-index:1}
+    [data-ph-line],[data-ph-h1],[data-ph-copy]{opacity:1!important;transform:none!important;filter:none!important}
+    [data-ph-vig],[data-ph-tilt]{will-change:auto!important}
+    [data-ph-card] > div{box-shadow:0 20px 40px rgba(0,0,0,.5)!important}
+  }
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div style="--g1:#3b82f6;--g2:#06b6d4;--g3:#1FD3E8;position:relative;min-height:100vh;background:#ffffff;font-family:'Poppins',sans-serif;color:#0f172a;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid #3b82f6;margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:#06b6d4;margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px #06b6d4"></div>
+
+  <div style="position:relative;z-index:2;background:#ffffff">
+  
+
+
+  <!-- ════════ SECTION 1, HERO (6-month tower) ════════ -->
+  <section data-screen-label="Programs Hero" data-tw-hero style="position:relative;z-index:1;isolation:isolate;min-height:100vh;overflow:hidden;background:radial-gradient(90% 100% at 72% 45%,#142c55,#050811 72%);display:flex;align-items:center">
+    <div data-tw-stage style="position:absolute;right:0;top:50%;transform:translateY(-44%);width:66%;height:52.5vw;max-height:calc(100% - 80px)">
+      <canvas data-tw-canvas style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+    </div>
+    <div aria-hidden="true" data-tw-scrim style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,8,17,.95) 0%,rgba(5,8,17,.7) 30%,transparent 55%)"></div>
+    <div data-tw-content style="position:relative;z-index:2;width:100%;max-width:1240px;margin:0 auto;padding:120px clamp(24px,5vw,64px) 72px;pointer-events:none">
+      <div data-tw-copy style="max-width:560px;pointer-events:auto;color:#fff">
+        <div style="font-family:'Orbitron';font-weight:800;font-size:12px;letter-spacing:3px;color:#7dd3fc;margin-bottom:18px;white-space:nowrap">THE 6-MONTH SPRINT</div>
+        <h1 data-tw-h1 style="margin:0 0 20px;font-family:'Radio Canada Big';font-weight:800;font-size:clamp(38px,5.2vw,66px);line-height:1.04;letter-spacing:-2px;text-wrap:balance">6 Months. One Climb To Your <span style="background:linear-gradient(90deg,#2F7BFF,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent">Career.</span></h1>
+        <p style="margin:0 0 32px;color:#9fb0c8;font-size:clamp(15px,1.5vw,18px);line-height:1.65;max-width:460px;text-wrap:pretty">3 months of structured learning, 3 months of real internship, stacked one milestone at a time.</p>
+        <div data-tw-cta style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#programs" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:54px;padding:0 28px;border-radius:12px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;box-shadow:0 18px 40px rgba(47,123,255,.32);transition:transform .25s" style-hover="transform:translateY(-3px)">Browse Programs →</a>
+          <a href="Contact.dc.html" style="display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:12px;border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:transform .25s,background .25s" style-hover="transform:translateY(-3px);background:rgba(255,255,255,.08)">Talk to Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- marquee ticker -->
+  <div style="position:relative;z-index:1;background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;overflow:hidden;padding:15px 0">
+    <div style="display:flex;width:max-content;animation:cnTick 30s linear infinite;white-space:nowrap">
+      <sc-for list="{{ tickerLoop }}" as="t" hint-placeholder-count="12">
+        <span style="display:inline-flex;align-items:center;gap:22px;padding-right:22px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:.16em;color:#94a3b8;text-transform:uppercase">{{ t.label }}</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:#cbd5e1"></span>
+        </span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ════════ SECTION 2, WHO WE SERVE ════════ -->
+  <section style="position:relative;z-index:1;padding:100px clamp(28px,5vw,64px);background:#ffffff">
+    <div style="max-width:1200px;margin:0 auto">
+      <div data-reveal style="margin-bottom:48px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;color:#3b82f6;font-weight:600;margin-bottom:20px;text-transform:uppercase">Who We Serve</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:900;font-size:clamp(34px,4.6vw,56px);letter-spacing:-1.4px;color:#0f172a;line-height:.95">Choose your path.</h2>
+      </div>
+      <div data-serve-bento style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+        <!-- SPLIT, STUDENTS / COLLEGES (1d light) -->
+        <div data-reveal data-ov1d-light style="grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;border-radius:28px;overflow:hidden;border:1px solid #e6ecf3">
+          <div data-half style="position:relative;height:600px;overflow:hidden;background:#f8fafc;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,3.5vw,44px);border-right:1px solid #e6ecf3">
+            <div data-wash aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(160deg,rgba(47,123,255,.14),rgba(31,211,232,.07) 60%,transparent)"></div>
+            <div style="position:relative;display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#94a3b8">01 · I'm a</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
+            <div data-ghost style="position:relative;margin-top:auto;font-family:'Radio Canada Big';font-weight:900;font-size:clamp(62px,8vw,104px);letter-spacing:-4px;line-height:.9;text-transform:uppercase">Stu<br>dent</div>
+            <div data-content style="position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:14px">
+              <p data-r style="margin:0;font-size:14.5px;color:#64748b;line-height:1.65;max-width:420px">Foundation to professional. A 6 month sprint from your first line of code to your first offer letter.</p>
+              <div data-r2 style="display:flex;flex-wrap:wrap;gap:8px">
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Full Stack</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Data Analytics</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">UI/UX</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">AI/ML</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Cybersecurity</span>
+              </div>
+              <a data-r3 data-magnetic href="Programs Students.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:#0f172a;color:#fff;font-weight:600;font-size:13.5px;text-decoration:none">Start your journey <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
+          </div>
+          <div data-half style="position:relative;height:600px;overflow:hidden;background:#f8fafc;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,3.5vw,44px)">
+            <div data-wash aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(200deg,rgba(31,211,232,.14),rgba(47,123,255,.07) 60%,transparent)"></div>
+            <div style="position:relative;display:flex;align-items:center;justify-content:space-between"><span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#94a3b8">02 · We're a</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1FD3E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path></svg></div>
+            <div data-ghost style="position:relative;margin-top:auto;font-family:'Radio Canada Big';font-weight:900;font-size:clamp(62px,8vw,104px);letter-spacing:-4px;line-height:.9;text-transform:uppercase">Col<br>lege</div>
+            <div data-content style="position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:14px">
+              <p data-r style="margin:0;font-size:14.5px;color:#64748b;line-height:1.65;max-width:420px">Structured VAC programs, multi-year placement tracks and hackathons that move your placement numbers.</p>
+              <div data-r2 style="display:flex;flex-wrap:wrap;gap:8px">
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Generative AI</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Prompt Engineering</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">AI Agents</span>
+                <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">1 to 4 yr Placement</span>
+              </div>
+              <a data-r3 data-magnetic href="Programs College.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:13.5px;box-shadow:0 14px 34px rgba(47,123,255,.4);text-decoration:none">Partner with us <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOX 3, NOT SURE / TALK -->
+        <div data-reveal data-serve-box3 style="grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;border:1px solid #e6ecf3;border-radius:22px;background:#f8fafc;padding:clamp(24px,2.6vw,32px) clamp(26px,3vw,40px)">
+          <div style="display:flex;align-items:center;gap:16px">
+            <span style="width:48px;height:48px;flex:none;border-radius:50%;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 26px rgba(47,123,255,.32)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"></path></svg></span>
+            <div>
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:19px;color:#0f172a;line-height:1.2">Your future starts with one step.</div>
+              <div style="font-size:14px;color:#64748b;margin-top:3px">Not sure where to begin? Talk to our team, we'll help you take it.</div>
+            </div>
+          </div>
+          <a href="Contact.dc.html" data-magnetic style="flex:none;display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 26px;border-radius:12px;background:#ffffff;border:1px solid #e2e8f0;color:#0f172a;font-weight:600;font-size:14px;text-decoration:none;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-3px);border-color:#2F7BFF">Start Your Journey <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 3, COURSE CARDS ════════ -->
+  <section id="programs" style="position:relative;z-index:1;padding:96px clamp(28px,5vw,64px);background:#ffffff">
+    <div style="max-width:1240px;margin:0 auto">
+      <div data-reveal style="text-align:center;margin-bottom:34px">
+        <div style="font-size:10px;letter-spacing:.22em;color:#3b82f6;font-weight:700;margin-bottom:14px;text-transform:uppercase">Our Programs</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(32px,4vw,44px);letter-spacing:-.6px;color:#0f172a">Foundation to Professional.</h2>
+      </div>
+      <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:42px">
+        <sc-for list="{{ courseTabs }}" as="tab" hint-placeholder-count="4">
+          <button onClick="{{ tab.onClick }}" style="background:none;border:none;cursor:pointer;font-family:'Poppins';font-size:15px;font-weight:600;color:{{ tab.color }};padding:10px 22px;position:relative;transition:color .25s;white-space:nowrap">{{ tab.label }}<span style="position:absolute;left:18px;right:18px;bottom:0;height:3px;border-radius:3px;background:#3b82f6;transform:scaleX({{ tab.underline }});transform-origin:center;transition:transform .3s"></span></button>
+        </sc-for>
+      </div>
+      <div data-course-grid style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px">
+        <sc-for list="{{ courseCards }}" as="c" hint-placeholder-count="4">
+          <dc-import name="Course Card" course="{{ c }}" theme="light" hint-size="100%,430px"></dc-import>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 4, LEARNING ECOSYSTEM (sticky scroll) ════════ -->
+  <section style="position:relative;z-index:1;padding:120px clamp(28px,5vw,64px);background:#0f172a;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px"></div>
+    <div aria-hidden="true" style="position:absolute;top:-120px;left:-120px;width:500px;height:500px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%)"></div>
+    <div aria-hidden="true" style="position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(6,182,212,.06),transparent 70%)"></div>
+    <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto">
+      <div data-eco-scroll style="position:relative;display:flex;flex-direction:column;gap:56px">
+        <div data-eco-sticky style="display:flex;flex-direction:column;gap:56px">
+          <div data-reveal style="max-width:800px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;flex:none">
+            <div style="font-size:11px;letter-spacing:.22em;color:#60a5fa;font-weight:700;text-transform:uppercase">The Learning Ecosystem</div>
+            <h2 style="font-family:'Radio Canada Big';font-weight:900;font-size:clamp(34px,4.4vw,56px);letter-spacing:-1px;line-height:.95;margin:0"><span style="color:#ffffff">Learning Should Be a Habit.</span><br><span style="color:#3b82f6">Not an Event.</span></h2>
+            <p style="font-size:17px;color:#64748b;line-height:1.7;max-width:580px;margin:0">That's why every Cybernaut student gets access to three purpose-built tools, practice daily, track every step, and work like a professional from the very first day.</p>
+          </div>
+          <div data-eco-row style="display:flex;align-items:stretch">
+          <div data-eco-left style="width:40%;display:flex;flex-direction:column;justify-content:center;padding:0 48px 0 0">
+            <div style="display:flex;flex-direction:column">
+              <div data-eco-tab="0" style="padding:20px 24px;border-left:3px solid transparent;cursor:pointer;transition:all .3s">
+                <div style="font-size:11px;letter-spacing:.14em;color:#475569;font-weight:700;text-transform:uppercase;margin-bottom:8px">01</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                  <span style="font-size:18px;font-weight:600;color:#ffffff">Cybernaut Coding Lab</span>
+                </div>
+                <div style="font-size:13px;color:#64748b;line-height:1.5">500+ problems. Daily streaks. Company-specific tracks.</div>
+              </div>
+              <div data-eco-tab="1" style="padding:20px 24px;border-left:3px solid transparent;cursor:pointer;transition:all .3s">
+                <div style="font-size:11px;letter-spacing:.14em;color:#475569;font-weight:700;text-transform:uppercase;margin-bottom:8px">02</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+                  <span style="font-size:18px;font-weight:600;color:#ffffff">Cybernaut LMS</span>
+                </div>
+                <div style="font-size:13px;color:#64748b;line-height:1.5">Daily tracking. Progress rings. Mentor visibility.</div>
+              </div>
+              <div data-eco-tab="2" style="padding:20px 24px;border-left:3px solid transparent;cursor:pointer;transition:all .3s">
+                <div style="font-size:11px;letter-spacing:.14em;color:#475569;font-weight:700;text-transform:uppercase;margin-bottom:8px">03</div>
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+                  <span style="font-size:18px;font-weight:600;color:#ffffff">Cybernaut ERP</span>
+                </div>
+                <div style="font-size:13px;color:#64748b;line-height:1.5">Sprint planning. Code reviews. Professional workflow.</div>
+              </div>
+            </div>
+            <div style="font-size:13px;color:#475569;font-style:italic;margin-top:28px;padding-left:27px">All three included in every program.</div>
+          </div>
+          <div data-eco-right style="width:60%;display:flex;align-items:center;padding:0 0 0 48px">
+            <div data-eco-stage style="position:relative;width:100%;height:560px">
+
+              <div data-eco-dash="0" style="position:absolute;inset:0;display:flex;align-items:center;opacity:1;transform:translateY(0);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)">
+          <div style="width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 32px 80px rgba(0,0,0,.4);background:#1e293b">
+            <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0f172a;border-bottom:1px solid #1e293b">
+              <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span><span style="width:10px;height:10px;border-radius:50%;background:#febc2e"></span><span style="width:10px;height:10px;border-radius:50%;background:#28c840"></span>
+              <span style="margin-left:12px;flex:1;max-width:280px;font-size:11px;color:#64748b;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:5px 12px">practice.cybernaut.in</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;padding:10px 16px;border-bottom:1px solid #334155;font-size:11px">
+              <span style="color:#fff;font-weight:600">Cybernaut Coding Lab</span>
+              <span style="color:#fff;border-bottom:2px solid #3b82f6;padding-bottom:4px">DSA</span><span style="color:#475569">Logical</span><span style="color:#475569">SQL</span><span style="color:#475569">System Design</span>
+            </div>
+            <div data-eco-lab style="display:grid;grid-template-columns:.8fr 1.2fr">
+              <div style="background:#0f172a;border-right:1px solid #1e293b;padding:14px">
+                <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#60a5fa;margin-bottom:12px">Week 4, Sprint</div>
+                <sc-for list="{{ codingProblems }}" as="p" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)">
+                    <span style="font-size:11.5px;color:#cbd5e1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</span>
+                    <span style="flex:none;font-size:9px;font-weight:600;color:{{ p.color }};background:{{ p.bg }};padding:3px 8px;border-radius:100px">{{ p.status }}</span>
+                  </div>
+                </sc-for>
+                <div style="display:inline-flex;align-items:center;gap:7px;margin-top:14px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg><span style="font-size:11px;color:#fff">14-day streak</span></div>
+              </div>
+              <div style="padding:14px;background:#1e293b">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span style="font-size:12px;font-weight:600;color:#fff">Two Sum</span><span style="font-size:9px;font-weight:600;color:#22c55e;background:#166534;padding:3px 8px;border-radius:100px">Easy</span></div>
+                <div style="background:#0f172a;border-radius:8px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7">
+                  <div><span style="color:#60a5fa">function</span> <span style="color:#fbbf24">twoSum</span><span style="color:#94a3b8">(nums, target) {</span></div>
+                  <div style="padding-left:14px"><span style="color:#60a5fa">const</span> <span style="color:#e2e8f0">map</span> <span style="color:#94a3b8">=</span> <span style="color:#60a5fa">new</span> <span style="color:#fbbf24">Map</span><span style="color:#94a3b8">();</span></div>
+                  <div style="padding-left:14px"><span style="color:#60a5fa">for</span> <span style="color:#94a3b8">(</span><span style="color:#60a5fa">let</span> <span style="color:#e2e8f0">i</span> <span style="color:#94a3b8">= 0; i &lt; nums.length; i++) {</span></div>
+                  <div style="padding-left:28px"><span style="color:#60a5fa">const</span> <span style="color:#e2e8f0">c</span> <span style="color:#94a3b8">= target - nums[i];</span></div>
+                  <div style="padding-left:28px"><span style="color:#60a5fa">if</span> <span style="color:#94a3b8">(map.has(c))</span> <span style="color:#60a5fa">return</span> <span style="color:#94a3b8">[map.get(c), i];</span></div>
+                  <div style="padding-left:28px"><span style="color:#e2e8f0">map</span><span style="color:#94a3b8">.set(nums[i], i);</span></div>
+                  <div style="padding-left:14px"><span style="color:#94a3b8">}</span></div>
+                  <div><span style="color:#94a3b8">}</span></div>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:12px"><span style="font-size:11px;font-weight:600;color:#fff;background:#22c55e;padding:6px 14px;border-radius:6px">Run Code</span><span style="font-size:11px;font-weight:600;color:#fff;background:#3b82f6;padding:6px 14px;border-radius:6px">Submit</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+              <div data-eco-dash="1" style="position:absolute;inset:0;display:flex;align-items:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)">
+          <div style="width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 32px 80px rgba(0,0,0,.4);background:#f8fafc">
+            <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#ffffff;border-bottom:1px solid #f1f5f9">
+              <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span><span style="width:10px;height:10px;border-radius:50%;background:#febc2e"></span><span style="width:10px;height:10px;border-radius:50%;background:#28c840"></span>
+              <span style="margin-left:12px;flex:1;max-width:280px;font-size:11px;color:#94a3b8;background:#f8fafc;border:1px solid #f1f5f9;border-radius:6px;padding:5px 12px">lms.cybernaut.in/dashboard</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;border-radius:12px;padding:20px;background:linear-gradient(120deg,#3b82f6,#06b6d4);margin:16px 16px 0">
+              <div>
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;color:#fff">Good Morning, Aarav!</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.8);margin-top:2px">Day 42 · 6-month sprint</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.2);padding:8px 14px;border-radius:100px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                <span style="font-size:12px;font-weight:600;color:#fff">12-day streak</span>
+              </div>
+            </div>
+            <div data-eco-stats style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px">
+              <div style="background:#ffffff;border:1px solid #f1f5f9;border-radius:10px;padding:14px">
+                <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Quizzes Done</div>
+                <div style="font-family:'Radio Canada Big';font-size:22px;font-weight:700;color:#f59e0b">18/24</div>
+                <div style="height:3px;border-radius:3px;background:#fef3c7;margin-top:8px;overflow:hidden"><span style="display:block;height:100%;width:75%;background:#f59e0b;border-radius:3px"></span></div>
+              </div>
+              <div style="background:#ffffff;border:1px solid #f1f5f9;border-radius:10px;padding:14px">
+                <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Assignments</div>
+                <div style="font-family:'Radio Canada Big';font-size:22px;font-weight:700;color:#3b82f6">12/14</div>
+                <div style="height:3px;border-radius:3px;background:#dbeafe;margin-top:8px;overflow:hidden"><span style="display:block;height:100%;width:86%;background:#3b82f6;border-radius:3px"></span></div>
+              </div>
+              <div style="background:#ffffff;border:1px solid #f1f5f9;border-radius:10px;padding:14px">
+                <div style="font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Attendance</div>
+                <div style="font-family:'Radio Canada Big';font-size:22px;font-weight:700;color:#22c55e">94%</div>
+                <div style="height:3px;border-radius:3px;background:#dcfce7;margin-top:8px;overflow:hidden"><span style="display:block;height:100%;width:94%;background:#22c55e;border-radius:3px"></span></div>
+              </div>
+              <div style="background:#ffffff;border:1px solid #f1f5f9;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px">
+                <div style="position:relative;width:44px;height:44px;flex:none;border-radius:50%;background:conic-gradient(#3b82f6 0% 78%,#eff6ff 78% 100%)">
+                  <div style="position:absolute;inset:5px;border-radius:50%;background:#ffffff;display:flex;align-items:center;justify-content:center;font-family:'Radio Canada Big';font-weight:700;font-size:11px;color:#0f172a">78%</div>
+                </div>
+                <div><div style="font-size:11px;font-weight:600;color:#0f172a">Course Progress</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">Full Stack</div></div>
+              </div>
+            </div>
+            <div data-eco-table style="margin:0 16px 16px;background:#ffffff;border-radius:10px;border:1px solid #f1f5f9;overflow:hidden">
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:10px 14px;background:#f8fafc;font-size:10px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.06em">
+                <span>Module</span><span>Type</span><span>Due</span><span>Status</span>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:12px 14px;border-bottom:1px solid #f8fafc;align-items:center">
+                <span style="font-size:12.5px;color:#0f172a;font-weight:500">React Hooks Deep Dive</span><span style="font-size:11.5px;color:#64748b">Lecture</span><span style="font-size:11.5px;color:#64748b">Today</span><span style="justify-self:start;font-size:11px;font-weight:600;color:#ea580c;background:#fff7ed;padding:3px 10px;border-radius:100px">In Progress</span>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:12px 14px;border-bottom:1px solid #f8fafc;align-items:center">
+                <span style="font-size:12.5px;color:#0f172a;font-weight:500">REST API Assignment</span><span style="font-size:11.5px;color:#64748b">Assignment</span><span style="font-size:11.5px;color:#64748b">Tomorrow</span><span style="justify-self:start;font-size:11px;font-weight:600;color:#3b82f6;background:#eff6ff;padding:3px 10px;border-radius:100px">Pending</span>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:12px 14px;border-bottom:1px solid #f8fafc;align-items:center">
+                <span style="font-size:12.5px;color:#0f172a;font-weight:500">JS Fundamentals Quiz</span><span style="font-size:11.5px;color:#64748b">Quiz</span><span style="font-size:11.5px;color:#64748b">Completed</span><span style="justify-self:start;font-size:11px;font-weight:600;color:#22c55e;background:#f0fdf4;padding:3px 10px;border-radius:100px">Done</span>
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:12px 14px;align-items:center">
+                <span style="font-size:12.5px;color:#0f172a;font-weight:500">Portfolio Review</span><span style="font-size:11.5px;color:#64748b">Review</span><span style="font-size:11.5px;color:#64748b">Fri</span><span style="justify-self:start;font-size:11px;font-weight:600;color:#8b5cf6;background:#f5f3ff;padding:3px 10px;border-radius:100px">Scheduled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+              <div data-eco-dash="2" style="position:absolute;inset:0;display:flex;align-items:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)">
+          <div style="width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 32px 80px rgba(0,0,0,.4);background:#ffffff">
+            <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#f8fafc;border-bottom:1px solid #e2e8f0">
+              <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span><span style="width:10px;height:10px;border-radius:50%;background:#febc2e"></span><span style="width:10px;height:10px;border-radius:50%;background:#28c840"></span>
+              <span style="margin-left:12px;flex:1;max-width:280px;font-size:11px;color:#94a3b8;background:#fff;border:1px solid #e2e8f0;border-radius:6px;padding:5px 12px">erp.cybernaut.in/internship</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f1f5f9">
+              <span style="font-size:13px;font-weight:600;color:#0f172a">Sprint 2, Week 3</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#ef4444"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>Mentor Review Due: Today 5PM</span>
+            </div>
+            <div data-eco-kanban style="display:grid;grid-template-columns:repeat(4,1fr)">
+              <sc-for list="{{ kanbanCols }}" as="col" hint-placeholder-count="4">
+                <div style="background:{{ col.bg }};border-right:1px solid #f1f5f9;padding:12px 10px;min-height:240px">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px"><span style="font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{ col.headColor }}">{{ col.title }}</span><span style="font-size:9px;font-weight:600;color:#94a3b8;background:#fff;border:1px solid #e2e8f0;border-radius:100px;padding:1px 6px">{{ col.count }}</span></div>
+                  <sc-for list="{{ col.cards }}" as="k" hint-placeholder-count="2">
+                    <div style="background:#fff;border:1px solid #e2e8f0;border-left:2px solid {{ k.edge }};border-radius:8px;padding:10px;margin-bottom:8px">
+                      <div style="font-size:11px;font-weight:600;color:{{ k.titleColor }};line-height:1.4;text-decoration:{{ k.deco }}">{{ k.title }}</div>
+                      <div style="display:flex;align-items:center;gap:6px;margin-top:7px;flex-wrap:wrap">
+                        <span style="font-size:9px;font-weight:600;color:{{ k.tagColor }};background:{{ k.tagBg }};border-radius:100px;padding:2px 8px">{{ k.tag }}</span>
+                        <span style="font-size:9.5px;color:#94a3b8">{{ k.meta }}</span>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 5, MILESTONES ════════ -->
+  <section style="position:relative;z-index:1;padding:96px clamp(28px,5vw,64px);background:#0f172a">
+    <div style="max-width:1200px;margin:0 auto">
+      <div data-reveal style="font-size:11px;letter-spacing:.22em;color:#60a5fa;font-weight:700;margin-bottom:48px;text-transform:uppercase">Our Impact</div>
+
+      <!-- ROW 1 B2C -->
+      <div data-reveal style="margin-bottom:52px">
+        <div style="font-size:11px;letter-spacing:.18em;color:#3b82f6;font-weight:700;margin-bottom:26px;text-transform:uppercase">Direct to Students</div>
+        <div data-mile-row style="display:grid;grid-template-columns:repeat(4,1fr)">
+          <sc-for list="{{ b2cStats }}" as="s" hint-placeholder-count="4">
+            <div style="padding:0 26px;border-left:1px solid rgba(255,255,255,.08)">
+              <div style="font-family:'Radio Canada Big';font-weight:900;font-size:clamp(40px,5vw,56px);color:#fff;letter-spacing:-2px;line-height:1"><span data-count data-target="{{ s.target }}" data-decimals="0">0</span>{{ s.suffix }}</div>
+              <div style="font-size:13.5px;color:#64748b;margin-top:12px">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- ROW 2 B2B -->
+      <div data-reveal>
+        <div style="font-size:11px;letter-spacing:.18em;color:#06b6d4;font-weight:700;margin-bottom:26px;text-transform:uppercase">Institutional Outreach</div>
+        <div data-mile-row style="display:grid;grid-template-columns:repeat(4,1fr)">
+          <sc-for list="{{ b2bStats }}" as="s" hint-placeholder-count="4">
+            <div style="padding:0 26px;border-left:1px solid rgba(255,255,255,.08)">
+              <div style="font-family:'Radio Canada Big';font-weight:900;font-size:clamp(40px,5vw,56px);color:#fff;letter-spacing:-2px;line-height:1"><span data-count data-target="{{ s.target }}" data-decimals="0">0</span>{{ s.suffix }}</div>
+              <div style="font-size:13.5px;color:#64748b;margin-top:12px">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- running ticker strip -->
+      <div data-reveal style="position:relative;left:50%;transform:translateX(-50%);width:100vw;margin-top:64px;background:#0a1628;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);overflow:hidden;padding:14px 0">
+        <div style="display:flex;width:max-content;animation:cnTick 25s linear infinite;white-space:nowrap">
+          <sc-for list="{{ impactTicker }}" as="t" hint-placeholder-count="18">
+            <span style="display:inline-flex;align-items:center;gap:20px;padding-right:20px">
+              <span style="font-size:13px;font-weight:500;color:#475569;text-transform:uppercase;letter-spacing:.08em">{{ t.label }}</span>
+              <span style="width:5px;height:5px;border-radius:50%;background:#1e3a5f"></span>
+            </span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ STAR PERFORMERS GALLERY ════════ -->
+  <section style="position:relative;z-index:1;padding:100px 0;background:#0f172a;overflow:hidden">
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(28px,5vw,64px);text-align:center;margin-bottom:56px">
+      <div data-reveal style="font-size:11px;letter-spacing:.22em;color:#60a5fa;font-weight:700;text-transform:uppercase;margin-bottom:18px">Star Performers</div>
+      <h2 data-reveal style="font-family:'Radio Canada Big';font-weight:900;font-size:clamp(34px,4.6vw,56px);letter-spacing:-1.2px;color:#fff;line-height:.95;margin-bottom:18px">Real Students.<br>Real Outcomes.</h2>
+      <p data-reveal style="font-size:17px;color:#64748b;line-height:1.7;max-width:500px;margin:0 auto">Students from our previous batches who didn't just complete the program, they shipped, built, and placed.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <!-- ROW 1 scrolls left -->
+      <div data-gal-row style="position:relative;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)">
+        <div data-gal-track="left" style="display:flex;gap:16px;width:max-content;animation:cnRowLeft 22s linear infinite">
+          <sc-for list="{{ starRow1 }}" as="s" hint-placeholder-count="16">
+            <div data-star-card style="width:220px;flex:none;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:linear-gradient(160deg,#0f172a,#1e293b);transition:transform .3s,border-color .3s" style-hover="transform:translateY(-8px);border-color:rgba(59,130,246,.4)">
+              <div style="position:relative;height:280px">
+                <img data-star-img alt="Star performer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+                <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,10,20,0) 52%,rgba(5,10,20,.72))"></div>
+                <span style="position:absolute;left:14px;bottom:14px;font-size:12px;font-weight:600;color:#fff;background:rgba(10,17,36,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:6px 14px">{{ s.batch }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <!-- ROW 2 scrolls right -->
+      <div data-gal-row style="position:relative;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)">
+        <div data-gal-track="right" style="display:flex;gap:16px;width:max-content;animation:cnRowRight 28s linear infinite">
+          <sc-for list="{{ starRow2 }}" as="s" hint-placeholder-count="16">
+            <div data-star-card style="width:220px;flex:none;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:linear-gradient(160deg,#0f172a,#1e293b);transition:transform .3s,border-color .3s" style-hover="transform:translateY(-8px);border-color:rgba(59,130,246,.4)">
+              <div style="position:relative;height:280px">
+                <img data-star-img alt="Star performer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" />
+                <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(5,10,20,0) 52%,rgba(5,10,20,.72))"></div>
+                <span style="position:absolute;left:14px;bottom:14px;font-size:12px;font-weight:600;color:#fff;background:rgba(10,17,36,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.16);border-radius:100px;padding:6px 14px">{{ s.batch }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SECTION 7, START YOUR JOURNEY (final CTA) ════════ -->
+  <section style="position:relative;z-index:2;isolation:isolate;padding:120px clamp(28px,5vw,64px);background:#ffffff;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 800px 400px at 50% 50%,rgba(59,130,246,.06),transparent);pointer-events:none" data-cta-glow></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(15,23,42,.04) 1px,transparent 1px);background-size:24px 24px;opacity:.5;pointer-events:none"></div>
+    <div style="position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center">
+      <div data-cta-anim style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px">
+        
+        <span style="font-size:11px;letter-spacing:.22em;color:#3b82f6;font-weight:700;text-transform:uppercase">Start Your Journey</span>
+        
+      </div>
+      <h2 data-cta-anim style="font-family:'Radio Canada Big';font-weight:800;font-size:clamp(36px,5.2vw,52px);line-height:1.02;letter-spacing:-1.4px;color:#0f172a;margin-bottom:20px">Your Next 6 Months<br>Could <span style="color:#3b82f6">Change Everything.</span></h2>
+      <p data-cta-anim style="font-size:18px;color:#64748b;line-height:1.65;max-width:540px;margin:0 auto 48px">Whether you're a student building your first career or a college bringing industry skills to your campus, Cybernaut has a program for exactly where you are right now.</p>
+      <div data-cta-anim style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:40px;margin-bottom:48px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;max-width:180px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+          <span style="font-size:14px;font-weight:600;color:#0f172a">Foundation Programs</span>
+          <span style="font-size:12px;color:#94a3b8">Build from zero. 3 months.</span>
+        </div>
+        <div style="width:1px;height:40px;background:#e2e8f0;align-self:center"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;max-width:180px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg>
+          <span style="font-size:14px;font-weight:600;color:#0f172a">Professional Programs</span>
+          <span style="font-size:12px;color:#94a3b8">Go job-ready. 6 months.</span>
+        </div>
+        <div style="width:1px;height:40px;background:#e2e8f0;align-self:center"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;max-width:180px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>
+          <span style="font-size:14px;font-weight:600;color:#0f172a">College Programs</span>
+          <span style="font-size:12px;color:#94a3b8">VAC + Placement. MOU-backed.</span>
+        </div>
+      </div>
+      <div data-cta-anim style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;margin-bottom:24px">
+        <a href="#programs" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:56px;padding:0 40px;border-radius:12px;background:#0f172a;color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:background .25s" style-hover="background:#1e293b">Browse All Programs <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+        <a href="Contact.dc.html" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:56px;padding:0 32px;border-radius:12px;background:transparent;border:2px solid #e2e8f0;color:#475569;font-weight:600;font-size:16px;text-decoration:none;transition:all .25s" style-hover="border-color:#3b82f6;color:#3b82f6">Talk to a Mentor <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+      </div>
+      <div data-cta-anim style="display:inline-flex;align-items:center;gap:8px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
+        <span style="font-size:13px;color:#94a3b8">No pressure. Just a real conversation about where you want to go.</span>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <dc-import name="Navbar" active="Programs" hero-theme="auto" hint-size="100%,0"></dc-import>
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null, courseTab: 'foundation' };
+
+  componentDidMount() {
+    this.initReveal(); this.initCounters(); this.initTower();  this.initGsap(); this.initEcoScroll();
+    this.paintStars();
+    this._starT = setInterval(() => { if (this.paintStars()) clearInterval(this._starT); }, 200);
+  }
+  componentWillUnmount() { clearInterval(this._starT); }
+  /* assign each star photo by DOM order once the sc-for rows are real, a
+     {{ src }} hole would fire a request for the literal string mid-stream */
+  paintStars() {
+    const imgs = document.querySelectorAll('[data-star-img]');
+    const st = this.STARS || [];
+    if (!imgs.length || imgs.length < st.length) return false;
+    imgs.forEach((img, i) => {
+      const s = st[i];
+      if (!s || img.getAttribute('src') === s.src) return;
+      img.setAttribute('src', s.src);
+    });
+    return true;
+  }
+  componentDidUpdate(prevProps, prevState) {
+    this.paintStars();
+    if (prevState && prevState.courseTab !== this.state.courseTab) this.animateCourseCards();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+    if (this._floatTweens) this._floatTweens.forEach(t => t && t.kill());
+
+  }
+
+  initBg() {
+    const cv = document.getElementById('cn-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    let _lw = innerWidth; this._bgResize = () => { if (innerWidth === _lw) return; _lw = innerWidth; resize(); };
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(59,130,246,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(59,130,246,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const dec = parseInt(el.getAttribute('data-decimals')||'0');
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t0)/dur,1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      el.textContent = dec ? val.toFixed(dec) : Math.floor(val).toLocaleString('en-IN');
+      if (p<1) requestAnimationFrame(step); else el.textContent = dec ? target.toFixed(dec) : target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._done) return; el._done = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.3 });
+      setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 100);
+      setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 3200);
+    } else { document.querySelectorAll('[data-count]').forEach(fire); }
+  }
+
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, scrolled = null;
+    const apply = () => {
+      ticking = false;
+      const el = document.querySelector('nav'); if (!el) return;
+      const now = true;
+      if (now === scrolled) return; scrolled = now;
+      const lg = document.querySelector('[data-logo]');
+      if (now) { el.style.background='#ffffff'; el.style.backdropFilter='blur(16px)'; el.style.borderBottom='1px solid #e2e8f0'; el.style.padding='7px 0'; if(lg){lg.style.height='40px';lg.src='cybernaut-logo.webp';} }
+      else { el.style.background='transparent'; el.style.backdropFilter='none'; el.style.borderBottom='1px solid transparent'; el.style.padding='11px 0'; if(lg){lg.style.height='48px';lg.src='cybernaut-logo.webp';} }
+    };
+    this._onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    apply();
+  }
+
+  buildIcon(name, size, color, sw) {
+    const I = {
+      code2: [['path',{d:'m18 16 4-4-4-4'}],['path',{d:'m6 8-4 4 4 4'}],['path',{d:'m14.5 4-5 16'}]],
+      layers: [['path',{d:'M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z'}],['path',{d:'m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65'}],['path',{d:'m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65'}]],
+      barchart: [['line',{x1:18,x2:18,y1:20,y2:10}],['line',{x1:12,x2:12,y1:20,y2:4}],['line',{x1:6,x2:6,y1:20,y2:14}]],
+      pentool: [['path',{d:'M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z'}],['path',{d:'m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18'}],['path',{d:'m2.3 2.3 7.286 7.286'}],['circle',{cx:11,cy:11,r:2}]],
+      brain: [['path',{d:'M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z'}],['path',{d:'M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z'}],['path',{d:'M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4'}],['path',{d:'M6 18a4 4 0 0 1-1.967-.516'}],['path',{d:'M19.967 17.484A4 4 0 0 1 18 18'}]],
+      terminal: [['path',{d:'m4 17 6-6-6-6'}],['path',{d:'M12 19h8'}]],
+      shield: [['path',{d:'M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z'}]],
+      calendarcheck: [['path',{d:'M8 2v4'}],['path',{d:'M16 2v4'}],['rect',{width:18,height:18,x:3,y:4,rx:2}],['path',{d:'M3 10h18'}],['path',{d:'m9 16 2 2 4-4'}]],
+      activity: [['path',{d:'M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2'}]],
+      repeat: [['path',{d:'m17 2 4 4-4 4'}],['path',{d:'M3 11v-1a4 4 0 0 1 4-4h14'}],['path',{d:'m7 22-4-4 4-4'}],['path',{d:'M21 13v1a4 4 0 0 1-4 4H3'}]],
+      users: [['path',{d:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'}],['circle',{cx:9,cy:7,r:4}],['path',{d:'M22 21v-2a4 4 0 0 0-3-3.87'}],['path',{d:'M16 3.13a4 4 0 0 1 0 7.75'}]],
+      briefcase: [['path',{d:'M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'}],['rect',{width:20,height:14,x:2,y:6,rx:2}]],
+      bookopen: [['path',{d:'M12 7v14'}],['path',{d:'M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'}]],
+      monitor: [['rect',{width:20,height:14,x:2,y:3,rx:2}],['line',{x1:8,x2:16,y1:21,y2:21}],['line',{x1:12,x2:12,y1:17,y2:21}]],
+      laptop: [['path',{d:'M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z'}],['path',{d:'M20.054 15.987H3.946'}]],
+      award: [['path',{d:'m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526'}],['circle',{cx:12,cy:8,r:6}]],
+      target: [['circle',{cx:12,cy:12,r:10}],['circle',{cx:12,cy:12,r:6}],['circle',{cx:12,cy:12,r:2}]],
+      trendingup: [['path',{d:'M16 7h6v6'}],['path',{d:'m22 7-8.5 8.5-5-5L2 17'}]],
+      graduationcap: [['path',{d:'M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z'}],['path',{d:'M22 10v6'}],['path',{d:'M6 12.5V16a6 3 0 0 0 12 0v-3.5'}]],
+      flame: [['path',{d:'M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'}]],
+      messagesquare: [['path',{d:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'}]],
+      arrowupright: [['path',{d:'M7 7h10v10'}],['path',{d:'M7 17 17 7'}]]
+    };
+    const defs = I[name] || I.code2;
+    return React.createElement('svg', { width:size, height:size, viewBox:'0 0 24 24', fill:'none', stroke:color, strokeWidth: sw||1.7, strokeLinecap:'round', strokeLinejoin:'round' },
+      defs.map((d, i) => React.createElement(d[0], { key:i, ...d[1] })));
+  }
+
+  initEcoScroll() {
+    const scrollEl = document.querySelector('[data-eco-scroll]');
+    if (!scrollEl) return;
+    const tabs = Array.from(document.querySelectorAll('[data-eco-tab]'));
+    const dashes = Array.from(document.querySelectorAll('[data-eco-dash]'));
+    const setActive = (i) => {
+      if (this._ecoActive === i) return; this._ecoActive = i;
+      tabs.forEach((t, j) => {
+        t.style.borderLeft = j === i ? '3px solid #3b82f6' : '3px solid transparent';
+        t.style.background = j === i ? 'rgba(59,130,246,.06)' : 'transparent';
+        t.style.borderRadius = j === i ? '0 12px 12px 0' : '0';
+        t.style.opacity = j === i ? '1' : '.55';
+      });
+      dashes.forEach((d, j) => {
+        d.style.opacity = j === i ? '1' : '0';
+        d.style.transform = j === i ? 'translateY(0) scale(1)' : (j < i ? 'translateY(-14px) scale(.985)' : 'translateY(14px) scale(.985)');
+        d.style.pointerEvents = j === i ? 'auto' : 'none';
+      });
+    };
+    this._ecoActive = -1; setActive(0);
+    const AUTO_MS = 5000;
+    const startAuto = () => {
+      clearInterval(this._ecoTimer);
+      this._ecoTimer = setInterval(() => setActive((this._ecoActive + 1) % 3), AUTO_MS);
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => { setActive(i); startAuto(); });
+      t.addEventListener('mouseenter', () => clearInterval(this._ecoTimer));
+      t.addEventListener('mouseleave', startAuto);
+    });
+    // only auto-cycle while the section is on screen
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) startAuto(); else clearInterval(this._ecoTimer); });
+    }, { threshold: 0.25 });
+    io.observe(scrollEl);
+  }
+
+  /* Hero depth corridor: one proxy drives the camera forward and each card's Z
+     is that travel wrapped into the corridor span, so cards rise out of the
+     far distance, pass the viewer and reappear at the back, seamless.
+     sc-for swaps its placeholder rows for real ones, so poll until they land. */
+  initHeroCorridor(g) {
+    const boot = setInterval(() => {
+      if (document.querySelectorAll('[data-ph-card]').length >= 5) {
+        clearInterval(boot);
+        this.buildHeroCorridor(g);
+      }
+    }, 120);
+    this._phBoot = boot;
+  }
+
+  initTower() {
+    const t0 = Date.now();
+    this._tw = setInterval(() => {
+      const c = document.querySelector('canvas[data-tw-canvas]');
+      if (!c && Date.now() - t0 < 8000) return;
+      clearInterval(this._tw);
+      if (!c || c.__m) return; c.__m = 1;
+      import(new URL('programs-hero-3d.js', location.href).href).then((m) => m.mount(c, 'tower')).catch((e) => console.error('3D module failed', e));
+    }, 120);
+  }
+
+  buildHeroCorridor(g) {
+    const ring = (this._heroRing = this.renderVals().heroRing);
+    const cards = [].slice.call(document.querySelectorAll('[data-ph-card]'));
+    const scans = [].slice.call(document.querySelectorAll('[data-ph-scan]'));
+    const streaks = [].slice.call(document.querySelectorAll('[data-ph-streak]'));
+    const dots = [].slice.call(document.querySelectorAll('[data-ph-dot]'));
+    const tiles = [].slice.call(document.querySelectorAll('[data-ph-tile]'));
+    const tilt = document.querySelector('[data-ph-tilt]');
+    const stage = document.querySelector('[data-ph-stage]');
+    const spot = document.querySelector('[data-ph-spot]');
+    const rail = document.querySelector('[data-ph-rail]');
+    const label = document.querySelector('[data-ph-nametext]');
+    if (!tilt || !stage || !cards.length) return;
+    this._phStage = stage;
+
+    const n = cards.length;
+    const FAR = -2500, NEAR = 620, SPAN = NEAR - FAR, slot = SPAN / n;
+    tiles.forEach((el, i) => { el.style.background = ring[i % n].tile; });
+
+    const off = cards.map((el, i) => ({ x: Math.sin(i * 1.9) * 250 + 190, y: Math.cos(i * 1.35) * 150 }));
+    cards.forEach((el, i) => g.set(el, { transformPerspective: 1150, transformOrigin: '50% 50%', x: off[i].x, y: off[i].y }));
+
+    const sk = streaks.map((el, i) => {
+      const a = i * 2.399963;                      /* golden angle = even spread */
+      const rad = 260 + ((i * 137) % 620);
+      return { x: Math.cos(a) * rad, y: Math.sin(a) * rad * 0.62, phase: i / streaks.length, len: 90 + ((i * 53) % 190) };
+    });
+    streaks.forEach((el, i) => { el.style.height = sk[i].len + 'px'; g.set(el, { x: sk[i].x, y: sk[i].y, rotationX: 90 }); });
+
+    const cam = { p: 0 };
+    const paint = () => {
+      let front = 0, best = -1e9, frontT = 0;
+      for (let i = 0; i < n; i++) {
+        const z = FAR + (((i * slot + cam.p * SPAN) % SPAN) + SPAN) % SPAN;
+        const t = (z - FAR) / SPAN;                 /* 0 = far, 1 = at viewer */
+        const o = Math.min(1, t / 0.26) * (1 - Math.max(0, (t - 0.82) / 0.18));
+        const el = cards[i];
+        el.style.opacity = Math.max(0, o).toFixed(3);
+        el.style.filter = 'blur(' + ((1 - Math.min(1, t / 0.5)) * 6).toFixed(2) + 'px) brightness(' + (0.45 + 0.55 * Math.min(1, t / 0.7)).toFixed(3) + ')';
+        el.style.zIndex = String(100 + Math.round(t * 60));
+        const hit = Math.max(0, 1 - Math.abs(t - 0.7) / 0.16);
+        g.set(el, { z: z, rotationY: (1 - t) * -12, rotationX: (1 - t) * 6, scale: 1 + hit * 0.045 });
+        if (scans[i]) {
+          scans[i].style.opacity = (hit * 0.9).toFixed(3);
+          scans[i].style.transform = 'translateX(' + (-40 + hit * 240).toFixed(1) + '%) skewX(-14deg)';
+        }
+        const score = -Math.abs(t - 0.7);
+        if (score > best) { best = score; front = i; frontT = t; }
+      }
+
+      /* streaks run ~1.9x the card speed, that is what sells the motion */
+      for (let i = 0; i < streaks.length; i++) {
+        const z = FAR + ((((sk[i].phase + cam.p * 1.9) % 1) + 1) % 1) * SPAN;
+        const t = (z - FAR) / SPAN;
+        streaks[i].style.opacity = (Math.min(1, t / 0.2) * (1 - Math.max(0, (t - 0.7) / 0.3)) * 0.85).toFixed(3);
+        streaks[i].style.transform = 'translate3d(' + sk[i].x + 'px,' + sk[i].y + 'px,' + z.toFixed(0) + 'px) rotateX(90deg) scaleY(' + (0.5 + t * 2.6).toFixed(2) + ')';
+      }
+
+      if (spot) spot.style.opacity = (Math.max(0, 1 - Math.abs(frontT - 0.7) / 0.3) * 0.85).toFixed(3);
+      if (rail) rail.style.transform = 'scaleX(' + ((cam.p * n) % 1).toFixed(4) + ')';
+
+      if (label && this._phFront !== front) {
+        this._phFront = front;
+        label.textContent = ring[front].t;
+        g.fromTo(label,
+          { opacity: 0, y: 10, letterSpacing: '.28em', filter: 'blur(5px)' },
+          { opacity: 1, y: 0, letterSpacing: '0em', filter: 'blur(0px)', duration: 0.7, ease: 'power3.out' });
+        dots.forEach((d, i) => g.to(d, { opacity: i === front ? 1 : 0.26, scale: i === front ? 1.4 : 1, duration: 0.35, ease: 'power2.out' }));
+      }
+    };
+
+    this._phFly = g.to(cam, { p: 1, duration: n * 3.2, ease: 'none', repeat: -1, onUpdate: paint });
+    paint();
+
+    const tl = g.timeline();
+    tl.from(tilt, { opacity: 0, scale: 0.88, duration: 1.25, ease: 'power3.out' }, 0)
+      .from('[data-ph-line]', { opacity: 0, y: 46, rotationX: -55, transformPerspective: 700, transformOrigin: '50% 100%', duration: 0.9, stagger: 0.11, ease: 'power3.out' }, 0.1)
+      .fromTo('[data-ph-rule]', { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power3.out' }, 0.7)
+      .from('[data-ph-chip]', { opacity: 0, scale: 0.7, duration: 0.55, ease: 'back.out(2)' }, 0.95);
+
+    /* stats: divider draws in, number counts up, then a cyan glow walks the row */
+    [].slice.call(document.querySelectorAll('[data-ph-stat]')).forEach((el, i, arr) => {
+      const num = el.querySelector('[data-ph-statnum]');
+      const bar = el.querySelector('[data-ph-statbar]');
+      const raw = (num && num.textContent) || '';
+      const m = /([\d,.]+)/.exec(raw);
+      tl.from(el, { opacity: 0, y: 18, duration: 0.7, ease: 'power3.out' }, 0.95 + i * 0.08);
+      if (bar) tl.fromTo(bar, { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1, duration: 0.55, ease: 'power2.out' }, 1.05 + i * 0.08);
+      if (m) {
+        const target = parseFloat(m[1].replace(/,/g, ''));
+        const pre = raw.slice(0, m.index), post = raw.slice(m.index + m[1].length);
+        const grouped = m[1].indexOf(',') >= 0;
+        const c = { v: 0 };
+        tl.to(c, {
+          v: target, duration: 1.5, ease: 'power2.out',
+          onUpdate: () => {
+            const r = Math.round(c.v);
+            num.textContent = pre + (grouped ? r.toLocaleString('en-IN') : String(r)) + post;
+          }
+        }, 1.1 + i * 0.08);
+      }
+      if (num) g.to(num, { textShadow: '0 0 22px rgba(31,211,232,.6)', duration: 0.9, ease: 'sine.inOut', repeat: -1, repeatDelay: arr.length * 0.9 - 0.9, yoyo: true, delay: 2.6 + i * 0.9 });
+      /* explicit endpoints + immediateRender:false, else the pulse inherits the
+         entrance's opacity 0 and the divider vanishes at the trough */
+      if (bar) g.fromTo(bar, { opacity: 1 }, { opacity: 0.45, duration: 1.6, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.7 + i * 0.4, immediateRender: false });
+    });
+
+    /* text effects, all element-level so the copy stays editable */
+    g.to('[data-ph-sub]', { opacity: 0.72, duration: 4.2, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 2.6 });
+
+    g.to('[data-ph-aur]', { xPercent: 10, yPercent: -8, scale: 1.16, duration: 12, ease: 'sine.inOut', repeat: -1, yoyo: true });
+    g.to('[data-ph-grid]', { backgroundPositionY: '+=130px', duration: 2.2, ease: 'none', repeat: -1 });
+    g.to('[data-ph-shaft]', { rotation: 8, duration: 9, ease: 'sine.inOut', repeat: -1, yoyo: true });
+    g.to('[data-ph-vig]', { opacity: 0.62, duration: 5.5, ease: 'sine.inOut', repeat: -1, yoyo: true });
+    g.to('[data-ph-h1]', { textShadow: '0 0 26px rgba(31,211,232,.34)', duration: 4.5, ease: 'sine.inOut', repeat: -1, yoyo: true });
+
+    /* the whole 3D scene leans toward the cursor */
+    const rx = g.quickTo(tilt, 'rotationX', { duration: 0.5, ease: 'power2.out' });
+    const ry = g.quickTo(tilt, 'rotationY', { duration: 0.5, ease: 'power2.out' });
+    const px = g.quickTo(tilt, 'x', { duration: 0.6, ease: 'power2.out' });
+    const py = g.quickTo(tilt, 'y', { duration: 0.6, ease: 'power2.out' });
+    this._phMove = (e) => {
+      const b = stage.getBoundingClientRect();
+      const nx = (e.clientX - b.left) / b.width - 0.5;
+      const ny = (e.clientY - b.top) / b.height - 0.5;
+      rx(-ny * 26); ry(nx * 30); px(-nx * 70); py(-ny * 40);
+    };
+    this._phLeave = () => { rx(0); ry(0); px(0); py(0); };
+    stage.addEventListener('pointermove', this._phMove);
+    stage.addEventListener('pointerleave', this._phLeave);
+  }
+
+  initGsap() {
+    const t0 = Date.now();
+    const tryInit = () => {
+      if (window.gsap) {
+        const g = window.gsap; this._gsap = g;
+        if (window.ScrollTrigger) g.registerPlugin(window.ScrollTrigger);
+        g.config({ nullTargetWarn: false });
+
+        // panels slide
+        this.scrollFrom('[data-slide-left]', { x:-60, opacity:0, duration:.8, ease:'power3.out' });
+        this.scrollFrom('[data-slide-right]', { x:60, opacity:0, duration:.8, ease:'power3.out' });
+        // lms frame
+        this.scrollFrom('[data-lms-frame]', { scale:.94, opacity:0, duration:.8, ease:'power3.out', transformOrigin:'center top' });
+        const rows = document.querySelectorAll('[data-lms-row]');
+        if (rows.length && window.ScrollTrigger) {
+          g.set(rows, { opacity:0, y:22 });
+          window.ScrollTrigger.batch(rows, { start:'top 88%', onEnter: b => g.to(b, { opacity:1, y:0, duration:.6, stagger:.14, ease:'power3.out' }) });
+          setTimeout(() => g.set(rows, { opacity:1, y:0 }), 4500);
+        }
+        // product tools
+        this.scrollFrom('[data-tool-card]', { y:30, opacity:0, duration:.6, stagger:.12, ease:'power3.out' });
+        // course cards initial
+        this.animateCourseCards(true);
+        // related
+        this.scrollFrom('[data-related-card]', { y:28, opacity:0, duration:.6, stagger:.1, ease:'power3.out' });
+        // final CTA
+        const ctaEls = document.querySelectorAll('[data-cta-anim]');
+        if (ctaEls.length && window.ScrollTrigger) {
+          g.set(ctaEls, { opacity:0, y:24 });
+          const ctaLines = document.querySelectorAll('[data-cta-line]');
+          g.set(ctaLines, { scaleX:0, transformOrigin:'center' });
+          window.ScrollTrigger.create({ trigger: ctaEls[0], start:'top 82%', once:true, onEnter: () => {
+            g.to(ctaEls, { opacity:1, y:0, duration:.6, stagger:.12, ease:'power3.out' });
+            g.to(ctaLines, { scaleX:1, duration:.5, delay:.1, ease:'power2.out' });
+          }});
+          setTimeout(() => { g.set(ctaEls, { opacity:1, y:0 }); g.set(ctaLines, { scaleX:1 }); }, 6000);
+        }
+        const glow = document.querySelector('[data-cta-glow]');
+        if (glow) g.to(glow, { scale:1.04, duration:4, repeat:-1, yoyo:true, ease:'sine.inOut' });
+        // page background decorations
+        const floats = document.querySelectorAll('[data-bg-float]');
+        floats.forEach((el, i) => g.to(el, { y: (i%2===0? -26 : 24), duration: 7 + i*1.2, repeat:-1, yoyo:true, ease:'sine.inOut' }));
+        const codes = document.querySelectorAll('[data-bg-code]');
+        codes.forEach((el, i) => { g.set(el, { opacity:.55 }); g.to(el, { y: 12, duration: 5 + i, repeat:-1, yoyo:true, ease:'sine.inOut', delay: i*0.4 }); });
+      } else if (Date.now() - t0 < 5000) { setTimeout(tryInit, 100); }
+      else { document.querySelectorAll('[data-h-anim],[data-hg],[data-slide-left],[data-slide-right],[data-lms-frame],[data-lms-row],[data-course-card],[data-related-card],[data-tool-card],[data-cta-anim]').forEach(c => { c.style.opacity = 1; }); }
+    };
+    tryInit();
+  }
+
+  scrollFrom(sel, vars) {
+    const g = this._gsap || window.gsap; if (!g) return;
+    const els = document.querySelectorAll(sel); if (!els.length) return;
+    if (window.ScrollTrigger) {
+      els.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < innerHeight*0.92 && r.bottom > 0) { g.from(el, { ...vars }); }
+        else { g.from(el, { ...vars, scrollTrigger:{ trigger: el, start:'top 86%' } }); }
+      });
+      setTimeout(() => g.set(els, { opacity:1, x:0, y:0, scale:1 }), 4500);
+    } else { g.set(els, { opacity:1 }); }
+  }
+
+  animateCourseCards(initial) {
+    const g = this._gsap || window.gsap; if (!g) return;
+    const cards = document.querySelectorAll('[data-course-card]'); if (!cards.length) return;
+    if (initial) {
+      const grid = document.querySelector('[data-course-grid]');
+      const r = grid ? grid.getBoundingClientRect() : { top:0, bottom:1 };
+      const reveal = () => { g.fromTo(cards, { opacity:0, y:30 }, { opacity:1, y:0, duration:.6, stagger:.09, ease:'power3.out' }); setTimeout(() => g.set(cards, { opacity:1, y:0 }), 900); };
+      if (r.top < innerHeight*0.92 && r.bottom > 0) reveal();
+      else if (window.ScrollTrigger && grid) { window.ScrollTrigger.create({ trigger: grid, start:'top 86%', once:true, onEnter: reveal }); g.set(cards, { opacity:0, y:30 }); setTimeout(() => g.set(cards, { opacity:1, y:0 }), 4500); }
+      else reveal();
+    } else {
+      g.fromTo(cards, { opacity:0, x:24 }, { opacity:1, x:0, duration:.5, stagger:.06, ease:'power2.out', overwrite:true });
+      setTimeout(() => g.set(cards, { opacity:1, x:0 }), 800);
+    }
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('cn-dot'), ring = document.getElementById('cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(59,130,246,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#06b6d4'; };
+    this._onUp = () => { ring.style.borderColor='#3b82f6'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #3b82f6;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  navData() {
+    const navDefs = [
+      { label:'Home', href:'Home.dc.html#hero' },
+      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs', active:true },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const navItems = navDefs.map(n => ({
+      label:n.label, href:n.href, title:'',
+      caret: !!n.mega, color: n.active ? '#3b82f6' : '#475569',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Foundation Programs.dc.html' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Professional Programs.dc.html' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Student Login', href:'Login.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
+      { name:'YouTube', ic:'YT', href:'#' }, { name:'WhatsApp', ic:'WA', href:'#' }, { name:'X', ic:'X', href:'#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+
+  pageData() {
+    const ticker = ['#CYBERNAUTPROGRAMS','APPLICATIONS LIVE NOW','75,000+ LEARNERS','BUILD. LEARN. PLACE.','20+ COLLEGE PARTNERS','INDUSTRY-MAPPED CURRICULUM'];
+    const tickerLoop = ticker.concat(ticker).map((label, i) => ({ label, _k:i }));
+
+    const studentFeatures = ['Foundation + Professional Tracks','6-Month Sprint: Learning + Internship','Cybernaut LMS Progress Tracking','Placement Training Included'];
+    const collegeFeatures = ['VAC Programs (30hr / 45hr / Elective)','Placement Training (1-4 Year Plans)','Faculty Development + Hackathons','Industry Connect + Tech Support'];
+
+    const heroRing = [
+      { init:'FS', t:'Full Stack Development', d:'MERN, deployment and a live internship build.', dur:'6 months', tag:'Placement', tile:'linear-gradient(135deg,#06b6d4,#3b82f6)' },
+      { init:'DA', t:'Data Analytics', d:'SQL, Python and dashboards on real datasets.', dur:'6 months', tag:'Hiring track', tile:'linear-gradient(135deg,#2F7BFF,#1FD3E8)' },
+      { init:'UX', t:'UI/UX Design', d:'Research to handoff, shipped in a real team.', dur:'4 months', tag:'Portfolio', tile:'linear-gradient(135deg,#8b5cf6,#3b82f6)' },
+      { init:'AI', t:'AI & Machine Learning', d:'Models, evaluation and applied deployment.', dur:'6 months', tag:'Advanced', tile:'linear-gradient(135deg,#3b82f6,#06b6d4)' },
+      { init:'CS', t:'Cybersecurity', d:'Network defence, tooling and live labs.', dur:'5 months', tag:'In demand', tile:'linear-gradient(135deg,#0ea5e9,#22d3ee)' }
+    ];
+    const heroStreaks = Array.from({ length: 30 }, (_, i) => ({ i }));
+
+    const heroTrust = [
+      { num:'75,000+', label:' Learners' },
+      { num:'95%', label:' Success' },
+      { num:'6 Months', label:' Avg' },
+      { num:'20+', label:' Partners' }
+    ];
+
+    const boxABase = [
+      { ic:'users', label:'Live Session', bg:'#f1f5f9' },
+      { ic:'code2', label:'Coding Lab', bg:'#e2e8f0' },
+      { ic:'monitor', label:'Workshop', bg:'#f8fafc' },
+      { ic:'award', label:'Certificate', bg:'#f1f5f9' },
+      { ic:'bookopen', label:'Mentoring', bg:'#e2e8f0' },
+      { ic:'laptop', label:'Project Demo', bg:'#f8fafc' }
+    ];
+    const boxBBase = [
+      { ic:'award', label:'Placement', bg:'#f8fafc' },
+      { ic:'trendingup', label:'Progress', bg:'#f1f5f9' },
+      { ic:'graduationcap', label:'Graduation', bg:'#e2e8f0' },
+      { ic:'target', label:'Interview Prep', bg:'#f8fafc' },
+      { ic:'briefcase', label:'Internship', bg:'#f1f5f9' },
+      { ic:'code2', label:'Hackathon', bg:'#e2e8f0' }
+    ];
+    const galBoxA = boxABase.concat(boxABase).map((g,i) => ({ ...g, _k:i, iconEl: this.buildIcon(g.ic, 32, '#cbd5e1', 1.4) }));
+    const galBoxB = boxBBase.concat(boxBBase).map((g,i) => ({ ...g, _k:i, iconEl: this.buildIcon(g.ic, 32, '#cbd5e1', 1.4) }));
+
+    /* 14 real student photos, split 7 + 7 so no photo repeats across the two
+       rows; each base set is doubled only to make its own marquee loop seamless */
+    const star1Base = [
+      { batch:'Batch DA-07', src:'assets/stars/star-01-opt.webp' },
+      { batch:'Batch FSD-12', src:'assets/stars/star-02-opt.webp' },
+      { batch:'Batch FSD-11', src:'assets/stars/star-03-opt.webp' },
+      { batch:'Batch UIUX-08', src:'assets/stars/star-04-opt.webp' },
+      { batch:'Batch UIUX-07', src:'assets/stars/star-05-opt.webp' },
+      { batch:'Batch DA-06', src:'assets/stars/star-06-opt.webp' },
+      { batch:'Batch ML-05', src:'assets/stars/star-07-opt.webp' },
+      { batch:'Batch FSD-09', src:'assets/stars/star-08-opt.webp' },
+      { batch:'Batch CS-02', src:'assets/stars/star-09-opt.webp' },
+      { batch:'Batch TT-08', src:'assets/stars/star-10-opt.webp' },
+      { batch:'Batch DA-05', src:'assets/stars/star-11-opt.webp' }
+    ];
+    const star2Base = [
+      { batch:'Batch ML-04', src:'assets/stars/star-12-opt.webp' },
+      { batch:'Batch CS-03', src:'assets/stars/star-13-opt.webp' },
+      { batch:'Batch FSD-10', src:'assets/stars/star-14-opt.webp' },
+      { batch:'Batch TT-09', src:'assets/stars/star-15-opt.webp' },
+      { batch:'Batch DA-08', src:'assets/stars/star-16-opt.webp' },
+      { batch:'Batch FSD-13', src:'assets/stars/star-17-opt.webp' },
+      { batch:'Batch UIUX-09', src:'assets/stars/star-18-opt.webp' },
+      { batch:'Batch ML-06', src:'assets/stars/star-19-opt.webp' },
+      { batch:'Batch CS-04', src:'assets/stars/star-20-opt.webp' },
+      { batch:'Batch TT-10', src:'assets/stars/star-21-opt.webp' }
+    ];
+    this.STARS = star1Base.concat(star1Base, star2Base, star2Base);
+    const starRow1 = star1Base.concat(star1Base).map((s,i) => ({ ...s, _k:i }));
+    const starRow2 = star2Base.concat(star2Base).map((s,i) => ({ ...s, _k:i }));
+
+    const tab = this.state.courseTab;
+    const courseTabs = [
+      { key:'foundation', label:'Foundation' },
+      { key:'professional', label:'Professional' },
+      { key:'vac', label:'VAC Programs' },
+      { key:'placement', label:'Placement Plans' }
+    ].map(t => ({ label:t.label, color: t.key===tab ? '#0f172a' : '#94a3b8', underline: t.key===tab ? 1 : 0, onClick: () => this.setState({ courseTab: t.key }) }));
+
+    const allCourses = {
+      foundation: [
+        { title:'Tech Trio', ic:'code2', category:'FOUNDATION', duration:'6 Months', skills:['C / C++','DSA','Problem Solving'], outcome:'Strong Programming Foundation', href:'Tech Trio.dc.html', src:'assets/programs/prog-techtrio.svg' },
+        { title:'System Design', ic:'gitbranch', category:'FOUNDATION', duration:'6 Months', skills:['Architecture','Databases','API Design'], outcome:'Think Like an Engineer', href:'System Design.dc.html', src:'assets/programs/prog-sysdesign.svg' }
+      ],
+      professional: [
+        { title:'Full Stack Development', ic:'layers', category:'PROFESSIONAL', duration:'6 Months', skills:['React','Node.js','Databases'], outcome:'Job-Ready Full Stack Engineer', href:'Full Stack Development.dc.html', src:'assets/programs/prog-fullstack.svg' },
+        { title:'Data Analytics', ic:'barchart', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','SQL','Power BI'], outcome:'Data-Driven Decision Maker', href:'Data Analytics.dc.html', src:'assets/programs/prog-data.svg' },
+        { title:'UI / UX Design', ic:'pentool', category:'PROFESSIONAL', duration:'6 Months', skills:['Figma','Design Systems','Prototyping'], outcome:'Industry-Ready Product Designer', href:'UI UX Design.dc.html', src:'assets/programs/prog-uiux.svg' },
+        { title:'AI & Machine Learning', ic:'brain', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','Machine Learning','Deep Learning'], outcome:'AI-Augmented Developer', href:'AI Machine Learning.dc.html', src:'assets/programs/prog-ai.svg' },
+        { title:'Cybersecurity', ic:'shield', category:'PROFESSIONAL', duration:'6 Months', skills:['Ethical Hacking','Network Security','SIEM'], outcome:'Job-Ready Security Analyst', href:'Cybersecurity.dc.html', src:'assets/programs/prog-cyber.svg' }
+      ],
+      vac: [
+        { title:'30 Hours VAC Program', ic:'bookopen', category:'VAC', duration:'30 Hours', skillsLabel:"You'll Experience", skills:['Foundation Theory','Learning Project','Daily Quizzes','Practical Exam'], outcome:'Quick Skill Certification', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac30.svg' },
+        { title:'45 Hours VAC Program', ic:'bookopen', category:'VAC, Recommended', duration:'45 Hours', highlight:true, skillsLabel:"You'll Experience", skills:['Theory plus Intermediate','3 Projects','Quiz plus Assessment','Practical plus Theory Exam','Full LMS Tracking'], outcome:'Semester Ready Skill Certification', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac45.svg' },
+        { title:'75 Hours Semester Elective', ic:'layers', category:'Sem Elective', duration:'75 Hours', skillsLabel:"You'll Experience", skills:['75% Practical','25% Theory','3 Graded Projects','Seminar plus Presentation','Complete LMS Dashboard'], outcome:'Full Elective Credit plus Certificate', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac75.svg' }
+      ],
+      placement: [
+        { title:'Pre-Placement Training', ic:'target', category:'Placement', duration:'1 Year', designedFor:'Final Year Students', skillsLabel:'Training Includes', skills:['Aptitude Sprint','DSA Rounds','Mock Interviews','MAANG Resume'], outcome:'Campus + Off-Campus Ready', href:'Placement 1-Year Track.dc.html', src:'assets/programs/prog-place1.svg' },
+        { title:'Complete Placement Training', ic:'trendingup', category:'Placement', duration:'2 Years', designedFor:'3rd & Final Year Students', skillsLabel:'Training Includes', skills:['DSA + System Design','Core CS','Projects + Resume','Full Drive Support'], outcome:'MAANG & WITCH Shortlist Ready', href:'Placement 2-Year Track.dc.html', src:'assets/programs/prog-place2.svg' },
+        { title:'Arts & Science UG Plan', ic:'bookopen', category:'Placement', duration:'3 Years', designedFor:'Arts & Science Colleges (3-Year UG)', skillsLabel:'Training Includes', skills:['CS Fundamentals','Problem Solving','Resume + Aptitude','Drive Coordination'], outcome:'MNC & Startup Placement Ready', href:'Placement Training.dc.html', src:'assets/programs/prog-place3.svg' },
+        { title:'Full UG Engineering Plan', ic:'graduationcap', category:'Placement, Comprehensive', duration:'4 Years', highlight:true, designedFor:'Engineering Colleges, All CS Streams', skillsLabel:'Training Includes', skills:['Sem 1-4: Foundations','Sem 5-6: Projects','Sem 7-8: Drive Focus','COE Lab Integration'], outcome:'8 Offers, Placement Ready by Sem 8', href:'Placement 4-Year Track.dc.html', src:'assets/programs/prog-place4.svg' }
+      ]
+    };
+    const courseCards = allCourses[tab];
+
+    const lmsTiles = [
+      { label:'Quizzes Done', value:'18/24', pct:'75%', color:'#fbbf24' },
+      { label:'Assignments', value:'12/14', pct:'86%', color:'#3b82f6' },
+      { label:'Attendance', value:'94%', pct:'94%', color:'#22c55e' }
+    ];
+    const lmsRows = [
+      { module:'React Hooks Deep Dive', type:'Lecture', due:'Today', status:'In Progress', statusColor:'#fbbf24', statusBg:'rgba(251,191,36,.14)' },
+      { module:'REST API Assignment', type:'Assignment', due:'Tomorrow', status:'Pending', statusColor:'#60a5fa', statusBg:'rgba(59,130,246,.14)' },
+      { module:'JavaScript Fundamentals Quiz', type:'Quiz', due:'Completed', status:'Done', statusColor:'#22c55e', statusBg:'rgba(34,197,94,.14)' },
+      { module:'Portfolio Project Review', type:'Review', due:'Fri', status:'Scheduled', statusColor:'#a78bfa', statusBg:'rgba(167,139,250,.14)' }
+    ];
+    const lmsChips = [
+      { label:'6-Month Structured Sprint', ic:'calendarcheck' },
+      { label:'Daily Progress Tracking', ic:'activity' },
+      { label:'Habit-Built Learning System', ic:'repeat' }
+    ].map(c => ({ label:c.label, iconEl: this.buildIcon(c.ic, 18, '#3b82f6') }));
+
+    const b2cStats = [
+      { target:5000, suffix:'+', label:'Active Learners' },
+      { target:35000, suffix:'+', label:'Students Completed' },
+      { target:95, suffix:'%', label:'Success Rate' },
+      { target:6, suffix:' Months', label:'Avg. Program Duration' }
+    ];
+    const b2bStats = [
+      { target:75000, suffix:'+', label:'Students Trained via Outreach' },
+      { target:10, suffix:'+', label:'VAC Courses Delivered' },
+      { target:10, suffix:'', label:'Institutions, SSN Hackathon Support' },
+      { target:20, suffix:'+', label:'Industry Visits & Tech Support Engagements' }
+    ];
+
+    const related = [
+      { title:'Practice Platform', desc:'Sharpen your skills', href:'Student Practice.dc.html', ic:'code2' },
+      { title:'Aarvam Community', desc:'Join the network', href:'Aarvam Community.dc.html', ic:'users' },
+      { title:'Cybernaut SaaS', desc:'See our products', href:'Cybernaut SaaS.dc.html', ic:'briefcase' }
+    ].map(r => ({ ...r, iconEl: this.buildIcon(r.ic, 24, '#3b82f6', 1.8) }));
+
+    const productTools = [
+      { name:'Cybernaut Coding Lab', ic:'code2', accent:'#3b82f6', pill:'Practice', pillBg:'rgba(59,130,246,.1)', tagline:'Sharpen your skills every single day.', url:'practice.cybernaut.in', features:['500+ DSA, SQL & Logic problems','Daily 2-problem streak requirement','Company-specific problem tracks','Completion certificates per track'] },
+      { name:'Cybernaut LMS', ic:'bookopen', accent:'#06b6d4', pill:'Learning', pillBg:'rgba(6,182,212,.1)', tagline:'Track every step. Build the habit.', url:'lms.cybernaut.in', features:['Daily quiz and assignment grading','Attendance logged per live session','Project reviews scheduled and tracked','Streak counter and progress rings'] },
+      { name:'Cybernaut ERP', ic:'briefcase', accent:'#8b5cf6', pill:'Workflow', pillBg:'rgba(139,92,246,.12)', tagline:'Work like a professional from Day 1.', url:'erp.cybernaut.in', features:['Task assignment and sprint planning','Daily work review by your mentor','Code review and feedback logged','Project milestone and delivery tracking'] }
+    ].map(t => ({ ...t, iconEl: this.buildIcon(t.ic, 44, t.accent, 1.2) }));
+
+    const codingProblems = [
+      { name:'Two Sum', status:'Solved', color:'#22c55e', bg:'#166534' },
+      { name:'Reverse List', status:'Attempted', color:'#fb923c', bg:'#92400e' },
+      { name:'Binary Tree', status:'Medium', color:'#94a3b8', bg:'rgba(148,163,184,.14)' },
+      { name:'Sliding Max', status:'Hard', color:'#94a3b8', bg:'rgba(148,163,184,.14)' },
+      { name:'LRU Cache', status:'Hard', color:'#94a3b8', bg:'rgba(148,163,184,.14)' }
+    ];
+
+    const kanbanCols = [
+      { title:'To Do', headColor:'#64748b', bg:'#f8fafc', count:'2', cards:[
+        { title:'Build REST API endpoints', edge:'#e2e8f0', titleColor:'#0f172a', deco:'none', tag:'Backend', tagColor:'#3b82f6', tagBg:'#eff6ff', meta:'Due Thu · High' },
+        { title:'Write unit tests', edge:'#e2e8f0', titleColor:'#0f172a', deco:'none', tag:'Testing', tagColor:'#8b5cf6', tagBg:'#f5f3ff', meta:'Due Fri' }
+      ]},
+      { title:'In Progress', headColor:'#3b82f6', bg:'#eff6ff', count:'1', cards:[
+        { title:'Integrate payment gateway', edge:'#3b82f6', titleColor:'#0f172a', deco:'none', tag:'In Progress', tagColor:'#3b82f6', tagBg:'#dbeafe', meta:'Day 3 of sprint' }
+      ]},
+      { title:'In Review', headColor:'#ea580c', bg:'#fff7ed', count:'1', cards:[
+        { title:'DB Schema Design', edge:'#ea580c', titleColor:'#0f172a', deco:'none', tag:'In Review', tagColor:'#ea580c', tagBg:'#fff7ed', meta:'"Add indexing for user_id"' }
+      ]},
+      { title:'Done', headColor:'#22c55e', bg:'#f0fdf4', count:'2', cards:[
+        { title:'Auth module', edge:'#22c55e', titleColor:'#64748b', deco:'line-through', tag:'Done', tagColor:'#22c55e', tagBg:'#f0fdf4', meta:'Reviewed' },
+        { title:'API documentation', edge:'#22c55e', titleColor:'#64748b', deco:'line-through', tag:'Done', tagColor:'#22c55e', tagBg:'#f0fdf4', meta:'Reviewed' }
+      ]}
+    ];
+
+    const impactBase = ['5,000+ Active Learners','35,000+ Completed','95% Success','75,000+ B2B Trained','SSN Hackathon Partner','20+ Industry Visits'];
+    const impactTicker = impactBase.concat(impactBase, impactBase).map((label, i) => ({ label, _k:i }));
+
+    return { tickerLoop, heroTrust, heroRing, heroStreaks, galBoxA, galBoxB, starRow1, starRow2, studentFeatures, collegeFeatures, productTools, courseTabs, courseCards, lmsTiles, lmsRows, lmsChips, b2cStats, b2bStats, related, impactTicker, codingProblems, kanbanCols };
+  }
+
+  renderVals() {
+    return { ...this.navData(), ...this.pageData() };
+  }
+}
+</script>
+</body>
+</html>

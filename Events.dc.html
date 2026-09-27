@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./media-slot.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  @keyframes he-grid{from{background-position:0 0}to{background-position:0 46px}}
+  @keyframes he-spinY{from{transform:translate(-50%,-50%) rotateY(0)}to{transform:translate(-50%,-50%) rotateY(360deg)}}
+  @keyframes he-seam{0%,100%{opacity:.5;transform:translateX(-50%) scaleY(.92)}50%{opacity:1;transform:translateX(-50%) scaleY(1)}}
+  @keyframes he-core{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(.85)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+  @keyframes he-breatheO{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:.9;transform:scale(1.12)}}
+  @keyframes he-breatheB{0%,100%{opacity:.5;transform:scale(.92)}50%{opacity:.9;transform:scale(1.14)}}
+  @keyframes he-glowO{0%,100%{opacity:.55;box-shadow:0 0 18px rgba(255,176,0,.6)}50%{opacity:1;box-shadow:0 0 34px rgba(255,176,0,.95)}}
+  @keyframes he-glowB{0%,100%{opacity:.55;box-shadow:0 0 18px rgba(0,163,255,.6)}50%{opacity:1;box-shadow:0 0 34px rgba(0,163,255,.95)}}
+  @keyframes he-emberUp{0%{transform:translateY(0) scale(1);opacity:0}12%{opacity:1}100%{transform:translateY(-320px) scale(.4);opacity:0}}
+  @keyframes he-sparkDown{0%{transform:translateY(-40px) scale(1);opacity:0}12%{opacity:1}100%{transform:translateY(300px) scale(.4);opacity:0}}
+  @keyframes he-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+  .he-wrap{position:relative;width:100%;overflow:hidden;background:#050505;perspective:1300px;font-family:'Poppins',sans-serif;container-type:inline-size}
+  .he-3d{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(calc(var(--mx,0)*9deg)) rotateX(calc(var(--my,0)*-9deg));transition:transform .18s ease-out}
+  .he-plane{position:absolute;transform-style:preserve-3d}
+  .he-cta{padding:13px 26px;border-radius:100px;font-family:'Poppins';font-weight:600;font-size:14px;cursor:pointer;border:none;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+  .he-cta:hover{transform:translateY(-3px)}
+  .he-tile{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:60px;padding:11px 8px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14)}
+  .he-tile b{font-family:'Radio Canada Big';font-weight:700;font-size:clamp(20px,6cqw,30px);line-height:1;color:#fff}
+  .he-tile span{font-size:9px;letter-spacing:.16em;color:rgba(255,255,255,.55)}
+  @media (prefers-reduced-motion:reduce){.he-grid,.he-sq,.he-seam,.he-core,.he-bo,.he-bb,.he-barO,.he-barB,.he-ember,.he-spark,.he-dot{animation:none!important}}
+  @media(max-width:1100px) and (min-width:761px){
+    [data-he-left]{width:46%!important;clip-path:polygon(0 0,100% 0,84% 100%,0 100%)!important}
+    [data-he-right]{width:46%!important;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)!important}
+  }
+  @media(max-width:760px){
+    [data-he-hero]{height:100svh!important;min-height:640px!important}
+    [data-he-tilt]{transform:none!important}
+    [data-he-left],[data-he-right]{top:0!important;bottom:0!important;width:56%!important;transform:none!important}
+    [data-he-left]{clip-path:polygon(0 0,100% 0,78% 100%,0 100%)!important}
+    [data-he-right]{clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)!important}
+    [data-he-img-h]{object-fit:cover!important;object-position:72% 30%!important}
+    [data-he-img-a]{object-fit:cover!important;object-position:30% 30%!important}
+    [data-he-content]{padding:64px 14px 130px!important;background:radial-gradient(70% 45% at 50% 44%,rgba(0,0,0,.72),rgba(0,0,0,.25) 70%,transparent)}
+  }
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{background:#fff!important;margin:0!important;padding:0!important}
+  body{overflow-x:hidden}
+  a{color:#2F7BFF;text-decoration:none}
+  a:hover{color:#1FD3E8}
+  ::selection{background:rgba(47,123,255,.18);color:#0A1124}
+  @keyframes cnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes cnFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  @keyframes cnLive{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 9px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+  @keyframes cnLiveDot{0%,100%{opacity:1}50%{opacity:.35}}
+  @keyframes cnMarqL{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  @keyframes cnMarqR{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .cn-track{display:flex;width:max-content}
+  .cn-track>*{margin-right:16px}
+  .cn-track.lr{animation:cnMarqL 38s linear infinite}
+  .cn-track.rl{animation:cnMarqR 44s linear infinite}
+  .cn-marq:hover .cn-track{animation-play-state:paused}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+  media-slot{display:block;width:100%;height:100%}
+  @media(hover:hover) and (pointer:fine){[data-cursor]{display:block}a,button,[data-magnetic]{cursor:none}body{cursor:none}}
+  @media(max-width:980px){
+    [data-hero-grid]{grid-template-columns:1fr!important}
+    [data-prog-grid]{grid-template-columns:1fr!important}
+    [data-cw-grid]{grid-template-columns:1fr!important}
+    [data-flag-grid]{grid-template-columns:1fr!important}
+    [data-motive-grid]{grid-template-columns:1fr!important}
+    [data-gallery-grid]{grid-template-columns:1fr!important}
+    [data-podium-grid]{grid-template-columns:1fr!important}
+    [data-growth-grid]{grid-template-columns:repeat(2,1fr)!important}
+    [data-suite-grid]{grid-template-columns:1fr!important}
+    [data-suite-4]{grid-template-columns:repeat(2,1fr)!important}
+    [data-suite-phone]{position:static!important;transform:none!important;margin:24px auto 0!important}
+    [data-suite-stage]{padding:0!important}
+    [data-flag-line]{display:none!important}
+    [data-stat-grid]{grid-template-columns:repeat(2,1fr)!important}
+    [data-bento-grid]{grid-template-columns:repeat(2,1fr)!important;grid-auto-rows:132px!important}
+    [data-bento-grid]>*{grid-column:auto!important;grid-row:auto!important}
+    [data-shout-grid]{grid-template-columns:repeat(2,1fr)!important}
+    [data-lead-row]{grid-template-columns:44px 1fr auto auto!important}
+    [data-cta-grid]{grid-template-columns:1fr!important}
+  }
+  @media(max-width:640px){[data-hero-chips]{grid-template-columns:1fr!important}
+    [data-suite-phone]{display:none!important}
+    [data-shout-grid]{grid-template-columns:1fr!important}
+    [data-bento-grid]{grid-auto-rows:118px!important}
+    [data-cat-panel]{flex-direction:column!important;align-items:flex-start!important;gap:16px!important;padding:22px!important;text-align:left}
+    [data-cat-panel] [data-cat-view]{width:100%;justify-content:center}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+</style>
+</helmet>
+
+<div style="--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8;position:relative;min-height:100vh;background:#fff;font-family:'Poppins',sans-serif;color:#0A1124;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--g1);margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--g3);margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px var(--g3)"></div>
+  <canvas id="cn-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <dc-import name="Navbar" active="Events" hero-theme="auto" hint-size="100%,0"></dc-import>
+
+  <div style="position:relative;z-index:2;background:#fff">
+
+  <!-- NAV -->
+
+  <!-- HERO · AARVAM YOU vs AI -->
+  <section data-he-hero style="position:relative;overflow:hidden;height:100vh;height:100svh;min-height:560px;background:#000">
+    <div class="he-wrap" data-he-wrap style="height:100%;position:absolute;inset:0">
+      <div class="he-3d" data-he-tilt>
+        <div class="he-plane" style="inset:-8%;transform:translateZ(-160px);background:radial-gradient(40% 40% at 16% 46%,rgba(255,176,0,.28),transparent 40%),radial-gradient(40% 40% at 84% 56%,rgba(0,163,255,.28),transparent 40%)"></div>
+        <div class="he-plane he-grid" style="left:0;right:0;bottom:0;height:360px;transform:translateZ(-40px) rotateX(74deg);transform-origin:bottom center;background-image:linear-gradient(rgba(255,176,0,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(0,163,255,.5) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:linear-gradient(0deg,#000 0%,transparent 78%);mask-image:linear-gradient(0deg,#000 0%,transparent 78%);animation:he-grid 3.5s linear infinite"></div>
+        <div class="he-plane he-sq" style="left:50%;top:50%;width:280px;height:280px;transform:translate(-50%,-50%) translateZ(-90px);border:1px solid rgba(255,255,255,.12);animation:he-spinY 22s linear infinite"></div>
+
+        <div class="he-plane" data-he-left style="left:0;top:0;bottom:0;width:40%;transform:translateZ(-30px);clip-path:polygon(0 0,100% 0,72% 100%,0 100%);overflow:hidden">
+          <img src="assets/aarvam/hero-human-opt.webp" alt="Human face, fire-lit profile" data-he-img-h style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 30%;display:block" />
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,90,0,.32),transparent 65%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,5,.7),transparent 46%)"></div>
+          <div class="he-bo" style="position:absolute;left:-40px;top:40%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,0,.5),transparent 68%);filter:blur(30px);animation:he-breatheO 4.5s ease-in-out infinite"></div>
+          <div class="he-barO" style="position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#FFB000,transparent);animation:he-glowO 2.6s ease-in-out infinite"></div>
+          <span class="he-ember" style="position:absolute;left:20%;bottom:6%;width:5px;height:5px;border-radius:50%;background:#FFB000;box-shadow:0 0 8px #FFB000;animation:he-emberUp 3.6s linear infinite"></span>
+          <span class="he-ember" style="position:absolute;left:38%;bottom:4%;width:4px;height:4px;border-radius:50%;background:#FF8C00;box-shadow:0 0 8px #FF8C00;animation:he-emberUp 4.2s linear infinite .6s"></span>
+          <span class="he-ember" style="position:absolute;left:12%;bottom:10%;width:6px;height:6px;border-radius:50%;background:#FFB000;box-shadow:0 0 10px #FFB000;animation:he-emberUp 3.2s linear infinite 1.1s"></span>
+          <span class="he-ember" style="position:absolute;left:52%;bottom:8%;width:3px;height:3px;border-radius:50%;background:#FFB000;box-shadow:0 0 6px #FFB000;animation:he-emberUp 4.6s linear infinite 1.6s"></span>
+          <span class="he-ember" style="position:absolute;left:28%;bottom:2%;width:4px;height:4px;border-radius:50%;background:#FF8C00;box-shadow:0 0 8px #FF8C00;animation:he-emberUp 3.9s linear infinite 2.1s"></span>
+          <span class="he-ember" style="position:absolute;left:44%;bottom:12%;width:5px;height:5px;border-radius:50%;background:#FFB000;box-shadow:0 0 9px #FFB000;animation:he-emberUp 4.1s linear infinite 2.7s"></span>
+        </div>
+
+        <div class="he-plane" data-he-right style="right:0;top:0;bottom:0;width:40%;transform:translateZ(-30px);clip-path:polygon(28% 0,100% 0,100% 100%,0 100%);overflow:hidden">
+          <img src="assets/aarvam/hero-ai-opt.webp" alt="AI robot face profile" data-he-img-a style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 30%;display:block" />
+          <div style="position:absolute;inset:0;background:linear-gradient(270deg,rgba(0,120,255,.32),transparent 65%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,5,.7),transparent 46%)"></div>
+          <div class="he-bb" style="position:absolute;right:-40px;top:40%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,163,255,.5),transparent 68%);filter:blur(30px);animation:he-breatheB 5s ease-in-out infinite"></div>
+          <div class="he-barB" style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,transparent,#00A3FF,transparent);animation:he-glowB 2.6s ease-in-out infinite"></div>
+          <span class="he-spark" style="position:absolute;right:20%;top:4%;width:5px;height:5px;border-radius:50%;background:#00A3FF;box-shadow:0 0 8px #00A3FF;animation:he-sparkDown 3.6s linear infinite"></span>
+          <span class="he-spark" style="position:absolute;right:40%;top:2%;width:4px;height:4px;border-radius:50%;background:#66d0ff;box-shadow:0 0 8px #66d0ff;animation:he-sparkDown 4.2s linear infinite .6s"></span>
+          <span class="he-spark" style="position:absolute;right:12%;top:8%;width:6px;height:6px;border-radius:50%;background:#00A3FF;box-shadow:0 0 10px #00A3FF;animation:he-sparkDown 3.2s linear infinite 1.1s"></span>
+          <span class="he-spark" style="position:absolute;right:52%;top:6%;width:3px;height:3px;border-radius:50%;background:#00A3FF;box-shadow:0 0 6px #00A3FF;animation:he-sparkDown 4.6s linear infinite 1.6s"></span>
+          <span class="he-spark" style="position:absolute;right:30%;top:1%;width:4px;height:4px;border-radius:50%;background:#66d0ff;box-shadow:0 0 8px #66d0ff;animation:he-sparkDown 3.9s linear infinite 2.1s"></span>
+          <span class="he-spark" style="position:absolute;right:46%;top:10%;width:5px;height:5px;border-radius:50%;background:#00A3FF;box-shadow:0 0 9px #00A3FF;animation:he-sparkDown 4.1s linear infinite 2.7s"></span>
+        </div>
+
+        <div class="he-core" style="position:absolute;left:50%;top:50%;width:260px;height:260px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.28),rgba(255,176,0,.18) 34%,rgba(0,163,255,.16) 60%,transparent 74%);filter:blur(6px);animation:he-core 3s ease-in-out infinite;z-index:2"></div>
+
+        <div class="he-plane" data-he-content style="left:0;right:0;top:0;bottom:0;transform:translateZ(70px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4vw;z-index:5">
+          <div style="display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,.22);background:rgba(5,5,5,.4);backdrop-filter:blur(4px)">
+            <span class="he-dot" style="width:7px;height:7px;border-radius:50%;background:#FFB000;box-shadow:0 0 8px #FFB000;animation:he-pulse 1.6s ease-in-out infinite"></span>
+            <span data-he-badge style="font-size:clamp(8px,2.3cqw,11px);letter-spacing:.18em;color:rgba(255,255,255,.82);font-weight:500">CYBERNAUT EDTECH PRESENTS · 24-HOUR HACKATHON</span>
+          </div>
+          <div style="width:clamp(150px,20vw,238px);aspect-ratio:238/90;margin-top:2.2vh;filter:drop-shadow(0 0 18px rgba(255,176,0,.55));transform:translateZ(40px);position:relative">
+            <img src="assets/aarvam/hero-logo-opt.webp" alt="AARVAM" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain" />
+          </div>
+          <h1 style="margin-top:1.6vh;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(34px,11cqw,94px);line-height:.86;white-space:nowrap;transform:translateZ(50px);display:flex;align-items:baseline;gap:.2em;max-width:100%">
+            <span style="background:linear-gradient(180deg,#FFE29A,#FFB000);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 14px rgba(255,176,0,.5))">YOU</span>
+            <span style="font-style:italic;font-size:.34em;letter-spacing:.06em;color:#fff;text-shadow:0 0 14px rgba(255,255,255,.7),0 0 26px rgba(0,163,255,.6)">vs</span>
+            <span style="background:linear-gradient(180deg,#B9E6FF,#00A3FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 14px rgba(0,163,255,.5))">AI</span>
+          </h1>
+          <div style="margin-top:2vh;display:flex;align-items:center;gap:16px;transform:translateZ(30px)">
+            <span style="width:clamp(28px,6vw,70px);height:2px;background:linear-gradient(90deg,transparent,#FFB000)"></span>
+            <span style="font-size:clamp(12px,3cqw,15px);font-weight:600;color:#fff;letter-spacing:.02em;white-space:nowrap">October 24 &amp; 25, 2026 · Karur</span>
+            <span style="width:clamp(28px,6vw,70px);height:2px;background:linear-gradient(90deg,#00A3FF,transparent)"></span>
+          </div>
+          <div style="margin-top:2.4vh;display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+            <a href="Contact.dc.html" class="he-cta" style="background:#FFB000;color:#1a1200;box-shadow:0 12px 30px rgba(255,176,0,.4)">Register Your Team →</a>
+          </div>
+          <div data-he-tiles style="margin-top:2.6vh;display:flex;gap:12px;transform:translateZ(20px)">
+            <div class="he-tile"><b data-cd="d">00</b><span>DAYS</span></div>
+            <div class="he-tile"><b data-cd="h">00</b><span>HRS</span></div>
+            <div class="he-tile"><b data-cd="m">00</b><span>MIN</span></div>
+            <div class="he-tile" style="border-color:rgba(255,176,0,.6)"><b data-cd="s" style="color:#FFB000">00</b><span>SEC</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null, activeCat: 0 };
+
+  componentDidMount() {
+    this.initBg(); this.initReveal(); this.initCounters(); this.initCursor(); this.initTilt(); this.initAarvamHero();
+  }
+  initTilt() {
+    const scene = document.querySelector('[data-tilt-scene]'); if (!scene) return;
+    const card = scene.querySelector('[data-tilt]'); if (!card) return;
+    if (window.matchMedia && !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    this._tiltMove = (e) => {
+      const r = scene.getBoundingClientRect();
+      const px = (e.clientX - r.left)/r.width - .5, py = (e.clientY - r.top)/r.height - .5;
+      card.style.animation = 'none';
+      card.style.transform = `rotateY(${px*11}deg) rotateX(${-py*11}deg)`;
+    };
+    this._tiltLeave = () => { card.style.transform = 'rotateY(0deg) rotateX(0deg)'; card.style.animation = ''; };
+    scene.addEventListener('mousemove', this._tiltMove);
+    scene.addEventListener('mouseleave', this._tiltLeave);
+    this._tiltScene = scene;
+  }
+  initAarvamHero() {
+    const wrap = document.querySelector('[data-he-wrap]');
+    const tilt = document.querySelector('[data-he-tilt]');
+    if (wrap && tilt) {
+      this._heMove = (e) => {
+        const r = wrap.getBoundingClientRect();
+        tilt.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+        tilt.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+      };
+      this._heLeave = () => { tilt.style.setProperty('--mx', 0); tilt.style.setProperty('--my', 0); };
+      wrap.addEventListener('mousemove', this._heMove);
+      wrap.addEventListener('mouseleave', this._heLeave);
+      this._heWrap = wrap;
+    }
+    const pad = (n) => String(n).padStart(2, '0');
+    const target = new Date('2026-10-24T11:00:00+05:30').getTime();
+    const tick = () => {
+      let diff = Math.max(0, target - Date.now());
+      const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000); diff -= h * 3600000;
+      const m = Math.floor(diff / 60000); diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      const set = (k, v) => { const el = document.querySelector('[data-cd="' + k + '"]'); if (el) el.textContent = pad(v); };
+      set('d', d); set('h', h); set('m', m); set('s', s);
+    };
+    tick();
+    this._heCd = setInterval(tick, 1000);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    clearInterval(this._heCd);
+    if (this._heWrap) { this._heWrap.removeEventListener('mousemove', this._heMove); this._heWrap.removeEventListener('mouseleave', this._heLeave); }
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+    if (this._tiltScene) { this._tiltScene.removeEventListener('mousemove', this._tiltMove); this._tiltScene.removeEventListener('mouseleave', this._tiltLeave); }
+  }
+
+  ic(key, size, sw) {
+    var P = {
+      calendar: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>',
+      mapPin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>',
+      users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>',
+      clock: '<circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>',
+      radio: '<circle cx="12" cy="12" r="2"></circle><path d="M4.93 19.07a10 10 0 0 1 0-14.14M19.07 4.93a10 10 0 0 1 0 14.14M7.76 16.24a6 6 0 0 1 0-8.48M16.24 7.76a6 6 0 0 1 0 8.48"></path>',
+      flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line>',
+      arrow: '<line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>',
+      play: '<polygon points="6 4 20 12 6 20 6 4"></polygon>',
+      sunrise: '<path d="M17 18a5 5 0 0 0-10 0"></path><line x1="12" y1="2" x2="12" y2="9"></line><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line><line x1="1" y1="18" x2="3" y2="18"></line><line x1="21" y1="18" x2="23" y2="18"></line><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line><line x1="23" y1="22" x2="1" y2="22"></line><polyline points="8 6 12 2 16 6"></polyline>',
+      trophy: '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>',
+      landmark: '<line x1="3" y1="22" x2="21" y2="22"></line><line x1="6" y1="18" x2="6" y2="11"></line><line x1="10" y1="18" x2="10" y2="11"></line><line x1="14" y1="18" x2="14" y2="11"></line><line x1="18" y1="18" x2="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon>',
+      rocket: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>',
+      target: '<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>',
+      refresh: '<polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>',
+      check: '<polyline points="20 6 9 17 4 12"></polyline>',
+      bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path>',
+      camera: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle>',
+      quote: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+      code: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+      chevUp: '<polyline points="18 15 12 9 6 15"></polyline>',
+      chevDown: '<polyline points="6 9 12 15 18 9"></polyline>',
+      mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>'
+    };
+    return React.createElement('svg', { width:size||16, height:size||16, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:sw||1.7, strokeLinecap:'round', strokeLinejoin:'round', dangerouslySetInnerHTML:{ __html:P[key]||'' } });
+  }
+
+  initBg() {
+    const cv = document.getElementById('cn-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._bgResize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(47,123,255,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(47,123,255,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const dec = parseInt(el.getAttribute('data-decimals')||'0');
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t0)/dur,1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      el.textContent = dec ? val.toFixed(dec) : Math.floor(val).toLocaleString('en-IN');
+      if (p<1) requestAnimationFrame(step); else el.textContent = dec ? target.toFixed(dec) : target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._done) return; el._done = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.3 });
+      setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 100);
+      setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 2600);
+    } else { document.querySelectorAll('[data-count]').forEach(fire); }
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('cn-dot'), ring = document.getElementById('cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(47,123,255,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#1FD3E8'; };
+    this._onUp = () => { ring.style.borderColor='#2F7BFF'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #2F7BFF;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  navData() {
+    const navDefs = [
+      { label:'Home', href:'Home.dc.html#hero' },
+      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html', active:true },
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const navItems = navDefs.map(n => ({
+      label:n.label, href:n.href, title:'',
+      caret: !!n.mega, color: n.active ? '#2F7BFF' : '#475569',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Programs Students.dc.html#foundation' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Programs Students.dc.html#professional' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Student Login', href:'Login.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
+      { name:'YouTube', ic:'YT', href:'#' }, { name:'WhatsApp', ic:'WA', href:'#' }, { name:'X', ic:'X', href:'#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+
+  pageData() {
+    const heroStats = [
+      { iconEl:this.ic('calendar',17,1.7), v:'120+', l:'Events a year' },
+      { iconEl:this.ic('sunrise',17,1.7), v:'48', l:'Sunday sessions' },
+      { iconEl:this.ic('landmark',17,1.7), v:'20+', l:'Campus hackathons' }
+    ];
+
+    const ticker = [
+      { iconEl:this.ic('rocket',14,1.7), color:'#C4B5FD', title:'Full Stack Masterclass', meta:'Sun 10AM' },
+      { iconEl:this.ic('trophy',14,1.7), color:'#8FC0FF', title:'Weekly Contest #45', meta:'1,240 in' },
+      { iconEl:this.ic('landmark',14,1.7), color:'#7EE2A8', title:'AARVAM Summit', meta:'Aug 2026' },
+      { iconEl:this.ic('sunrise',14,1.7), color:'#FBD38D', title:'Data Analytics Class', meta:'Free' },
+      { iconEl:this.ic('code',14,1.7), color:'#7EE7F5', title:'Code Cup National', meta:'23 May' },
+      { iconEl:this.ic('rocket',14,1.7), color:'#C4B5FD', title:'MAANG & Career Growth', meta:'Sun 7PM' }
+    ];
+    const tickerLoop = ticker.concat(ticker);
+
+    const spotlight = {
+      tag:'FLAGSHIP HACKATHON', title:'Aarvam Hackathon', when:'Registrations open soon',
+      where:'Karur Campus · Flagship event', cta:'Get notified', href:'Contact.dc.html'
+    };
+
+    const thisWeek = [
+      { img:'ev-cw1', day:'★', mon:'FREE', tag:'FREE MASTERCLASS', title:'Cracking MAANG & Career Growth with AI', meta:'Free · Sun 10AM / 7PM', cta:'Book slot', href:'Contact.dc.html', status:'Booking open', statusColor:'#0B7A3B', statusBg:'#E6F6EC' },
+      { img:'ev-cw2', day:'★', mon:'FREE', tag:'FREE MASTERCLASS', title:'Full Stack Masterclass', meta:'Free · Sun 10AM / 7PM', cta:'Book slot', href:'Contact.dc.html', status:'Booking open', statusColor:'#0B7A3B', statusBg:'#E6F6EC' },
+      { img:'ev-cw3', day:'★', mon:'FREE', tag:'FREE MASTERCLASS', title:'Data Analytics Masterclass', meta:'Free · Sun 10AM / 7PM', cta:'Book slot', href:'Contact.dc.html', status:'Booking open', statusColor:'#0B7A3B', statusBg:'#E6F6EC' }
+    ];
+
+    const plainFlag = { border:'1px solid #E6ECF3', shadow:'0 6px 22px rgba(10,17,36,.05)', nodeBg:'#fff', nodeColor:'#2F7BFF', tagBg:'rgba(255,255,255,.92)', tagColor:'#0A1124' };
+    const crownFlag = { border:'2px solid #2F7BFF', shadow:'0 20px 46px rgba(47,123,255,.22)', nodeBg:'linear-gradient(135deg,#2F7BFF,#1FD3E8)', nodeColor:'#fff', tagBg:'linear-gradient(135deg,#2F7BFF,#1FD3E8)', tagColor:'#fff' };
+    const flagships = [
+      { month:'MAR', img:'ev-fl1', name:'MetaZEN Launch Meet', date:'14 Mar 2026', place:'Chennai', desc:'The season opener unveiling the community roadmap for the year.', tag:'Kickoff', cta:'View recap', href:'#current', ...plainFlag },
+      { month:'MAY', img:'ev-fl2', name:'Code Cup National', date:'23 May 2026', place:'Online', desc:'A nationwide competitive round drawing thousands of student coders.', tag:'Contest', cta:'View recap', href:'#contest', ...plainFlag },
+      { month:'AUG', img:'ev-fl3', name:'AARVAM Tech Summit', date:'15 to 16 Aug 2026', place:'Karur, TN', desc:'The headline event. Hackathons, expert talks and a project expo with 2,000+ builders.', tag:'Flagship', cta:'Register now', href:'Contact.dc.html', ...crownFlag },
+      { month:'NOV', img:'ev-fl4', name:'Innovate Grand Finale', date:'28 Nov 2026', place:'Campus', desc:'The best projects of the year go head to head for the grand prize.', tag:'Finale', cta:'Notify me', href:'Contact.dc.html', ...plainFlag }
+    ];
+
+    const C = {
+      mas:{a:'#7C3AED',g:'linear-gradient(135deg,#7C3AED,#A855F7)',s:'rgba(124,58,237,.3)',c:'#F3ECFF',ic:'rocket'},
+      sun:{a:'#B45309',g:'linear-gradient(135deg,#F59E0B,#FBBF24)',s:'rgba(245,158,11,.3)',c:'#FEF3E2',ic:'sunrise'},
+      offh:{a:'#0B7A3B',g:'linear-gradient(135deg,#0B7A3B,#22C55E)',s:'rgba(11,122,59,.3)',c:'#E6F6EC',ic:'landmark'},
+      con:{a:'#2F7BFF',g:'linear-gradient(135deg,#2F7BFF,#1FD3E8)',s:'rgba(47,123,255,.3)',c:'#EAF2FF',ic:'trophy'}
+    };
+    const soon = (label) => ([
+      {img:'ev-soon1',day:'-',mon:'SOON',title:'To be announced',desc:'Details will be shared here soon.',meta:label,cta:'Notify me',href:'Contact.dc.html'},
+      {img:'ev-soon2',day:'-',mon:'SOON',title:'Stay tuned',desc:'Dates and registration open shortly.',meta:label,cta:'Notify me',href:'Contact.dc.html'},
+      {img:'ev-soon3',day:'-',mon:'SOON',title:'Get notified',desc:'Drop your email in the alerts box below.',meta:label,cta:'Notify me',href:'Contact.dc.html'}
+    ]);
+    const cats = [
+      { id:'masterclass', t:C.mas, kicker:'MASTERCLASS', cadence:'Free · Every Sunday', title:'Masterclass', desc:'Free live masterclasses every weekend Sunday, two slots: 10 AM–12.30 PM and 7 PM–9.30 PM. Pick a track and book your slot.', href:'Contact.dc.html', linkLabel:'Explore all',
+        events:[
+          {img:'ev-mc1',day:'★',mon:'FREE',title:'Cracking MAANG & Career Growth with AI',desc:'Ace product-company hiring and grow your career with AI.',meta:'Free · Sun 10AM / 7PM',cta:'Book slot',href:'Contact.dc.html'},
+          {img:'ev-mc2',day:'★',mon:'FREE',title:'Full Stack Masterclass',desc:'Build and deploy a full-stack app, hands-on and live.',meta:'Free · Sun 10AM / 7PM',cta:'Book slot',href:'Contact.dc.html'},
+          {img:'ev-mc3',day:'★',mon:'FREE',title:'Data Analytics Masterclass',desc:'Hands-on Excel, SQL and Power BI from scratch.',meta:'Free · Sun 10AM / 7PM',cta:'Book slot',href:'Contact.dc.html'}
+        ]},
+      { id:'sunday-series', t:C.sun, kicker:'MONTHLY', cadence:'Announcing soon', title:'Sunday Series', desc:'Our monthly Sunday Series events will be announced soon, stay tuned for the next lineup of sessions.', href:'Sunday Series.dc.html', linkLabel:'Notify me',
+        events: soon('Announcing soon') },
+      { id:'hackathons', t:C.offh, kicker:'FLAGSHIP EVENT', cadence:'October · announcing soon', title:'Aarvam Hackathon', desc:'Our flagship offline hackathon lands this October. Registration and full announcement are coming soon, get your team ready to build.', href:'#hackathons', linkLabel:'Notify me',
+        events: soon('October · soon') },
+      { id:'contest', t:C.con, kicker:'WEEKLY', cadence:'Coming soon', title:'Coding Contests', desc:'Timed coding contests connected to your portal ranking are coming soon.', href:'#contest', linkLabel:'Notify me',
+        events: soon('Coming soon') }
+    ];
+    const eventCategories = cats.map((c,i)=>({
+      id:c.id, iconEl:this.ic(c.t.ic,25,1.8), kicker:c.kicker, cadence:c.cadence, title:c.title, desc:c.desc, href:c.href, linkLabel:c.linkLabel, events:c.events,
+      accent:c.t.a, accentGrad:c.t.g, accentShadow:c.t.s, chipBg:c.t.c,
+      bg: i % 2 === 0 ? '#fff' : '#F7F9FC'
+    }));
+    const active = this.state.activeCat;
+    const catTabs = cats.map((c,i)=>({
+      iconEl:this.ic(c.t.ic,18,1.8), label:c.title, accent:c.t.a,
+      selected: i===active ? 'true' : 'false',
+      tabColor: i===active ? '#0A1124' : '#94a3b8',
+      tabColorDark: i===active ? '#ffffff' : '#8695ad',
+      tabBar: i===active ? c.t.g : 'transparent',
+      select: () => this.setState({ activeCat:i })
+    }));
+    const ac = cats[active];
+    const catPanel = {
+      iconLg:this.ic(ac.t.ic,28,1.7), kicker:ac.kicker, cadence:ac.cadence, title:ac.title,
+      desc:ac.desc, href: 'Contact.dc.html', accent:ac.t.a, grad:ac.t.g, shadow:ac.t.s, panelBg:ac.t.c
+    };
+    const catEvents = ac.events.map(e=>({ ...e, accent:ac.t.a, grad:ac.t.g, href: e.href || catPanel.href }));
+    const G = { amber:'linear-gradient(135deg,#F59E0B,#FBBF24)', blue:'linear-gradient(135deg,#2F7BFF,#1FD3E8)', violet:'linear-gradient(135deg,#7C3AED,#A855F7)', green:'linear-gradient(135deg,#0B7A3B,#22C55E)', pink:'linear-gradient(135deg,#EC4899,#F472B6)' };
+    const av = (name) => 'https://api.dicebear.com/9.x/adventurer/svg?seed=' + encodeURIComponent(name) + '&radius=50&backgroundColor=transparent';
+    const avEl = (name) => React.createElement('img', { src: av(name), alt: name, style: { width:'100%', height:'100%', objectFit:'cover', display:'block' } });
+    const avSlot = (id, name) => React.createElement('media-slot', { id, shape:'circle', placeholder: name });
+    // podium order: 2nd, 1st, 3rd
+    const podium = [
+      { name:'Diya Kapoor', pts:'2,810', medal:'2', grad:G.blue, softGrad:'linear-gradient(180deg,#EAF2FF,#fff)', softB:'#D7E8FF', accent:'#2F7BFF', sh:'rgba(47,123,255,.3)', av:'62px', h:'96px' },
+      { name:'Aarav Menon', pts:'2,940', medal:'1', grad:G.amber, softGrad:'linear-gradient(180deg,#FEF6E7,#fff)', softB:'#FADFA6', accent:'#B45309', sh:'rgba(245,158,11,.32)', av:'78px', h:'132px' },
+      { name:'Rohan Suresh', pts:'2,655', medal:'3', grad:G.violet, softGrad:'linear-gradient(180deg,#F3ECFF,#fff)', softB:'#E2D3FB', accent:'#7C3AED', sh:'rgba(124,58,237,.3)', av:'56px', h:'78px' }
+    ].map(p => ({ ...p, avatarEl: avSlot('ev-av-podium-'+p.medal, p.name) }));
+    const filmCaps = ['Hack finale','Main stage','Winners','Workshop','Team huddle','Award night'];
+    const filmstrip = filmCaps.map((c,i)=>({ img:'ev-fs'+(i+1), img2:'ev-fsb'+(i+1), cap:c }));
+
+    const contestMeta = [
+      { iconEl:this.ic('users',14,1.8), v:'1,240', l:'coders' },
+      { iconEl:this.ic('code',14,1.9), v:'4', l:'problems' },
+      { iconEl:this.ic('clock',14,1.8), v:'90m', l:'duration' }
+    ];
+    const gradCycle = [G.blue, G.violet, G.green, G.pink, G.amber];
+    const leaderRows = [
+      { rank:4, name:'Aisha Khan', campus:'Trichy', solved:'38', pts:'2,540', dir:'up', d:'+2' },
+      { rank:5, name:'Karthik V', campus:'Salem', solved:'36', pts:'2,480', dir:'up', d:'+1' },
+      { rank:6, name:'Sneha Ramesh', campus:'Coimbatore', solved:'35', pts:'2,410', dir:'down', d:'-2' },
+      { rank:7, name:'Vikram Anand', campus:'Chennai', solved:'34', pts:'2,360', dir:'up', d:'+3' },
+      { rank:8, name:'Priya Das', campus:'Karur', solved:'33', pts:'2,290', dir:'down', d:'-1' },
+      { rank:9, name:'Nikhil Rao', campus:'Madurai', solved:'31', pts:'2,240', dir:'up', d:'+4' },
+      { rank:10, name:'Meera Iyer', campus:'Erode', solved:'30', pts:'2,180', dir:'down', d:'-1' }
+    ].map((r,i)=>({ ...r, grad:gradCycle[i%gradCycle.length], avatarEl:avSlot('ev-av-rank-'+r.rank, r.name), delta:r.d, deltaColor: r.dir==='up' ? '#0B7A3B' : '#DC2626', deltaEl:this.ic(r.dir==='up'?'chevUp':'chevDown',13,2.4) }));
+    const galleryTiles = [
+      { img:'ev-g1', cap:'AARVAM 2025 · Main stage', badge:'SUMMIT', gc:'span 2', gr:'span 2' },
+      { img:'ev-g2', cap:'Hack finale', badge:'HACKATHON', gc:'span 1', gr:'span 1' },
+      { img:'ev-g3', cap:'Winners circle', badge:'AWARDS', gc:'span 1', gr:'span 1' },
+      { img:'ev-g4', cap:'Workshop day', badge:'WORKSHOP', gc:'span 2', gr:'span 1' },
+      { img:'ev-g5', cap:'Team huddle', badge:'CAMPUS', gc:'span 1', gr:'span 1' },
+      { img:'ev-g6', cap:'Award night', badge:'AWARDS', gc:'span 1', gr:'span 1' },
+      { img:'ev-g7', cap:'Full house crowd', badge:'SUMMIT', gc:'span 2', gr:'span 1' }
+    ];
+    const shoutStrip = [
+      { quote:'The Sunday Series turned a scary topic into something I actually enjoy. I shipped my first full-stack project in two months.', name:'Sneha Ramesh', role:'2nd year · Coimbatore', grad:G.blue },
+      { quote:'Weekly contests made me fast. I stopped fearing timed rounds and started topping them.', name:'Vikram Anand', role:'3rd year · Chennai', grad:G.violet },
+      { quote:'The offline hackathon was electric, 48 hours, a real mentor, and a demo I still show recruiters.', name:'Priya Das', role:'Final year · Karur', grad:G.green },
+      { quote:'I joined for the certificates and stayed for the community. These events changed how I learn.', name:'Karthik V', role:'2nd year · Salem', grad:G.pink }
+    ].map((s,i) => ({ ...s, avatarEl: avEl(s.name) }));
+    const shoutCards = [
+      { quote:'The offline hackathon was 48 hours of pure focus. My team shipped a working app and I finally felt like a real developer.', name:'Priya Das', role:'Final year · Karur', grad:G.green, badge:'Won · AARVAM Hack', badgeBg:'#E6F6EC', badgeColor:'#0B7A3B', badgeIc:'trophy' },
+      { quote:'Weekly contests made me fast. I stopped fearing timed rounds and started topping them.', name:'Vikram Anand', role:'3rd year · Chennai', grad:G.violet, badge:'Rank #1 · Contest #44', badgeBg:'#EAF2FF', badgeColor:'#2F7BFF', badgeIc:'trophy' },
+      { quote:'The Sunday Series turned a scary topic into something I enjoy. I shipped my first full-stack project in two months.', name:'Sneha Ramesh', role:'2nd year · Coimbatore', grad:G.blue, badge:'First project shipped', badgeBg:'#EAF2FF', badgeColor:'#2F7BFF', badgeIc:'rocket' },
+      { quote:'I walked in nervous and walked out with an internship lead. The mentors treat you like a peer, not a student.', name:'Aisha Khan', role:'3rd year · Trichy', grad:G.amber, badge:'Landed an internship', badgeBg:'#FEF3E2', badgeColor:'#B45309', badgeIc:'check' },
+      { quote:'Presenting at the summit expo in front of 2,000 people was terrifying and the best thing I have done.', name:'Rohan Suresh', role:'Final year · Chennai', grad:G.pink, badge:'Expo finalist', badgeBg:'#FDE7F1', badgeColor:'#DB2777', badgeIc:'flag' },
+      { quote:'I joined for the certificates and stayed for the community. These events changed how I learn.', name:'Karthik V', role:'2nd year · Salem', grad:G.blue, badge:'100+ contest points', badgeBg:'#E6F6EC', badgeColor:'#0B7A3B', badgeIc:'trophy' }
+    ].map((s,i) => ({ ...s, avatarEl: avSlot('ev-av-card-'+i, s.name), badgeIconEl:this.ic(s.badgeIc,12,2) }));
+
+    const suiteIntro = 'Every event, contest and hackathon we host lives inside Cybernaut Events. Students sign in, save their seat in a tap and get a personal dashboard to see what is coming next.';
+    const suiteFeatures = [
+      { iconEl:this.ic('calendar',17,1.8), title:'Instant registration', desc:'Find any event and save your seat right away. No forms, no waiting.', grad:G.blue },
+      { iconEl:this.ic('target',17,1.8), title:'Your own dashboard', desc:'See registered events, schedules and results together in one calm view.', grad:G.violet },
+      { iconEl:this.ic('trophy',17,1.8), title:'Live contests and ranks', desc:'Join timed rounds and watch your place on the board move in real time.', grad:G.amber },
+      { iconEl:this.ic('bell',17,1.8), title:'Gentle reminders', desc:'We nudge you before every session so you never miss what you signed up for.', grad:G.green }
+    ];
+    const suiteNav = [
+      { ic:'calendar', active:true }, { ic:'trophy', active:false }, { ic:'target', active:false }, { ic:'users', active:false }, { ic:'bell', active:false }
+    ].map(n => ({ iconEl:this.ic(n.ic,16,1.8), bg: n.active ? 'linear-gradient(135deg,#2F7BFF,#1FD3E8)' : 'transparent', color: n.active ? '#fff' : '#6b7891' }));
+    const suiteStats = [
+      { v:'6', label:'Registered', color:'#2F7BFF' },
+      { v:'2,940', label:'Points', color:'#0B7A3B' },
+      { v:'#1', label:'Rank', color:'#B45309' }
+    ];
+    const suiteEvents = [
+      { iconEl:this.ic('sunrise',15,1.8), title:'System Design Basics', meta:'Sun · 10 AM · Online', status:'Registered', statusBg:'#E6F6EC', statusColor:'#0B7A3B', grad:G.amber },
+      { iconEl:this.ic('trophy',15,1.8), title:'Weekly Contest #45', meta:'Mon · 8 PM · Live', status:'Live', statusBg:'#FEE2E2', statusColor:'#DC2626', grad:G.blue },
+      { iconEl:this.ic('landmark',15,1.8), title:'Campus Code Carnival', meta:'Wed · Karur Campus', status:'Upcoming', statusBg:'#EAF2FF', statusColor:'#2F7BFF', grad:G.green }
+    ];
+    const suiteUserEl = avSlot('ev-av-suite-desk', 'Aarav Menon');
+    const suiteUserPhoneEl = avSlot('ev-av-suite-phone', 'Aarav');
+    const stats = [
+      { target:120, suffix:'+', label:'Events a year' },
+      { target:48, suffix:'', label:'Sunday sessions' },
+      { target:75000, suffix:'+', label:'Participants' },
+      { target:20, suffix:'+', label:'Campus hackathons' }
+    ];
+    const ctaGrads = ['linear-gradient(135deg,#F59E0B,#FBBF24)','linear-gradient(135deg,#2F7BFF,#1FD3E8)','linear-gradient(135deg,#0B7A3B,#22C55E)'];
+    const ctaEvents = thisWeek.map((e,i)=>({ day:e.day, mon:e.mon, title:e.title, meta:e.meta, href:e.href, grad:ctaGrads[i%ctaGrads.length] }));
+    return {
+      heroStats, spotlight, tickerLoop, thisWeek, flagships, eventCategories, catTabs, catPanel, catEvents, podium, filmstrip, shoutStrip,
+      contestMeta, leaderRows, galleryTiles, shoutCards, ctaEvents,
+      suiteIntro, suiteFeatures, suiteNav, suiteStats, suiteEvents, suiteUserEl, suiteUserPhoneEl,
+      icTrophy:this.ic('trophy',20,1.8), icCheck:this.ic('check',17,2.2),
+      icCal:this.ic('calendar',15,1.8), icArrow:this.ic('arrow',16,2), icPlay:this.ic('play',15,1.5),
+      icClock:this.ic('clock',15,1.7), icPin:this.ic('mapPin',15,1.7), icRadio:this.ic('radio',15,1.8),
+      icFlag:this.ic('flag',15,1.8), icCalSm:this.ic('calendar',14,1.7), icPinSm:this.ic('mapPin',14,1.7),
+      icCamera:this.ic('camera',15,1.8), icQuote:this.ic('quote',15,1.8),
+      icBell:this.ic('bell',15,1.8), icMail:this.ic('mail',17,1.7)
+    };
+  }
+
+  renderVals() {
+    return { ...this.navData(), ...this.pageData() };
+  }
+}
+</script>
+</body>
+</html>

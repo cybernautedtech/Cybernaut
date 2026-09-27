@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  @keyframes cmFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(1.5deg)}}
+  @keyframes cmWave{0%,100%{transform:rotate(6deg)}50%{transform:rotate(-30deg)}}
+  @keyframes cmHi{0%,6%{opacity:0;transform:scale(.6) translateY(8px)}12%,44%{opacity:1;transform:scale(1) translateY(0)}50%,100%{opacity:0;transform:scale(.6) translateY(8px)}}
+  @keyframes cmHello{0%,50%{opacity:0;transform:scale(.6) translateY(8px)}56%,94%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(.6) translateY(8px)}}
+  @keyframes cmTwinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+  .cm-astro{animation:cmFloat 5s ease-in-out infinite}
+  .cm-arm{animation:cmWave 1.3s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 92%}
+  .cm-hi{animation:cmHi 4.4s ease-in-out infinite}
+  .cm-hello{animation:cmHello 4.4s ease-in-out infinite}
+</style>
+</helmet>
+<div style="position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+  <span style="position:absolute;top:12%;left:6%;width:5px;height:5px;border-radius:50%;background:#8fd6ff;animation:cmTwinkle 2.2s ease-in-out infinite;pointer-events:none"></span>
+  <span style="position:absolute;top:62%;left:14%;width:4px;height:4px;border-radius:50%;background:#fff;animation:cmTwinkle 2.6s ease-in-out .6s infinite;pointer-events:none"></span>
+  <span style="position:absolute;top:24%;right:8%;width:4px;height:4px;border-radius:50%;background:#8fd6ff;animation:cmTwinkle 3s ease-in-out 1s infinite;pointer-events:none"></span>
+  <div style="position:relative">
+    <div class="cm-hi" style="position:absolute;top:-6px;right:-34px;background:#fff;color:#0A1124;font-family:'Radio Canada Big';font-weight:700;font-size:15px;padding:8px 15px;border-radius:15px 15px 15px 3px;box-shadow:0 8px 22px rgba(0,0,0,.28);z-index:4;white-space:nowrap;display:inline-flex;align-items:center;gap:6px">Hi!<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M6.5 12.5 5 11a1.2 1.2 0 0 1 1.7-1.7l1.1 1.1V5.2a1.2 1.2 0 0 1 2.4 0v4.3m0 0V4.1a1.2 1.2 0 0 1 2.4 0v5.4m0 0V5.3a1.2 1.2 0 0 1 2.4 0v4.9m0-.4a1.2 1.2 0 0 1 2.4 0V14c0 3.2-2 5.6-5.3 5.6-1.8 0-3-.6-4.1-1.9L6.5 12.5Z" fill="#2F7BFF" stroke="#2F7BFF" stroke-width="1.1" stroke-linejoin="round"/></svg></div>
+    <div class="cm-hello" style="position:absolute;top:-6px;right:-46px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-family:'Radio Canada Big';font-weight:700;font-size:15px;padding:8px 15px;border-radius:15px 15px 15px 3px;box-shadow:0 8px 22px rgba(47,123,255,.4);z-index:4;white-space:nowrap;display:inline-flex;align-items:center;gap:6px">Hello!<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2.5c2.6 1.6 4 4.4 4 7.6 0 1.4-.3 2.7-.8 3.8H8.8c-.5-1.1-.8-2.4-.8-3.8 0-3.2 1.4-6 4-7.6z" fill="#fff"/><circle cx="12" cy="9.2" r="1.7" fill="#2F7BFF"/><path d="M8.8 14.9 7.2 18.6l2.3-.9 2.5.9 2.5-.9 2.3.9-1.6-3.7z" fill="#bfefff"/></svg></div>
+    <svg class="cm-astro" viewBox="0 0 220 260" style="width:200px;height:236px;overflow:visible">
+      <defs>
+        <linearGradient id="cmVisor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#123a63"></stop><stop offset="0.55" stop-color="#0a2e57"></stop><stop offset="1" stop-color="#061a33"></stop></linearGradient>
+        <linearGradient id="cmBadge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F7BFF"></stop><stop offset="1" stop-color="#1FD3E8"></stop></linearGradient>
+      </defs>
+      <rect x="66" y="120" width="88" height="86" rx="26" fill="#c7d2e4"></rect>
+      <rect x="34" y="132" width="32" height="74" rx="16" fill="#eef2f8" stroke="#d3dbe8" stroke-width="2"></rect>
+      <circle cx="50" cy="206" r="16" fill="#fff" stroke="#d3dbe8" stroke-width="2"></circle>
+      <rect x="60" y="118" width="100" height="104" rx="34" fill="#fff" stroke="#e2e8f2" stroke-width="2"></rect>
+      <polygon points="110,150 126,159 126,177 110,186 94,177 94,159" fill="url(#cmBadge)"></polygon>
+      <rect x="74" y="206" width="30" height="44" rx="15" fill="#fff" stroke="#e2e8f2" stroke-width="2"></rect>
+      <rect x="116" y="206" width="30" height="44" rx="15" fill="#fff" stroke="#e2e8f2" stroke-width="2"></rect>
+      <rect x="70" y="238" width="38" height="20" rx="10" fill="#2F7BFF"></rect>
+      <rect x="112" y="238" width="38" height="20" rx="10" fill="#2F7BFF"></rect>
+      <circle cx="110" cy="80" r="62" fill="#fff" stroke="#e2e8f2" stroke-width="2"></circle>
+      <rect x="66" y="50" width="88" height="66" rx="30" fill="url(#cmVisor)"></rect>
+      <ellipse cx="90" cy="70" rx="15" ry="10" fill="rgba(255,255,255,.32)"></ellipse>
+      <circle cx="131" cy="93" r="6" fill="rgba(255,255,255,.22)"></circle>
+      <g class="cm-arm">
+        <rect x="150" y="72" width="30" height="86" rx="15" fill="#eef2f8" stroke="#d3dbe8" stroke-width="2"></rect>
+        <circle cx="165" cy="66" r="18" fill="#fff" stroke="#d3dbe8" stroke-width="2"></circle>
+      </g>
+    </svg>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:230,&quot;height&quot;:280}}"></script>
+</body>
+</html>

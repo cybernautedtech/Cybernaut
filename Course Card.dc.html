@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="image-slot.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+  *{box-sizing:border-box}
+  body{margin:0;background:transparent}
+  a{color:#2F7BFF;text-decoration:none}
+  a:hover{color:#1FD3E8}
+</style>
+</helmet>
+
+<a href="{{ href }}" style="position:relative;display:flex;flex-direction:column;height:100%;font-family:'Poppins',sans-serif;overflow:hidden;background:{{ cardBg }};border:1px solid {{ cardBorder }};border-radius:20px;box-shadow:{{ cardShadow }};text-decoration:none;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .3s" style-hover="transform:translateY(-6px);box-shadow:{{ cardShadowHover }};border-color:{{ cardBorderHover }}">
+  <span style="position:absolute;top:0;left:0;right:0;height:4px;z-index:4;background:linear-gradient(90deg,#2F7BFF,#1FD3E8)"></span>
+  <div style="position:relative;height:178px;overflow:hidden;background:{{ bannerBg }};flex:none">
+    <sc-if value="{{ hasSrc }}" hint-placeholder-val="{{ false }}">
+      <img src="{{ src }}" alt="{{ title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+    </sc-if>
+    <sc-if value="{{ noSrc }}" hint-placeholder-val="{{ true }}">
+      <image-slot id="{{ imgId }}" shape="rect" placeholder="{{ title }}, course banner photo"></image-slot>
+    </sc-if>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.04),rgba(5,7,13,.62));pointer-events:none"></div>
+    <span style="position:absolute;top:14px;left:14px;padding:5px 12px;border-radius:100px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#2F7BFF">{{ category }}</span>
+    <span style="position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;background:rgba(5,7,13,.5);backdrop-filter:blur(6px);font-size:11px;font-weight:600;color:#fff"><span style="width:6px;height:6px;border-radius:50%;background:#1FD3E8"></span>{{ duration }}</span>
+    <h3 style="position:absolute;left:18px;right:18px;bottom:14px;margin:0;font-family:'Radio Canada Big';font-weight:700;font-size:21px;line-height:1.12;color:#fff;text-shadow:0 2px 12px rgba(5,7,13,.45)">{{ title }}</h3>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;padding:20px 22px 20px">
+    <div style="font-size:10.5px;font-weight:700;letter-spacing:1.2px;color:{{ labelColor }};margin-bottom:10px">YOU'LL MASTER</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:auto">
+      <sc-for list="{{ skillList }}" as="s" hint-placeholder-count="3">
+        <span style="display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:9px;background:{{ chipBg }};border:1px solid {{ chipBorder }};font-size:12.5px;font-weight:600;color:{{ chipColor }}"><span style="width:5px;height:5px;border-radius:2px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span>{{ s.label }}</span>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid {{ dividerColor }}">
+      <div style="min-width:0">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:{{ labelColor }};margin-bottom:3px">CAREER OUTCOME</div>
+        <div style="font-family:'Radio Canada Big';font-weight:600;font-size:14.5px;color:{{ titleColor }};line-height:1.25">{{ outcome }}</div>
+      </div>
+      <span aria-label="View" style="flex:none;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 10px 22px rgba(47,123,255,.32);transition:transform .25s">&#8594;</span>
+    </div>
+  </div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;380px&quot;,&quot;height&quot;:&quot;460px&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Full Stack Development&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;category&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Professional&quot;,&quot;options&quot;:[&quot;Foundation&quot;,&quot;Professional&quot;,&quot;VAC&quot;,&quot;Placement&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;duration&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;6 Months&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mode&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Online · Live&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;skills&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;React, Node.js, Databases&quot;,&quot;tsType&quot;:&quot;string | string[]&quot;},&quot;outcome&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Job-Ready Full Stack Engineer&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rating&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;4.8&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;imgId&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const c = this.props.course || {};
+    const p = { ...c, ...Object.fromEntries(Object.entries(this.props).filter(([k, v]) => k !== 'course' && v !== undefined)) };
+    const dark = p.dark ?? (p.theme === 'dark');
+    const cat = (p.category ?? 'Professional');
+    const skills = p.skills ?? 'React, Node.js, Databases';
+    const rating = p.rating ?? '';
+    return {
+      href: p.href ?? '#',
+      title: p.title ?? 'Full Stack Development',
+      category: cat,
+      duration: p.duration ?? '6 Months',
+      mode: p.mode ?? 'Online · Live',
+      outcome: p.outcome ?? 'Job-ready outcome',
+      skillList: (Array.isArray(skills) ? skills : String(skills).split(',')).map(s => ({ label: typeof s === 'string' ? s.trim() : s })),
+      imgId: p.imgId ?? ('cc-' + (p.title ?? 'card').toLowerCase().replace(/[^a-z0-9]+/g, '-')),
+      src: p.src ?? '',
+      hasSrc: !!p.src,
+      noSrc: !p.src,
+      rating: rating,
+      hasRating: !!rating,
+      cardBg: dark ? 'rgba(255,255,255,.04)' : '#fff',
+      cardBorder: dark ? 'rgba(255,255,255,.09)' : '#E6ECF3',
+      cardBorderHover: dark ? 'rgba(96,165,250,.45)' : 'rgba(47,123,255,.32)',
+      cardShadow: dark ? 'none' : '0 6px 22px rgba(10,17,36,.06)',
+      cardShadowHover: dark ? '0 22px 48px rgba(0,0,0,.5), 0 0 22px rgba(59,130,246,.15)' : '0 22px 48px rgba(10,17,36,.14)',
+      bannerBg: dark ? '#0f1f3d' : '#0B1220',
+      titleColor: dark ? '#fff' : '#0A1124',
+      labelColor: dark ? '#7c8aa6' : '#94a3b8',
+      chipColor: dark ? '#B9CBE8' : '#334155',
+      chipBg: dark ? 'rgba(255,255,255,.05)' : '#F1F5FB',
+      chipBorder: dark ? 'rgba(255,255,255,.1)' : '#E6ECF3',
+      dividerColor: dark ? 'rgba(255,255,255,.08)' : '#EEF2F8'
+    };
+  }
+}
+</script>
+</body>
+</html>

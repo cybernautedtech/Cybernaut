@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#fff;overflow-x:hidden}
+  ::selection{background:rgba(47,123,255,.18);color:#0A1124}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#eef2f7}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#2F7BFF,#1FD3E8);border-radius:8px}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes cnFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:90px;height:90px;margin:-45px 0 0 -45px;opacity:0}}
+  @keyframes cnGridMove{to{background-position:46px 46px}}
+  @keyframes cnSpinRing{to{transform:rotate(360deg)}}
+  @keyframes cpMesh{0%,100%{transform:translate(-4%,-3%) scale(1.05)}50%{transform:translate(4%,4%) scale(1.16)}}
+  @keyframes cpSweep{0%{transform:translateX(-130%) skewX(-16deg)}60%,100%{transform:translateX(520%) skewX(-16deg)}}
+  @keyframes cpDot{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+  @keyframes cpShine{0%{background-position:-200% center}100%{background-position:200% center}}
+  @keyframes cpRise2{0%{transform:translateY(0);opacity:0}12%{opacity:.9}88%{opacity:.9}100%{transform:translateY(-160px);opacity:0}}
+  @keyframes cpBorderglow{0%,100%{opacity:.5}50%{opacity:1}}
+  @keyframes cpTyping{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+  @keyframes cpLogoTurn{0%,100%{transform:rotateY(-14deg) rotateX(6deg)}50%{transform:rotateY(14deg) rotateX(-4deg)}}
+  @keyframes cpCube{from{transform:rotateX(-24deg) rotateY(0deg)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+  @keyframes cpCube2{from{transform:rotateX(30deg) rotateY(360deg) rotateZ(10deg)}to{transform:rotateX(30deg) rotateY(0deg) rotateZ(10deg)}}
+  @keyframes cpOrbit{from{transform:rotateX(74deg) rotateZ(0deg)}to{transform:rotateX(74deg) rotateZ(360deg)}}
+  @keyframes cpOrbit2{from{transform:rotateX(66deg) rotateY(18deg) rotateZ(360deg)}to{transform:rotateX(66deg) rotateY(18deg) rotateZ(0deg)}}
+  @keyframes cpFloor{to{background-position:0 72px}}
+  @keyframes cpBob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+  @keyframes cpFloatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  [data-reveal]{opacity:1}
+  [data-reveal].cn-pre{opacity:0;transform:translateY(26px)}
+  [data-reveal].cn-in{opacity:1;transform:none;transition:opacity .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+  image-slot{display:block;width:100%;height:100%}
+  @media(hover:hover) and (pointer:fine){[data-cursor]{display:block}a,button,[data-magnetic]{cursor:none}body{cursor:none}}
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    [data-track-grid]{grid-template-columns:1fr!important}
+    [data-prog-grid]{grid-template-columns:1fr!important}
+    [data-footer-grid]{grid-template-columns:1fr!important}
+    [data-hero-grid]{grid-template-columns:1fr!important}
+    [data-path-grid]{grid-template-columns:1fr!important}
+    [data-hero-logo]{right:14px!important;top:-48px!important}
+  }
+  @media(max-width:980px){[data-hero-cols]{gap:56px!important}[data-hero-badge]{left:12px!important;top:-26px!important}[data-hero-orbit]{width:520px!important;height:520px!important;margin:-260px 0 0 -260px!important}}
+  @media(max-width:560px){
+    [data-stat-grid]{grid-template-columns:repeat(2,1fr)!important}
+    [data-hero-sec]{padding:108px 18px 72px!important}
+    [data-hero-cols]{gap:48px!important}
+    [data-hero-meta]{grid-template-columns:1fr!important;gap:16px!important}
+    [data-hero-orbit]{display:none!important}
+    [data-hero-badge]{display:none!important}
+    [data-hero-logo]{right:8px!important;top:-40px!important;transform:scale(.72)!important}
+    #cp-tilt{transform:none!important}
+    [data-hero-sec] h1{letter-spacing:-1px!important}
+    [data-hero-card]{zoom:.75;padding:24px 20px!important}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+  @media(max-width:960px){[data-ct-grid]{grid-template-columns:minmax(0,1fr)!important}}
+  @media(max-width:560px){[data-ct-split]{grid-template-columns:1fr!important}[data-ct-split] > a:first-child{border-right:0!important;border-bottom:1px solid #EDF1F6}[data-ct-row]{grid-template-columns:44px minmax(0,1fr) auto!important;gap:14px!important;padding:18px!important}[data-ct-action]{display:none}}
+</style>
+</helmet>
+
+<div style="--g1:#2F7BFF;--g2:#7C3AED;--g3:#1FD3E8;position:relative;min-height:100vh;background:#fff;font-family:'Poppins',sans-serif;color:#0A1124;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--g1);margin:-19px 0 0 -19px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;background:var(--g3);margin:-3.5px 0 0 -3.5px;z-index:10000;pointer-events:none;box-shadow:0 0 12px var(--g3)"></div>
+  <canvas id="cn-bg" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+
+  <dc-import name="Navbar" active="Contact Us" hero-theme="auto" hint-size="100%,0"></dc-import>
+
+  <div style="position:relative;z-index:2;background:#fff">
+
+  <!-- NAV -->
+
+
+  <!-- HERO + FORM · Editorial Split -->
+  <section id="cp-hero" data-hero-sec style="position:relative;padding:140px 28px 110px;overflow:hidden;background:#070B16;border-bottom:1px solid rgba(255,255,255,.06)">
+    <div style="position:absolute;left:0;right:0;bottom:0;height:62%;z-index:0;pointer-events:none;perspective:520px;perspective-origin:50% 0%;mask-image:linear-gradient(180deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%)">
+      <div style="position:absolute;left:-50%;right:-50%;top:0;height:200%;transform-origin:50% 0;transform:rotateX(64deg);background-image:linear-gradient(rgba(90,162,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(90,162,255,.22) 1px,transparent 1px);background-size:72px 72px;animation:cpFloor 4s linear infinite"></div>
+    </div>
+    <div style="position:absolute;left:50%;bottom:-120px;width:1100px;height:260px;margin-left:-550px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(closest-side,rgba(31,211,232,.22),transparent);filter:blur(20px)"></div>
+    <div style="position:absolute;top:-220px;right:-160px;width:720px;height:720px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(47,123,255,.28),rgba(31,211,232,.08) 45%,transparent 70%);filter:blur(10px)"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:1px;z-index:1;background:linear-gradient(90deg,transparent,rgba(47,123,255,.5),rgba(31,211,232,.5),transparent)"></div>
+
+    <div data-hero-cols style="max-width:1200px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:72px;align-items:center" data-hero-grid>
+      <div data-reveal data-depth="-6" style="transition:transform .5s cubic-bezier(.22,1,.36,1)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:26px"><span style="font-size:12px;letter-spacing:.24em;font-weight:600;text-transform:uppercase;color:#7fb4ff">Contact Cybernaut</span></div>
+        <h1 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(40px,5vw,64px);line-height:1.04;letter-spacing:-2px;color:#fff;margin-bottom:22px;text-wrap:balance">Let's talk about your <span style="background:linear-gradient(100deg,#7fd8ff,#2F7BFF 55%,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent">next chapter.</span></h1>
+        <p style="font-size:17px;font-weight:300;line-height:1.7;color:#9AA8C0;max-width:470px;margin-bottom:40px;text-wrap:pretty">Whether you're a student, a college or a business, tell us what you're building and the right person from our team will reach out.</p>
+        <div style="border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:28px">
+          <a href="mailto:hr@cybernaut.co.in" style="display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-decoration:none;color:#fff;transition:padding .3s ease" style-hover="padding-left:8px">
+            <span style="width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7fd8ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
+            <span><span style="display:block;font-size:11px;letter-spacing:.16em;font-weight:600;color:#6F7F9A;margin-bottom:2px">EMAIL</span><span style="display:block;font-family:'Radio Canada Big';font-weight:600;font-size:17px;color:#fff">hr@cybernaut.co.in</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+          </a>
+          <a href="tel:+916382055035" style="display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-decoration:none;color:#fff;transition:padding .3s ease" style-hover="padding-left:8px">
+            <span style="width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7fd8ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+            <span><span style="display:block;font-size:11px;letter-spacing:.16em;font-weight:600;color:#6F7F9A;margin-bottom:2px">PHONE</span><span style="display:block;font-family:'Radio Canada Big';font-weight:600;font-size:17px;color:#fff">+91 63820 55035</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+          </a>
+          <a href="https://wa.me/919150430131" target="_blank" style="display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:18px;padding:18px 0;border-top:1px solid rgba(255,255,255,.08);text-decoration:none;color:#fff;transition:padding .3s ease" style-hover="padding-left:8px">
+            <span style="width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7fd8ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></span>
+            <span><span style="display:block;font-size:11px;letter-spacing:.16em;font-weight:600;color:#6F7F9A;margin-bottom:2px">WHATSAPP</span><span style="display:block;font-family:'Radio Canada Big';font-weight:600;font-size:17px;color:#fff">Chat with our team</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7fb4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg>
+          </a>
+        </div>
+        <div data-hero-meta style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div><div style="font-size:11px;letter-spacing:.16em;font-weight:600;color:#6F7F9A;margin-bottom:6px">OFFICE</div><div style="font-size:14.5px;color:#D5DEEC;line-height:1.6">Karur, Tamil Nadu<br>India</div></div>
+          <div><div style="font-size:11px;letter-spacing:.16em;font-weight:600;color:#6F7F9A;margin-bottom:6px">HOURS</div><div style="font-size:14.5px;color:#D5DEEC;line-height:1.6">Mon to Fri · 9:30 to 18:30<br>Sat · 10:00 to 16:00</div></div>
+        </div>
+      </div>
+
+      <div data-reveal style="position:relative;perspective:1400px">
+       <div id="cp-tilt" style="position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.22,1,.36,1)">
+        <div data-hero-logo style="position:absolute;top:-58px;right:-8px;z-index:3;transform:translateZ(90px);pointer-events:none;animation:cpBob 7s ease-in-out infinite">
+          <div style="width:112px;height:112px;display:flex;align-items:center;justify-content:center;animation:cpLogoTurn 9s ease-in-out infinite">
+            <img src="cybernaut-mark.png" alt="Cybernaut" style="width:96px;height:auto;display:block;filter:drop-shadow(0 10px 24px rgba(31,211,232,.5))" />
+          </div>
+        </div>
+        <div data-hero-orbit style="position:absolute;left:50%;top:50%;width:760px;height:760px;margin:-380px 0 0 -380px;pointer-events:none;transform-style:preserve-3d;transform:translateZ(-120px)">
+          <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(127,216,255,.22);animation:cpOrbit 40s linear infinite"><span style="position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:#7fd8ff;box-shadow:0 0 16px #7fd8ff"></span></div>
+          <div style="position:absolute;inset:80px;border-radius:50%;border:1px dashed rgba(47,123,255,.3);animation:cpOrbit2 55s linear infinite"><span style="position:absolute;bottom:-4px;left:30%;width:8px;height:8px;border-radius:50%;background:#2F7BFF;box-shadow:0 0 14px #2F7BFF"></span></div>
+        </div>
+        <div data-hero-badge style="position:absolute;top:34px;left:-58px;z-index:3;transform:translateZ(80px);pointer-events:none;animation:cpBob 5.5s ease-in-out infinite .6s">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:rgba(12,20,40,.72);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 40px rgba(0,0,0,.45)">
+            <span style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+            <span><span style="display:block;font-family:'Radio Canada Big';font-weight:700;font-size:16px;color:#fff;line-height:1.1">1L+</span><span style="display:block;font-size:11px;color:#9AA8C0">learners guided</span></span>
+          </div>
+        </div>
+        <div style="position:absolute;inset:-1px;border-radius:25px;background:linear-gradient(160deg,rgba(127,216,255,.5),rgba(47,123,255,.15) 40%,transparent 70%);z-index:0"></div>
+        <div data-hero-card style="position:relative;z-index:1;margin:1px;padding:clamp(28px,3.2vw,42px);border-radius:24px;background:#fff;box-shadow:0 40px 120px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.6) inset;transform:translateZ(30px)">
+          <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:6px">
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:25px;letter-spacing:-.5px;color:#0A1124">Send us a message</div>
+                <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:100px;background:#F1F5FB;border:1px solid #E3E8F0;font-size:11.5px;font-weight:600;color:#334155;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.18)"></span>Replies in ~4 hrs</span>
+              </div>
+              <p style="font-size:14px;color:#64748B;margin-bottom:28px">All fields marked are required. We never share your details.</p>
+              <form onSubmit="{{ onSubmit }}">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px" data-prog-grid>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:7px">Full name</label><input required type="text" placeholder="Your name" style="width:100%;padding:13px 15px;border-radius:12px;border:1px solid #E3E8F0;background:#F8FAFC;font-family:inherit;font-size:14px;color:#0A1124;outline:none;transition:border-color .2s,box-shadow .2s,background .2s" style-focus="border-color:#2F7BFF;background:#fff;box-shadow:0 0 0 4px rgba(47,123,255,.12)" /></div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:7px">Email</label><input required type="email" placeholder="you@email.com" style="width:100%;padding:13px 15px;border-radius:12px;border:1px solid #E3E8F0;background:#F8FAFC;font-family:inherit;font-size:14px;color:#0A1124;outline:none;transition:border-color .2s,box-shadow .2s,background .2s" style-focus="border-color:#2F7BFF;background:#fff;box-shadow:0 0 0 4px rgba(47,123,255,.12)" /></div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px" data-prog-grid>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:7px">Phone</label><input type="tel" placeholder="+91 00000 00000" style="width:100%;padding:13px 15px;border-radius:12px;border:1px solid #E3E8F0;background:#F8FAFC;font-family:inherit;font-size:14px;color:#0A1124;outline:none;transition:border-color .2s,box-shadow .2s,background .2s" style-focus="border-color:#2F7BFF;background:#fff;box-shadow:0 0 0 4px rgba(47,123,255,.12)" /></div>
+                  <div><label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:7px">I'm interested in</label><select required style="width:100%;padding:13px 15px;border-radius:12px;border:1px solid #E3E8F0;background:#F8FAFC;font-family:inherit;font-size:14px;color:#0A1124;outline:none;transition:border-color .2s,box-shadow .2s,background .2s;appearance:none;cursor:pointer;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 14px center" style-focus="border-color:#2F7BFF;background:#fff;box-shadow:0 0 0 4px rgba(47,123,255,.12)"><sc-for list="{{ interests }}" as="it" hint-placeholder-count="4"><option>{{ it }}</option></sc-for></select></div>
+                </div>
+                <div style="margin-bottom:24px"><label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:7px">Message</label><textarea required rows="5" placeholder="Tell us a little about what you need…" style="width:100%;padding:13px 15px;border-radius:12px;border:1px solid #E3E8F0;background:#F8FAFC;font-family:inherit;font-size:14px;color:#0A1124;outline:none;transition:border-color .2s,box-shadow .2s,background .2s;resize:vertical;min-height:124px" style-focus="border-color:#2F7BFF;background:#fff;box-shadow:0 0 0 4px rgba(47,123,255,.12)"></textarea></div>
+                <button type="submit" data-magnetic style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:15px;border-radius:12px;border:none;cursor:pointer;background:#0A1124;color:#fff;font-family:inherit;font-weight:600;font-size:15px;box-shadow:0 14px 30px rgba(10,17,36,.25)" style-hover="background:#2F7BFF;box-shadow:0 16px 34px rgba(47,123,255,.4)">Send message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+              </form>
+            </div>
+          </sc-if>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center;padding:40px 10px">
+              <div style="width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(47,123,255,.35)"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></div>
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:25px;color:#0A1124;margin-bottom:8px">Thanks, message sent!</div>
+              <p style="font-size:14.5px;color:#64748B;max-width:360px;margin:0 auto 24px">Our team will get back to you within one working day. Meanwhile, explore our programs.</p>
+              <button onClick="{{ resetForm }}" data-magnetic style="padding:12px 24px;border-radius:100px;border:1px solid #E3E8F0;background:#fff;color:#0A1124;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer" style-hover="border-color:#2F7BFF;color:#2F7BFF">Send another</button>
+            </div>
+          </sc-if>
+        </div>
+       </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK CONTACT + HOURS -->
+  <section style="position:relative;padding:40px 28px 18px">
+    <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:20px" data-ct-grid>
+      <div data-reveal style="position:relative;border-radius:26px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 10px 34px rgba(10,17,36,.06);overflow:hidden;display:flex;flex-direction:column">
+        <div aria-hidden="true" style="position:absolute;top:-120px;right:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.14),transparent 70%);pointer-events:none"></div>
+        <div style="position:relative;padding:clamp(26px,3.4vw,40px);flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:22px">
+            <div style="font-size:12px;letter-spacing:2.4px;color:#2F7BFF;font-weight:600">REACH US DIRECTLY</div>
+            <span style="display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:12.5px;font-weight:500;color:#475569"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.14)"></span>Replies within 24 hours</span>
+          </div>
+          <div style="font-size:14px;color:#64748B;margin-bottom:6px">Talk to a counsellor</div>
+          <a href="tel:+916382055035" style="display:block;font-family:'Radio Canada Big';font-weight:700;font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-1.8px;color:#0A1124;text-decoration:none;margin-bottom:26px;white-space:nowrap" style-hover="color:#2F7BFF">+91 63820 55035</a>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="tel:+916382055035" data-magnetic style="display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:14.5px;text-decoration:none;box-shadow:0 12px 26px rgba(47,123,255,.3);transition:transform .25s" style-hover="transform:translateY(-3px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>Call now</a>
+            <a href="https://wa.me/919150430131" target="_blank" data-magnetic style="display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:100px;background:#fff;border:1px solid #DCE3EC;color:#0A1124;font-weight:600;font-size:14.5px;text-decoration:none;transition:all .25s" style-hover="border-color:#2F7BFF;color:#2F7BFF;transform:translateY(-3px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"></path></svg>Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div data-ct-split style="position:relative;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #EDF1F6;background:#FAFCFF">
+          <a href="mailto:hr@cybernaut.co.in" style="display:block;padding:24px clamp(22px,3vw,34px);text-decoration:none;color:#0A1124;border-right:1px solid #EDF1F6;transition:background .3s" style-hover="background:#F0F7FF">
+            <div style="font-size:10.5px;letter-spacing:.16em;font-weight:700;color:#94A3B8;margin-bottom:8px">EMAIL US</div>
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:17px;letter-spacing:-.2px;margin-bottom:10px;overflow-wrap:anywhere">hr@cybernaut.co.in</div>
+            <div style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#2F7BFF">Send an email<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          </a>
+          <a href="#cp-hero" style="display:block;padding:24px clamp(22px,3vw,34px);text-decoration:none;color:#0A1124;transition:background .3s" style-hover="background:#F0F7FF">
+            <div style="font-size:10.5px;letter-spacing:.16em;font-weight:700;color:#94A3B8;margin-bottom:8px">BOOK A CALL</div>
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:17px;letter-spacing:-.2px;margin-bottom:10px">Free consultation</div>
+            <div style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#2F7BFF">Pick a time<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+          </a>
+        </div>
+      </div>
+
+      <div data-reveal style="position:relative;border-radius:26px;background:radial-gradient(120% 90% at 100% 0%,#13244A 0%,#0B1220 55%,#070B16 100%);color:#fff;overflow:hidden;box-shadow:0 22px 54px rgba(10,17,36,.28);padding:28px;display:flex;flex-direction:column">
+        <div style="position:absolute;top:-80px;right:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(31,211,232,.22),transparent 70%);pointer-events:none"></div>
+        <div style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px">
+          <div style="font-size:12px;letter-spacing:2.4px;color:#7DD3FC;font-weight:600">BUSINESS HOURS</div>
+          <span style="display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:6px 12px;border-radius:100px;background:{{ openBg }};border:1px solid {{ openBorder }};color:{{ openColor }};font-size:11.5px;font-weight:600"><span style="width:6px;height:6px;border-radius:50%;background:{{ openColor }};animation:cnLiveDot 1.4s infinite"></span>{{ openLabel }}</span>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column">
+          <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font-size:14px;color:#A5B0C4">{{ h.day }}</span><span style="font-family:'Radio Canada Big';font-weight:600;font-size:16px;color:{{ h.color }};white-space:nowrap">{{ h.time }}</span></div>
+          </sc-for>
+        </div>
+        <div style="position:relative;font-size:12px;letter-spacing:2.4px;color:#7DD3FC;font-weight:600;margin:26px 0 12px">OUR OFFICES</div>
+        <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+          <sc-for list="{{ offices }}" as="o" hint-placeholder-count="4">
+            <div style="padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)">
+              <div style="display:flex;align-items:center;gap:7px;font-family:'Radio Canada Big';font-weight:700;font-size:15px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1FD3E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>{{ o.city }}</div>
+              <div style="font-size:12px;color:#8C98AD;margin-top:3px;line-height:1.45">{{ o.note }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#cp-hero" data-magnetic style="position:relative;margin-top:auto;display:flex;align-items:center;justify-content:center;gap:9px;padding:15px;border-radius:100px;background:linear-gradient(135deg,var(--g1),var(--g3));color:#fff;font-weight:600;font-size:14.5px;text-decoration:none;box-shadow:0 12px 26px rgba(47,123,255,.32);transition:transform .25s" style-hover="transform:translateY(-3px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>Book a Meeting</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section style="position:relative;padding:40px 28px 70px">
+    <div style="max-width:1180px;margin:0 auto" data-reveal>
+      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid #E6ECF3;box-shadow:0 16px 44px rgba(10,17,36,.1);height:340px;background:#0B1220" data-track-grid>
+        <image-slot id="contact-map" shape="rect" placeholder="Map / office photo, Karur, Tamil Nadu"></image-slot>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,13,.78),rgba(5,7,13,.25) 60%,transparent)"></div>
+        <div style="position:absolute;left:clamp(20px,4vw,40px);top:50%;transform:translateY(-50%);max-width:380px;color:#fff;z-index:2">
+          <div style="font-size:11.5px;letter-spacing:2px;font-weight:600;color:var(--g3);margin-bottom:12px">VISIT US</div>
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:26px;margin-bottom:12px">Cybernaut EdTech HQ</div>
+          <p style="font-size:14.5px;color:#cbd5e1;line-height:1.7">43/A, Nehru Nagar, Rayanur,<br>Karur, Tamil Nadu, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section style="position:relative;padding:0 28px 70px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div data-reveal style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" data-stat-grid>
+        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+          <div style="text-align:center;padding:30px 20px;border-radius:20px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 18px rgba(10,17,36,.05);transition:transform .3s" style-hover="transform:translateY(-5px)">
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.4vw,42px);background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent"><span data-count data-target="{{ st.target }}" data-decimals="0">0</span>{{ st.suffix }}</div>
+            <div style="font-size:13px;color:#64748b;margin-top:4px">{{ st.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="position:relative;padding:0 28px 84px">
+    <div style="max-width:820px;margin:0 auto">
+      <div data-reveal style="text-align:center;margin-bottom:40px">
+        <div style="font-size:12.5px;letter-spacing:3px;color:#2F7BFF;font-weight:600;margin-bottom:14px">QUESTIONS</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.5px;color:#0A1124">Before You Reach Out</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ faqList }}" as="fq" hint-placeholder-count="5">
+          <div data-reveal style="border-radius:16px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 16px rgba(10,17,36,.04);overflow:hidden">
+            <button onClick="{{ fq.onClick }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Radio Canada Big';font-weight:600;font-size:16px;color:#0A1124">{{ fq.q }}<span style="width:28px;height:28px;flex:none;border-radius:8px;background:linear-gradient(135deg,var(--g1),var(--g3));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;line-height:1">{{ fq.sign }}</span></button>
+            <sc-if value="{{ fq.open }}" hint-placeholder-val="{{ false }}"><div style="padding:0 24px 22px;font-size:14.5px;color:#475569;line-height:1.7">{{ fq.a }}</div></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;padding:0 28px 96px">
+    <div data-reveal style="max-width:1080px;margin:0 auto;padding:60px 40px;border-radius:30px;background:linear-gradient(140deg,#2F7BFF,#1FD3E8);color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(47,123,255,.3)">
+      <div style="position:absolute;top:-60px;right:-40px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.16);filter:blur(20px)"></div>
+      <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,4vw,46px);letter-spacing:-1px;margin-bottom:16px;position:relative">Prefer To Talk It Through?</h2>
+      <p style="font-size:16.5px;color:rgba(255,255,255,.9);max-width:560px;margin:0 auto 30px;position:relative">Call us, message on WhatsApp, or browse our programs to find the right fit.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;justify-content:center;position:relative">
+        <a href="tel:+916382055035" data-magnetic style="padding:14px 28px;border-radius:100px;background:#fff;color:#0A1124;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s" style-hover="transform:translateY(-3px)">Call Us</a>
+        <a href="Programs.dc.html" data-magnetic style="padding:14px 28px;border-radius:100px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:all .25s" style-hover="background:rgba(255,255,255,.26)">Browse Programs</a>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null, filter: 'all', openFaq: 0 };
+
+  componentDidMount() {
+    this.initBg(); this.initReveal(); this.initCounters();  this.initCursor(); this.initTilt();
+  }
+  initTilt() {
+    const hero = document.getElementById('cp-hero'), card = document.getElementById('cp-tilt');
+    if (!hero || !card || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const layers = hero.querySelectorAll('[data-depth]');
+    card.style.transform = 'rotateX(4deg) rotateY(-8deg)';
+    this._tiltMove = e => {
+      const r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = 'rotateX(' + (4 - y * 10).toFixed(2) + 'deg) rotateY(' + (-8 + x * 16).toFixed(2) + 'deg)';
+      layers.forEach(l => { const d = +l.dataset.depth; l.style.transform = 'translate3d(' + (x * d * 2).toFixed(1) + 'px,' + (y * d * 2).toFixed(1) + 'px,0)'; });
+    };
+    this._tiltLeave = () => { card.style.transform = 'rotateX(4deg) rotateY(-8deg)'; layers.forEach(l => l.style.transform = ''); };
+    hero.addEventListener('mousemove', this._tiltMove); hero.addEventListener('mouseleave', this._tiltLeave);
+    this._tiltHero = hero;
+  }
+  componentWillUnmount() {
+    if (this._tiltHero) { this._tiltHero.removeEventListener('mousemove', this._tiltMove); this._tiltHero.removeEventListener('mouseleave', this._tiltLeave); }
+    cancelAnimationFrame(this._bgRaf); cancelAnimationFrame(this._craf);
+    window.removeEventListener('resize', this._bgResize);
+    window.removeEventListener('mousemove', this._bgMove);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousedown', this._onDown);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('click', this._onClick);
+    clearTimeout(this._revealFailsafe);
+  }
+
+  initBg() {
+    const cv = document.getElementById('cn-bg'); if (!cv) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const ctx = cv.getContext('2d');
+    let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2), nodes = [];
+    const mouse = { x: -9999, y: -9999 };
+    const COUNT = window.innerWidth < 768 ? 26 : 52;
+    const resize = () => { w = innerWidth; h = innerHeight; cv.width = w*dpr; cv.height = h*dpr; cv.style.width = w+'px'; cv.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    const seed = () => { nodes = Array.from({length:COUNT}, () => ({ x:Math.random()*innerWidth, y:Math.random()*innerHeight, vx:(Math.random()-.5)*.26, vy:(Math.random()-.5)*.26 })); };
+    this._bgResize = () => resize();
+    resize(); seed();
+    window.addEventListener('resize', this._bgResize);
+    this._bgMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    window.addEventListener('mousemove', this._bgMove, { passive:true });
+    if (reduce) { ctx.clearRect(0,0,w,h); return; }
+    const loop = () => {
+      ctx.clearRect(0,0,w,h);
+      for (const p of nodes) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x<0||p.x>w) p.vx*=-1; if (p.y<0||p.y>h) p.vy*=-1;
+        const mdx = mouse.x-p.x, mdy = mouse.y-p.y, md = Math.hypot(mdx,mdy);
+        if (md<180){ p.x += mdx*0.0009*(1-md/180); p.y += mdy*0.0009*(1-md/180); }
+      }
+      for (let i=0;i<nodes.length;i++){
+        for (let j=i+1;j<nodes.length;j++){
+          const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.hypot(dx,dy);
+          if (d<138){ ctx.strokeStyle=`rgba(47,123,255,${(1-d/138)*0.13})`; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+        }
+        ctx.fillStyle='rgba(47,123,255,0.32)'; ctx.beginPath(); ctx.arc(nodes[i].x,nodes[i].y,1.7,0,7); ctx.fill();
+      }
+      this._bgRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!('IntersectionObserver' in window)) return;
+    const vh = innerHeight;
+    els.forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh*0.9 && r.bottom>0) el.classList.add('cn-in'); else el.classList.add('cn-pre'); });
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ e.target.classList.remove('cn-pre'); e.target.classList.add('cn-in'); io.unobserve(e.target); } }), { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => { if (el.classList.contains('cn-pre')) io.observe(el); });
+    this._revealFailsafe = setTimeout(() => els.forEach(el => { el.classList.remove('cn-pre'); el.classList.add('cn-in'); }), 4000);
+  }
+
+  runCounter(el) {
+    const target = parseFloat(el.getAttribute('data-target'));
+    const dec = parseInt(el.getAttribute('data-decimals')||'0');
+    const dur = 1600, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now-t0)/dur,1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      el.textContent = dec ? val.toFixed(dec) : Math.floor(val).toLocaleString('en-IN');
+      if (p<1) requestAnimationFrame(step); else el.textContent = dec ? target.toFixed(dec) : target.toLocaleString('en-IN');
+    };
+    requestAnimationFrame(step);
+  }
+  initCounters() {
+    const fire = (el) => { if (el._done) return; el._done = true; this.runCounter(el); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting){ fire(e.target); io.unobserve(e.target);} }), { threshold:0.3 });
+      setTimeout(() => { const vh = innerHeight; document.querySelectorAll('[data-count]').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < vh && r.bottom > 0) fire(el); else io.observe(el); }); }, 100);
+      setTimeout(() => document.querySelectorAll('[data-count]').forEach(fire), 2600);
+    } else { document.querySelectorAll('[data-count]').forEach(fire); }
+  }
+
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, scrolled = null;
+    const apply = () => {
+      ticking = false;
+      const el = document.querySelector('nav'); if (!el) return;
+      const now = window.scrollY > 30;
+      if (now === scrolled) return; scrolled = now;
+      const lg = document.querySelector('[data-logo]');
+      if (now) { el.style.background='#ffffff'; el.style.backdropFilter='blur(16px)'; el.style.borderBottom='1px solid #E6ECF3'; el.style.padding='7px 0'; if(lg){lg.style.height='40px';lg.src='cybernaut-logo.webp';} }
+      else { el.style.background='transparent'; el.style.backdropFilter='none'; el.style.borderBottom='1px solid transparent'; el.style.padding='9px 0'; if(lg){if(window.__cnHeroDark===undefined){window.__cnHeroDark=(function(){var nv=document.querySelector('nav');if(!nv)return false;var r=nv.getBoundingClientRect();var st=document.elementsFromPoint(window.innerWidth/2,r.bottom+14)||[];function lumStr(s){var cols=[],idx=0;while((idx=s.indexOf('#',idx))!==-1){var hex=s.substr(idx+1,6);if(/^[0-9a-fA-F]{6}$/.test(hex)){cols.push([parseInt(hex.substr(0,2),16),parseInt(hex.substr(2,2),16),parseInt(hex.substr(4,2),16)]);}idx++;}idx=0;while((idx=s.indexOf('rgb',idx))!==-1){var op=s.indexOf('(',idx),cp=s.indexOf(')',op);if(op!==-1&&cp!==-1){var q=s.slice(op+1,cp).split(',').map(parseFloat);if(q.length>=3)cols.push([q[0],q[1],q[2]]);}idx=cp===-1?idx+3:cp+1;}if(!cols.length)return null;var L=0;for(var k=0;k<cols.length;k++){L+=(0.299*cols[k][0]+0.587*cols[k][1]+0.114*cols[k][2])/255;}return L/cols.length;}for(var i=0;i<st.length;i++){var nd=st[i];if(nv.contains(nd))continue;var c=nd;while(c&&c!==document.documentElement){var cs=getComputedStyle(c);var bg=cs.backgroundColor;if(bg&&bg.slice(0,3)==='rgb'){var p=bg.replace(/[^0-9.,]/g,'').split(',').map(parseFloat);var a=p.length>3?p[3]:1;if(a>0.5){return (0.299*p[0]+0.587*p[1]+0.114*p[2])/255<0.5;}}var bi=cs.backgroundImage;if(bi&&bi.indexOf('gradient')!==-1&&bi.indexOf('transparent')===-1){var GL=lumStr(bi);if(GL!==null)return GL<0.5;}c=c.parentElement;}}return false;})();}lg.style.height='48px';lg.src=(window.__cnHeroDark?'footer-logo.webp':'cybernaut-logo.webp');} }
+    };
+    this._onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive:true });
+    apply();
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = document.getElementById('cn-dot'), ring = document.getElementById('cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width='58px'; ring.style.height='58px'; ring.style.margin='-29px 0 0 -29px'; ring.style.background='rgba(47,123,255,.1)';
+        
+      } else { ring.style.width='38px'; ring.style.height='38px'; ring.style.margin='-19px 0 0 -19px'; ring.style.background='transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive:true });
+    document.addEventListener('mouseout', (e) => { const t = e.target.closest && e.target.closest('a,button,[data-magnetic]'); if (t && t._mag){ t.style.transform=''; t._mag=false; } }, true);
+    const lerp = () => { rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.transform=`translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onDown = () => { ring.style.borderColor='#1FD3E8'; };
+    this._onUp = () => { ring.style.borderColor='#2F7BFF'; };
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #2F7BFF;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(()=>rp.remove(),620); };
+    window.addEventListener('mousedown', this._onDown, { passive:true });
+    window.addEventListener('mouseup', this._onUp, { passive:true });
+    window.addEventListener('click', this._onClick, { passive:true });
+  }
+
+  navData() {
+    const navDefs = [
+      { label:'Home', href:'Home.dc.html#hero' },
+      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html', active:true }
+    ];
+    const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
+    const navItems = navDefs.map(n => ({
+      label:n.label, href:n.href, title:'',
+      caret: !!n.mega, color: n.active ? '#2F7BFF' : '#475569',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Programs Students.dc.html#foundation' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Programs Students.dc.html#professional' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label:'Programs We Offer', href:'Programs.dc.html' },
+      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
+      { label:'Events', href:'Events.dc.html' },
+      { label:'Blogs', href:'Blogs.dc.html' },
+      { label:'Careers', href:'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label:'About Company', href:'About Company.dc.html' },
+      { label:'Student Login', href:'Login.dc.html' },
+      { label:'Contact Us', href:'Contact.dc.html' },
+      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
+      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
+      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
+      { name:'YouTube', ic:'YT', href:'#' }, { name:'WhatsApp', ic:'WA', href:'https://wa.me/919150430131' }, { name:'X', ic:'X', href:'#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+
+  pageData() {
+    const interests = ['Student Programs','College Partnership (VAC / Placement)','Cybernaut SaaS','Careers / Hiring','General Enquiry'];
+    const info = [
+      { ic:'✉', label:'EMAIL US', value:'hr@cybernaut.co.in', href:'mailto:hr@cybernaut.co.in' },
+      { ic:'☎', label:'CALL US', value:'+91 00000 00000', href:'tel:+910000000000' },
+      { ic:'◎', label:'WHATSAPP', value:'Chat with our team', href:'https://wa.me/919150430131' },
+      { ic:'⌖', label:'VISIT', value:'Karur, Tamil Nadu, India', href:'https://www.google.com/maps/search/?api=1&query=Karur%2C+Tamil+Nadu' }
+    ];
+    const stats = [
+      { target:100000, suffix:'+', label:'Learners trusted' },
+      { target:75000, suffix:'+', label:'Students trained' },
+      { target:20, suffix:'+', label:'College partners' },
+      { target:1, suffix:' day', label:'Avg. response time' }
+    ];
+    const faqs = [
+      { q:'How quickly will I get a reply?', a:'We respond to every enquiry within one working day, often much sooner during office hours.' },
+      { q:'I am a college, how do we partner?', a:'Select "College Partnership" in the form, or reach out directly. Our team will walk you through VAC courses, placement tracks and the MOU process.' },
+      { q:'Do you offer career counselling?', a:'Yes. Tell us your background and goals in the message and a counsellor will help you pick the right program.' },
+      { q:'Where are you located?', a:'Our HQ is in Karur, Tamil Nadu. Programs are delivered online and, for colleges, on campus.' },
+      { q:'How can I join the team?', a:'Choose "Careers / Hiring" in the form, or visit our Careers page to see open roles.' }
+    ];
+    const faqList = faqs.map((fq, i) => ({ q: fq.q, a: fq.a, open: this.state.openFaq === i, sign: this.state.openFaq === i ? '−' : '+', onClick: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })) }));
+    const quickContacts = [
+      { ic:'☎', label:'CALL US', value:'+91 63820 55035', action:'Tap to call', href:'tel:+916382055035', grad:'linear-gradient(135deg,#2F7BFF,#1FD3E8)', shadow:'rgba(47,123,255,.3)' },
+      { ic:'◎', label:'WHATSAPP', value:'Chat with us', action:'Message now', href:'https://wa.me/919150430131', grad:'linear-gradient(135deg,#0B7A3B,#22C55E)', shadow:'rgba(11,122,59,.3)' },
+      { ic:'✉', label:'EMAIL US', value:'hr@cybernaut.co.in', action:'Send an email', href:'mailto:hr@cybernaut.co.in', grad:'linear-gradient(135deg,#7C3AED,#A855F7)', shadow:'rgba(124,58,237,.3)' },
+      { ic:'📅', label:'BOOK A CALL', value:'Free consultation', action:'Pick a time', href:'#', grad:'linear-gradient(135deg,#F59E0B,#FBBF24)', shadow:'rgba(245,158,11,.3)' }
+    ];
+    const offices = [
+      { city:'Karur (HQ)', note:'43/A, Nehru Nagar, Rayanur' },
+      { city:'Chennai', note:'Regional office' }
+    ];
+    const hours = [
+      { day:'Monday – Friday', time:'9:00 AM – 7:00 PM', color:'#fff' },
+      { day:'Saturday', time:'10:00 AM – 5:00 PM', color:'#fff' },
+      { day:'Sunday', time:'Closed', color:'#f87171' }
+    ];
+    return {
+      interests, info, stats, faqList, quickContacts, offices, hours,
+      ...(() => { const ist = new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000); const d = ist.getDay(), m = ist.getHours() * 60 + ist.getMinutes();
+        const open = (d >= 1 && d <= 5 && m >= 540 && m < 1140) || (d === 6 && m >= 600 && m < 1020);
+        return open ? { openLabel: 'Open now', openColor: '#4ADE80', openBg: 'rgba(34,197,94,.12)', openBorder: 'rgba(74,222,128,.35)' }
+                    : { openLabel: 'Closed now', openColor: '#FBBF24', openBg: 'rgba(245,158,11,.12)', openBorder: 'rgba(251,191,36,.35)' }; })(),
+      sent: !!this.state.sent, notSent: !this.state.sent,
+      onSubmit: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); },
+      resetForm: () => this.setState({ sent: false })
+    };
+  }
+
+    renderVals() {
+    return { ...this.navData(), ...this.pageData() };
+  }
+}
+</script>
+</body>
+</html>

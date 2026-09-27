@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="image-slot.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
+  /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
+  /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
+  /*__hide-scrollbar__*/
+  *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  *{scrollbar-width:none!important;-ms-overflow-style:none!important}
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#ffffff;overflow-x:hidden}
+  a{color:#3b82f6;text-decoration:none}
+  a:hover{color:#2563eb}
+  ::selection{background:rgba(59,130,246,.16);color:#0f172a}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#eef2f7}
+  ::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:8px}
+  ::-webkit-scrollbar-thumb:hover{background:#3b82f6}
+  @keyframes cnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes cnMegaIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+  @keyframes cnShimmer{to{background-position:200% center}}
+  @keyframes cnCaret{0%,100%{opacity:1}50%{opacity:0}}
+  @keyframes cnRipple{from{width:8px;height:8px;margin:-4px 0 0 -4px;opacity:.9}to{width:80px;height:80px;margin:-40px 0 0 -40px;opacity:0}}
+  @keyframes cnLogUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+  @keyframes cnBangIn{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+  @media(hover:hover) and (pointer:fine){[data-cursor]{display:block}a,button,[data-magnetic]{cursor:none}body{cursor:none}}
+  [data-client-card]:hover [data-client-logo]{border-color:#bfdbfe!important;box-shadow:0 18px 40px rgba(15,23,42,.10)}
+  [data-pr-card]:hover{transform:translateY(-6px);border-color:rgba(59,130,246,.5)!important}
+  #capabilities image-slot{--image-slot-bg:#eef3f9;--image-slot-fg:#94a3b8;--image-slot-border:#dbe4ee}
+  [data-cap-mob]{display:none}
+
+
+  @media(max-width:980px){
+    [data-desk-nav]{display:none!important}
+    [data-mob-toggle]{display:block!important}
+    [data-prodf-grid]{grid-template-columns:1fr!important}
+    [data-prods-grid]{grid-template-columns:1fr 1fr!important}
+    [data-idx-row]{grid-template-columns:auto 1fr auto!important;gap:14px!important}
+    [data-idx-cat]{display:none!important}
+    [data-pr-grid]{grid-template-columns:1fr!important}
+    [data-cta-grid]{grid-template-columns:1fr!important}
+    [data-footer-grid]{grid-template-columns:1fr 1fr!important}
+    [data-hero-h1]{font-size:clamp(34px,9vw,52px)!important}
+    /* capabilities: vertical scroll drives horizontal (sticky translate) */
+    [data-cap-desk]{display:block!important}
+    [data-cap-mob]{display:none!important}
+    [data-cap-track]{height:100%!important;will-change:transform}
+    [data-cap-track] > *{flex:none!important;width:100vw!important;max-width:100vw!important;min-width:0!important;box-sizing:border-box!important;overflow:hidden}
+    [data-cap-hpanel]{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;padding:84px 6vw 28px!important;align-content:center}
+    [data-cap-hpanel] > *{min-width:0;max-width:100%}
+    [data-cap-hpanel] [style*="display:flex"]{flex-wrap:wrap}
+    [data-cap-hpanel]{height:100%!important;padding:78px 6vw 22px!important;gap:16px!important;align-content:center!important}
+    [data-cap-hvisual]{height:min(34vh,300px)!important;max-height:none!important;border-radius:18px!important;box-shadow:0 18px 40px rgba(15,23,42,.14)!important}
+    [data-cap-htext] h3{font-size:clamp(24px,6.4vw,32px)!important;margin-bottom:10px!important}
+    [data-cap-htext] p{font-size:14px!important;line-height:1.6!important;margin-bottom:14px!important}
+    [data-cap-htext] > div:first-child{margin-bottom:8px!important;font-size:16px!important}
+    [data-cap-htext] span[style*="padding:8px 14px"]{padding:6px 11px!important;font-size:12px!important}
+    [data-cap-track] > div:first-child{padding:0 6vw!important}
+    /* how we build: stack the two columns */
+    [data-stack-card]{position:relative!important;top:auto!important;margin-bottom:20px!important}
+    #feedbacks{padding-left:22px!important;padding-right:22px!important}
+    #how{padding-left:22px!important;padding-right:22px!important}
+    [data-stack-inner]{grid-template-columns:1fr!important;gap:20px!important;padding:28px!important}
+    [data-stack-left]{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px}
+    [data-stack-num]{font-size:64px!important}
+    [data-stack]{padding-bottom:0!important}
+    [data-prod-feat] [data-prodmock-scale]{}
+  }
+  @media(max-width:560px){
+    [data-footer-grid]{grid-template-columns:1fr!important}
+    [data-prods-grid]{grid-template-columns:1fr!important}
+    [data-cs-card]{width:80vw!important}
+    [data-stack-left]{flex-direction:column!important;align-items:flex-start!important}
+  }
+
+  /* ===== GLOBAL BUTTON SYSTEM, fixed in place, spring pop on hover ===== */
+  a[data-magnetic],button[data-magnetic],[data-magnetic]{transform:none;will-change:transform;transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background-color .25s ease,border-color .25s ease,color .25s ease}
+  a[data-magnetic]:hover,button[data-magnetic]:hover{transform:translateY(-2px) scale(1.035)}
+  a[data-magnetic]:active,button[data-magnetic]:active{transform:translateY(0) scale(.968);transition-duration:.09s}
+  a[data-magnetic],button[data-magnetic]{min-height:42px;line-height:1.2;text-align:center}
+  button[data-magnetic]{align-items:center;justify-content:center}
+  @media(prefers-reduced-motion:reduce){a[data-magnetic]:hover,button[data-magnetic]:hover{transform:none}}
+</style>
+</helmet>
+
+<div style="--g1:#3b82f6;--g2:#2563eb;--g3:#60a5fa;position:relative;min-height:100vh;background:#ffffff;font-family:'Poppins',sans-serif;color:#334155;line-height:1.6;overflow-x:clip">
+
+  <div data-cursor id="cn-ring" style="display:none;position:fixed;top:0;left:0;width:36px;height:36px;border-radius:50%;border:1.5px solid #3b82f6;margin:-18px 0 0 -18px;z-index:9999;pointer-events:none;transition:width .2s,height .2s,margin .2s,background .2s,border-color .2s"></div>
+  <div data-cursor id="cn-dot" style="display:none;position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:#3b82f6;margin:-3px 0 0 -3px;z-index:10000;pointer-events:none"></div>
+
+  <div style="position:relative;z-index:2;background:#ffffff">
+
+  <a href="Home.dc.html#hero" aria-label="Back to home" style="position:fixed;left:20px;bottom:20px;z-index:9998;display:inline-flex;align-items:center;gap:8px;padding:12px 18px 12px 14px;border-radius:100px;background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;text-decoration:none;font-family:'Poppins',sans-serif;font-weight:600;font-size:13.5px;box-shadow:0 12px 30px rgba(59,130,246,.45);transition:transform .25s ease,box-shadow .25s ease" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='none'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>Back</a>
+
+  <!-- NAV -->
+  
+
+
+  <!-- ═════════════ SECTION 1 · HERO ═════════════ -->
+  <section data-screen-label="Hero" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:150px 28px 0;overflow:hidden;background:#ffffff">
+    <div data-hero-logs style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 74%,#000 100%);mask-image:linear-gradient(90deg,#000 0%,transparent 26%,transparent 74%,#000 100%)">
+      <sc-for list="{{ heroLogCols }}" as="col" hint-placeholder-count="2">
+        <div style="position:absolute;top:0;{{ col.side }}:1.5%;width:250px;animation:cnLogUp {{ col.dur }} linear infinite;animation-delay:{{ col.delay }};text-align:{{ col.align }}">
+          <sc-for list="{{ col.lines }}" as="ln" hint-placeholder-count="12">
+            <div style="font-family:'Poppins';font-size:15px;font-weight:600;line-height:1.5;color:rgba(15,23,42,.09);padding:11px 0">{{ ln }}</div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="position:absolute;top:8%;left:6%;width:12px;height:12px;border-radius:50%;background:rgba(59,130,246,.16)"></div>
+    <div style="position:absolute;bottom:22%;right:9%;width:8px;height:8px;border-radius:50%;background:rgba(59,130,246,.22)"></div>
+    <div style="max-width:1040px;margin:0 auto;text-align:center;position:relative;z-index:2">
+      <div data-hero-eyebrow style="font-size:11px;font-weight:600;letter-spacing:.26em;color:#3b82f6;text-transform:uppercase;margin-bottom:32px">Cybernaut SAAS Studio</div>
+      <h1 data-hero-h1 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(40px,6.4vw,80px);line-height:1.05;letter-spacing:-2.4px;color:#0f172a;max-width:1000px;margin:0 auto">
+        <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">We</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">build</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">software</span></span><br>
+        <span data-chip-wrap style="position:relative;display:inline-flex;vertical-align:middle;margin:0 10px 0 0"><span data-chip data-hero-chip style="display:inline-flex;align-items:center;justify-content:center;width:clamp(54px,11vw,96px);height:clamp(38px,7.4vw,64px);border-radius:clamp(11px,2vw,16px);overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b);box-shadow:0 12px 30px rgba(15,23,42,.24)">{{ icChipDash }}</span></span><span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">that</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">runs</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">your</span></span><br>
+        <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">business</span></span> <span data-chip-wrap style="position:relative;display:inline-flex;vertical-align:middle;margin:0 10px"><span data-chip data-hero-chip style="display:inline-flex;align-items:center;justify-content:center;width:clamp(54px,11vw,96px);height:clamp(38px,7.4vw,64px);border-radius:clamp(11px,2vw,16px);overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b);box-shadow:0 12px 30px rgba(15,23,42,.24)">{{ icChipKanban }}</span></span><span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">while</span></span><br>
+        <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">you</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">build</span></span> <span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">your</span></span> <span data-chip-wrap style="position:relative;display:inline-flex;vertical-align:middle;margin:0 10px"><span data-chip data-hero-chip style="display:inline-flex;align-items:center;justify-content:center;width:clamp(54px,11vw,96px);height:clamp(38px,7.4vw,64px);border-radius:clamp(11px,2vw,16px);overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e293b);box-shadow:0 12px 30px rgba(15,23,42,.24)">{{ icChipRocket }}</span></span><span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em"><span data-word style="display:inline-block">vision.</span></span>
+      </h1>
+      <p data-hero-fade style="font-size:18px;color:#64748b;max-width:560px;margin:28px auto 0;line-height:1.7">We build the software and AI systems that run your business, and the agents that automate the robotic, repetitive work your team should never touch again. Designed in-house. Proven on our own operations first.</p>
+      <div data-hero-fade style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:36px">
+        <a href="#products" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 26px;border-radius:10px;background:#0f172a;color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 14px 30px rgba(15,23,42,.22);transition:transform .25s,background .25s" style-hover="transform:translateY(-3px);background:#1e293b">Explore Our Products {{ icArrowDown }}</a>
+        <a href="#cta" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 26px;border-radius:10px;background:#fff;border:2px solid #e2e8f0;color:#475569;font-weight:600;font-size:15px;text-decoration:none;transition:transform .25s,border-color .25s,color .25s" style-hover="transform:translateY(-3px);border-color:#3b82f6;color:#3b82f6">Book a Product Demo</a>
+      </div>
+    </div>
+    <!-- bottom marquee -->
+    <div style="width:100%;margin-top:56px;padding:22px 0;border-top:1px solid #eef2f7;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+      <div data-marquee style="display:flex;width:max-content;white-space:nowrap;will-change:transform">
+        <sc-for list="{{ marqueeTags }}" as="t" hint-placeholder-count="12">
+          <span style="display:inline-flex;align-items:center;gap:26px;font-size:12px;font-weight:600;letter-spacing:.16em;color:#94a3b8;text-transform:uppercase;padding-right:26px">{{ t }}<span style="width:5px;height:5px;border-radius:50%;background:#cbd5e1"></span></span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION · LET'S BUILD (scroll reveal) ═════════════ -->
+  <section data-lb-section data-screen-label="Let's Build" style="position:relative;padding:150px 32px;background:#0f172a;overflow:hidden;text-align:center">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;max-width:120vw;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.18),transparent 62%);pointer-events:none"></div>
+    <div style="position:relative;z-index:2;max-width:1000px;margin:0 auto">
+      <div data-lb-eyebrow style="font-size:12px;font-weight:600;letter-spacing:.28em;color:#60a5fa;text-transform:uppercase;margin-bottom:26px">Ready when you are</div>
+      <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(56px,12vw,170px);line-height:.9;letter-spacing:-3px;color:#fff;margin-bottom:8px">
+        <span data-lb-letters style="display:inline-block"></span>
+      </h2>
+      <p data-lb-sub style="font-size:19px;color:#94a3b8;line-height:1.7;max-width:520px;margin:20px auto 40px">One idea. One honest call. One team that turns it into software your company actually runs on.</p>
+      <a href="#cta" data-lb-sub data-magnetic style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 32px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 16px 36px rgba(59,130,246,.4);transition:transform .25s,filter .25s" style-hover="transform:translateY(-3px);filter:brightness(1.08)">Start the conversation {{ icArrowRight }}</a>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION A · OUR CAPABILITIES (pinned banner) ═════════════ -->
+  <section id="capabilities" data-cap-section data-screen-label="Our Capabilities" style="position:relative;background:#ffffff">
+
+    <!-- DESKTOP: pinned horizontal scroll -->
+    <div data-cap-desk style="height:100vh">
+      <div data-cap-pin style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center">
+        <div data-cap-track style="display:flex;height:100%;align-items:stretch;will-change:transform">
+
+          <!-- intro panel -->
+          <div style="flex:none;width:46vw;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 6vw;border-right:1px solid #e6ecf3">
+            <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#3b82f6;text-transform:uppercase;margin-bottom:20px">Our Capabilities</div>
+            <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(40px,4.4vw,60px);line-height:.95;letter-spacing:-1.6px;color:#0f172a;margin-bottom:24px">Every service a<br>growing business<br>needs.</h2>
+            <p style="font-size:17px;color:#64748b;line-height:1.7;max-width:400px;margin-bottom:28px">Five service lines. One engineering standard. Scroll across to see how we build each one.</p>
+            <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#3b82f6">Scroll to explore {{ icArrowRight }}</div>
+          </div>
+
+          <!-- service panels -->
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+            <div data-cap-hpanel style="flex:none;width:70vw;height:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px;padding:0 6vw;border-right:1px solid #e6ecf3">
+              <div data-cap-htext>
+                <div style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:16px">{{ s.num }} / 05</div>
+                <h3 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,3vw,42px);color:#0f172a;letter-spacing:-.6px;line-height:1.02;margin-bottom:16px">{{ s.title }}</h3>
+                <p style="font-size:16px;color:#64748b;line-height:1.7;max-width:440px;margin-bottom:24px">{{ s.blurb }}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="4">
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#475569;padding:8px 14px;border-radius:100px;background:#eef3f9;border:1px solid #e2e8f0"><span style="color:#3b82f6;display:flex">{{ icChevron }}</span>{{ it }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div data-cap-hvisual style="position:relative;height:64vh;max-height:520px;border-radius:22px;overflow:hidden;border:1px solid #e2e8f0;background:#f1f5fb;box-shadow:0 40px 90px rgba(15,23,42,.14)">
+                <div style="position:absolute;top:18px;left:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:#334155;background:rgba(255,255,255,.82);border:1px solid #e2e8f0;padding:6px 12px;border-radius:100px;backdrop-filter:blur(6px)"><span style="width:32px;height:32px;margin:-6px -4px -6px -8px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#3b82f6">{{ s.icon }}</span>{{ s.tag }}</div>
+                <sc-if value="{{ s.isPE }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;container-type:size;overflow:hidden;background:linear-gradient(155deg,#0A1734 0%,#0E2A63 55%,#0A6E96 100%)">
+                  <div style="position:absolute;top:-30cqw;right:-20cqw;width:80cqw;height:80cqw;border-radius:50%;background:radial-gradient(closest-side,rgba(31,211,232,.4),transparent);pointer-events:none"></div>
+                  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:6cqw 6cqw;mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);pointer-events:none"></div>
+                  <div style="position:absolute;left:50%;top:50%;width:min(100cqw,140cqh);aspect-ratio:100/64;transform:translate(-50%,-50%);container-type:inline-size"><div style="position:absolute;left:5cqw;top:2cqw;width:90cqw;height:58cqw">
+                    <div style="position:absolute;left:0;top:0;width:75cqw;height:49cqw;display:flex;flex-direction:column;border-radius:1.8cqw;overflow:hidden;background:#fff;box-shadow:0 3cqw 8cqw rgba(0,0,0,.45)">
+                      <div style="flex:none;height:5.2cqw;display:flex;align-items:center;gap:.9cqw;padding:0 2cqw;background:#F1F4F9;border-bottom:1px solid #E3E8F0"><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#FF5F57"></span><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#FEBC2E"></span><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#28C840"></span><span style="flex:1;margin:0 7cqw;height:2.8cqw;border-radius:1.4cqw;background:#fff;border:1px solid #E3E8F0;display:flex;align-items:center;justify-content:center;font-size:1.4cqw;color:#64748B;font-family:'JetBrains Mono',monospace">app.yourproduct.com</span></div>
+                      <div style="flex:1;display:grid;grid-template-columns:14cqw 1fr;min-height:0">
+                        <div style="background:#0F172A;padding:2cqw 1.5cqw;display:flex;flex-direction:column;gap:1.1cqw"><span style="width:3.2cqw;height:3.2cqw;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);margin-bottom:1cqw"></span><span style="height:2.4cqw;border-radius:.8cqw;background:linear-gradient(90deg,#2F7BFF,#1FD3E8)"></span><span style="height:2.4cqw;width:80%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:90%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:70%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:85%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span></div>
+                        <div style="padding:2.2cqw;background:#F8FAFC;display:flex;flex-direction:column;gap:1.6cqw;min-width:0">
+                          <div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-family:'Radio Canada Big';font-size:2.5cqw;font-weight:700;color:#0F172A;line-height:1.1">Overview</div><div style="font-size:1.3cqw;color:#94A3B8">Last 30 days</div></div><span style="padding:.9cqw 1.8cqw;border-radius:2cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-size:1.3cqw;font-weight:600">Deploy</span></div>
+                          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw"><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Active users</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">24.8K</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">+12.4%</div></div><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Requests</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">1.2M</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">+8.1%</div></div><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Uptime</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">99.98%</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">Stable</div></div></div>
+                          <div style="flex:1;min-height:0;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff;padding:1.2cqw;display:flex"><svg viewBox="0 0 300 90" preserveAspectRatio="none" style="width:100%;height:100%;display:block"><defs><linearGradient id="peArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F7BFF" stop-opacity=".35"></stop><stop offset="1" stop-color="#2F7BFF" stop-opacity="0"></stop></linearGradient></defs><path d="M0 70 C30 62 45 66 70 52 S115 44 140 48 S185 30 210 34 S255 16 300 12 L300 90 L0 90 Z" fill="url(#peArea)"></path><path d="M0 70 C30 62 45 66 70 52 S115 44 140 48 S185 30 210 34 S255 16 300 12" fill="none" stroke="#2F7BFF" stroke-width="2.2" vector-effect="non-scaling-stroke"></path></svg></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="position:absolute;right:0;bottom:0;width:22cqw;height:45cqw;padding:.9cqw;border-radius:3.6cqw;background:#0B1020;box-shadow:0 3cqw 8cqw rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.12)">
+                      <div style="position:relative;width:100%;height:100%;border-radius:2.8cqw;overflow:hidden;background:#F1F5FB;display:flex;flex-direction:column">
+                        <span style="position:absolute;top:.8cqw;left:50%;width:6cqw;height:1.6cqw;margin-left:-3cqw;border-radius:1cqw;background:#0B1020;z-index:2"></span>
+                        <div style="padding:4cqw 1.8cqw 2cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff"><div style="font-size:1.3cqw;opacity:.85">Good morning</div><div style="font-family:'Radio Canada Big';font-size:2.2cqw;font-weight:700;line-height:1.2">Your dashboard</div></div>
+                        <div style="padding:1.4cqw;display:flex;flex-direction:column;gap:1cqw"><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:80%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:55%;border-radius:1cqw;background:#E2E8F0"></span></span></div><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:70%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:45%;border-radius:1cqw;background:#E2E8F0"></span></span></div><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:90%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:65%;border-radius:1cqw;background:#E2E8F0"></span></span></div></div>
+                      </div>
+                    </div>
+                    <div style="position:absolute;left:-2cqw;bottom:-3cqw;padding:1.4cqw 1.8cqw;border-radius:1.4cqw;background:rgba(8,14,30,.9);border:1px solid rgba(255,255,255,.14);box-shadow:0 2cqw 5cqw rgba(0,0,0,.45);font-family:'JetBrains Mono',monospace;font-size:1.45cqw;line-height:1.7;white-space:nowrap"><div style="color:#7fd8ff">$ git push origin main</div><div style="color:#7CFFB2">✓ Build passed · 2.4s</div><div style="color:#CBD5E1">→ Live in production</div></div>
+                  </div></div>
+                </div></sc-if>
+                <sc-if value="{{ s.notPE }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ s.slotId }}" src="{{ s.src }}" shape="rounded" radius="0" object-fit="cover" style="position:absolute;inset:0;width:100%;height:100%" placeholder="{{ s.slotHint }}"></image-slot></sc-if>
+              </div>
+            </div>
+          </sc-for>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE: heading + vertical stacked cards -->
+    <div data-cap-mob style="padding:80px 20px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#3b82f6;text-transform:uppercase;margin-bottom:16px">Our Capabilities</div>
+      <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,8vw,40px);line-height:1;letter-spacing:-1px;color:#0f172a;margin-bottom:14px">Every service a growing business needs.</h2>
+      <p style="font-size:15px;color:#64748b;line-height:1.7;margin-bottom:30px">Five service lines. One engineering standard behind all of them.</p>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <div data-capm-card style="border-radius:20px;overflow:hidden;border:1px solid #e2e8f0;background:#fff;box-shadow:0 16px 40px rgba(15,23,42,.07)">
+            <div style="position:relative;height:220px;background:#f1f5fb;overflow:hidden">
+              <sc-if value="{{ s.isPE }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;container-type:size;overflow:hidden;background:linear-gradient(155deg,#0A1734 0%,#0E2A63 55%,#0A6E96 100%)">
+                  <div style="position:absolute;top:-30cqw;right:-20cqw;width:80cqw;height:80cqw;border-radius:50%;background:radial-gradient(closest-side,rgba(31,211,232,.4),transparent);pointer-events:none"></div>
+                  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:6cqw 6cqw;mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);-webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent);pointer-events:none"></div>
+                  <div style="position:absolute;left:50%;top:50%;width:min(100cqw,140cqh);aspect-ratio:100/64;transform:translate(-50%,-50%);container-type:inline-size"><div style="position:absolute;left:5cqw;top:2cqw;width:90cqw;height:58cqw">
+                    <div style="position:absolute;left:0;top:0;width:75cqw;height:49cqw;display:flex;flex-direction:column;border-radius:1.8cqw;overflow:hidden;background:#fff;box-shadow:0 3cqw 8cqw rgba(0,0,0,.45)">
+                      <div style="flex:none;height:5.2cqw;display:flex;align-items:center;gap:.9cqw;padding:0 2cqw;background:#F1F4F9;border-bottom:1px solid #E3E8F0"><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#FF5F57"></span><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#FEBC2E"></span><span style="width:1.2cqw;height:1.2cqw;border-radius:50%;background:#28C840"></span><span style="flex:1;margin:0 7cqw;height:2.8cqw;border-radius:1.4cqw;background:#fff;border:1px solid #E3E8F0;display:flex;align-items:center;justify-content:center;font-size:1.4cqw;color:#64748B;font-family:'JetBrains Mono',monospace">app.yourproduct.com</span></div>
+                      <div style="flex:1;display:grid;grid-template-columns:14cqw 1fr;min-height:0">
+                        <div style="background:#0F172A;padding:2cqw 1.5cqw;display:flex;flex-direction:column;gap:1.1cqw"><span style="width:3.2cqw;height:3.2cqw;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);margin-bottom:1cqw"></span><span style="height:2.4cqw;border-radius:.8cqw;background:linear-gradient(90deg,#2F7BFF,#1FD3E8)"></span><span style="height:2.4cqw;width:80%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:90%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:70%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span><span style="height:2.4cqw;width:85%;border-radius:.8cqw;background:rgba(255,255,255,.1)"></span></div>
+                        <div style="padding:2.2cqw;background:#F8FAFC;display:flex;flex-direction:column;gap:1.6cqw;min-width:0">
+                          <div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-family:'Radio Canada Big';font-size:2.5cqw;font-weight:700;color:#0F172A;line-height:1.1">Overview</div><div style="font-size:1.3cqw;color:#94A3B8">Last 30 days</div></div><span style="padding:.9cqw 1.8cqw;border-radius:2cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-size:1.3cqw;font-weight:600">Deploy</span></div>
+                          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw"><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Active users</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">24.8K</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">+12.4%</div></div><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Requests</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">1.2M</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">+8.1%</div></div><div style="padding:1.4cqw;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff"><div style="font-size:1.3cqw;color:#94A3B8;font-weight:500;margin-bottom:.4cqw">Uptime</div><div style="font-family:'Radio Canada Big';font-size:2.6cqw;font-weight:700;color:#0F172A;line-height:1.1">99.98%</div><div style="font-size:1.2cqw;font-weight:600;color:#16A34A;margin-top:.3cqw">Stable</div></div></div>
+                          <div style="flex:1;min-height:0;border-radius:1.2cqw;border:1px solid #E6ECF3;background:#fff;padding:1.2cqw;display:flex"><svg viewBox="0 0 300 90" preserveAspectRatio="none" style="width:100%;height:100%;display:block"><defs><linearGradient id="peArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F7BFF" stop-opacity=".35"></stop><stop offset="1" stop-color="#2F7BFF" stop-opacity="0"></stop></linearGradient></defs><path d="M0 70 C30 62 45 66 70 52 S115 44 140 48 S185 30 210 34 S255 16 300 12 L300 90 L0 90 Z" fill="url(#peArea)"></path><path d="M0 70 C30 62 45 66 70 52 S115 44 140 48 S185 30 210 34 S255 16 300 12" fill="none" stroke="#2F7BFF" stroke-width="2.2" vector-effect="non-scaling-stroke"></path></svg></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="position:absolute;right:0;bottom:0;width:22cqw;height:45cqw;padding:.9cqw;border-radius:3.6cqw;background:#0B1020;box-shadow:0 3cqw 8cqw rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.12)">
+                      <div style="position:relative;width:100%;height:100%;border-radius:2.8cqw;overflow:hidden;background:#F1F5FB;display:flex;flex-direction:column">
+                        <span style="position:absolute;top:.8cqw;left:50%;width:6cqw;height:1.6cqw;margin-left:-3cqw;border-radius:1cqw;background:#0B1020;z-index:2"></span>
+                        <div style="padding:4cqw 1.8cqw 2cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff"><div style="font-size:1.3cqw;opacity:.85">Good morning</div><div style="font-family:'Radio Canada Big';font-size:2.2cqw;font-weight:700;line-height:1.2">Your dashboard</div></div>
+                        <div style="padding:1.4cqw;display:flex;flex-direction:column;gap:1cqw"><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:80%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:55%;border-radius:1cqw;background:#E2E8F0"></span></span></div><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:70%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:45%;border-radius:1cqw;background:#E2E8F0"></span></span></div><div style="display:flex;align-items:center;gap:1.2cqw;padding:1.3cqw;border-radius:1.4cqw;background:#fff;box-shadow:0 .4cqw 1.2cqw rgba(15,23,42,.06)"><span style="width:3.4cqw;height:3.4cqw;flex:none;border-radius:1cqw;background:linear-gradient(135deg,#2F7BFF,#1FD3E8)"></span><span style="flex:1;display:flex;flex-direction:column;gap:.7cqw"><span style="height:1.1cqw;width:90%;border-radius:1cqw;background:#CBD5E1"></span><span style="height:.9cqw;width:65%;border-radius:1cqw;background:#E2E8F0"></span></span></div></div>
+                      </div>
+                    </div>
+                    <div style="position:absolute;left:-2cqw;bottom:-3cqw;padding:1.4cqw 1.8cqw;border-radius:1.4cqw;background:rgba(8,14,30,.9);border:1px solid rgba(255,255,255,.14);box-shadow:0 2cqw 5cqw rgba(0,0,0,.45);font-family:'JetBrains Mono',monospace;font-size:1.45cqw;line-height:1.7;white-space:nowrap"><div style="color:#7fd8ff">$ git push origin main</div><div style="color:#7CFFB2">✓ Build passed · 2.4s</div><div style="color:#CBD5E1">→ Live in production</div></div>
+                  </div></div>
+                </div></sc-if>
+              <sc-if value="{{ s.notPE }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ s.slotIdM }}" src="{{ s.src }}" shape="rect" object-fit="cover" style="position:absolute;inset:0;width:100%;height:100%" placeholder="{{ s.slotHint }}"></image-slot></sc-if>
+              <span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:#1d4ed8;background:rgba(255,255,255,.82);border:1px solid #e2e8f0;padding:5px 11px;border-radius:100px;backdrop-filter:blur(6px)">{{ s.num }} / 05</span>
+            </div>
+            <div style="padding:22px">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <span style="width:40px;height:40px;flex:none;border-radius:11px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff">{{ s.iconWhite }}</span>
+                <h3 style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;color:#0f172a">{{ s.title }}</h3>
+              </div>
+              <p style="font-size:14px;color:#64748b;line-height:1.65;margin-bottom:16px">{{ s.blurb }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:7px">
+                <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="4">
+                  <span style="font-size:12px;font-weight:600;color:#475569;padding:6px 12px;border-radius:100px;background:#eef3f9;border:1px solid #e2e8f0">{{ it }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION B · OUR PRODUCTS (bento showcase) ═════════════ -->
+  <section id="products" data-screen-label="Our Products" style="position:relative;padding:120px 64px;background:#0f172a;overflow:hidden">
+    <div style="max-width:1220px;margin:0 auto">
+      <div data-reveal style="max-width:640px;margin-bottom:56px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#60a5fa;text-transform:uppercase;margin-bottom:18px">Our Products</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:.95;letter-spacing:-1.4px;color:#fff;margin-bottom:22px">Software we built for<br>ourselves. Now yours.</h2>
+        <p style="font-size:17px;color:#94a3b8;max-width:540px;line-height:1.7">Every product here began as a tool we needed to run our own studio. We built it, put it to work, then handed it to clients. That is why it holds up.</p>
+      </div>
+
+      <!-- editorial index -->
+      <div style="border-top:1px solid rgba(255,255,255,.1)">
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+          <div data-idx-item style="border-bottom:1px solid rgba(255,255,255,.1);transition:background .3s" style-hover="background:rgba(59,130,246,.05)">
+            <div data-idx-row style="display:grid;grid-template-columns:auto auto 1fr auto;gap:24px;align-items:center;padding:24px 12px">
+              <span style="font-family:'Radio Canada Big';font-weight:700;font-size:15px;color:#3b6bb0;width:28px">{{ p.num }}</span>
+              <div style="display:flex;align-items:center;gap:14px;min-width:220px"><span style="width:42px;height:42px;flex:none;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(96,165,250,.3);display:flex;align-items:center;justify-content:center;color:#60a5fa">{{ p.iconLine }}</span><span style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(19px,2.2vw,25px);color:#fff;letter-spacing:-.4px">{{ p.name }}</span></div>
+              <span data-idx-cat style="font-size:13.5px;color:#8ba0bf">{{ p.category }}</span>
+              <span style="color:#60a5fa;display:flex;justify-content:flex-end">{{ p.arrow }}</span>
+            </div>
+            <div data-idx-body style="max-height:0;overflow:hidden;transition:max-height .4s ease">
+              <div style="padding:0 12px 26px 68px;max-width:820px">
+                <p style="font-size:14.5px;color:#94a3b8;line-height:1.7;margin:0 0 14px">{{ p.body }}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:7px"><sc-for list="{{ p.chips }}" as="ch" hint-placeholder-count="3"><span style="font-size:11px;font-weight:600;color:#cbd5e1;padding:5px 11px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)">{{ ch }}</span></sc-for></div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION C · OUR CASE STUDIES (horizontal scroll) ═════════════ -->
+  <section id="clients" data-screen-label="Our Case Studies" style="position:relative;padding:110px 0;background:#ffffff;overflow:hidden">
+    <div style="max-width:1220px;margin:0 auto;padding:0 64px">
+      <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px">
+        <div style="max-width:660px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#3b82f6;text-transform:uppercase;margin-bottom:18px">Our Case Studies</div>
+          <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,4vw,44px);line-height:.98;letter-spacing:-1.2px;color:#0f172a">Real businesses.<br>Real systems we shipped.</h2>
+        </div>
+        <p style="font-size:15px;color:#64748b;max-width:320px;line-height:1.7">Pharmacies, colleges, builders and brands. Different worlds, same result: software their teams rely on daily.</p>
+      </div>
+    </div>
+
+    <!-- scrolling rail -->
+    <div data-cs-rail style="position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)" onMouseEnter="{{ pauseRail }}" onMouseLeave="{{ resumeRail }}">
+      <div data-cs-track style="display:flex;gap:22px;width:max-content;padding:6px 64px;will-change:transform">
+        <sc-for list="{{ caseStudiesLoop }}" as="c" hint-placeholder-count="14">
+          <div data-cs-card style="flex:none;width:340px;display:flex;flex-direction:column;background:#ffffff;border:1px solid #e2e8f0;border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(15,23,42,.06);transition:transform .3s,border-color .3s,box-shadow .3s" style-hover="transform:translateY(-6px);border-color:#bfdbfe;box-shadow:0 26px 54px rgba(15,23,42,.12)">
+            <div style="position:relative;height:150px;background:linear-gradient(150deg,#eef4ff,#f8fafc);overflow:hidden">
+              <image-slot id="{{ c.coverId }}" src="{{ c.cover }}" shape="rect" object-fit="cover" style="position:absolute;inset:0;width:100%;height:100%" placeholder="{{ c.name }} project"></image-slot>
+            </div>
+            <div style="padding:24px 24px 24px;display:flex;flex-direction:column;flex:1">
+              <div style="font-size:17px;font-weight:700;color:#0f172a;line-height:1.2">{{ c.name }}</div>
+              <div style="font-size:12px;color:#94a3b8;margin:3px 0 14px">{{ c.industry }}</div>
+              <p style="font-size:14px;color:#475569;line-height:1.65;flex:1;margin-bottom:16px">{{ c.caseStudy }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ c.tags }}" as="t" hint-placeholder-count="2">
+                  <span style="font-size:11.5px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #dbeafe;padding:5px 11px;border-radius:100px">{{ t }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="max-width:1220px;margin:44px auto 0;padding:0 64px;text-align:center">
+      <a href="#cta" data-magnetic style="display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:#3b82f6;text-decoration:none">Your business could be next. Let us talk {{ icArrowRight }}</a>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION D · CLIENT FEEDBACKS (3D cards) ═════════════ -->
+  <section id="feedbacks" data-screen-label="Client Feedbacks" style="position:relative;padding:110px 64px;background:#0b1220;overflow:hidden">
+    <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.14),transparent 60%);pointer-events:none"></div>
+    <div style="max-width:1200px;margin:0 auto;position:relative;z-index:2">
+      <div data-reveal style="max-width:680px;margin-bottom:56px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#60a5fa;text-transform:uppercase;margin-bottom:18px">Client Feedbacks</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(30px,4vw,44px);line-height:.98;letter-spacing:-1.2px;color:#fff;margin-bottom:14px">Words from the teams<br>we shipped for.</h2>
+        <p style="font-size:16px;color:#94a3b8;line-height:1.7">Real clients. Real systems in production. Here is what they said once it went live.</p>
+      </div>
+
+      <div data-pr-grid style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;perspective:1400px">
+        <sc-for list="{{ feedbacks }}" as="f" hint-placeholder-count="3">
+          <div data-tilt style="position:relative;transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform">
+            <div data-pr-card style="position:relative;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,#141f38,#0d1526);border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 70px rgba(0,0,0,.5)">
+              <div style="position:relative;height:180px;overflow:hidden">
+                <image-slot id="{{ f.slotId }}" src="{{ f.src }}" shape="rect" object-fit="cover" style="position:absolute;inset:0;width:100%;height:100%" placeholder="{{ f.company }} photo"></image-slot>
+                <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,18,32,.05),rgba(13,21,38,.85));pointer-events:none"></div>
+              </div>
+              <div style="padding:24px 24px 24px;display:flex;flex-direction:column;flex:1">
+                <div style="font-family:'Radio Canada Big';font-size:60px;line-height:.5;color:rgba(96,165,250,.35);margin-bottom:6px;transform:translateZ(30px)">&ldquo;</div>
+                <p style="font-size:15.5px;color:#e2e8f0;line-height:1.65;flex:1;margin-bottom:22px;transform:translateZ(20px)">{{ f.quote }}</p>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);transform:translateZ(15px)">
+                  <div style="min-width:0">
+                    <div style="font-size:14px;font-weight:700;color:#fff">{{ f.name }}</div>
+                    <div style="font-size:12px;color:#64748b">{{ f.company }}</div>
+                  </div>
+                  <div style="display:flex;gap:3px">
+                    <sc-for list="{{ f.stars }}" as="st" hint-placeholder-count="5">
+                      <span style="color:#fbbf24;display:flex">{{ icStar }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION 5 · HOW WE BUILD (stacking cards) ═════════════ -->
+  <section id="how" data-screen-label="How We Build" style="position:relative;padding:110px 64px 0;background:#ffffff">
+    <div style="max-width:1080px;margin:0 auto">
+      <div data-reveal style="max-width:620px;margin-bottom:56px">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.24em;color:#3b82f6;text-transform:uppercase;margin-bottom:18px">How We Build</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(34px,4.4vw,52px);letter-spacing:-1.2px;color:#0f172a;line-height:1;margin-bottom:16px">Four phases.<br>Zero surprises.</h2>
+        <p style="font-size:17px;color:#64748b;max-width:480px">Keep scrolling. Each phase stacks on the last, the way our build process actually compounds.</p>
+      </div>
+
+      <div data-stack style="position:relative;padding-bottom:40vh">
+        <sc-for list="{{ buildSteps }}" as="p" hint-placeholder-count="4">
+          <div data-stack-card style="position:sticky;top:{{ p.top }};margin-bottom:34px">
+            <div data-stack-inner style="display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:center;padding:44px;border-radius:24px;background:linear-gradient(150deg,#111c30,#0b1220);border:1px solid rgba(255,255,255,.09);box-shadow:0 30px 70px rgba(15,23,42,.28)">
+              <div data-stack-left style="position:relative">
+                <div data-stack-num style="font-family:'Radio Canada Big';font-weight:700;font-size:120px;line-height:.85;color:transparent;-webkit-text-stroke:1.5px rgba(96,165,250,.4);background:linear-gradient(135deg,rgba(59,130,246,.14),transparent);-webkit-background-clip:text;background-clip:text">{{ p.num }}</div>
+                <div style="display:inline-flex;align-items:center;gap:12px;margin-top:14px">
+                  <span style="width:52px;height:52px;flex:none;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff">{{ p.icon }}</span>
+                  <span style="font-family:'Radio Canada Big';font-weight:700;font-size:24px;color:#fff;letter-spacing:-.4px">{{ p.label }}</span>
+                </div>
+              </div>
+              <div>
+                <h3 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(24px,2.4vw,30px);color:#fff;letter-spacing:-.5px;margin-bottom:14px">{{ p.title }}</h3>
+                <p style="font-size:16px;color:#94a3b8;line-height:1.75;max-width:520px;margin-bottom:22px">{{ p.body }}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ p.items }}" as="it" hint-placeholder-count="3">
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#cbd5e1;padding:7px 13px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)"><span style="color:#4ade80;display:flex">{{ icCheckC }}</span>{{ it }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ SECTION 6 · START THE CONVERSATION (motivational) ═════════════ -->
+  <section id="cta" data-screen-label="Start the Conversation" style="position:relative;padding:130px 40px;background:linear-gradient(140deg,#2563eb,#06b6d4);overflow:hidden">
+    <div style="position:absolute;top:-100px;right:-60px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.16);filter:blur(40px);pointer-events:none"></div>
+    <div style="position:absolute;bottom:-160px;left:-80px;width:460px;height:460px;border-radius:50%;background:rgba(255,255,255,.1);filter:blur(40px);pointer-events:none"></div>
+
+    <div data-cta-grid style="max-width:1140px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center">
+      <div>
+        <div data-reveal style="display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.22em;color:#fff;text-transform:uppercase;margin-bottom:24px;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3)">Start the Conversation</div>
+        <h2 style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(40px,5.4vw,66px);line-height:.96;letter-spacing:-2px;color:#fff;margin-bottom:24px">
+          <span data-cta-line style="display:block">Stop running your</span>
+          <span data-cta-line style="display:block">business on <span style="color:#cffafe">duct tape.</span></span>
+          <span data-cta-line style="display:block">Let us build it right.</span>
+        </h2>
+        <p style="font-size:17px;color:rgba(255,255,255,.9);line-height:1.75;max-width:460px;margin-bottom:36px">You do not need a finished spec. You need one honest call. Tell us the problem in plain words and we will tell you what software can fix, what it costs, and how fast we can ship. Then we build it.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0 32px">
+          <sc-for list="{{ ctaStats }}" as="s" hint-placeholder-count="3">
+            <div style="padding:6px 0">
+              <div style="font-family:'Radio Canada Big';font-weight:700;font-size:32px;color:#fff;line-height:1"><span data-count="{{ s.count }}" data-suffix="{{ s.suffix }}" data-prefix="{{ s.prefix }}">{{ s.pre }}</span></div>
+              <div style="font-size:13px;color:rgba(255,255,255,.82);margin-top:6px">{{ s.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div data-cta-card style="position:relative;padding:34px;border-radius:24px;background:#fff;box-shadow:0 30px 70px rgba(6,60,120,.35)">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center;padding:34px 8px">
+            <div style="width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff">{{ icBigCheck }}</div>
+            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:23px;color:#0f172a;margin-bottom:8px">That is the first step done.</div>
+            <p style="font-size:14px;color:#64748b;max-width:340px;margin:0 auto">Our product team will reply within one working day to set up your call. Big things start exactly like this.</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:20px;color:#0f172a;margin-bottom:6px">Tell us what you want to build</div>
+          <div style="font-size:13px;color:#64748b;margin-bottom:22px">One working day to a straight answer. No commitment.</div>
+          <form onSubmit="{{ submitForm }}" style="display:flex;flex-direction:column;gap:12px">
+            <input required name="name" placeholder="Your name" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;font-family:inherit;font-size:14px;color:#0f172a;outline:none;transition:all .2s" style-focus="border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.16)" />
+            <input required name="company" placeholder="Company" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;font-family:inherit;font-size:14px;color:#0f172a;outline:none;transition:all .2s" style-focus="border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.16)" />
+            <input required name="phone" placeholder="Phone" style="width:100%;box-sizing:border-box;padding:14px 16px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc;font-family:inherit;font-size:14px;color:#0f172a;outline:none;transition:all .2s" style-focus="border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.16)" />
+            <button type="submit" data-magnetic style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 14px 30px rgba(59,130,246,.3);transition:transform .25s,filter .25s" style-hover="transform:translateY(-3px);filter:brightness(1.06)">Let us build it together {{ icArrowRight }}</button>
+          </form>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid #e6ecf3">
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569"><span style="color:#3b82f6;display:flex">{{ icPhone }}</span>+91 00000 00000</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569"><span style="color:#3b82f6;display:flex">{{ icMail }}</span>build@cybernaut.co.in</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:9px;margin-top:16px;font-size:12.5px;color:#64748b">{{ icCheckCircle }}No commitment. A straight answer about your idea.</div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <dc-import name="Navbar" active="Cybernaut SaaS" hero-theme="auto" hint-size="100%,0"></dc-import>
+  <dc-import name="Footer" hint-size="100%,600px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, mega: null, sent: false };
+
+  ICONS = {
+    layoutDashboard:'<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+    kanban:'<path d="M6 5v11"/><path d="M12 5v6"/><path d="M18 5v14"/>',
+    rocket:'<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+    arrowDown:'<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
+    arrowRight:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    code2:'<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>',
+    brain:'<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/>',
+    bookOpen:'<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+    settings:'<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/>',
+    building2:'<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+    users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    barChart2:'<line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>',
+    zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+    search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    penTool:'<path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.3 2.3 7.286 7.286"/><circle cx="11" cy="11" r="2"/>',
+    checkCircle:'<path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/>',
+    check:'<path d="M20 6 9 17l-5-5"/>',
+    phone:'<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384z"/>',
+    mail:'<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    chevronRight:'<path d="m9 18 6-6-6-6"/>',
+    star:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/>',
+    flaskConical:'<path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/>',
+    fileCheck:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/>',
+    briefcase:'<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+    gitMerge:'<circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/>',
+    cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+    layers:'<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>'
+  };
+
+  icon(name, opts) {
+    opts = opts || {};
+    return React.createElement('svg', {
+      width: opts.size || 22, height: opts.size || 22, viewBox: '0 0 24 24', fill: opts.fill || 'none',
+      stroke: opts.color || 'currentColor', strokeWidth: opts.stroke == null ? 2 : opts.stroke,
+      strokeLinecap: 'round', strokeLinejoin: 'round', style: { display: 'block' },
+      dangerouslySetInnerHTML: { __html: this.ICONS[name] || '' }
+    });
+  }
+
+  $(s) { return document.querySelector(s); }
+  $$(s) { return Array.from(document.querySelectorAll(s)); }
+  reduced() { return window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches; }
+
+  componentDidMount() {
+    
+    this.initCursor();
+    requestAnimationFrame(() => {
+      this.initGsap();
+      this.initLetsBuild();
+      this.initCapScroll();
+    });
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('mousemove', this._onCursor);
+    window.removeEventListener('click', this._onClick);
+    if (window.ScrollTrigger) ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  /* ---------- nav ---------- */
+  initNavScroll() {
+    if (window.__cnNavThemeInit) return;   // navbar-theme.js is the single owner of nav scroll styling
+    let ticking = false, was = null;
+    const apply = () => {
+      ticking = false;
+      const el = this.$('nav'); if (!el) return;
+      const now = window.scrollY > 30;
+      if (now === was) return; was = now;
+      if (now) { el.style.background = 'rgba(255,255,255,.85)'; el.style.backdropFilter = 'blur(16px)'; el.style.borderBottom = '1px solid #e6ecf3'; el.style.boxShadow = '0 6px 24px rgba(15,23,42,.06)'; el.style.padding = '8px 0'; }
+      else { el.style.background = 'transparent'; el.style.backdropFilter = 'none'; el.style.borderBottom = '1px solid transparent'; el.style.boxShadow = 'none'; el.style.padding = '12px 0'; }
+    };
+    this._onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    apply();
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    const dot = this.$('#cn-dot'), ring = this.$('#cn-ring');
+    if (!dot || !ring) return;
+    dot.style.display = ring.style.display = 'block';
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    this._onCursor = (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px,${my}px)`;
+      const t = e.target.closest && e.target.closest('a,button,[data-magnetic]');
+      if (t) { ring.style.width = '54px'; ring.style.height = '54px'; ring.style.margin = '-27px 0 0 -27px'; ring.style.background = 'rgba(59,130,246,.08)'; }
+      else { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.margin = '-18px 0 0 -18px'; ring.style.background = 'transparent'; }
+    };
+    window.addEventListener('mousemove', this._onCursor, { passive: true });
+    const lerp = () => { rx += (mx - rx) * .18; ry += (my - ry) * .18; ring.style.transform = `translate(${rx}px,${ry}px)`; this._craf = requestAnimationFrame(lerp); };
+    lerp();
+    this._onClick = (e) => { const rp = document.createElement('span'); rp.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;border:2px solid #3b82f6;z-index:9998;pointer-events:none;animation:cnRipple .6s ease-out forwards'; document.body.appendChild(rp); setTimeout(() => rp.remove(), 620); };
+    window.addEventListener('click', this._onClick, { passive: true });
+  }
+
+  /* ---------- GSAP scenes ---------- */
+  initGsap() {
+    if (!window.gsap) return;
+    const g = window.gsap;
+    if (window.ScrollTrigger) g.registerPlugin(window.ScrollTrigger);
+    const reduce = this.reduced();
+
+    if (reduce) return;
+
+    // hero
+    const tl = g.timeline({ delay: .15 });
+    tl.from('[data-hero-eyebrow]', { y: 20, opacity: 0, duration: .6, ease: 'power3.out' });
+    tl.from('[data-word]', { yPercent: 115, duration: .7, stagger: .04, ease: 'power3.out' }, '-=.3');
+    this.$$('[data-chip]').forEach((el, i) => g.from(el, { width: 0, duration: .5, ease: 'power3.out', delay: .6 + i * .2 }));
+    tl.from('[data-hero-fade]', { y: 24, opacity: 0, duration: .6, stagger: .12, ease: 'power3.out' }, '-=.1');
+
+    // hero chip hover
+    this.$$('[data-chip-wrap]').forEach(w => {
+      const chip = w.querySelector('[data-chip]'), tip = w.querySelector('[data-chip-tip]');
+      w.addEventListener('mouseenter', () => { g.to(chip, { scale: 1.15, y: -6, duration: .3, ease: 'back.out(2)' }); if (tip) tip.style.opacity = 1; });
+      w.addEventListener('mouseleave', () => { g.to(chip, { scale: 1, y: 0, duration: .3 }); if (tip) tip.style.opacity = 0; });
+    });
+
+    // marquee
+    const mq = this.$('[data-marquee]');
+    if (mq) { const half = mq.scrollWidth / 2; g.to(mq, { x: -half, duration: 24, ease: 'none', repeat: -1 }); }
+
+    if (!window.ScrollTrigger) return;
+
+    // generic reveals
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.from(el, { y: 40, opacity: 0, duration: .75, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 86%', once: true } });
+    });
+
+    // capabilities horizontal banner is driven by initCapScroll (sticky) on all widths;
+    // the GSAP pin was running on top of it on desktop and made the section jump
+
+    // products editorial index reveal
+    g.utils.toArray('[data-idx-item]').forEach((el, i) => {
+      g.from(el, { y: 30, opacity: 0, duration: .55, ease: 'power3.out', delay: i * .06, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+    });
+    // hover-expand rows
+    this.$$('[data-idx-item]').forEach(item => {
+      const body = item.querySelector('[data-idx-body]');
+      if (!body) return;
+      item.addEventListener('mouseenter', () => { body.style.maxHeight = body.scrollHeight + 'px'; });
+      item.addEventListener('mouseleave', () => { body.style.maxHeight = '0px'; });
+    });
+
+    // client cards deal in
+    g.utils.toArray('[data-client-card]').forEach((card, i) => {
+      g.from(card, { scale: .92, opacity: 0, duration: .5, ease: 'back.out(1.6)', delay: i * .08, scrollTrigger: { trigger: '[data-client-grid]', start: 'top 85%', once: true } });
+    });
+
+    // counts
+    g.utils.toArray('[data-count]').forEach(el => {
+      ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => this.countUp(el) });
+    });
+
+    // feedback PR cards stagger
+    g.utils.toArray('[data-pr-card]').forEach((card, i) => {
+      g.from(card, { y: 40, opacity: 0, duration: .6, ease: 'power3.out', delay: i * .1, scrollTrigger: { trigger: '[data-pr-grid]', start: 'top 84%', once: true } });
+    });
+
+    // how-we-build stacking cards
+    this.initStackCards();
+
+    // 3D tilt on feedback cards
+    this.initTiltCards();
+
+    // case-study rail continuous scroll
+    const track = this.$('[data-cs-track]');
+    if (track && !this.reduced()) {
+      const half = track.scrollWidth / 2;
+      this._railTween = g.to(track, { x: -half, duration: 40, ease: 'none', repeat: -1 });
+    }
+
+    // cta lines
+    g.from('[data-cta-line]', { yPercent: 110, opacity: 0, duration: .7, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '[data-cta-line]', start: 'top 85%', once: true } });
+    g.from('[data-cta-card]', { scale: .92, opacity: 0, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: '[data-cta-card]', start: 'top 85%', once: true } });
+  }
+
+  initCapScroll() {
+    const desk = this.$('[data-cap-desk]');
+    const pin = this.$('[data-cap-pin]');
+    const track = this.$('[data-cap-track]');
+    if (!desk || !pin || !track) return;
+    let dist = 0, deskTop = 0;
+    const measure = () => {
+      const prev = track.style.transform; track.style.transform = 'none';
+      dist = Math.max(0, track.scrollWidth - pin.clientWidth);
+      track.style.transform = prev;
+      this._capMob = window.innerWidth <= 980;
+      this._capN = track.children.length;
+      this._capLen = this._capMob ? dist * 1.6 : dist;
+      desk.style.height = (window.innerHeight + this._capLen) + 'px';
+      deskTop = desk.getBoundingClientRect().top + window.scrollY;
+    };
+    let ticking = false;
+    const apply = () => {
+      ticking = false;
+      const p0 = (window.scrollY - deskTop) / (this._capLen || dist || 1);
+      let p = p0 < 0 ? 0 : p0 > 1 ? 1 : p0;
+      if (this._capMob && this._capN > 1) {
+        /* phones: each panel rests full-screen, then slides to the next */
+        const seg = p * (this._capN - 1), k = Math.min(this._capN - 2, Math.floor(seg)), f = seg - k;
+        let t = f < 0.35 ? 0 : f > 0.8 ? 1 : (f - 0.35) / 0.45; t = t * t * (3 - 2 * t);
+        p = (k + t) / (this._capN - 1);
+      }
+      track.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+    };
+    this._capScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
+    this._capResize = () => { measure(); apply(); };
+    measure(); apply();
+    window.addEventListener('scroll', this._capScroll, { passive: true });
+    window.addEventListener('resize', this._capResize, { passive: true });
+    window.addEventListener('load', this._capResize);
+    setTimeout(this._capResize, 800);
+    setTimeout(this._capResize, 2500);
+    if (window.ResizeObserver) { this._capRO = new ResizeObserver(() => this._capResize()); this._capRO.observe(document.body); }
+  }
+
+  initCapabilities() {
+    const g = window.gsap;
+    if (!g || !window.ScrollTrigger) return;
+    if (!window.matchMedia || !window.matchMedia('(min-width:981px)').matches) return;
+    const section = this.$('[data-cap-section]');
+    const track = this.$('[data-cap-track]');
+    if (!section || !track) return;
+    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    g.to(track, {
+      x: () => -dist(), ease: 'none',
+      scrollTrigger: { trigger: section, pin: true, scrub: 1, start: 'top top', end: () => '+=' + dist(), invalidateOnRefresh: true }
+    });
+  }
+
+  initLetsBuild() {
+    const g = window.gsap;
+    const host = this.$('[data-lb-letters]');
+    const section = this.$('[data-lb-section]');
+    if (!host || !section) return;
+    const text = "Let's build.";
+    host.textContent = '';
+    const letters = [];
+    for (const ch of text) {
+      const s = document.createElement('span');
+      s.style.display = 'inline-block';
+      s.style.whiteSpace = 'pre';
+      s.textContent = ch;
+      if (host.childNodes.length >= 6) {
+        s.style.background = 'linear-gradient(135deg,#60a5fa,#22d3ee)';
+        s.style.webkitBackgroundClip = 'text';
+        s.style.backgroundClip = 'text';
+        s.style.color = 'transparent';
+      }
+      host.appendChild(s);
+      letters.push(s);
+    }
+    if (!g || !window.ScrollTrigger || this.reduced()) return;
+    g.registerPlugin(window.ScrollTrigger);
+    g.set(letters, { yPercent: 115, opacity: 0, rotateX: -60 });
+    g.set('[data-lb-eyebrow]', { opacity: 0, y: 16 });
+    g.set('[data-lb-sub]', { opacity: 0, y: 20 });
+    const tl = g.timeline({ scrollTrigger: { trigger: section, start: 'top 80%', end: 'center 55%', scrub: .6 } });
+    tl.to('[data-lb-eyebrow]', { opacity: 1, y: 0, ease: 'power2.out' });
+    tl.to(letters, { yPercent: 0, opacity: 1, rotateX: 0, stagger: .06, ease: 'back.out(1.7)' }, '<');
+    tl.to('[data-lb-sub]', { opacity: 1, y: 0, stagger: .15, ease: 'power2.out' }, '-=.2');
+  }
+  initTiltCards() {
+    if (!window.matchMedia || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    this.$$('[data-tilt]').forEach(el => {
+      const MAX = 8;
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - .5;
+        const py = (e.clientY - r.top) / r.height - .5;
+        el.style.transform = 'rotateY(' + (px * MAX) + 'deg) rotateX(' + (-py * MAX) + 'deg) translateY(-6px)';
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = 'rotateY(0) rotateX(0) translateY(0)'; });
+    });
+  }
+  initStackCards() {
+    const g = window.gsap;
+    if (!g || !window.ScrollTrigger) return;
+    const cards = this.$$('[data-stack-card]');
+    cards.forEach((card, i) => {
+      const inner = card.firstElementChild || card;
+      g.from(inner, { y: 60, opacity: 0, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 90%', once: true } });
+      if (i < cards.length - 1) {
+        g.to(inner, { scale: .9, filter: 'brightness(.62)', ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top 80%', end: 'top 30%', scrub: true } });
+      }
+    });
+  }
+
+  typeTerminal(el) {
+    const lines = JSON.parse(el.getAttribute('data-lines') || '[]');
+    const out = el.querySelector('[data-terminal-out]'); if (!out) return;
+    let li = 0, ci = 0, buf = '';
+    const tick = () => {
+      if (li >= lines.length) { const car = el.querySelector('[data-caret]'); if (car) car.style.display = 'inline-block'; return; }
+      const line = lines[li];
+      if (ci <= line.length) { out.innerHTML = buf + line.slice(0, ci) + '<span style="color:#60a5fa">▋</span>'; ci++; this._tt = setTimeout(tick, 26); }
+      else { buf += line + '\n'; li++; ci = 0; out.innerHTML = buf; this._tt = setTimeout(tick, 320); }
+    };
+    tick();
+  }
+
+  countUp(el) {
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '', prefix = el.getAttribute('data-prefix') || '';
+    const dur = 1400, t0 = performance.now();
+    const step = (now) => {
+      const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * e) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- visuals for capability panels ---------- */
+  browserMock(inner) {
+    return React.createElement('div', { style: { borderRadius: '14px', overflow: 'hidden', background: '#0b1220', border: '1px solid rgba(255,255,255,.1)', boxShadow: '0 30px 70px rgba(0,0,0,.4)' } },
+      React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '6px', padding: '11px 14px', background: '#111c30', borderBottom: '1px solid rgba(255,255,255,.06)' } },
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#ef4444' } }),
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#eab308' } }),
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#22c55e' } })
+      ), inner);
+  }
+  dashboardMock() {
+    const tile = (w, c) => React.createElement('div', { style: { flex: 1, height: '52px', borderRadius: '8px', background: c || 'rgba(59,130,246,.14)' } });
+    const bar = (h) => React.createElement('div', { style: { width: '11px', height: h, borderRadius: '3px', background: 'linear-gradient(180deg,#3b82f6,#60a5fa)' } });
+    return this.browserMock(React.createElement('div', { style: { padding: '18px', display: 'flex', flexDirection: 'column', gap: '14px' } },
+      React.createElement('div', { style: { display: 'flex', gap: '10px' } }, tile(1), tile(1, 'rgba(96,165,250,.14)'), tile(1, 'rgba(59,130,246,.2)')),
+      React.createElement('div', { style: { display: 'flex', alignItems: 'flex-end', gap: '9px', height: '120px', padding: '14px', borderRadius: '10px', background: 'rgba(255,255,255,.03)' } },
+        bar('40%'), bar('68%'), bar('52%'), bar('88%'), bar('62%'), bar('96%'), bar('74%'), bar('58%')),
+      React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(96,165,250,.5)' } }, this.icon('layoutDashboard', { size: 30, color: 'rgba(96,165,250,.5)' }))
+    ));
+  }
+  terminalMock() {
+    const lines = ['> analyze_document(invoice_4821.pdf)', 'Extracting fields ... done', 'Routing to: Accounts Payable', 'Confidence: 98.4%', 'Task completed in 1.2s'];
+    return React.createElement('div', { 'data-terminal': '1', 'data-lines': JSON.stringify(lines), style: { borderRadius: '14px', overflow: 'hidden', background: '#0b1220', border: '1px solid rgba(255,255,255,.1)', boxShadow: '0 30px 70px rgba(0,0,0,.4)' } },
+      React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '6px', padding: '11px 14px', background: '#111c30', borderBottom: '1px solid rgba(255,255,255,.06)' } },
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#ef4444' } }),
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#eab308' } }),
+        React.createElement('i', { style: { width: '9px', height: '9px', borderRadius: '50%', background: '#22c55e' } }),
+        React.createElement('span', { style: { marginLeft: '8px', fontSize: '11px', color: '#64748b' } }, 'minitos-ai ~ automation')
+      ),
+      React.createElement('pre', { 'data-terminal-out': '1', style: { margin: 0, padding: '20px', minHeight: '200px', fontFamily: "'JetBrains Mono',ui-monospace,monospace", fontSize: '13px', lineHeight: '1.9', color: '#7dd3fc', whiteSpace: 'pre-wrap' } }, '> _')
+    );
+  }
+  lmsMock() {
+    const row = (w) => React.createElement('div', { style: { height: '10px', width: w, borderRadius: '4px', background: 'rgba(255,255,255,.08)' } });
+    return this.browserMock(React.createElement('div', { style: { display: 'grid', gridTemplateColumns: '70px 1fr', minHeight: '210px' } },
+      React.createElement('div', { style: { background: 'rgba(255,255,255,.03)', borderRight: '1px solid rgba(255,255,255,.06)', padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: '12px' } },
+        React.createElement('div', { style: { width: '26px', height: '26px', borderRadius: '8px', background: 'linear-gradient(135deg,#3b82f6,#60a5fa)' } }), row('100%'), row('80%'), row('90%'), row('60%')),
+      React.createElement('div', { style: { padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' } },
+        React.createElement('div', { style: { display: 'flex', gap: '10px' } },
+          React.createElement('div', { style: { flex: 1, height: '56px', borderRadius: '9px', background: 'rgba(59,130,246,.16)' } }),
+          React.createElement('div', { style: { flex: 1, height: '56px', borderRadius: '9px', background: 'rgba(96,165,250,.12)' } })),
+        React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '12px', padding: '14px', borderRadius: '9px', background: 'rgba(255,255,255,.03)' } },
+          React.createElement('div', { style: { width: '46px', height: '46px', borderRadius: '50%', border: '4px solid #3b82f6', borderRightColor: 'rgba(255,255,255,.1)' } }),
+          React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '7px', flex: 1 } }, row('90%'), row('60%'))),
+        React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } }, row('100%'), row('75%'))
+      )));
+  }
+  kanbanMock() {
+    const col = (name, cards) => React.createElement('div', { style: { flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' } },
+      React.createElement('div', { style: { fontSize: '10px', fontWeight: 700, letterSpacing: '.06em', color: '#94a3b8', textTransform: 'uppercase' } }, name),
+      ...cards.map((c, i) => React.createElement('div', { key: i, style: { background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: '8px', padding: '9px' } },
+        React.createElement('div', { style: { width: c, height: '4px', borderRadius: '4px', background: 'linear-gradient(90deg,#3b82f6,#60a5fa)', marginBottom: '7px' } }),
+        React.createElement('div', { style: { height: '7px', width: '80%', borderRadius: '3px', background: 'rgba(255,255,255,.1)' } }))));
+    return this.browserMock(React.createElement('div', { style: { display: 'flex', gap: '10px', padding: '18px', minHeight: '210px' } },
+      col('To do', ['60%', '80%']), col('Doing', ['90%']), col('Review', ['70%', '50%'])));
+  }
+  tableMock() {
+    const stat = (c) => React.createElement('div', { style: { flex: 1, height: '48px', borderRadius: '8px', background: c } });
+    const trow = () => React.createElement('div', { style: { display: 'flex', gap: '10px', alignItems: 'center', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,.06)' } },
+      React.createElement('div', { style: { width: '10px', height: '10px', borderRadius: '3px', background: '#3b82f6' } }),
+      React.createElement('div', { style: { height: '8px', flex: 2, borderRadius: '3px', background: 'rgba(255,255,255,.1)' } }),
+      React.createElement('div', { style: { height: '8px', flex: 1, borderRadius: '3px', background: 'rgba(255,255,255,.06)' } }),
+      React.createElement('div', { style: { height: '8px', width: '40px', borderRadius: '3px', background: 'rgba(96,165,250,.4)' } }));
+    return this.browserMock(React.createElement('div', { style: { padding: '18px', display: 'flex', flexDirection: 'column', gap: '12px', minHeight: '210px' } },
+      React.createElement('div', { style: { display: 'flex', gap: '10px' } }, stat('rgba(59,130,246,.2)'), stat('rgba(96,165,250,.14)'), stat('rgba(59,130,246,.1)')),
+      React.createElement('div', {}, trow(), trow(), trow(), trow())));
+  }
+  adminMock() {
+    return this.browserMock(React.createElement('div', { style: { padding: '18px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', minHeight: '210px' } },
+      React.createElement('div', { style: { gridColumn: '1 / -1', height: '46px', borderRadius: '9px', background: 'linear-gradient(90deg,rgba(59,130,246,.24),rgba(96,165,250,.1))' } }),
+      React.createElement('div', { style: { height: '120px', borderRadius: '9px', background: 'rgba(255,255,255,.04)', display: 'flex', alignItems: 'center', justifyContent: 'center' } },
+        React.createElement('div', { style: { width: '80px', height: '80px', borderRadius: '50%', border: '10px solid #3b82f6', borderRightColor: 'rgba(255,255,255,.08)', borderBottomColor: 'rgba(255,255,255,.08)' } })),
+      React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center' } },
+        React.createElement('div', { style: { height: '10px', width: '90%', borderRadius: '4px', background: 'rgba(255,255,255,.1)' } }),
+        React.createElement('div', { style: { height: '10px', width: '70%', borderRadius: '4px', background: 'rgba(255,255,255,.07)' } }),
+        React.createElement('div', { style: { height: '10px', width: '80%', borderRadius: '4px', background: 'rgba(255,255,255,.1)' } }),
+        React.createElement('div', { style: { height: '10px', width: '55%', borderRadius: '4px', background: 'rgba(96,165,250,.4)' } }))));
+  }
+  examilyMock() {
+    const q = (w) => React.createElement('div', { style: { height: '9px', width: w, borderRadius: '3px', background: 'rgba(255,255,255,.1)' } });
+    const opt = (on) => React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '9px', padding: '9px 11px', borderRadius: '8px', border: '1px solid ' + (on ? '#3b82f6' : 'rgba(255,255,255,.08)'), background: on ? 'rgba(59,130,246,.14)' : 'rgba(255,255,255,.03)' } },
+      React.createElement('div', { style: { width: '13px', height: '13px', borderRadius: '50%', border: '2px solid ' + (on ? '#3b82f6' : 'rgba(255,255,255,.2)') } }),
+      React.createElement('div', { style: { height: '7px', flex: 1, borderRadius: '3px', background: 'rgba(255,255,255,.12)' } }));
+    const cell = (n) => React.createElement('div', { style: { width: '22px', height: '22px', borderRadius: '5px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', fontWeight: 700, color: n < 4 ? '#fff' : '#64748b', background: n < 4 ? 'linear-gradient(135deg,#3b82f6,#06b6d4)' : 'rgba(255,255,255,.05)' } }, n);
+    return this.browserMock(React.createElement('div', { style: { display: 'grid', gridTemplateColumns: '1fr 150px', gap: '14px', padding: '18px', minHeight: '210px' } },
+      React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+        React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } }, q('90%'), q('70%')),
+        opt(false), opt(true), opt(false)),
+      React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+        React.createElement('div', { style: { padding: '9px', borderRadius: '9px', textAlign: 'center', background: 'rgba(239,68,68,.14)', color: '#fca5a5', fontFamily: "'JetBrains Mono',monospace", fontSize: '15px', fontWeight: 700 } }, '18:42'),
+        React.createElement('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '5px' } }, ...Array.from({ length: 12 }, (_, i) => cell(i + 1))))));
+  }
+  practiceMock() {
+    const li = (on) => React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 9px', borderRadius: '7px', background: on ? 'rgba(59,130,246,.14)' : 'transparent' } },
+      React.createElement('div', { style: { width: '8px', height: '8px', borderRadius: '50%', background: on ? '#3b82f6' : '#22c55e' } }),
+      React.createElement('div', { style: { height: '7px', flex: 1, borderRadius: '3px', background: 'rgba(255,255,255,.12)' } }));
+    const code = (w, c) => React.createElement('div', { style: { display: 'flex', gap: '8px', alignItems: 'center' } },
+      React.createElement('div', { style: { width: '18px', height: '7px', borderRadius: '3px', background: 'rgba(255,255,255,.06)' } }),
+      React.createElement('div', { style: { height: '7px', width: w, borderRadius: '3px', background: c } }));
+    return this.browserMock(React.createElement('div', { style: { display: 'grid', gridTemplateColumns: '120px 1fr', minHeight: '210px' } },
+      React.createElement('div', { style: { padding: '14px 10px', borderRight: '1px solid rgba(255,255,255,.06)', display: 'flex', flexDirection: 'column', gap: '4px' } }, li(true), li(false), li(false), li(false)),
+      React.createElement('div', { style: { padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' } },
+        code('70%', 'rgba(96,165,250,.5)'), code('50%', 'rgba(255,255,255,.14)'), code('80%', 'rgba(34,197,94,.4)'), code('40%', 'rgba(255,255,255,.14)'), code('60%', 'rgba(96,165,250,.4)'),
+        React.createElement('div', { style: { marginTop: 'auto', display: 'flex', gap: '8px' } },
+          React.createElement('div', { style: { flex: 1, height: '30px', borderRadius: '8px', background: 'rgba(255,255,255,.05)' } }),
+          React.createElement('div', { style: { width: '72px', height: '30px', borderRadius: '8px', background: 'linear-gradient(135deg,#3b82f6,#06b6d4)' } })))));
+  }
+  crmMock() {
+    const col = (name, cards, tint) => React.createElement('div', { style: { flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' } },
+      React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10px', fontWeight: 700, letterSpacing: '.05em', color: '#94a3b8', textTransform: 'uppercase' } },
+        React.createElement('span', { style: { width: '7px', height: '7px', borderRadius: '50%', background: tint } }), name),
+      ...cards.map((c, i) => React.createElement('div', { key: i, style: { background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: '8px', padding: '9px', display: 'flex', flexDirection: 'column', gap: '7px' } },
+        React.createElement('div', { style: { height: '7px', width: '75%', borderRadius: '3px', background: 'rgba(255,255,255,.14)' } }),
+        React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '5px' } },
+          React.createElement('div', { style: { width: '14px', height: '14px', borderRadius: '50%', background: 'linear-gradient(135deg,#3b82f6,#06b6d4)' } }),
+          React.createElement('div', { style: { height: '5px', width: c, borderRadius: '3px', background: 'rgba(255,255,255,.1)' } })))));
+    return this.browserMock(React.createElement('div', { style: { display: 'flex', gap: '10px', padding: '18px', minHeight: '210px' } },
+      col('New', ['50%', '60%'], '#60a5fa'), col('Contacted', ['70%'], '#fbbf24'), col('Won', ['55%', '40%'], '#22c55e')));
+  }
+  minitosMock() {
+    const col = (name, n, cards) => React.createElement('div', { style: { flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' } },
+      React.createElement('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } },
+        React.createElement('span', { style: { fontSize: '10px', fontWeight: 700, letterSpacing: '.05em', color: '#94a3b8', textTransform: 'uppercase' } }, name),
+        React.createElement('span', { style: { fontSize: '9px', fontWeight: 700, color: '#64748b', background: 'rgba(255,255,255,.06)', padding: '1px 6px', borderRadius: '100px' } }, n)),
+      ...cards.map((c, i) => React.createElement('div', { key: i, style: { background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: '8px', padding: '9px' } },
+        React.createElement('div', { style: { width: c, height: '4px', borderRadius: '4px', background: 'linear-gradient(90deg,#3b82f6,#06b6d4)', marginBottom: '7px' } }),
+        React.createElement('div', { style: { height: '7px', width: '85%', borderRadius: '3px', background: 'rgba(255,255,255,.1)' } }))));
+    return this.browserMock(React.createElement('div', { style: { display: 'flex', gap: '10px', padding: '18px', minHeight: '210px' } },
+      col('Sprint', '3', ['60%', '80%']), col('Doing', '2', ['90%']), col('Shipped', '4', ['70%', '50%'])));
+  }
+
+  /* ---------- data ---------- */
+  navData() {
+    const navDefs = [
+      { label: 'Home', href: 'Home.dc.html#hero' },
+      { label: 'Programs We Offer', href: 'Programs.dc.html', mega: 'programs' },
+      { label: 'Cybernaut SaaS', href: 'Cybernaut SaaS.dc.html', active: true },
+      { label: 'Events', href: 'Events.dc.html' },
+      { label: 'About Company', href: 'About Company.dc.html' },
+      { label: 'Blogs', href: 'Blogs.dc.html' },
+      { label: 'Careers', href: 'Careers.dc.html' },
+      { label: 'Contact Us', href: 'Contact.dc.html' }
+    ];
+    const navLinks = navDefs.map(n => ({ label: n.label, href: n.href }));
+    const navItems = navDefs.map(n => ({
+      label: n.label, href: n.href,
+      caret: !!n.mega, color: n.active ? '#3b82f6' : '#475569',
+      underline: ((this.state.mega && this.state.mega === n.mega) || n.active) ? 1 : 0,
+      onEnter: () => this.setState({ mega: n.mega || null })
+    }));
+    const leftNav = navItems.filter(n => ['Programs We Offer', 'Cybernaut SaaS', 'Events'].includes(n.label));
+    const rightNav = navItems.filter(n => ['About Company', 'Blogs', 'Careers', 'Contact Us'].includes(n.label));
+    const megaStudents = [
+      { ic: 'F', name: 'Foundation Programs', desc: 'Tech Trio · Programming basics', href: 'Programs Students.dc.html#foundation' },
+      { ic: 'P', name: 'Professional Programs', desc: 'Job-ready career tracks', href: 'Programs Students.dc.html#professional' },
+      { ic: 'S', name: 'All Student Programs', desc: 'Browse the full catalogue', href: 'Programs Students.dc.html' }
+    ];
+    const megaCollege = [
+      { ic: 'V', name: 'VAC Programs', desc: 'Value-added courses', href: 'Programs College.dc.html#vac' },
+      { ic: 'G', name: 'Generative AI', desc: 'Campus VAC', href: 'Generative AI.dc.html' },
+      { ic: 'R', name: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'Programs College.dc.html#placement' },
+      { ic: 'M', name: 'Partner With Us', desc: 'MOUs & outreach', href: 'Contact.dc.html' }
+    ];
+    const footExplore = [
+      { label: 'Programs We Offer', href: 'Programs.dc.html' }, { label: 'Cybernaut SaaS', href: 'Cybernaut SaaS.dc.html' },
+      { label: 'Events', href: 'Events.dc.html' }, { label: 'Blogs', href: 'Blogs.dc.html' }, { label: 'Careers', href: 'Careers.dc.html' }
+    ];
+    const footCompany = [
+      { label: 'About Company', href: 'About Company.dc.html' }, { label: 'Student Login', href: 'Login.dc.html' },
+      { label: 'Contact Us', href: 'Contact.dc.html' }, { label: 'Terms & Conditions', href: 'Coming Soon.dc.html' },
+      { label: 'Privacy Policy', href: 'Coming Soon.dc.html' }, { label: 'Refund Policy', href: 'Coming Soon.dc.html' }
+    ];
+    const socials = [
+      { name: 'Instagram', ic: 'IG', href: '#' }, { name: 'LinkedIn', ic: 'in', href: '#' },
+      { name: 'YouTube', ic: 'YT', href: '#' }, { name: 'WhatsApp', ic: 'WA', href: '#' }, { name: 'X', ic: 'X', href: '#' }
+    ];
+    return {
+      leftNav, rightNav, navLinks, megaStudents, megaCollege, footExplore, footCompany, socials,
+      megaPrograms: this.state.mega === 'programs',
+      closeMega: () => this.setState({ mega: null }),
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      icCheckSm: this.icon('check', { size: 16, color: '#fff' })
+    };
+  }
+
+  pageData() {
+    // ---- Section A: capabilities (horizontal banner) ----
+    const svcDefs = [
+      { ic: 'code2', title: 'Product Engineering', tag: 'Web · Mobile · SaaS', blurb: 'Full-cycle product development, from architecture to deployment. Web platforms and mobile apps that scale with your users, not against them.', items: ['Web Applications', 'Mobile Applications', 'SaaS Platforms', 'Custom Software'], src: 'assets/saas/product-engineering-opt.webp' },
+      { ic: 'brain', title: 'AI & Automation', tag: 'Agents · Automation', blurb: 'Custom AI workflows that remove repetitive work. Agents, chatbots, and generative solutions scoped to real operational problems.', items: ['AI Agents', 'Chatbots', 'Workflow Automation', 'Generative AI'], src: 'assets/saas/ai-automation-opt.webp' },
+      { ic: 'cloud', title: 'Cloud & DevOps', tag: 'Infra · CI/CD', blurb: 'The plumbing that keeps software fast and safe. Cloud infrastructure, pipelines, monitoring, and deployments built to scale.', items: ['Cloud Infrastructure', 'CI/CD Pipelines', 'Monitoring & Security', 'Scalable Deployments'], src: 'assets/saas/cloud-devops-opt.webp' },
+      { ic: 'settings', title: 'Enterprise Solutions', tag: 'ERP · CRM', blurb: 'The systems your whole company runs on. ERP, CRM, and business applications integrated into one source of truth.', items: ['ERP Systems', 'CRM Solutions', 'Business Applications', 'System Integrations'], src: 'assets/saas/enterprise-opt.webp' },
+      { ic: 'layers', title: 'Technology Consulting', tag: 'Strategy · Architecture', blurb: 'Direction before code. Digital transformation, architecture design, and product strategy from a team that has shipped it before.', items: ['Digital Transformation', 'Architecture Design', 'Technology Strategy', 'Product Consulting'], src: 'assets/saas/consulting-opt.webp' }
+    ];
+    const services = svcDefs.map((s, i) => ({
+      num: String(i + 1).padStart(2, '0'), title: s.title, blurb: s.blurb, items: s.items, tag: s.tag,
+      icon: this.icon(s.ic, { size: 18, color: '#60a5fa' }),
+      iconWhite: this.icon(s.ic, { size: 20, color: '#fff' }),
+      slotId: 'cap-slot-' + i, slotIdM: 'cap-slot-m-' + i,
+      slotHint: s.title + ' screenshot', src: s.src || '',
+      isPE: i === 0 && !s.src, notPE: i !== 0 || !!s.src
+    }));
+
+    // ---- Section B: products ----
+    const PROD = [
+      { ic: 'bookOpen', name: 'Cybernaut LMS', category: 'Learning Management', mock: 'lmsMock',
+        body: 'The learning platform behind 75,000+ Cybernaut students. Attendance, quizzes, assignments, progress rings, and admin dashboards that make learning measurable.',
+        chips: ['Student Tracking', 'Assessments', 'Admin Dashboards'] },
+      { ic: 'kanban', name: 'Cybernaut ERP', category: 'Operations & Workflow', mock: 'kanbanMock',
+        body: 'Sprint boards, task pipelines, and mentor review workflows. The system our interns and teams run their entire day on.',
+        chips: ['Kanban', 'Reviews', 'Delivery Tracking'] },
+      { ic: 'flaskConical', name: 'Cybernaut Campus', category: 'Centre of Excellence', mock: 'adminMock',
+        body: 'The Centre of Excellence engine. Lab scheduling, 4-year roadmaps, and live progress dashboards for partner colleges.',
+        chips: ['Lab Management', 'Semester Roadmaps', 'College Dashboards'] },
+      { ic: 'fileCheck', name: 'Cybernaut Examily', category: 'Exam & Assessment Engine', mock: 'examilyMock',
+        body: 'Exam creation, secure delivery, auto-grading, and result analytics. Theory and practical assessments without the paperwork storm.',
+        chips: ['Question Banks', 'Auto Grading', 'Result Analytics'] },
+      { ic: 'code2', name: 'Cybernaut Practice', category: 'Coding Practice Platform', mock: 'practiceMock',
+        body: 'A coding practice platform with DSA, SQL, and logic tracks. Daily streaks, leaderboards, and company-specific problem sets.',
+        chips: ['500+ Problems', 'Streaks', 'Leaderboards'] },
+      { ic: 'users', name: 'Cybernaut CRM', category: 'Customer Relationships', mock: 'crmMock',
+        body: 'Lead pipelines, follow-up automation, and conversion tracking built for teams that sell with relationships, not spreadsheets.',
+        chips: ['Lead Pipeline', 'Follow-up Automation', 'Conversion Reports'] },
+      { ic: 'briefcase', name: 'Cybernaut HRM', category: 'People & Payroll', mock: 'tableMock',
+        body: 'Attendance, leave, payroll, and performance in one place. HR work that used to take days now takes minutes.',
+        chips: ['Attendance', 'Payroll', 'Performance'] },
+      { ic: 'zap', name: 'Cybernaut Minitos', category: 'Startup Work Management', mock: 'minitosMock',
+        body: 'Work management for startups that move fast. Sprint planning, task pipelines, and delivery tracking in one clean workspace. Built for our own teams first.',
+        chips: ['Sprints', 'Task Pipelines', '1-Day Onboarding'] }
+    ];
+    const products = PROD.map((p, i) => ({
+      name: p.name, category: p.category, body: p.body, chips: p.chips,
+      num: String(i + 1).padStart(2, '0'),
+      icon: this.icon(p.ic, { size: 22, color: '#fff' }),
+      iconLine: this.icon(p.ic, { size: 20, color: '#60a5fa' }),
+      arrow: this.icon('arrowRight', { size: 18, color: 'currentColor' }),
+      mock: this[p.mock] ? this[p.mock]() : null
+    }));
+    const featuredProducts = products.slice(0, 2);
+    const smallProducts = products.slice(2);
+
+    // ---- Section C: case studies ----
+    const caseStudies = [
+      { slotId: 'cs-0', coverId: 'cs-cover-0', cover: 'assets/saas/cs-pharmacy-opt.webp', avatar: 'assets/saas/avatar-owner-opt.webp', initials: 'SP', name: 'Shanthi Mass Pharmacy', industry: 'Healthcare Retail', caseStudy: 'We gave the pharmacy a fast website and a billing system built around the counter, so nightly billing and stock now close in minutes instead of hours.', tags: ['Website', 'Billing Software'] },
+      { slotId: 'cs-1', coverId: 'cs-cover-1', cover: 'assets/saas/cs-sticky-opt.webp', avatar: 'assets/saas/avatar-w2-opt.webp', initials: 'SI', name: 'Sticky Idea', industry: 'Creative Agency', caseStudy: 'One connected workspace for the studio: site, operations ERP, content and a CRM, so projects, clients and content live in one place instead of five tools.', tags: ['Website', 'ERP', 'CMS', 'CRM'] },
+      { slotId: 'cs-2', coverId: 'cs-cover-2', cover: 'assets/saas/cs-arasu-opt.webp', avatar: 'assets/saas/avatar-admin-opt.webp', initials: 'AW', name: 'Arasu Womens College', industry: 'Education', caseStudy: 'A clean institutional site plus an academic ERP for records, attendance and exams, so result season stopped being a scramble for the office.', tags: ['Website', 'ERP'] },
+      { slotId: 'cs-3', coverId: 'cs-cover-3', cover: 'assets/saas/cs-mmss-opt.webp', avatar: 'assets/saas/avatar-m2-opt.webp', initials: 'MM', name: 'Modern Morning Star School', industry: 'Education', caseStudy: 'A parent-friendly school site and an ERP for admissions, fees and academics, so the front office spends less time chasing paperwork.', tags: ['Website', 'ERP'] },
+      { slotId: 'cs-4', coverId: 'cs-cover-4', cover: 'assets/saas/cs-zora-opt.webp', avatar: 'assets/saas/avatar-director-opt.webp', initials: 'ZC', name: 'Zora Construction', industry: 'Construction', caseStudy: 'A project showcase site, a CRM for civil teams and a billing system, so progress from every site reaches the office without the phone tag.', tags: ['Website', 'Civil CRM', 'Billing'] },
+      { slotId: 'cs-5', coverId: 'cs-cover-5', cover: 'assets/saas/cs-onex-opt.webp', avatar: 'assets/saas/avatar-w2-opt.webp', initials: 'OX', name: 'OneX Turf', industry: 'Sports & Booking', caseStudy: 'A booking site and slot engine with online payments, so players reserve a turf in seconds and the owner stops managing bookings by phone.', tags: ['Website', 'Booking'] },
+      { slotId: 'cs-6', coverId: 'cs-cover-6', cover: 'assets/saas/cs-coverstory-opt.webp', avatar: 'assets/saas/avatar-m2-opt.webp', initials: 'CS', name: 'Coverstory', industry: 'Retail & E-commerce', caseStudy: 'A brand storefront with full e-commerce: catalog, cart, checkout and payments, so the brand sells directly to customers around the clock.', tags: ['Website', 'E-commerce'] }
+    ];
+    const caseStudiesLoop = caseStudies.concat(caseStudies);
+
+    // ---- Section D: feedbacks (3D cards) ----
+    const fbDefs = [
+      { slotId: 'fb-0', src: 'assets/saas/fb-pharmacy-opt.webp', avatar: 'assets/saas/avatar-owner-opt.webp', initials: 'SP', name: 'Owner', company: 'Shanthi Mass Pharmacy', quote: 'Our billing and stock work that used to eat two hours every night now closes in minutes. The team understood pharmacy operations before writing a single line of code.' },
+      { slotId: 'fb-1', src: 'assets/saas/fb-college-opt.webp', avatar: 'assets/saas/avatar-admin-opt.webp', initials: 'AW', name: 'Administrator', company: 'Arasu Womens College', quote: 'They rebuilt our student records and exam workflow end to end. Our office staff stopped dreading result season. That alone was worth the engagement.' },
+      { slotId: 'fb-2', src: 'assets/saas/fb-construction-opt.webp', avatar: 'assets/saas/avatar-director-opt.webp', initials: 'ZC', name: 'Director', company: 'Zora Construction', quote: 'We needed project tracking that our site engineers would actually open. Cybernaut delivered a system simple enough for the field and detailed enough for the office.' }
+    ];
+    const feedbacks = fbDefs.map(f => ({ ...f, stars: [1, 2, 3, 4, 5] }));
+
+    // ---- Section 5: how we build (stacking cards) ----
+    const stepDefs = [
+      { ic: 'search', num: '01', label: 'Discover', title: 'We map the problem before touching code.', body: 'One week. We map your workflows, interview your team, and define what done looks like. You get a scoped plan with a fixed timeline up front.', items: ['Workflow mapping', 'Fixed-scope plan', 'Timeline & quote'] },
+      { ic: 'penTool', num: '02', label: 'Design', title: 'You approve every screen as a prototype.', body: 'Clickable prototypes before development starts. You sign off on each screen. Changes cost minutes here, not weeks after launch.', items: ['Clickable prototypes', 'Screen sign-off', 'Design system'] },
+      { ic: 'code2', num: '03', label: 'Build', title: 'You watch it grow, sprint by sprint.', body: 'Weekly demo calls on a live staging link. No black-box development. You always know exactly where the build stands.', items: ['Weekly demos', 'Live staging', 'No surprises'] },
+      { ic: 'rocket', num: '04', label: 'Ship', title: 'We launch, train your team, and stay 30 days.', body: 'Deployment, onboarding, documentation, and 30 days of post-launch support. Then the product is fully, completely yours.', items: ['Deployment', 'Team onboarding', '30-day support'] }
+    ];
+    const buildSteps = stepDefs.map((s, i) => ({
+      num: s.num, label: s.label, title: s.title, body: s.body, items: s.items,
+      icon: this.icon(s.ic, { size: 24, color: '#fff' }),
+      top: (100 + i * 24) + 'px'
+    }));
+
+    // ---- CTA stats ----
+    const ctaStats = [
+      { count: 8, suffix: '', prefix: '', pre: '8', label: 'products in production' },
+      { count: 5, suffix: '+', prefix: '', pre: '5+', label: 'industries served' },
+      { count: 30, suffix: '-day', prefix: '', pre: '30-day', label: 'post-launch support' }
+    ];
+
+    const marqueeTags = ['Work Management', 'AI Automation', 'LMS Platforms', 'ERP Systems', 'Campus Tech', 'Custom SaaS', 'Work Management', 'AI Automation', 'LMS Platforms', 'ERP Systems', 'Campus Tech', 'Custom SaaS'];
+
+    const problems = ['Still closing billing by hand every night?', 'Customer data stuck across ten spreadsheets?', 'Leads slipping through the cracks?', 'Reports that take days to pull together?', 'Teams working in disconnected tools?', 'Stock counts that never quite match?', 'Approvals lost in endless email threads?', 'Manual data entry eating your week?', 'No single view of your operations?', 'Growth blocked by clunky software?', 'Paperwork piling up every result season?', 'Hours lost to work a bot should do?'];
+    const heroLogCols = [
+      { side: 'left', align: 'left', dur: '34s', delay: '0s', lines: problems.concat(problems) },
+      { side: 'right', align: 'right', dur: '40s', delay: '-14s', lines: problems.slice(6).concat(problems.slice(0, 6)).concat(problems) }
+    ];
+
+    return {
+      marqueeTags, heroLogCols, services, products, featuredProducts, smallProducts, caseStudies, caseStudiesLoop, feedbacks, buildSteps, ctaStats,
+      pauseRail: () => { if (this._railTween) this._railTween.pause(); },
+      resumeRail: () => { if (this._railTween) this._railTween.resume(); },
+      sent: this.state.sent, notSent: !this.state.sent,
+      submitForm: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ sent: true }); },
+      icChevron: this.icon('chevronRight', { size: 13, color: '#60a5fa' }),
+      icCheckC: this.icon('checkCircle', { size: 16, color: '#22c55e' }),
+      icMerge: this.icon('gitMerge', { size: 16, color: 'currentColor' }),
+      icStar: this.icon('star', { size: 14, color: '#fbbf24', fill: '#fbbf24', stroke: 0 }),
+      icChipDash: this.icon('layoutDashboard', { size: 20, color: '#3b82f6' }),
+      icChipKanban: this.icon('kanban', { size: 20, color: '#3b82f6' }),
+      icChipRocket: this.icon('rocket', { size: 20, color: '#3b82f6' }),
+      icArrowDown: this.icon('arrowDown', { size: 18, color: 'currentColor' }),
+      icArrowRight: this.icon('arrowRight', { size: 18, color: 'currentColor' }),
+      icPhone: this.icon('phone', { size: 18, color: '#60a5fa' }),
+      icMail: this.icon('mail', { size: 18, color: '#60a5fa' }),
+      icCheckCircle: this.icon('checkCircle', { size: 16, color: '#60a5fa' }),
+      icBigCheck: this.icon('check', { size: 28, color: '#fff', stroke: 2.5 })
+    };
+  }
+
+  renderVals() {
+    const panels = this.pageData();
+    // attach data-flip via decorating capPanels already handled in template? we set attr manually:
+    return { ...this.navData(), ...panels };
+  }
+}
+</script>
+</body>
+</html>
