@@ -11,6 +11,9 @@
     for (var i = 0; i < stack.length; i++) {
       var nd = stack[i];
       if (nav.contains(nd)) continue;
+      var skip = false, q = nd;
+      while (q && q !== document.body) { var qs = getComputedStyle(q); if (qs.position === 'fixed' || parseFloat(qs.opacity) < 0.5 || qs.visibility === 'hidden') { skip = true; break; } q = q.parentElement; }
+      if (skip) continue;
       var c = nd;
       while (c && c !== document.documentElement) {
         var cs = getComputedStyle(c);
@@ -47,11 +50,19 @@
     function isDark() {
       if (ht === 'dark') return true;
       if (ht === 'light') return false;
-      if (autoDark === undefined) autoDark = detectDark(nav);
-      return autoDark;
+      if (window.scrollY <= 30) autoDark = detectDark(nav);
+      return !!autoDark;
+    }
+    if (!document.getElementById('cn-nav-tone-css')) {
+      var st = document.createElement('style'); st.id = 'cn-nav-tone-css';
+      st.textContent = '[data-cn-nav][data-nav-tone="dark"]{--nav-fg:#ffffff!important;--nav-line:rgba(255,255,255,.35)!important}' +
+        '[data-cn-nav][data-nav-tone="light"],[data-cn-nav][data-nav-tone="solid"]{--nav-fg:#334155!important;--nav-line:#DCE3EC!important}' +
+        '[data-cn-nav][data-nav-tone="solid"]{background:#ffffff!important;border-bottom:1px solid #E6ECF3!important}';
+      document.head.appendChild(st);
     }
     function apply(sc) {
       var logo = nav.querySelector('img');
+      nav.setAttribute('data-nav-tone', sc ? 'solid' : (isDark() ? 'dark' : 'light'));
       if (sc) {
         nav.style.background = '#ffffff';
         nav.style.backdropFilter = 'blur(16px)';
@@ -81,11 +92,18 @@
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(run); } }, { passive: true });
     run();
+    new MutationObserver(function () {
+      var want = scrolled ? 'solid' : (autoDark && ht !== 'light' || ht === 'dark' ? 'dark' : 'light');
+      if (nav.getAttribute('data-nav-tone') !== want) nav.setAttribute('data-nav-tone', want);
+      var logo = nav.querySelector('img'), src = (!scrolled && want === 'dark') ? 'footer-logo.webp' : 'cybernaut-logo.webp';
+      if (logo && logo.getAttribute('src') !== src) logo.src = src;
+    }).observe(nav, { attributes: true, attributeFilter: ['style', 'data-nav-tone'], subtree: true, childList: true });
     if (ht === 'auto') {
       [400, 1200, 2600].forEach(function (t) {
         setTimeout(function () {
+          if (window.scrollY > 30) return;
           var d = detectDark(nav);
-          if (d !== autoDark) { autoDark = d; if (window.scrollY <= 30) apply(false); }
+          if (d !== autoDark) { autoDark = d; apply(false); }
         }, t);
       });
     }

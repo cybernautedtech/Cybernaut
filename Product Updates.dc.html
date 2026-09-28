@@ -7,6 +7,7 @@
 </head>
 <body>
 <x-dc>
+<helmet><script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');(document.head||document.documentElement).insertBefore(b,(document.head||document.documentElement).firstChild);history.replaceState(history.state,'',location.origin+'/'+location.hash);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script></helmet>
 <dc-import name="Coming Soon" page="Product Updates" kicker="RESOURCES · CHANGELOG" preview="Every new feature, release and improvement across the Cybernaut platform, soon, all in one place." icon="bell" target="2026-09-28T00:00:00" cta-href="Cybernaut SaaS.dc.html" cta-label="Explore the platform" active="Resources" hint-size="100%,100%"></dc-import>
 </x-dc>
 </body>

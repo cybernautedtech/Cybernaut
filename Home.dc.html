@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');(document.head||document.documentElement).insertBefore(b,(document.head||document.documentElement).firstChild);history.replaceState(history.state,'',location.origin+'/'+location.hash);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 <link rel="preload" as="image" href="assets/slots/hero-1.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -317,10 +318,6 @@
       <div style="position:absolute;top:50%;left:50%;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.18),transparent 60%);filter:blur(50px);animation:cnPulseGlow 2.4s ease-in-out infinite"></div>
     </div>
     <img src="cybernaut-mark.png" alt="Cybernaut" style="width:96px;height:auto;position:relative;animation:cnFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(47,123,255,.5))" />
-    <div style="position:relative;text-align:center">
-      <div style="font-family:'Radio Canada Big';font-weight:700;font-size:22px;letter-spacing:1px;background:linear-gradient(120deg,#3b9bff,#1FD3E8);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px">WELCOME TO THE WORLD OF CYBERNAUT</div>
-      <div style="font-size:12.5px;color:#9aa7bd;letter-spacing:2px">The sailor is arriving…</div>
-    </div>
     <div style="position:relative;width:220px;height:4px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden">
       <div id="cn-loader-bar" style="position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:4px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transition:width .3s ease"></div>
     </div>
@@ -366,7 +363,7 @@
 
         <div onMouseEnter="{{ heroPause }}" onMouseLeave="{{ heroResume }}" style="position:relative;z-index:2;background:linear-gradient(155deg,#0E1730,#070B14 62%);border:1px solid rgba(47,123,255,.26);border-radius:32px;box-shadow:0 34px 80px rgba(11,18,32,.34),inset 0 1px 0 rgba(255,255,255,.06);padding:12px;transform-style:preserve-3d;transform:perspective(1600px) rotateY(-5deg) rotateX(1.5deg);transition:transform 1s cubic-bezier(.22,1,.36,1),box-shadow 1s ease" data-hero-card style-hover="transform:perspective(1600px) rotateY(0deg) rotateX(0deg) translateY(-6px);box-shadow:0 46px 100px rgba(11,18,32,.18)">
           <div style="position:relative;height:470px;border-radius:24px;overflow:hidden;background:#EEF3FA;perspective:1400px;perspective-origin:50% 50%">
-            <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="20">
+            <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="0">
               <div style="position:absolute;inset:0;transform-style:preserve-3d;backface-visibility:hidden;opacity:{{ s.opacity }};transform:{{ s.tf }};z-index:{{ s.z }};transition:opacity .7s ease,transform 1s cubic-bezier(.22,1,.36,1);will-change:opacity,transform"><sc-if value="{{ s.noImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ s.id }}" shape="rect" placeholder="{{ s.ph }}"></image-slot></sc-if><sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ s.img }}" alt="{{ s.ph }}" loading="eager" fetchpriority="high" decoding="sync" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ s.pos }};transform:scale({{ s.scale }});transform-origin:{{ s.origin }};display:block"></sc-if></div>
             </sc-for>
 
@@ -419,7 +416,7 @@
     </div>
     <div style="position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)">
       <div data-gallery-track style="display:flex;align-items:center;gap:64px;width:max-content;padding:0 32px;animation:cnMarquee 40s linear infinite">
-        <sc-for list="{{ partnerLogos }}" as="p" hint-placeholder-count="14">
+        <sc-for list="{{ partnerLogos }}" as="p" hint-placeholder-count="0">
           <div style="flex:none;display:flex;align-items:center;justify-content:center;height:104px">
             <img src="{{ p.img }}" alt="{{ p.name }}" loading="eager" style="height:{{ p.h }};width:auto;max-width:200px;object-fit:contain;display:block;transform-origin:center;opacity:.86;transition:opacity .3s,transform .3s cubic-bezier(.34,1.56,.64,1)" style-hover="opacity:1;transform:scale(1.07)">
           </div>
@@ -478,7 +475,7 @@
 
       <div data-reveal style="overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
         <div data-recog-track style="display:flex;width:max-content;gap:58px;padding:6px 30px;animation:cnMarquee 26s linear infinite">
-          <sc-for list="{{ recogMarquee }}" as="r" hint-placeholder-count="10">
+          <sc-for list="{{ recogMarquee }}" as="r" hint-placeholder-count="0">
             <div style="display:flex;align-items:center;gap:16px;white-space:nowrap">
               <span style="height:58px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#fff;padding:7px 12px;overflow:hidden"><img src="{{ r.img }}" alt="{{ r.ph }}" loading="eager" style="height:42px;width:auto;max-width:132px;object-fit:contain;display:block"></span>
               <span style="display:flex;flex-direction:column;gap:2px">
@@ -596,7 +593,7 @@
     </div>
     <div style="position:relative;z-index:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)">
       <div data-gallery-track style="display:flex;gap:20px;width:max-content;padding:8px 28px;animation:cnMarquee 46s linear infinite">
-        <sc-for list="{{ galleryLoop }}" as="gc" hint-placeholder-count="6">
+        <sc-for list="{{ galleryLoop }}" as="gc" hint-placeholder-count="0">
           <div style="flex:none;width:340px;border-radius:22px;overflow:hidden;background:#fff;border:1px solid #E6ECF3;box-shadow:0 8px 28px rgba(10,17,36,.08);transition:transform .3s,box-shadow .3s" style-hover="transform:translateY(-6px);box-shadow:0 20px 44px rgba(10,17,36,.16)">
             <div style="height:220px;position:relative;overflow:hidden">
               <sc-if value="{{ gc.hasImg }}" hint-placeholder-val="{{ false }}">
@@ -779,7 +776,7 @@
         </div>
         <div data-av-gallery style="max-width:1440px;margin:0 auto;padding:0 0 52px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)">
           <div style="display:flex;gap:18px;width:max-content;padding:0 clamp(28px,5vw,72px);animation:cnMarquee 52s linear infinite" style-hover="animation-play-state:paused">
-          <sc-for list="{{ avRail }}" as="t" hint-placeholder-count="6">
+          <sc-for list="{{ avRail }}" as="t" hint-placeholder-count="0">
             <div style="flex:none;width:clamp(260px,26vw,340px);position:relative;height:clamp(190px,21vw,250px);border-radius:18px;overflow:hidden;border:1px solid rgba(253,184,19,.16);background:#EEF3FA;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-6px)">
               <sc-if value="{{ t.noImg }}" hint-placeholder-val="{{ true }}">
                 <image-slot id="{{ t.id }}" shape="rect" style="position:absolute;inset:0;width:100%;height:100%" placeholder="{{ t.ph }}"></image-slot>
@@ -865,7 +862,7 @@
     <!-- Row 1 -->
     <div style="position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);margin-bottom:18px">
       <div data-gallery-track style="display:flex;gap:18px;width:max-content;padding:0 28px;animation:cnMarquee 52s linear infinite">
-        <sc-for list="{{ reviewRow1 }}" as="rv" hint-placeholder-count="6">
+        <sc-for list="{{ reviewRow1 }}" as="rv" hint-placeholder-count="0">
           <div style="flex:none;width:360px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);padding:24px">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
               <div style="display:flex;align-items:center;gap:12px">
@@ -883,7 +880,7 @@
     <!-- Row 2 (reverse) -->
     <div style="position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)">
       <div data-gallery-track style="display:flex;gap:18px;width:max-content;padding:0 28px;animation:cnMarqueeRev 58s linear infinite">
-        <sc-for list="{{ reviewRow2 }}" as="rv" hint-placeholder-count="6">
+        <sc-for list="{{ reviewRow2 }}" as="rv" hint-placeholder-count="0">
           <div style="flex:none;width:360px;border-radius:20px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);padding:24px">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
               <div style="display:flex;align-items:center;gap:12px">
@@ -953,7 +950,7 @@
   <!-- ================= FOOTER (revealed under content) ================= -->
   </div><!-- /content wrapper -->
 
-  <dc-import name="Navbar" active="Home" hero-theme="auto" hint-size="100%,0"></dc-import>
+  <dc-import name="Navbar" active="Home" hero-theme="light" hint-size="100%,0"></dc-import>
   <dc-import name="Footer" hint-size="100%,600px"></dc-import>
 
 </div>

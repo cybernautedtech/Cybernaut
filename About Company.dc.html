@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');(document.head||document.documentElement).insertBefore(b,(document.head||document.documentElement).firstChild);history.replaceState(history.state,'',location.origin+'/'+location.hash);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -665,7 +666,7 @@
           <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(31,211,232,.5),rgba(255,255,255,.06))"></span>
         </div>
         <div data-ac-jgrid style="margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px">
-          <sc-for list="{{ commMoments }}" as="m" hint-placeholder-count="4">
+          <sc-for list="{{ commMoments }}" as="m" hint-placeholder-count="0">
             <div style="padding-top:20px;border-top:1px solid rgba(255,255,255,.14)">
               <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:24px">
                 <span style="font-family:'Radio Canada Big';font-weight:700;font-size:24px;line-height:1;letter-spacing:-1.1px;color:transparent;-webkit-text-stroke:1.1px rgba(31,211,232,.6)">{{ m.num }}</span>
@@ -1014,7 +1015,7 @@
     </div>
     <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);margin-bottom:16px">
       <div style="display:flex;gap:16px;width:max-content;animation:cnMarqueeRev 52s linear infinite">
-        <sc-for list="{{ outRow1 }}" as="o" hint-placeholder-count="10">
+        <sc-for list="{{ outRow1 }}" as="o" hint-placeholder-count="0">
           <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
             <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
               <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
@@ -1029,7 +1030,7 @@
     </div>
     <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);margin-bottom:16px">
       <div style="display:flex;gap:16px;width:max-content;animation:cnMarquee 46s linear infinite">
-        <sc-for list="{{ outRow2 }}" as="o" hint-placeholder-count="10">
+        <sc-for list="{{ outRow2 }}" as="o" hint-placeholder-count="0">
           <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
             <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
               <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
@@ -1045,7 +1046,7 @@
     </div>
     <div data-hscroll style="position:relative;z-index:2;overflow:hidden;padding:4px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)">
       <div style="display:flex;gap:16px;width:max-content;animation:cnMarqueeRev 58s linear infinite">
-        <sc-for list="{{ outRow3 }}" as="o" hint-placeholder-count="10">
+        <sc-for list="{{ outRow3 }}" as="o" hint-placeholder-count="0">
           <div style="width:280px;flex:none;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:box-shadow .3s,transform .3s" style-hover="box-shadow:0 0 20px rgba(59,130,246,.15);transform:translateY(-4px)">
             <div style="height:152px;border-radius:10px;overflow:hidden;position:relative;background:#0f172a;margin-bottom:12px">
               <image-slot id="{{ o.id }}" src="{{ o.src }}" shape="rect" placeholder="Photo"></image-slot>
@@ -1094,7 +1095,7 @@
             <circle data-jt-mark r="4.5" fill="#1FD3E8" opacity="0"></circle>
           </svg>
 
-          <sc-for list="{{ mural }}" as="m" hint-placeholder-count="7">
+          <sc-for list="{{ mural }}" as="m" hint-placeholder-count="0">
             <div data-mi="1" style="position:absolute;left:0;top:0;width:max-content;display:flex;align-items:center;gap:22px;transform-origin:0 0;will-change:transform,opacity">
               <div data-mi-img="1" style="position:relative;flex:none;width:{{ m.dmw }}px;height:{{ m.dih }}px;overflow:hidden;background:#0B1220;border:1px solid #E2EAF4;box-shadow:0 24px 54px rgba(10,17,36,.17);will-change:transform">
                 <sc-if value="{{ m.light }}"><div style="position:absolute;inset:0;background:#fff"></div></sc-if>
@@ -1146,7 +1147,7 @@
         <div aria-hidden="true" style="position:absolute;inset:-40px;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(47,123,255,.1) 1px,transparent 1px);background-size:30px 30px;opacity:.5"></div>
         <div aria-hidden="true" style="position:absolute;left:50%;top:44%;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;background:radial-gradient(circle,rgba(47,123,255,.12),transparent 66%);filter:blur(34px);pointer-events:none;z-index:0"></div>
         <div data-jtm-strip style="position:relative;z-index:2;flex:1;display:flex;align-items:center;gap:18px;padding:0 7vw;width:max-content;will-change:transform">
-          <sc-for list="{{ mural }}" as="c" hint-placeholder-count="7">
+          <sc-for list="{{ mural }}" as="c" hint-placeholder-count="0">
             <div data-jtm-card style="flex:none;width:min(340px,76vw);will-change:transform,opacity;display:flex;flex-direction:column;align-items:stretch;gap:14px">
               <div style="flex:none;min-width:0;padding:18px 20px;border-radius:18px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 18px 40px rgba(10,17,36,.12)">
                 <div style="font-family:'Radio Canada Big';font-weight:700;font-size:14px;letter-spacing:1px;color:#2F7BFF;margin-bottom:6px">{{ c.badge }}</div>
@@ -1989,7 +1990,7 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const home = 'Home.dc.html';
+    const home = '/';
     const navDefs = [
       { label:'Home', href:home+'#hero', live:true },
       { label:'Programs We Offer', href:'Programs.dc.html', live:true },

@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');(document.head||document.documentElement).insertBefore(b,(document.head||document.documentElement).firstChild);history.replaceState(history.state,'',location.origin+'/'+location.hash);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -472,8 +473,8 @@
             <button type="submit" data-magnetic style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#06b6d4);color:#fff;font-family:inherit;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 14px 30px rgba(59,130,246,.3);transition:transform .25s,filter .25s" style-hover="transform:translateY(-3px);filter:brightness(1.06)">Let us build it together {{ icArrowRight }}</button>
           </form>
           <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid #e6ecf3">
-            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569"><span style="color:#3b82f6;display:flex">{{ icPhone }}</span>+91 00000 00000</span>
-            <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569"><span style="color:#3b82f6;display:flex">{{ icMail }}</span>build@cybernaut.co.in</span>
+            <a href="tel:+916382055035" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569;text-decoration:none" style-hover="color:#2F7BFF"><span style="color:#3b82f6;display:flex">{{ icPhone }}</span>+91 63820 55035</a>
+            <a href="mailto:hr@cybernaut.co.in" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#475569;text-decoration:none" style-hover="color:#2F7BFF"><span style="color:#3b82f6;display:flex">{{ icMail }}</span>hr@cybernaut.co.in</a>
           </div>
           <div style="display:inline-flex;align-items:center;gap:9px;margin-top:16px;font-size:12.5px;color:#64748b">{{ icCheckCircle }}No commitment. A straight answer about your idea.</div>
         </sc-if>
@@ -484,7 +485,7 @@
   </div>
 
   <!-- FOOTER -->
-  <dc-import name="Navbar" active="Cybernaut SaaS" hero-theme="auto" hint-size="100%,0"></dc-import>
+  <dc-import name="Navbar" active="Cybernaut SaaS" hero-theme="light" hint-size="100%,0"></dc-import>
   <dc-import name="Footer" hint-size="100%,600px"></dc-import>
 
 </div>
@@ -941,7 +942,7 @@ class Component extends DCLogic {
   /* ---------- data ---------- */
   navData() {
     const navDefs = [
-      { label: 'Home', href: 'Home.dc.html#hero' },
+      { label: 'Home', href: '/#hero' },
       { label: 'Programs We Offer', href: 'Programs.dc.html', mega: 'programs' },
       { label: 'Cybernaut SaaS', href: 'Cybernaut SaaS.dc.html', active: true },
       { label: 'Events', href: 'Events.dc.html' },
