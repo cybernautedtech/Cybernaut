@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#2F7BFF">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -252,34 +259,7 @@
     </div>
   </section>
 
-  <!-- VISIT -->
-  <section style="position:relative;padding:40px 28px 70px">
-    <div style="max-width:1180px;margin:0 auto" data-reveal>
-      <div style="position:relative;border-radius:24px;overflow:hidden;border:1px solid #E6ECF3;box-shadow:0 16px 44px rgba(10,17,36,.1);height:340px;background:#0B1220" data-track-grid>
-        <image-slot id="contact-map" shape="rect" placeholder="Map / office photo, Karur, Tamil Nadu"></image-slot>
-        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,13,.78),rgba(5,7,13,.25) 60%,transparent)"></div>
-        <div style="position:absolute;left:clamp(20px,4vw,40px);top:50%;transform:translateY(-50%);max-width:380px;color:#fff;z-index:2">
-          <div style="font-size:11.5px;letter-spacing:2px;font-weight:600;color:var(--g3);margin-bottom:12px">VISIT US</div>
-          <div style="font-family:'Radio Canada Big';font-weight:700;font-size:26px;margin-bottom:12px">Cybernaut EdTech HQ</div>
-          <p style="font-size:14.5px;color:#cbd5e1;line-height:1.7">43/A, Nehru Nagar, Rayanur,<br>Karur, Tamil Nadu, India</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS BAND -->
-  <section style="position:relative;padding:0 28px 70px">
-    <div style="max-width:1180px;margin:0 auto">
-      <div data-reveal style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" data-stat-grid>
-        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
-          <div style="text-align:center;padding:30px 20px;border-radius:20px;background:#fff;border:1px solid #E6ECF3;box-shadow:0 4px 18px rgba(10,17,36,.05);transition:transform .3s" style-hover="transform:translateY(-5px)">
-            <div style="font-family:'Radio Canada Big';font-weight:700;font-size:clamp(28px,3.4vw,42px);background:linear-gradient(120deg,var(--g1),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent"><span data-count data-target="{{ st.target }}" data-decimals="0">0</span>{{ st.suffix }}</div>
-            <div style="font-size:13px;color:#64748b;margin-top:4px">{{ st.label }}</div>
-          </div>
-        </sc-for>
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section style="position:relative;padding:0 28px 84px">
