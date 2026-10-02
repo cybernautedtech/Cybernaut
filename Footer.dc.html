@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;var hide=function(){if(location.pathname!=='/'||location.search)history.replaceState(history.state,'',location.origin+'/'+location.hash)};window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');document.head.insertBefore(b,document.head.firstChild);if(document.prerendering){document.addEventListener('prerenderingchange',hide,{once:true})}else{hide()}addEventListener('pageshow',hide);addEventListener('DOMContentLoaded',hide);addEventListener('load',hide);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 
 <style>@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:cubic-bezier(.4,0,.2,1)}</style>
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*\\?*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -134,11 +133,11 @@
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:20px 0;border-top:1px solid rgba(255,255,255,.09);font-size:12.5px;color:#64748b">
         <span>© {{ year }} Cybernaut EdTech Private Limited. All rights reserved.</span>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px">
-          <a href="Coming Soon.dc.html" class="cn-ft-legal">Terms &amp; Conditions</a>
+          <a href="coming-soon" class="cn-ft-legal">Terms &amp; Conditions</a>
           <span style="opacity:.4">•</span>
-          <a href="Coming Soon.dc.html" class="cn-ft-legal">Privacy Policy</a>
+          <a href="coming-soon" class="cn-ft-legal">Privacy Policy</a>
           <span style="opacity:.4">•</span>
-          <a href="Coming Soon.dc.html" class="cn-ft-legal">Refund Policy</a>
+          <a href="coming-soon" class="cn-ft-legal">Refund Policy</a>
         </div>
       </div>
     </div>
@@ -187,19 +186,19 @@ class Component extends DCLogic {
       icShield: this.ic('shield', 22, 2),
       icArrow: this.ic('arrow', 17, 2.2),
       explore: [
-        { label: 'Programs We Offer', href: 'Programs.dc.html' },
-        { label: 'Cybernaut SaaS', href: 'Cybernaut SaaS.dc.html' },
-        { label: 'Events', href: 'Events.dc.html' },
-        { label: 'Resources', href: 'Resources.dc.html' },
-        { label: 'Blogs', href: 'Blogs.dc.html' }
+        { label: 'Programs We Offer', href: 'programs' },
+        { label: 'Cybernaut SaaS', href: 'saas' },
+        { label: 'Events', href: 'events' },
+        { label: 'Resources', href: 'resources' },
+        { label: 'Blogs', href: 'blogs' }
       ],
       company: [
-        { label: 'About Company', href: 'About Company.dc.html' },
-        { label: 'Careers', href: 'Careers.dc.html' },
-        { label: 'Contact Us', href: 'Contact.dc.html' },
-        { label: 'Student Login', href: 'Login.dc.html' },
-        { label: 'Terms & Conditions', href: 'Coming Soon.dc.html' },
-        { label: 'Privacy Policy', href: 'Coming Soon.dc.html' }
+        { label: 'About Company', href: 'about' },
+        { label: 'Careers', href: 'careers' },
+        { label: 'Contact Us', href: 'contact' },
+        { label: 'Student Login', href: 'login' },
+        { label: 'Terms & Conditions', href: 'coming-soon' },
+        { label: 'Privacy Policy', href: 'coming-soon' }
       ],
       socials: socialNames.map(n => ({ name:n, href:'#', iconEl:this.social(n) }))
     };

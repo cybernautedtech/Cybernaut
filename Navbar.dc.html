@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;var hide=function(){if(location.pathname!=='/'||location.search)history.replaceState(history.state,'',location.origin+'/'+location.hash)};window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');document.head.insertBefore(b,document.head.firstChild);if(document.prerendering){document.addEventListener('prerenderingchange',hide,{once:true})}else{hide()}addEventListener('pageshow',hide);addEventListener('DOMContentLoaded',hide);addEventListener('load',hide);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 
 <style>@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:cubic-bezier(.4,0,.2,1)}</style>
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*\\?*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -66,7 +65,7 @@
 <nav ref="{{ navRef }}" data-cn-nav data-active="{{ activeKey }}" data-hero-theme="{{ heroThemeVal }}" style="--nav-fg:#334155;--nav-line:#DCE3EC;position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 0;background:transparent;border-bottom:1px solid transparent;transition:padding .35s ease,background .35s ease,border-color .35s ease;font-family:'Poppins',sans-serif">
   <div style="max-width:1340px;margin:0 auto;padding:0 clamp(18px,4vw,34px);display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;white-space:nowrap">
 
-    <a href="/" style="display:flex;align-items:center;text-decoration:none;flex:none">
+    <a href="./" style="display:flex;align-items:center;text-decoration:none;flex:none">
       <img ref="{{ logoRef }}" src="cybernaut-logo.webp" alt="Cybernaut, Endeavour to Explore" style="height:38px;width:auto;display:block;transition:height .35s ease" />
     </a>
 
@@ -74,7 +73,7 @@
 
       <!-- Programs -->
       <div data-dd style="display:flex;position:relative">
-        <a href="Programs.dc.html" data-nav-key="Programs" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Programs<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="programs" data-nav-key="Programs" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Programs<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
         <span data-nav-underline="Programs" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
         <div data-panel style="position:absolute;top:calc(100% + 12px);left:0;z-index:70;width:520px;background:#fff;border:1px solid #E6ECF3;border-radius:16px;box-shadow:0 26px 60px rgba(10,17,36,.18);padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:22px">
           <div>
@@ -106,7 +105,7 @@
 
       <!-- Cybernaut SaaS -->
       <div data-dd style="display:flex;position:relative">
-        <a href="Cybernaut SaaS.dc.html" data-nav-key="Cybernaut SaaS" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Cybernaut SaaS<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="saas" data-nav-key="Cybernaut SaaS" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Cybernaut SaaS<svg data-caret2 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.6"><path d="m6 9 6 6 6-6"/></svg></a>
         <span data-nav-underline="Cybernaut SaaS" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
         <div data-panel style="position:absolute;top:calc(100% + 12px);left:50%;margin-left:-330px;z-index:70;width:660px;background:#fff;border:1px solid #E6ECF3;border-radius:16px;box-shadow:0 26px 60px rgba(10,17,36,.18);padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:22px">
           <div>
@@ -127,33 +126,33 @@
             <sc-for list="{{ saasExtras }}" as="it" hint-placeholder-count="3">
               <a href="{{ it.href }}" style="font-size:12.5px;font-weight:500;color:#475569;padding:7px 13px;border-radius:100px;background:#F5F8FC;border:1px solid #E6ECF3;text-decoration:none" style-hover="color:#2F7BFF;border-color:#BBD3FF">{{ it.label }}</a>
             </sc-for>
-            <a href="Cybernaut SaaS.dc.html#cta" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#2F7BFF;text-decoration:none">Start a project<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a href="saas#cta" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#2F7BFF;text-decoration:none">Start a project<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
 
       <!-- About -->
       <div style="display:flex;position:relative">
-        <a href="About Company.dc.html" data-nav-key="About Company" style="font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">About</a>
+        <a href="about" data-nav-key="About Company" style="font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">About</a>
         <span data-nav-underline="About Company" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
       </div>
 
       <!-- Events -->
       <div data-dd style="display:flex;position:relative">
-        <a href="Events.dc.html" data-nav-key="Events" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Events</a>
+        <a href="events" data-nav-key="Events" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Events</a>
         <span data-nav-underline="Events" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
       </div>
 
       <!-- Resources -->
       <div data-dd style="display:flex;position:relative">
-        <a href="Resources.dc.html" data-nav-key="Resources" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Resources</a>
+        <a href="resources" data-nav-key="Resources" style="display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 13px;border-radius:9px;transition:color .2s" style-hover="color:#2F7BFF">Resources</a>
         <span data-nav-underline="Resources" style="position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,#2F7BFF,#1FD3E8);transform:scaleX(0);transform-origin:left;transition:transform .3s"></span>
       </div>
     </div>
 
     <div data-cn-desk style="display:flex;align-items:center;gap:10px;flex:none">
-      <a href="Login.dc.html" style="display:none;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 8px;transition:color .2s" style-hover="color:#2F7BFF">Login</a>
-      <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:11px 20px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28);transition:transform .2s" style-hover="transform:translateY(-2px)">Get Started<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="login" style="display:none;font-size:14px;font-weight:500;color:var(--nav-fg);text-decoration:none;padding:9px 8px;transition:color .2s" style-hover="color:#2F7BFF">Login</a>
+      <a href="contact" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:11px 20px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28);transition:transform .2s" style-hover="transform:translateY(-2px)">Get Started<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
 
     <button onClick="{{ toggleDrawer }}" data-cn-mob-toggle aria-label="Open menu" style="background:none;border:none;cursor:pointer;color:var(--nav-fg);padding:6px;align-items:center;justify-content:center">
@@ -174,7 +173,7 @@
     <div style="flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:2px">
 
       <div style="display:flex;align-items:center;gap:4px;border-radius:11px" style-hover="background:#F5F8FC">
-        <a href="Programs.dc.html" onClick="{{ closeDrawer }}" style="flex:1;font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px">Programs</a>
+        <a href="programs" onClick="{{ closeDrawer }}" style="flex:1;font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px">Programs</a>
         <button onClick="{{ toggleProgs }}" aria-label="Show programs" style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:#0A1124;border-radius:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5;transform:{{ progsCaret }};transition:transform .25s ease"><path d="m6 9 6 6 6-6"/></svg></button>
       </div>
       <sc-if value="{{ progsOpen }}" hint-placeholder-val="{{ false }}">
@@ -216,14 +215,14 @@
         </div>
       </sc-if>
 
-      <a href="About Company.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">About</a>
-      <a href="Events.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Events</a>
+      <a href="about" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">About</a>
+      <a href="events" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Events</a>
 
-      <a href="Resources.dc.html" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Resources</a>
+      <a href="resources" onClick="{{ closeDrawer }}" style="font-size:15px;font-weight:600;color:#0A1124;text-decoration:none;padding:13px 12px;border-radius:11px" style-hover="background:#F5F8FC">Resources</a>
     </div>
     <div style="padding:16px 20px;border-top:1px solid #EEF2F8;display:flex;flex-direction:column;gap:10px">
-      <a href="Login.dc.html" style="display:none;text-align:center;font-size:14px;font-weight:500;color:#0A1124;text-decoration:none;padding:11px;border:1px solid #DCE3EC;border-radius:100px" style-hover="border-color:#BBD3FF;color:#2F7BFF">Login</a>
-      <a href="Contact.dc.html" style="display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:12px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28)">Get Started<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a href="login" style="display:none;text-align:center;font-size:14px;font-weight:500;color:#0A1124;text-decoration:none;padding:11px;border:1px solid #DCE3EC;border-radius:100px" style-hover="border-color:#BBD3FF;color:#2F7BFF">Login</a>
+      <a href="contact" style="display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:14px;font-weight:600;color:#fff;text-decoration:none;padding:12px;border-radius:100px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);box-shadow:0 8px 20px rgba(47,123,255,.28)">Get Started<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
   </div>
 </sc-if>
@@ -266,52 +265,52 @@ class Component extends DCLogic {
       activeKey: this.props.active || '',
       heroThemeVal: this.props.heroTheme || 'auto',
       studentProgs: [
-        { icon: this.ic('book'), label: 'Foundation Programs', desc: 'Tech Trio · programming basics', href: 'Programs Students.dc.html#foundation' },
-        { icon: this.ic('briefcase'), label: 'Professional Programs', desc: 'Job-ready career tracks', href: 'Programs Students.dc.html#professional' },
-        { icon: this.ic('grid'), label: 'All Student Programs', desc: 'Browse the full catalogue', href: 'Programs Students.dc.html' }
+        { icon: this.ic('book'), label: 'Foundation Programs', desc: 'Tech Trio · programming basics', href: 'programs-students#foundation' },
+        { icon: this.ic('briefcase'), label: 'Professional Programs', desc: 'Job-ready career tracks', href: 'programs-students#professional' },
+        { icon: this.ic('grid'), label: 'All Student Programs', desc: 'Browse the full catalogue', href: 'programs-students' }
       ],
       collegeProgs: [
-        { icon: this.ic('award'), label: 'VAC Programs', desc: 'Value-added campus courses', href: 'Programs College.dc.html#vac' },
-        { icon: this.ic('target'), label: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'Programs College.dc.html#placement' },
-        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & outreach', href: 'Contact.dc.html' }
+        { icon: this.ic('award'), label: 'VAC Programs', desc: 'Value-added campus courses', href: 'programs-college#vac' },
+        { icon: this.ic('target'), label: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'programs-college#placement' },
+        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & outreach', href: 'contact' }
       ],
       saasServices: [
-        { icon: this.ic('code'), label: 'Product Engineering', href: 'Cybernaut SaaS.dc.html#capabilities' },
-        { icon: this.ic('cpu'), label: 'AI & Automation', href: 'Cybernaut SaaS.dc.html#capabilities' },
-        { icon: this.ic('cloud'), label: 'Cloud & DevOps', href: 'Cybernaut SaaS.dc.html#capabilities' },
-        { icon: this.ic('sliders'), label: 'Enterprise Solutions', href: 'Cybernaut SaaS.dc.html#capabilities' },
-        { icon: this.ic('layers'), label: 'Technology Consulting', href: 'Cybernaut SaaS.dc.html#capabilities' }
+        { icon: this.ic('code'), label: 'Product Engineering', href: 'saas#capabilities' },
+        { icon: this.ic('cpu'), label: 'AI & Automation', href: 'saas#capabilities' },
+        { icon: this.ic('cloud'), label: 'Cloud & DevOps', href: 'saas#capabilities' },
+        { icon: this.ic('sliders'), label: 'Enterprise Solutions', href: 'saas#capabilities' },
+        { icon: this.ic('layers'), label: 'Technology Consulting', href: 'saas#capabilities' }
       ],
       saasProducts: [
-        { icon: this.ic('bookOpen'), label: 'Cybernaut LMS', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('kanban'), label: 'Cybernaut ERP', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('building'), label: 'Cybernaut Campus', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('fileCheck'), label: 'Cybernaut Examily', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('code'), label: 'Cybernaut Practice', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('users'), label: 'Cybernaut CRM', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('briefcase'), label: 'Cybernaut HRM', href: 'Cybernaut SaaS.dc.html#products' },
-        { icon: this.ic('zap'), label: 'Cybernaut Minitos', href: 'Cybernaut SaaS.dc.html#products' }
+        { icon: this.ic('bookOpen'), label: 'Cybernaut LMS', href: 'saas#products' },
+        { icon: this.ic('kanban'), label: 'Cybernaut ERP', href: 'saas#products' },
+        { icon: this.ic('building'), label: 'Cybernaut Campus', href: 'saas#products' },
+        { icon: this.ic('fileCheck'), label: 'Cybernaut Examily', href: 'saas#products' },
+        { icon: this.ic('code'), label: 'Cybernaut Practice', href: 'saas#products' },
+        { icon: this.ic('users'), label: 'Cybernaut CRM', href: 'saas#products' },
+        { icon: this.ic('briefcase'), label: 'Cybernaut HRM', href: 'saas#products' },
+        { icon: this.ic('zap'), label: 'Cybernaut Minitos', href: 'saas#products' }
       ],
       saasExtras: [
-        { label: 'Case Studies', href: 'Cybernaut SaaS.dc.html#clients' },
-        { label: 'Client Feedback', href: 'Cybernaut SaaS.dc.html#feedbacks' },
-        { label: 'How We Build', href: 'Cybernaut SaaS.dc.html#how' }
+        { label: 'Case Studies', href: 'saas#clients' },
+        { label: 'Client Feedback', href: 'saas#feedbacks' },
+        { label: 'How We Build', href: 'saas#how' }
       ],
       eventsMenu: [
-        { icon: this.ic('sparkles'), label: 'Sunday Series', desc: 'Weekly learning sessions', href: 'Events.dc.html#sunday-series' },
-        { icon: this.ic('award'), label: 'Contest', desc: 'Compete & win', href: 'Events.dc.html#contest' },
-        { icon: this.ic('zap'), label: 'Hackathons', desc: 'Build under pressure', href: 'Events.dc.html#hackathons' }
+        { icon: this.ic('sparkles'), label: 'Sunday Series', desc: 'Weekly learning sessions', href: 'events#sunday-series' },
+        { icon: this.ic('award'), label: 'Contest', desc: 'Compete & win', href: 'events#contest' },
+        { icon: this.ic('zap'), label: 'Hackathons', desc: 'Build under pressure', href: 'events#hackathons' }
       ],
       resourcesLeft: [
-        { icon: this.ic('pen'), label: 'Insights', desc: 'Blog · articles & guides · soon', href: 'Insights.dc.html' },
-        { icon: this.ic('bell'), label: 'Product Updates', desc: 'What is new across Cybernaut · soon', href: 'Product Updates.dc.html' },
-        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & collaborations · soon', href: 'Partner With Us.dc.html' },
-        { icon: this.ic('briefcase'), label: 'Careers', desc: 'Join the Cybernaut team · soon', href: 'Careers.dc.html' }
+        { icon: this.ic('pen'), label: 'Insights', desc: 'Blog · articles & guides · soon', href: 'insights' },
+        { icon: this.ic('bell'), label: 'Product Updates', desc: 'What is new across Cybernaut · soon', href: 'product-updates' },
+        { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & collaborations · soon', href: 'partner-with-us' },
+        { icon: this.ic('briefcase'), label: 'Careers', desc: 'Join the Cybernaut team · soon', href: 'careers' }
       ],
       resourcesRight: [
-        { icon: this.ic('users'), label: 'Aarvam, Student Community', desc: 'The hidden order of tech clans · soon', href: 'Aarvam Community.dc.html' },
-        { icon: this.ic('message'), label: 'Student Stories', desc: 'Placements & alumni journeys · soon', href: 'Student Stories.dc.html' },
-        { icon: this.ic('flag'), label: 'Campus Leads', desc: 'Represent Cybernaut on your campus · soon', href: 'Campus Leads.dc.html' }
+        { icon: this.ic('users'), label: 'Aarvam, Student Community', desc: 'The hidden order of tech clans · soon', href: 'aarvam-community' },
+        { icon: this.ic('message'), label: 'Student Stories', desc: 'Placements & alumni journeys · soon', href: 'student-stories' },
+        { icon: this.ic('flag'), label: 'Campus Leads', desc: 'Represent Cybernaut on your campus · soon', href: 'campus-leads' }
       ],
       drawerOpen: this.state.drawerOpen,
       progsOpen: this.state.progsOpen,

@@ -1,0 +1,234 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/ai-agents",
+      "destination": "/AI%20Agents.dc.html"
+    },
+    {
+      "source": "/ai-machine-learning",
+      "destination": "/AI%20Machine%20Learning.dc.html"
+    },
+    {
+      "source": "/aarvam-community",
+      "destination": "/Aarvam%20Community.dc.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/About%20Company.dc.html"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/Blogs.dc.html"
+    },
+    {
+      "source": "/campus-leads",
+      "destination": "/Campus%20Leads.dc.html"
+    },
+    {
+      "source": "/careers",
+      "destination": "/Careers.dc.html"
+    },
+    {
+      "source": "/coming-soon",
+      "destination": "/Coming%20Soon.dc.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/Contact.dc.html"
+    },
+    {
+      "source": "/saas",
+      "destination": "/Cybernaut%20SaaS.dc.html"
+    },
+    {
+      "source": "/cybersecurity",
+      "destination": "/Cybersecurity.dc.html"
+    },
+    {
+      "source": "/data-analytics",
+      "destination": "/Data%20Analytics.dc.html"
+    },
+    {
+      "source": "/events",
+      "destination": "/Events.dc.html"
+    },
+    {
+      "source": "/foundation-programs",
+      "destination": "/Foundation%20Programs.dc.html"
+    },
+    {
+      "source": "/full-stack-development",
+      "destination": "/Full%20Stack%20Development.dc.html"
+    },
+    {
+      "source": "/generative-ai",
+      "destination": "/Generative%20AI.dc.html"
+    },
+    {
+      "source": "/insights",
+      "destination": "/Insights.dc.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/Login.dc.html"
+    },
+    {
+      "source": "/partner-with-us",
+      "destination": "/Partner%20With%20Us.dc.html"
+    },
+    {
+      "source": "/placement-1-year",
+      "destination": "/Placement%201-Year%20Track.dc.html"
+    },
+    {
+      "source": "/placement-2-year",
+      "destination": "/Placement%202-Year%20Track.dc.html"
+    },
+    {
+      "source": "/placement-4-year",
+      "destination": "/Placement%204-Year%20Track.dc.html"
+    },
+    {
+      "source": "/placement",
+      "destination": "/Placement%20Training.dc.html"
+    },
+    {
+      "source": "/product-updates",
+      "destination": "/Product%20Updates.dc.html"
+    },
+    {
+      "source": "/professional-programs",
+      "destination": "/Professional%20Programs.dc.html"
+    },
+    {
+      "source": "/programs-college",
+      "destination": "/Programs%20College.dc.html"
+    },
+    {
+      "source": "/programs-students",
+      "destination": "/Programs%20Students.dc.html"
+    },
+    {
+      "source": "/programs",
+      "destination": "/Programs.dc.html"
+    },
+    {
+      "source": "/prompt-engineering",
+      "destination": "/Prompt%20Engineering.dc.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/Resources.dc.html"
+    },
+    {
+      "source": "/student-community",
+      "destination": "/Student%20Community.dc.html"
+    },
+    {
+      "source": "/student-contest-leaderboard",
+      "destination": "/Student%20Contest%20Leaderboard.dc.html"
+    },
+    {
+      "source": "/student-contest-live",
+      "destination": "/Student%20Contest%20Live.dc.html"
+    },
+    {
+      "source": "/student-contest-mock",
+      "destination": "/Student%20Contest%20Mock.dc.html"
+    },
+    {
+      "source": "/student-contest",
+      "destination": "/Student%20Contest.dc.html"
+    },
+    {
+      "source": "/student-courses",
+      "destination": "/Student%20Courses.dc.html"
+    },
+    {
+      "source": "/student",
+      "destination": "/Student%20Dashboard.dc.html"
+    },
+    {
+      "source": "/student-practice",
+      "destination": "/Student%20Practice.dc.html"
+    },
+    {
+      "source": "/student-profile",
+      "destination": "/Student%20Profile.dc.html"
+    },
+    {
+      "source": "/student-resumecraft",
+      "destination": "/Student%20ResumeCraft.dc.html"
+    },
+    {
+      "source": "/student-stories",
+      "destination": "/Student%20Stories.dc.html"
+    },
+    {
+      "source": "/student-study-room",
+      "destination": "/Student%20Study%20Room.dc.html"
+    },
+    {
+      "source": "/sunday-series-masterclass",
+      "destination": "/Sunday%20Series%20Masterclass.dc.html"
+    },
+    {
+      "source": "/sunday-series",
+      "destination": "/Sunday%20Series.dc.html"
+    },
+    {
+      "source": "/system-design",
+      "destination": "/System%20Design.dc.html"
+    },
+    {
+      "source": "/tech-trio",
+      "destination": "/Tech%20Trio.dc.html"
+    },
+    {
+      "source": "/ui-ux-design",
+      "destination": "/UI%20UX%20Design.dc.html"
+    },
+    {
+      "source": "/home",
+      "destination": "/Home.dc.html"
+    },
+    {
+      "source": "/student-dashboard",
+      "destination": "/Student%20Dashboard.dc.html"
+    },
+    {
+      "source": "/about-us",
+      "destination": "/About%20Company.dc.html"
+    },
+    {
+      "source": "/cybernaut-saas",
+      "destination": "/Cybernaut%20SaaS.dc.html"
+    },
+    {
+      "source": "/placement-training",
+      "destination": "/Placement%20Training.dc.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

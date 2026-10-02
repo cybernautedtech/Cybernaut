@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;var hide=function(){if(location.pathname!=='/'||location.search)history.replaceState(history.state,'',location.origin+'/'+location.hash)};window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');document.head.insertBefore(b,document.head.firstChild);if(document.prerendering){document.addEventListener('prerenderingchange',hide,{once:true})}else{hide()}addEventListener('pageshow',hide);addEventListener('DOMContentLoaded',hide);addEventListener('load',hide);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
+<script>(function(){var R="programs",M={"ai-agents":"AI Agents.dc.html","ai-machine-learning":"AI Machine Learning.dc.html","aarvam-community":"Aarvam Community.dc.html","about":"About Company.dc.html","blogs":"Blogs.dc.html","campus-leads":"Campus Leads.dc.html","careers":"Careers.dc.html","coming-soon":"Coming Soon.dc.html","contact":"Contact.dc.html","saas":"Cybernaut SaaS.dc.html","cybersecurity":"Cybersecurity.dc.html","data-analytics":"Data Analytics.dc.html","events":"Events.dc.html","foundation-programs":"Foundation Programs.dc.html","full-stack-development":"Full Stack Development.dc.html","generative-ai":"Generative AI.dc.html","":"Home.dc.html","insights":"Insights.dc.html","login":"Login.dc.html","partner-with-us":"Partner With Us.dc.html","placement-1-year":"Placement 1-Year Track.dc.html","placement-2-year":"Placement 2-Year Track.dc.html","placement-4-year":"Placement 4-Year Track.dc.html","placement":"Placement Training.dc.html","product-updates":"Product Updates.dc.html","professional-programs":"Professional Programs.dc.html","programs-college":"Programs College.dc.html","programs-students":"Programs Students.dc.html","programs":"Programs.dc.html","prompt-engineering":"Prompt Engineering.dc.html","resources":"Resources.dc.html","student-community":"Student Community.dc.html","student-contest-leaderboard":"Student Contest Leaderboard.dc.html","student-contest-live":"Student Contest Live.dc.html","student-contest-mock":"Student Contest Mock.dc.html","student-contest":"Student Contest.dc.html","student-courses":"Student Courses.dc.html","student":"Student Dashboard.dc.html","student-practice":"Student Practice.dc.html","student-profile":"Student Profile.dc.html","student-resumecraft":"Student ResumeCraft.dc.html","student-stories":"Student Stories.dc.html","student-study-room":"Student Study Room.dc.html","sunday-series-masterclass":"Sunday Series Masterclass.dc.html","sunday-series":"Sunday Series.dc.html","system-design":"System Design.dc.html","tech-trio":"Tech Trio.dc.html","ui-ux-design":"UI UX Design.dc.html","home":"Home.dc.html","index":"Home.dc.html","student-dashboard":"Student Dashboard.dc.html","about-us":"About Company.dc.html","cybernaut-saas":"Cybernaut SaaS.dc.html","placement-training":"Placement Training.dc.html"};try{document.title='cybernaut.co.in';if(location.protocol.indexOf('http')!==0)return;var h=location.href.split('#')[0].split('?')[0],root=h.replace(/[^\/]*$/,''),seg=decodeURIComponent(h.slice(root.length)),H=location.hash,CLEAN=/(^|\.)cybernaut\.co\.in$|\.vercel\.app$/.test(location.hostname);var go=function(r){location.replace(CLEAN?root+r:root+encodeURI(M[r]))};if((seg===''||seg==='index.html')&&!location.search){var st=history.state,w=st&&st.cnPage;if(w==null){try{var n=performance.getEntriesByType('navigation')[0];if(n&&(n.type==='reload'||n.type==='back_forward'))w=sessionStorage.getItem('cnPage')}catch(x){}}if(w&&w!==R&&M[w]){document.documentElement.style.visibility='hidden';go(w);return}}window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=root;var hd=document.head||document.documentElement;hd.insertBefore(b,hd.firstChild);var hide=function(){if(document.prerendering)return;try{sessionStorage.setItem('cnPage',R)}catch(x){}var s=history.state||{};if(location.href!==root||s.cnPage!==R){var ns={};for(var k in s)ns[k]=s[k];ns.cnPage=R;history.replaceState(ns,'',root)}if(document.title!=='cybernaut.co.in')document.title='cybernaut.co.in'};if(document.prerendering)document.addEventListener('prerenderingchange',hide,{once:true});hide();addEventListener('pageshow',hide);addEventListener('DOMContentLoaded',hide);addEventListener('load',hide);addEventListener('hashchange',hide);var to=function(id){var t=id&&document.getElementById(id);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});return!!t};if(H.length>1){var tries=0,iv=setInterval(function(){if(to(decodeURIComponent(H.slice(1)))||++tries>80)clearInterval(iv)},100)}document.addEventListener('click',function(e){if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;var a=e.target&&e.target.closest&&e.target.closest('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;var raw=a.getAttribute('href');if(!raw)return;if(raw.charAt(0)==='#'){e.preventDefault();to(raw.slice(1));return}var u;try{u=new URL(raw,root)}catch(x){return}if(u.origin!==location.origin)return;var p=u.href.split('#')[0].split('?')[0];if(p.indexOf(root)!==0)return;var r=decodeURIComponent(p.slice(root.length)).replace(/\/$/,'');if(M[r]===undefined)return;if(M[r]===M[R]||r===R){e.preventDefault();if(u.hash)to(decodeURIComponent(u.hash.slice(1)));else window.scrollTo({top:0,behavior:'smooth'});return}if(!CLEAN){e.preventDefault();location.href=root+encodeURI(M[r])+u.hash}},true)}catch(e){}})()</script>
+<title>cybernaut.co.in</title>
 
 <style>@view-transition{navigation:auto}::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:cubic-bezier(.4,0,.2,1)}</style>
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*\\?*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
@@ -23,7 +24,6 @@
 <body>
 <x-dc>
 <helmet>
-<script>(function(){try{if(location.protocol.indexOf('http')!==0||(location.pathname==='/'&&!location.search))return;window.__dcOrigHref=location.href;var b=document.createElement('base');b.href=location.href.split('#')[0].replace(/[^/]*$/,'');(document.head||document.documentElement).insertBefore(b,(document.head||document.documentElement).firstChild);history.replaceState(history.state,'',location.origin+'/'+location.hash);document.addEventListener('click',function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var id=a.getAttribute('href').slice(1),t=id&&document.getElementById(id);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});history.replaceState(history.state,'','/#'+id)}},true)}catch(e){}})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -214,7 +214,7 @@
         <p style="margin:0 0 32px;color:#9fb0c8;font-size:clamp(15px,1.5vw,18px);line-height:1.65;max-width:460px;text-wrap:pretty">3 months of structured learning, 3 months of real internship, stacked one milestone at a time.</p>
         <div data-tw-cta style="display:flex;flex-wrap:wrap;gap:12px">
           <a href="#programs" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:54px;padding:0 28px;border-radius:12px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;box-shadow:0 18px 40px rgba(47,123,255,.32);transition:transform .25s" style-hover="transform:translateY(-3px)">Browse Programs →</a>
-          <a href="Contact.dc.html" style="display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:12px;border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:transform .25s,background .25s" style-hover="transform:translateY(-3px);background:rgba(255,255,255,.08)">Talk to Our Team</a>
+          <a href="contact" style="display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;border-radius:12px;border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:15px;text-decoration:none;white-space:nowrap;transition:transform .25s,background .25s" style-hover="transform:translateY(-3px);background:rgba(255,255,255,.08)">Talk to Our Team</a>
         </div>
       </div>
     </div>
@@ -256,7 +256,7 @@
                 <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">AI/ML</span>
                 <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">Cybersecurity</span>
               </div>
-              <a data-r3 data-magnetic href="Programs Students.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:#0f172a;color:#fff;font-weight:600;font-size:13.5px;text-decoration:none">Start your journey <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+              <a data-r3 data-magnetic href="programs-students" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:#0f172a;color:#fff;font-weight:600;font-size:13.5px;text-decoration:none">Start your journey <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
             </div>
           </div>
           <div data-half style="position:relative;height:600px;overflow:hidden;background:#f8fafc;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,3.5vw,44px)">
@@ -271,7 +271,7 @@
                 <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">AI Agents</span>
                 <span style="padding:7px 12px;border-radius:100px;border:1px solid #cbd5e1;font-size:12px;font-weight:600;color:#334155">1 to 4 yr Placement</span>
               </div>
-              <a data-r3 data-magnetic href="Programs College.dc.html" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:13.5px;box-shadow:0 14px 34px rgba(47,123,255,.4);text-decoration:none">Partner with us <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+              <a data-r3 data-magnetic href="programs-college" style="align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:10px 24px;border-radius:12px;background:linear-gradient(135deg,#2F7BFF,#1FD3E8);color:#fff;font-weight:600;font-size:13.5px;box-shadow:0 14px 34px rgba(47,123,255,.4);text-decoration:none">Partner with us <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
             </div>
           </div>
         </div>
@@ -285,7 +285,7 @@
               <div style="font-size:14px;color:#64748b;margin-top:3px">Not sure where to begin? Talk to our team, we'll help you take it.</div>
             </div>
           </div>
-          <a href="Contact.dc.html" data-magnetic style="flex:none;display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 26px;border-radius:12px;background:#ffffff;border:1px solid #e2e8f0;color:#0f172a;font-weight:600;font-size:14px;text-decoration:none;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-3px);border-color:#2F7BFF">Start Your Journey <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          <a href="contact" data-magnetic style="flex:none;display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 26px;border-radius:12px;background:#ffffff;border:1px solid #e2e8f0;color:#0f172a;font-weight:600;font-size:14px;text-decoration:none;transition:transform .25s,border-color .25s" style-hover="transform:translateY(-3px);border-color:#2F7BFF">Start Your Journey <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F7BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
         </div>
 
       </div>
@@ -609,7 +609,7 @@
       </div>
       <div data-cta-anim style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;margin-bottom:24px">
         <a href="#programs" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:56px;padding:0 40px;border-radius:12px;background:#0f172a;color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:background .25s" style-hover="background:#1e293b">Browse All Programs <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-        <a href="Contact.dc.html" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:56px;padding:0 32px;border-radius:12px;background:transparent;border:2px solid #e2e8f0;color:#475569;font-weight:600;font-size:16px;text-decoration:none;transition:all .25s" style-hover="border-color:#3b82f6;color:#3b82f6">Talk to a Mentor <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+        <a href="contact" data-magnetic style="display:inline-flex;align-items:center;gap:9px;height:56px;padding:0 32px;border-radius:12px;background:transparent;border:2px solid #e2e8f0;color:#475569;font-weight:600;font-size:16px;text-decoration:none;transition:all .25s" style-hover="border-color:#3b82f6;color:#3b82f6">Talk to a Mentor <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
       </div>
       <div data-cta-anim style="display:inline-flex;align-items:center;gap:8px">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
@@ -1080,14 +1080,14 @@ class Component extends DCLogic {
 
   navData() {
     const navDefs = [
-      { label:'Home', href:'/#hero' },
-      { label:'Programs We Offer', href:'Programs.dc.html', mega:'programs', active:true },
-      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
-      { label:'Events', href:'Events.dc.html' },
-      { label:'About Company', href:'About Company.dc.html' },
-      { label:'Blogs', href:'Blogs.dc.html' },
-      { label:'Careers', href:'Careers.dc.html' },
-      { label:'Contact Us', href:'Contact.dc.html' }
+      { label:'Home', href:'./#hero' },
+      { label:'Programs We Offer', href:'programs', mega:'programs', active:true },
+      { label:'Cybernaut SaaS', href:'saas' },
+      { label:'Events', href:'events' },
+      { label:'About Company', href:'about' },
+      { label:'Blogs', href:'blogs' },
+      { label:'Careers', href:'careers' },
+      { label:'Contact Us', href:'contact' }
     ];
     const navLinks = navDefs.map(n => ({ label:n.label, href:n.href }));
     const navItems = navDefs.map(n => ({
@@ -1099,30 +1099,30 @@ class Component extends DCLogic {
     const leftNav = navItems.filter(n => ['Programs We Offer','Cybernaut SaaS','Events'].includes(n.label));
     const rightNav = navItems.filter(n => ['About Company','Blogs','Careers','Contact Us'].includes(n.label));
     const megaStudents = [
-      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'Foundation Programs.dc.html' },
-      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'Professional Programs.dc.html' },
-      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'Programs Students.dc.html' }
+      { ic:'F', name:'Foundation Programs', desc:'Tech Trio · Programming basics', href:'foundation-programs' },
+      { ic:'P', name:'Professional Programs', desc:'Job-ready career tracks', href:'professional-programs' },
+      { ic:'S', name:'All Student Programs', desc:'Browse the full catalogue', href:'programs-students' }
     ];
     const megaCollege = [
-      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'Programs College.dc.html#vac' },
-      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'Generative AI.dc.html' },
-      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'Programs College.dc.html#placement' },
-      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'Contact.dc.html' }
+      { ic:'V', name:'VAC Programs', desc:'Value-added courses', href:'programs-college#vac' },
+      { ic:'G', name:'Generative AI', desc:'Campus VAC', href:'generative-ai' },
+      { ic:'R', name:'Placement Training', desc:'1 / 2 / 4-year tracks', href:'programs-college#placement' },
+      { ic:'M', name:'Partner With Us', desc:'MOUs & outreach', href:'contact' }
     ];
     const footExplore = [
-      { label:'Programs We Offer', href:'Programs.dc.html' },
-      { label:'Cybernaut SaaS', href:'Cybernaut SaaS.dc.html' },
-      { label:'Events', href:'Events.dc.html' },
-      { label:'Blogs', href:'Blogs.dc.html' },
-      { label:'Careers', href:'Careers.dc.html' }
+      { label:'Programs We Offer', href:'programs' },
+      { label:'Cybernaut SaaS', href:'saas' },
+      { label:'Events', href:'events' },
+      { label:'Blogs', href:'blogs' },
+      { label:'Careers', href:'careers' }
     ];
     const footCompany = [
-      { label:'About Company', href:'About Company.dc.html' },
-      { label:'Student Login', href:'Login.dc.html' },
-      { label:'Contact Us', href:'Contact.dc.html' },
-      { label:'Terms & Conditions', href:'Coming Soon.dc.html' },
-      { label:'Privacy Policy', href:'Coming Soon.dc.html' },
-      { label:'Refund Policy', href:'Coming Soon.dc.html' }
+      { label:'About Company', href:'about' },
+      { label:'Student Login', href:'login' },
+      { label:'Contact Us', href:'contact' },
+      { label:'Terms & Conditions', href:'coming-soon' },
+      { label:'Privacy Policy', href:'coming-soon' },
+      { label:'Refund Policy', href:'coming-soon' }
     ];
     const socials = [
       { name:'Instagram', ic:'IG', href:'#' }, { name:'LinkedIn', ic:'in', href:'#' },
@@ -1221,26 +1221,26 @@ class Component extends DCLogic {
 
     const allCourses = {
       foundation: [
-        { title:'Tech Trio', ic:'code2', category:'FOUNDATION', duration:'6 Months', skills:['C / C++','DSA','Problem Solving'], outcome:'Strong Programming Foundation', href:'Tech Trio.dc.html', src:'assets/programs/prog-techtrio.svg' },
-        { title:'System Design', ic:'gitbranch', category:'FOUNDATION', duration:'6 Months', skills:['Architecture','Databases','API Design'], outcome:'Think Like an Engineer', href:'System Design.dc.html', src:'assets/programs/prog-sysdesign.svg' }
+        { title:'Tech Trio', ic:'code2', category:'FOUNDATION', duration:'6 Months', skills:['C / C++','DSA','Problem Solving'], outcome:'Strong Programming Foundation', href:'tech-trio', src:'assets/programs/prog-techtrio.svg' },
+        { title:'System Design', ic:'gitbranch', category:'FOUNDATION', duration:'6 Months', skills:['Architecture','Databases','API Design'], outcome:'Think Like an Engineer', href:'system-design', src:'assets/programs/prog-sysdesign.svg' }
       ],
       professional: [
-        { title:'Full Stack Development', ic:'layers', category:'PROFESSIONAL', duration:'6 Months', skills:['React','Node.js','Databases'], outcome:'Job-Ready Full Stack Engineer', href:'Full Stack Development.dc.html', src:'assets/programs/prog-fullstack.svg' },
-        { title:'Data Analytics', ic:'barchart', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','SQL','Power BI'], outcome:'Data-Driven Decision Maker', href:'Data Analytics.dc.html', src:'assets/programs/prog-data.svg' },
-        { title:'UI / UX Design', ic:'pentool', category:'PROFESSIONAL', duration:'6 Months', skills:['Figma','Design Systems','Prototyping'], outcome:'Industry-Ready Product Designer', href:'UI UX Design.dc.html', src:'assets/programs/prog-uiux.svg' },
-        { title:'AI & Machine Learning', ic:'brain', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','Machine Learning','Deep Learning'], outcome:'AI-Augmented Developer', href:'AI Machine Learning.dc.html', src:'assets/programs/prog-ai.svg' },
-        { title:'Cybersecurity', ic:'shield', category:'PROFESSIONAL', duration:'6 Months', skills:['Ethical Hacking','Network Security','SIEM'], outcome:'Job-Ready Security Analyst', href:'Cybersecurity.dc.html', src:'assets/programs/prog-cyber.svg' }
+        { title:'Full Stack Development', ic:'layers', category:'PROFESSIONAL', duration:'6 Months', skills:['React','Node.js','Databases'], outcome:'Job-Ready Full Stack Engineer', href:'full-stack-development', src:'assets/programs/prog-fullstack.svg' },
+        { title:'Data Analytics', ic:'barchart', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','SQL','Power BI'], outcome:'Data-Driven Decision Maker', href:'data-analytics', src:'assets/programs/prog-data.svg' },
+        { title:'UI / UX Design', ic:'pentool', category:'PROFESSIONAL', duration:'6 Months', skills:['Figma','Design Systems','Prototyping'], outcome:'Industry-Ready Product Designer', href:'ui-ux-design', src:'assets/programs/prog-uiux.svg' },
+        { title:'AI & Machine Learning', ic:'brain', category:'PROFESSIONAL', duration:'6 Months', skills:['Python','Machine Learning','Deep Learning'], outcome:'AI-Augmented Developer', href:'ai-machine-learning', src:'assets/programs/prog-ai.svg' },
+        { title:'Cybersecurity', ic:'shield', category:'PROFESSIONAL', duration:'6 Months', skills:['Ethical Hacking','Network Security','SIEM'], outcome:'Job-Ready Security Analyst', href:'cybersecurity', src:'assets/programs/prog-cyber.svg' }
       ],
       vac: [
-        { title:'30 Hours VAC Program', ic:'bookopen', category:'VAC', duration:'30 Hours', skillsLabel:"You'll Experience", skills:['Foundation Theory','Learning Project','Daily Quizzes','Practical Exam'], outcome:'Quick Skill Certification', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac30.svg' },
-        { title:'45 Hours VAC Program', ic:'bookopen', category:'VAC, Recommended', duration:'45 Hours', highlight:true, skillsLabel:"You'll Experience", skills:['Theory plus Intermediate','3 Projects','Quiz plus Assessment','Practical plus Theory Exam','Full LMS Tracking'], outcome:'Semester Ready Skill Certification', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac45.svg' },
-        { title:'75 Hours Semester Elective', ic:'layers', category:'Sem Elective', duration:'75 Hours', skillsLabel:"You'll Experience", skills:['75% Practical','25% Theory','3 Graded Projects','Seminar plus Presentation','Complete LMS Dashboard'], outcome:'Full Elective Credit plus Certificate', href:'Programs College.dc.html#vac', src:'assets/programs/prog-vac75.svg' }
+        { title:'30 Hours VAC Program', ic:'bookopen', category:'VAC', duration:'30 Hours', skillsLabel:"You'll Experience", skills:['Foundation Theory','Learning Project','Daily Quizzes','Practical Exam'], outcome:'Quick Skill Certification', href:'programs-college#vac', src:'assets/programs/prog-vac30.svg' },
+        { title:'45 Hours VAC Program', ic:'bookopen', category:'VAC, Recommended', duration:'45 Hours', highlight:true, skillsLabel:"You'll Experience", skills:['Theory plus Intermediate','3 Projects','Quiz plus Assessment','Practical plus Theory Exam','Full LMS Tracking'], outcome:'Semester Ready Skill Certification', href:'programs-college#vac', src:'assets/programs/prog-vac45.svg' },
+        { title:'75 Hours Semester Elective', ic:'layers', category:'Sem Elective', duration:'75 Hours', skillsLabel:"You'll Experience", skills:['75% Practical','25% Theory','3 Graded Projects','Seminar plus Presentation','Complete LMS Dashboard'], outcome:'Full Elective Credit plus Certificate', href:'programs-college#vac', src:'assets/programs/prog-vac75.svg' }
       ],
       placement: [
-        { title:'Pre-Placement Training', ic:'target', category:'Placement', duration:'1 Year', designedFor:'Final Year Students', skillsLabel:'Training Includes', skills:['Aptitude Sprint','DSA Rounds','Mock Interviews','MAANG Resume'], outcome:'Campus + Off-Campus Ready', href:'Placement 1-Year Track.dc.html', src:'assets/programs/prog-place1.svg' },
-        { title:'Complete Placement Training', ic:'trendingup', category:'Placement', duration:'2 Years', designedFor:'3rd & Final Year Students', skillsLabel:'Training Includes', skills:['DSA + System Design','Core CS','Projects + Resume','Full Drive Support'], outcome:'MAANG & WITCH Shortlist Ready', href:'Placement 2-Year Track.dc.html', src:'assets/programs/prog-place2.svg' },
-        { title:'Arts & Science UG Plan', ic:'bookopen', category:'Placement', duration:'3 Years', designedFor:'Arts & Science Colleges (3-Year UG)', skillsLabel:'Training Includes', skills:['CS Fundamentals','Problem Solving','Resume + Aptitude','Drive Coordination'], outcome:'MNC & Startup Placement Ready', href:'Placement Training.dc.html', src:'assets/programs/prog-place3.svg' },
-        { title:'Full UG Engineering Plan', ic:'graduationcap', category:'Placement, Comprehensive', duration:'4 Years', highlight:true, designedFor:'Engineering Colleges, All CS Streams', skillsLabel:'Training Includes', skills:['Sem 1-4: Foundations','Sem 5-6: Projects','Sem 7-8: Drive Focus','COE Lab Integration'], outcome:'8 Offers, Placement Ready by Sem 8', href:'Placement 4-Year Track.dc.html', src:'assets/programs/prog-place4.svg' }
+        { title:'Pre-Placement Training', ic:'target', category:'Placement', duration:'1 Year', designedFor:'Final Year Students', skillsLabel:'Training Includes', skills:['Aptitude Sprint','DSA Rounds','Mock Interviews','MAANG Resume'], outcome:'Campus + Off-Campus Ready', href:'placement-1-year', src:'assets/programs/prog-place1.svg' },
+        { title:'Complete Placement Training', ic:'trendingup', category:'Placement', duration:'2 Years', designedFor:'3rd & Final Year Students', skillsLabel:'Training Includes', skills:['DSA + System Design','Core CS','Projects + Resume','Full Drive Support'], outcome:'MAANG & WITCH Shortlist Ready', href:'placement-2-year', src:'assets/programs/prog-place2.svg' },
+        { title:'Arts & Science UG Plan', ic:'bookopen', category:'Placement', duration:'3 Years', designedFor:'Arts & Science Colleges (3-Year UG)', skillsLabel:'Training Includes', skills:['CS Fundamentals','Problem Solving','Resume + Aptitude','Drive Coordination'], outcome:'MNC & Startup Placement Ready', href:'placement', src:'assets/programs/prog-place3.svg' },
+        { title:'Full UG Engineering Plan', ic:'graduationcap', category:'Placement, Comprehensive', duration:'4 Years', highlight:true, designedFor:'Engineering Colleges, All CS Streams', skillsLabel:'Training Includes', skills:['Sem 1-4: Foundations','Sem 5-6: Projects','Sem 7-8: Drive Focus','COE Lab Integration'], outcome:'8 Offers, Placement Ready by Sem 8', href:'placement-4-year', src:'assets/programs/prog-place4.svg' }
       ]
     };
     const courseCards = allCourses[tab];
@@ -1276,9 +1276,9 @@ class Component extends DCLogic {
     ];
 
     const related = [
-      { title:'Practice Platform', desc:'Sharpen your skills', href:'Student Practice.dc.html', ic:'code2' },
-      { title:'Aarvam Community', desc:'Join the network', href:'Aarvam Community.dc.html', ic:'users' },
-      { title:'Cybernaut SaaS', desc:'See our products', href:'Cybernaut SaaS.dc.html', ic:'briefcase' }
+      { title:'Practice Platform', desc:'Sharpen your skills', href:'student-practice', ic:'code2' },
+      { title:'Aarvam Community', desc:'Join the network', href:'aarvam-community', ic:'users' },
+      { title:'Cybernaut SaaS', desc:'See our products', href:'saas', ic:'briefcase' }
     ].map(r => ({ ...r, iconEl: this.buildIcon(r.ic, 24, '#3b82f6', 1.8) }));
 
     const productTools = [
