@@ -22,12 +22,12 @@
 <body>
 <x-dc>
 <helmet>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="navbar-theme.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap');
   /*cn-eyebrow*/[style*="letter-spacing: 3px"]:not([style*="font-family"]),[style*="letter-spacing: 2.5px"]:not([style*="font-family"]),[style*="letter-spacing: 2px"]:not([style*="font-family"]),[style*="letter-spacing: 0.14em"]:not([style*="font-family"]),[style*="letter-spacing: 0.15em"]:not([style*="font-family"]),[style*="letter-spacing: 0.16em"]:not([style*="font-family"]),[style*="letter-spacing: 0.18em"]:not([style*="font-family"]),[style*="letter-spacing: 0.2em"]:not([style*="font-family"]),[style*="letter-spacing: 0.22em"]:not([style*="font-family"]),[style*="letter-spacing: 0.24em"]:not([style*="font-family"]),[style*="letter-spacing: 0.26em"]:not([style*="font-family"]),[style*="letter-spacing: 0.3em"]:not([style*="font-family"]){font-family:'Orbitron',sans-serif!important;font-weight:800!important}
   /*cn-font*/body{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif}
   /*__hide-scrollbar__*/
@@ -66,7 +66,7 @@
   <div style="max-width:1340px;margin:0 auto;padding:0 clamp(18px,4vw,34px);display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;white-space:nowrap">
 
     <a href="./" style="display:flex;align-items:center;text-decoration:none;flex:none">
-      <img ref="{{ logoRef }}" src="cybernaut-logo.webp" alt="Cybernaut, Endeavour to Explore" style="height:38px;width:auto;display:block;transition:height .35s ease" />
+      <img ref="{{ logoRef }}" src="cybernaut-logo-nav.webp" decoding="async" fetchpriority="high" alt="Cybernaut, Endeavour to Explore" style="height:38px;width:auto;display:block;transition:height .35s ease" />
     </a>
 
     <div data-cn-desk style="display:flex;align-items:center;gap:4px">
@@ -165,7 +165,7 @@
   <div onClick="{{ closeDrawer }}" style="position:fixed;inset:0;z-index:210;background:rgba(5,7,13,.5);backdrop-filter:blur(3px)"></div>
   <div style="position:fixed;top:0;right:0;bottom:0;z-index:211;width:min(360px,88vw);background:#fff;box-shadow:-20px 0 60px rgba(10,17,36,.24);display:flex;flex-direction:column;animation:cnDrawerIn .32s cubic-bezier(.22,1,.36,1) both;font-family:'Poppins',sans-serif">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #EEF2F8">
-      <img src="cybernaut-logo.webp" alt="Cybernaut" style="height:32px;width:auto" />
+      <img src="cybernaut-logo-nav.webp" decoding="async" fetchpriority="high" alt="Cybernaut" style="height:32px;width:auto" />
       <button onClick="{{ closeDrawer }}" aria-label="Close menu" style="background:none;border:none;cursor:pointer;color:#0A1124;padding:4px">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </button>
@@ -265,13 +265,13 @@ class Component extends DCLogic {
       activeKey: this.props.active || '',
       heroThemeVal: this.props.heroTheme || 'auto',
       studentProgs: [
-        { icon: this.ic('book'), label: 'Foundation Programs', desc: 'Tech Trio · programming basics', href: 'programs-students#foundation' },
-        { icon: this.ic('briefcase'), label: 'Professional Programs', desc: 'Job-ready career tracks', href: 'programs-students#professional' },
-        { icon: this.ic('grid'), label: 'All Student Programs', desc: 'Browse the full catalogue', href: 'programs-students' }
+        { icon: this.ic('book'), label: 'Foundation Programs', desc: 'Tech Trio · programming basics', href: 'programs/students#foundation' },
+        { icon: this.ic('briefcase'), label: 'Professional Programs', desc: 'Job-ready career tracks', href: 'programs/students#professional' },
+        { icon: this.ic('grid'), label: 'All Student Programs', desc: 'Browse the full catalogue', href: 'programs/students' }
       ],
       collegeProgs: [
-        { icon: this.ic('award'), label: 'VAC Programs', desc: 'Value-added campus courses', href: 'programs-college#vac' },
-        { icon: this.ic('target'), label: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'programs-college#placement' },
+        { icon: this.ic('award'), label: 'VAC Programs', desc: 'Value-added campus courses', href: 'programs/colleges#vac' },
+        { icon: this.ic('target'), label: 'Placement Training', desc: '1 / 2 / 4-year tracks', href: 'programs/colleges#placement' },
         { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & outreach', href: 'contact' }
       ],
       saasServices: [
@@ -302,15 +302,15 @@ class Component extends DCLogic {
         { icon: this.ic('zap'), label: 'Hackathons', desc: 'Build under pressure', href: 'events#hackathons' }
       ],
       resourcesLeft: [
-        { icon: this.ic('pen'), label: 'Insights', desc: 'Blog · articles & guides · soon', href: 'insights' },
-        { icon: this.ic('bell'), label: 'Product Updates', desc: 'What is new across Cybernaut · soon', href: 'product-updates' },
+        { icon: this.ic('pen'), label: 'Insights', desc: 'Blog · articles & guides · soon', href: 'resources/insights' },
+        { icon: this.ic('bell'), label: 'Product Updates', desc: 'What is new across Cybernaut · soon', href: 'resources/product-updates' },
         { icon: this.ic('handshake'), label: 'Partner With Us', desc: 'MOUs & collaborations · soon', href: 'partner-with-us' },
         { icon: this.ic('briefcase'), label: 'Careers', desc: 'Join the Cybernaut team · soon', href: 'careers' }
       ],
       resourcesRight: [
-        { icon: this.ic('users'), label: 'Aarvam, Student Community', desc: 'The hidden order of tech clans · soon', href: 'aarvam-community' },
-        { icon: this.ic('message'), label: 'Student Stories', desc: 'Placements & alumni journeys · soon', href: 'student-stories' },
-        { icon: this.ic('flag'), label: 'Campus Leads', desc: 'Represent Cybernaut on your campus · soon', href: 'campus-leads' }
+        { icon: this.ic('users'), label: 'Aarvam, Student Community', desc: 'The hidden order of tech clans · soon', href: 'community/aarvam' },
+        { icon: this.ic('message'), label: 'Student Stories', desc: 'Placements & alumni journeys · soon', href: 'resources/student-stories' },
+        { icon: this.ic('flag'), label: 'Campus Leads', desc: 'Represent Cybernaut on your campus · soon', href: 'community/campus-leads' }
       ],
       drawerOpen: this.state.drawerOpen,
       progsOpen: this.state.progsOpen,

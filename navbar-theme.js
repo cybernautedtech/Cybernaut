@@ -43,7 +43,7 @@
   }
 
   function init() {
-    var nav = document.querySelector('[data-cn-nav]');
+    var nav = document.querySelector('body [data-cn-nav]');
     if (!nav) return setTimeout(init, 150);
     var ht = nav.getAttribute('data-hero-theme') || 'auto';
     var autoDark;
@@ -70,7 +70,7 @@
         nav.style.padding = '8px 0';
         nav.style.setProperty('--nav-fg', '#334155');
         nav.style.setProperty('--nav-line', '#DCE3EC');
-        if (logo) { logo.style.height = '32px'; logo.src = 'cybernaut-logo.webp'; }
+        if (logo) { logo.style.height = '32px'; logo.src = 'cybernaut-logo-nav.webp'; }
       } else {
         var dark = isDark();
         nav.style.background = 'transparent';
@@ -79,7 +79,7 @@
         nav.style.padding = '14px 0';
         nav.style.setProperty('--nav-fg', dark ? '#ffffff' : '#334155');
         nav.style.setProperty('--nav-line', dark ? 'rgba(255,255,255,.35)' : '#DCE3EC');
-        if (logo) { logo.style.height = '38px'; logo.src = dark ? 'footer-logo.webp' : 'cybernaut-logo.webp'; }
+        if (logo) { logo.style.height = '38px'; logo.src = dark ? 'footer-logo-nav.webp' : 'cybernaut-logo-nav.webp'; }
       }
     }
     var ticking = false, scrolled = null;
@@ -95,7 +95,7 @@
     new MutationObserver(function () {
       var want = scrolled ? 'solid' : (autoDark && ht !== 'light' || ht === 'dark' ? 'dark' : 'light');
       if (nav.getAttribute('data-nav-tone') !== want) nav.setAttribute('data-nav-tone', want);
-      var logo = nav.querySelector('img'), src = (!scrolled && want === 'dark') ? 'footer-logo.webp' : 'cybernaut-logo.webp';
+      var logo = nav.querySelector('img'), src = (!scrolled && want === 'dark') ? 'footer-logo-nav.webp' : 'cybernaut-logo-nav.webp';
       if (logo && logo.getAttribute('src') !== src) logo.src = src;
     }).observe(nav, { attributes: true, attributeFilter: ['style', 'data-nav-tone'], subtree: true, childList: true });
     if (ht === 'auto') {
